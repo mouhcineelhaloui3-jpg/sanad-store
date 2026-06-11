@@ -54,37 +54,31 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <ProductBuyBox product={product} />
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-12">
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-[1.75rem] border border-sand-100 bg-white p-5 shadow-sm">
-            <p className="text-sm font-bold text-sage-700">مناسب لك إذا</p>
-            <ul className="mt-3 space-y-2 text-sm font-semibold leading-7 text-sand-800">
-              {product.useCases.slice(0, 3).map((useCase) => (
-                <li key={useCase}>• {useCase}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-[1.75rem] border border-sand-100 bg-sage-100 p-5 shadow-sm">
-            <p className="text-sm font-bold text-sage-700">قرار بلا مخاطرة</p>
-            <h2 className="mt-2 text-xl font-black text-sand-950">الدفع عند الاستلام</h2>
-            <p className="mt-2 text-sm leading-7 text-sand-700">
-              ما كتخلص حتى توصلك السلعة. وفريق سَنَد كيتاصل بك قبل الإرسال باش يأكد الطلب.
-            </p>
-          </div>
-          <div className="rounded-[1.75rem] border border-sand-100 bg-white p-5 shadow-sm">
-            <p className="text-sm font-bold text-sage-700">شنو غادي تفهم فهاد الصفحة؟</p>
-            <p className="mt-2 text-sm leading-7 text-sand-700">
-              المشكل، كيفاش كيخدم {product.mechanism}، الفوائد، طريقة الاستعمال، آراء العملاء، والأسئلة قبل الطلب.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <PainSection product={product} />
       <MechanismBlock product={product} />
       <BenefitGrid product={product} />
       <HowToUse product={product} />
       <SocialProof product={product} />
+
+      <section className="mx-auto max-w-6xl px-4 py-16">
+        <div className="rounded-[2rem] border border-dashed border-sand-500 bg-white p-8 shadow-sm">
+          <p className="font-bold text-sage-700">قبل الإطلاق النهائي</p>
+          <h2 className="mt-2 text-2xl font-black text-sand-950 md:text-3xl">
+            معلومات خاصها تتأكد وتتعمر من الأدمين
+          </h2>
+          <p className="mt-3 max-w-2xl leading-8 text-sand-700">
+            هاد البلاصة مقصودة: أي معلومة ما متأكدينش منها ما نخترعوهاش. جاوب على هاد الأسئلة منين يكون عندك المورد
+            أو الصور النهائية.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {product.questionsToAnswer.map((question) => (
+              <div key={question} className="rounded-2xl bg-sand-50 px-4 py-3 font-bold text-sand-900">
+                ؟ {question}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Cross-sells */}
       <section className="mx-auto max-w-6xl px-4 py-16">
@@ -104,7 +98,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* Final CTA */}
       <section className="bg-sand-900 px-4 py-16 text-center text-white">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-2xl font-black md:text-3xl">جرّب {product.shortName} بلا مخاطرة</h2>
+          <h2 className="text-2xl font-black md:text-3xl">خد القرار ديالك بوضوح مع {product.shortName}</h2>
           <p className="mt-3 leading-8 text-sand-100">
             الدفع عند الاستلام داخل المغرب، وكنأكدو معاك الطلب بالهاتف قبل الإرسال.
           </p>

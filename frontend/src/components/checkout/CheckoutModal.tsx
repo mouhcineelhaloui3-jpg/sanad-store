@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -19,16 +19,16 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
   const router = useRouter();
   const { items, clear } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isFinishing, setIsFinishing] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(null);
   const [upsellProductId, setUpsellProductId] = useState<string | null>(null);
-  const [upsellSecondsLeft, setUpsellSecondsLeft] = useState(15);
   const total = getCartTotal(items);
 
   const form = useForm<CheckoutInput>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: { customerName: "", phone: "" }
   });
+
+  if (!open) return null;
 
   const upsellProduct = products.find((product) => product.id === upsellProductId);
   const checkoutCrossSells = products.filter(
@@ -55,8 +55,7 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
   }
 
   async function finishWithoutUpsell() {
-    if (orderId && !isFinishing) {
-      setIsFinishing(true);
+    if (orderId) {
       await declineUpsell(orderId).catch(() => undefined);
       clear();
       router.push(`/thank-you?order=${orderId}`);
@@ -65,30 +64,10 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
 
   async function addUpsell() {
     if (!orderId || !upsellProductId) return;
-    setIsFinishing(true);
     await acceptUpsell(orderId, upsellProductId);
     clear();
     router.push(`/thank-you?order=${orderId}`);
   }
-
-  useEffect(() => {
-    if (!orderId || !upsellProductId) return undefined;
-
-    setUpsellSecondsLeft(15);
-    const interval = window.setInterval(() => {
-      setUpsellSecondsLeft((seconds) => Math.max(0, seconds - 1));
-    }, 1000);
-
-    return () => window.clearInterval(interval);
-  }, [orderId, upsellProductId]);
-
-  useEffect(() => {
-    if (orderId && upsellProductId && upsellSecondsLeft === 0 && !isFinishing) {
-      void finishWithoutUpsell();
-    }
-  }, [orderId, upsellProductId, upsellSecondsLeft, isFinishing]);
-
-  if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/45 p-4">
@@ -105,12 +84,6 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
               <button onClick={onClose} className="text-sand-700" type="button">
                 إغلاق
               </button>
-            </div>
-
-            <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[11px] font-black text-sand-700">
-              <span className="rounded-xl bg-sage-100 px-2 py-2 text-sage-700">1. مراجعة السلة</span>
-              <span className="rounded-xl bg-sand-50 px-2 py-2">2. الاسم والهاتف</span>
-              <span className="rounded-xl bg-sand-50 px-2 py-2">3. عرض خاص</span>
             </div>
 
             <div className="mt-5 rounded-2xl bg-sand-50 p-4">
@@ -130,7 +103,7 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
 
             {checkoutCrossSells.length > 0 ? (
               <div className="mt-5">
-                <CrossSellList products={checkoutCrossSells} title="اختياري: زيد منتج مكمل قبل التأكيد" ctaLabel="زيد" />
+                <CrossSellList products={checkoutCrossSells} title="زيد للطلب قبل ما تأكد" ctaLabel="زيد" />
               </div>
             ) : null}
 
@@ -161,25 +134,14 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
               >
                 {isSubmitting ? "جارٍ تسجيل الطلب..." : "ثبّت طلبي الآن"}
               </button>
-              <p className="text-center text-xs leading-5 text-sand-600">
-                معلوماتك كتستعمل غير لتأكيد الطلب والتوصيل. ما كاين لا أداء مسبق لا بطاقة بنكية.
-              </p>
             </form>
           </>
         ) : (
           <div className="text-center">
-            <div className="mb-5 grid grid-cols-3 gap-2 text-center text-[11px] font-black text-sand-700">
-              <span className="rounded-xl bg-sand-50 px-2 py-2">1. الطلب</span>
-              <span className="rounded-xl bg-sand-50 px-2 py-2">2. تأكد</span>
-              <span className="rounded-xl bg-sage-100 px-2 py-2 text-sage-700">3. عرض خاص</span>
-            </div>
             <p className="text-sm font-bold text-sage-700">عرض خاص قبل ما نرسلو طلبك</p>
             <h2 className="mt-2 text-2xl font-black text-sand-950">زيد {upsellProduct?.shortName} لطلبك بثمن خاص</h2>
             <p className="mt-3 text-sand-700">
               هذا العرض كيظهر مرة واحدة بعد تثبيت الطلب. تقدر تضيفه الآن أو تكمل طلبك عادي.
-            </p>
-            <p className="mx-auto mt-4 inline-flex rounded-full bg-sage-100 px-4 py-2 text-sm font-black text-sage-700">
-              العرض كيسالي خلال {upsellSecondsLeft} ثانية
             </p>
             {upsellProduct ? (
               <div className="mt-5 rounded-2xl bg-sand-50 p-5">
@@ -192,18 +154,10 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
                 </p>
               </div>
             ) : null}
-            <button
-              onClick={addUpsell}
-              disabled={isFinishing}
-              className="mt-5 w-full rounded-full bg-sand-900 px-5 py-4 font-black text-white disabled:opacity-60"
-            >
-              {isFinishing ? "جارٍ التحديث..." : "أضفه لطلبي"}
+            <button onClick={addUpsell} className="mt-5 w-full rounded-full bg-sand-900 px-5 py-4 font-black text-white">
+              أضفه لطلبي
             </button>
-            <button
-              onClick={finishWithoutUpsell}
-              disabled={isFinishing}
-              className="mt-3 w-full rounded-full border border-sand-100 px-5 py-4 font-bold disabled:opacity-60"
-            >
+            <button onClick={finishWithoutUpsell} className="mt-3 w-full rounded-full border border-sand-100 px-5 py-4 font-bold">
               لا شكراً، أكمل طلبي
             </button>
           </div>

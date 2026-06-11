@@ -28,8 +28,8 @@ export default function CouponsPage() {
               { header: "Code", cell: (row) => <span className="font-black">{row.code}</span> },
               { header: "Type", cell: (row) => row.type },
               { header: "Value", cell: (row) => row.value },
-              { header: "Expires", cell: (row) => row.expires },
-              { header: "Usage", cell: (row) => row.usage },
+              { header: "Expires", cell: (row) => row.expiry },
+              { header: "Usage", cell: (row) => `${row.uses}/${row.limit}` },
               { header: "Status", cell: (row) => <StatusBadge status={row.status} /> }
             ]}
           />

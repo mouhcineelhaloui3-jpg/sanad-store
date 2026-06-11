@@ -57,32 +57,38 @@ export const products = [
   { id: "PRD-003", name: "سَنَد لومبو", category: "Back Support", price: 249, stock: 8, sales: 351, status: "low" }
 ];
 
-export const orders: Array<{ id: string; customer: string; phone: string; total: number; payment: string; shipping: string; status: string; date: string }> = [];
+export const orders: Array<{
+  id: string; customer: string; phone: string;
+  total: number; payment: string; shipping: string; status: string; date: string;
+}> = [];
 
-export const customers: Array<{ id: string; name: string; city: string; orders: number; spent: number; activity: string }> = [];
+export const customers: Array<{
+  id: string; name: string; phone: string; city: string;
+  orders: number; spent: number; activity: string; date: string;
+}> = [];
 
-export const categories = [
-  { id: "CAT-001", name: "Posture Support", products: 12, status: "active" },
-  { id: "CAT-002", name: "Neck Comfort", products: 9, status: "active" },
-  { id: "CAT-003", name: "Back Support", products: 7, status: "active" }
-];
+export const activityLogs: Array<{
+  id: string; event: string; actor: string; target: string; time: string;
+}> = [];
 
-export const coupons = [
-  { code: "SANAD10", type: "Percentage", value: "10%", expires: "2026-07-01", usage: "38/200", status: "active" },
-  { code: "WELCOME25", type: "Fixed", value: "25 د.م.", expires: "2026-06-30", usage: "82/100", status: "active" }
-];
+export const notifications: Array<{
+  title: string; description: string; icon: typeof Home;
+}> = [];
 
-export const reviews = [
-  { id: "REV-001", product: "سَنَد هيت", customer: "نعيمة", rating: 5, status: "pending", text: "الحرارة مريحة والتوصيل واضح." },
-  { id: "REV-002", product: "سَنَد ألاين", customer: "ياسين", rating: 5, status: "approved", text: "عاونني ننتبه للجلسة ديالي." }
-];
+export const categories: Array<{
+  id: string; name: string; slug: string; products: number; status: string;
+}> = [];
 
-export const roles = [
-  { role: "Super Admin", users: 1, permissions: "Full access" },
-  { role: "Admin", users: 2, permissions: "Orders, products, customers" },
-  { role: "Staff", users: 4, permissions: "Orders and support only" }
-];
+export const coupons: Array<{
+  id: string; code: string; type: string; value: number;
+  expiry: string; uses: number; limit: number; status: string;
+}> = [];
 
-export const activityLogs: Array<{ event: string; actor: string; target: string; time: string }> = [];
+export const reviews: Array<{
+  id: string; customer: string; product: string;
+  rating: number; text: string; status: string; date: string;
+}> = [];
 
-export const notifications: Array<{ title: string; description: string; icon: typeof ClipboardList }> = [];
+export const roles: Array<{
+  id: string; role: string; permissions: string; users: number; status: string;
+}> = [];
