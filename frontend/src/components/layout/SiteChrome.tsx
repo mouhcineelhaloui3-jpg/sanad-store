@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -25,6 +26,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <main>{children}</main>
       <Footer />
       <CartDrawer />
+      <WhatsAppButton />
       <Toaster richColors position="top-center" />
     </>
   );

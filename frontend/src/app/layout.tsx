@@ -6,17 +6,29 @@ import "./globals.css";
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-arabic"
+  variable: "--font-arabic",
+  display: "swap"
 });
 
 const latin = Inter({
   subsets: ["latin"],
-  variable: "--font-latin"
+  variable: "--font-latin",
+  display: "swap"
 });
 
 export const metadata: Metadata = {
-  title: "سَنَد | دعم ذكي لجسمك في الأيام الطويلة",
-  description: "متجر مغربي متخصص في حلول دعم وراحة الظهر، الرقبة، والكتفين بالدفع عند الاستلام."
+  title: {
+    default: "سَنَد | دعم ذكي لجسمك في الأيام الطويلة",
+    template: "%s | سَنَد"
+  },
+  description: "متجر مغربي متخصص في حلول دعم وراحة الظهر، الرقبة، والكتفين. الدفع عند الاستلام داخل المغرب.",
+  keywords: ["دعم الظهر", "مصحح الوضعية", "وسادة رقبة", "حزام ظهر", "المغرب", "COD"],
+  openGraph: {
+    title: "سَنَد | دعم ذكي لجسمك",
+    description: "دعم الظهر والرقبة بالدفع عند الاستلام داخل المغرب.",
+    locale: "ar_MA",
+    type: "website"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

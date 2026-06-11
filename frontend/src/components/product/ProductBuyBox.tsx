@@ -1,9 +1,8 @@
 "use client";
 
-import { Check, ShieldCheck } from "lucide-react";
+import { Check, ShieldCheck, Star } from "lucide-react";
 import { formatPrice, type Product } from "@/lib/products";
 import { useCartStore } from "@/store/cartStore";
-import { Stars } from "@/components/product/Stars";
 
 export function ProductBuyBox({ product }: { product: Product }) {
   const addProduct = useCartStore((state) => state.addProduct);
@@ -20,13 +19,23 @@ export function ProductBuyBox({ product }: { product: Product }) {
 
   return (
     <div>
-      <span className="inline-flex rounded-full bg-sage-100 px-4 py-2 text-sm font-bold text-sage-700">
+      <span className="inline-flex items-center gap-2 rounded-full bg-sage-100 px-4 py-2 text-sm font-bold text-sage-700">
+        <span className="h-2 w-2 rounded-full bg-sage-700" />
         {product.problem}
       </span>
-      <h1 className="mt-5 text-3xl font-black leading-[1.3] text-sand-950 md:text-4xl">{product.nameAr}</h1>
+      <h1 className="mt-5 text-3xl font-black leading-[1.3] text-sand-950 md:text-4xl">
+        {product.nameAr}
+      </h1>
 
-      <div className="mt-4 flex items-center gap-3">
-        <Stars rating={product.ratingValue} />
+      <div className="mt-4 flex items-center gap-2">
+        <div className="flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              className={`h-4 w-4 ${i < Math.round(product.ratingValue) ? "fill-amber-400 text-amber-400" : "text-sand-200"}`}
+            />
+          ))}
+        </div>
         <span className="text-sm font-semibold text-sand-700">
           {product.ratingValue.toFixed(1)} · {product.ratingCount} تقييم
         </span>
@@ -43,25 +52,27 @@ export function ProductBuyBox({ product }: { product: Product }) {
         ))}
       </ul>
 
-      <p className="mt-6 text-3xl font-black text-sand-950">{formatPrice(product.price)}</p>
-      <div className="mt-4 grid gap-2 rounded-2xl bg-sand-50 p-4 text-sm font-semibold text-sand-800">
-        <p>✓ الثمن النهائي واضح: {formatPrice(product.price)}</p>
-        <p>✓ لا نطلب بطاقة بنكية ولا أداء مسبق</p>
-        <p>✓ تحتاج غير الاسم ورقم الهاتف المغربي لتثبيت الطلب</p>
+      <div className="mt-6 rounded-2xl border border-sand-100 bg-sand-50 p-5">
+        <p className="text-3xl font-black text-sand-950">{formatPrice(product.price)}</p>
+        <div className="mt-3 space-y-1.5 text-sm font-semibold text-sand-800">
+          <p>✓ الثمن النهائي واضح: {formatPrice(product.price)}</p>
+          <p>✓ لا نطلب بطاقة بنكية ولا أداء مسبق</p>
+          <p>✓ تحتاج غير الاسم ورقم الهاتف المغربي</p>
+        </div>
       </div>
 
       <div className="mt-5 flex flex-col gap-3">
         <button
           type="button"
           onClick={buyNow}
-          className="w-full rounded-full bg-sand-900 px-6 py-4 text-lg font-black text-white transition hover:bg-sand-950"
+          className="btn-primary w-full py-4 text-lg"
         >
           اطلبه الآن — {formatPrice(product.price)}
         </button>
         <button
           type="button"
           onClick={addToCart}
-          className="w-full rounded-full border border-sand-100 bg-white px-6 py-4 text-lg font-bold text-sand-900 transition hover:border-sand-700"
+          className="btn-secondary w-full py-4 text-lg"
         >
           أضفه للسلة
         </button>

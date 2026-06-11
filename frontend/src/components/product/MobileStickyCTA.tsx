@@ -1,5 +1,6 @@
 "use client";
 
+import { ShoppingBag } from "lucide-react";
 import { formatPrice, type Product } from "@/lib/products";
 import { useCartStore } from "@/store/cartStore";
 
@@ -13,18 +14,19 @@ export function MobileStickyCTA({ product }: { product: Product }) {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-sand-100 bg-white/95 p-3 backdrop-blur md:hidden">
-      <div className="mx-auto flex max-w-6xl items-center gap-3">
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-black text-sand-950">{product.shortName}</p>
-          <p className="text-sm font-bold text-sand-700">{formatPrice(product.price)} · الدفع عند الاستلام</p>
+    <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-sand-100 bg-white/95 p-3 backdrop-blur md:hidden">
+      <div className="flex items-center gap-3">
+        <div className="flex-1">
+          <p className="text-sm font-black text-sand-950">{product.shortName}</p>
+          <p className="text-xs text-sage-700">الدفع عند الاستلام</p>
         </div>
         <button
           type="button"
           onClick={buyNow}
-          className="shrink-0 rounded-full bg-sand-900 px-6 py-3 font-black text-white"
+          className="btn-primary flex items-center gap-2 py-3"
         >
-          اطلبه الآن
+          <ShoppingBag className="h-4 w-4" />
+          اطلب — {formatPrice(product.price)}
         </button>
       </div>
     </div>

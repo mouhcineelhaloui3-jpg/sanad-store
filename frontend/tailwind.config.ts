@@ -24,7 +24,22 @@ const config: Config = {
         latin: ["var(--font-latin)", "Inter", "sans-serif"]
       },
       boxShadow: {
-        soft: "0 18px 60px rgba(31, 24, 18, 0.10)"
+        soft: "0 18px 60px rgba(31, 24, 18, 0.10)",
+        glow: "0 24px 80px rgba(81, 113, 94, 0.18)"
+      },
+      animation: {
+        "fade-up": "fadeUp 0.6s ease-out both",
+        float: "float 4s ease-in-out infinite"
+      },
+      keyframes: {
+        fadeUp: {
+          from: { opacity: "0", transform: "translateY(16px)" },
+          to: { opacity: "1", transform: "translateY(0)" }
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" }
+        }
       }
     }
   },
