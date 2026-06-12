@@ -16,9 +16,6 @@ function localeFromTag(tag: string): Locale | null {
 function currencyFromTag(tag: string): CurrencyCode | null {
   const code = tag.toLowerCase();
   if (code.includes("-ma") || code.startsWith("ar")) return "MAD";
-  if (code.includes("-gb")) return "GBP";
-  if (code.includes("-us")) return "USD";
-  if (code.includes("-de") || code.includes("-fr") || code.includes("-es") || code.includes("-it")) return "EUR";
   return null;
 }
 
@@ -45,5 +42,5 @@ export function detectLocaleAndCurrency(): { locale: Locale; currency: CurrencyC
     }
   }
 
-  return { locale: "en", currency: "USD" };
+  return { locale: "en", currency: "MAD" };
 }

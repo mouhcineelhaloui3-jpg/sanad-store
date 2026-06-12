@@ -8,7 +8,7 @@ import { breadcrumbJsonLd } from "@/lib/seo/structured-data";
 
 const policies: Record<string, { title: string; description: string; body: string[] }> = {
   privacy: {
-    title: "سياسة الخصوصية — SANAD IPTV",
+    title: "سياسة الخصوصية",
     description:
       "كيفاش كنجمعو و كستعملو معلوماتك ف SANAD IPTV: الاسم، واتساب، نوع الجهاز، وبيانات تقنية للحماية.",
     body: [
@@ -19,7 +19,7 @@ const policies: Record<string, { title: string; description: string; body: strin
     ]
   },
   terms: {
-    title: "الشروط والأحكام — SANAD IPTV",
+    title: "الشروط والأحكام",
     description:
       "شروط استخدام SANAD IPTV: الاشتراك، الدفع، التفعيل، الدعم التقني، ومسؤوليات المستخدم.",
     body: [

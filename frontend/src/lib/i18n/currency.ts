@@ -12,10 +12,10 @@ const RATES_FROM_MAD: Record<CurrencyCode, number> = {
 
 export const LOCALE_CURRENCY: Record<Locale, CurrencyCode> = {
   ar: "MAD",
-  en: "USD",
-  de: "EUR",
-  es: "EUR",
-  it: "EUR"
+  en: "MAD",
+  de: "MAD",
+  es: "MAD",
+  it: "MAD"
 };
 
 export function currencyForLocale(locale: Locale): CurrencyCode {

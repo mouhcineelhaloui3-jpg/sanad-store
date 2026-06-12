@@ -55,16 +55,18 @@ export function Footer() {
       <div className="border-t border-white/5">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-dark-700 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {branding.brandName}. {t(footer.copyright, locale)}
+            © {new Date().getFullYear()} {branding.brandName} — {t(footer.copyright, locale)}
           </p>
           <p>{footer.supportEmail}</p>
-          <Link
-            href="/admin"
-            aria-label="Admin"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-dark-600 transition hover:bg-white/5 hover:text-white"
-          >
-            <LockKeyhole className="h-4 w-4" />
-          </Link>
+          {process.env.NODE_ENV !== "production" ? (
+            <Link
+              href="/admin"
+              aria-label="Admin"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-dark-600 transition hover:bg-white/5 hover:text-white"
+            >
+              <LockKeyhole className="h-4 w-4" />
+            </Link>
+          ) : null}
         </div>
       </div>
     </footer>
