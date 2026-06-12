@@ -1,12 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getStoreContent } from "@/lib/cms/server";
 import { policySlugs, staticRoutes } from "@/lib/seo/routes";
 import { getSiteUrl } from "@/lib/seo/metadata";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const content = await getStoreContent();
+export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
-  const lastModified = new Date(content.updatedAt);
+  const lastModified = new Date();
 
   const entries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${base}${route.path === "/" ? "" : route.path}`,
