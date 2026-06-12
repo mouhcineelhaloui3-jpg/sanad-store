@@ -383,6 +383,15 @@ export function StorefrontCmsEditor() {
                         update({ homepage: { ...homepage, movies: { ...movies, items } } });
                       }}
                     />
+                    <TextField
+                      label="Poster URL"
+                      value={movie.posterUrl ?? ""}
+                      onChange={(v) => {
+                        const items = [...movies.items];
+                        items[i] = { ...movie, posterUrl: v };
+                        update({ homepage: { ...homepage, movies: { ...movies, items } } });
+                      }}
+                    />
                     <CheckboxField
                       label="Featured on homepage"
                       checked={movie.featured}
@@ -428,6 +437,15 @@ export function StorefrontCmsEditor() {
                     onChange={(v) => {
                       const events = [...homepage.sports.events];
                       events[i] = { ...ev, live: v };
+                      update({ homepage: { ...homepage, sports: { ...homepage.sports, events } } });
+                    }}
+                  />
+                  <TextField
+                    label="Image URL"
+                    value={ev.imageUrl ?? ""}
+                    onChange={(v) => {
+                      const events = [...homepage.sports.events];
+                      events[i] = { ...ev, imageUrl: v };
                       update({ homepage: { ...homepage, sports: { ...homepage.sports, events } } });
                     }}
                   />

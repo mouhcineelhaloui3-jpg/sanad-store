@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import Image from "next/image";
 import type { SportsSection } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
@@ -31,36 +32,53 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.07, duration: 0.45 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 shadow-glass backdrop-blur-xl transition hover:border-neon-cyan/40 hover:shadow-glow"
+              className="group relative min-h-[220px] overflow-hidden rounded-2xl border border-white/10 shadow-glass transition hover:border-neon-cyan/40 hover:shadow-glow"
             >
-              {event.live ? (
-                <span className="live-badge absolute left-4 top-4">● LIVE</span>
+              {event.imageUrl ? (
+                <>
+                  <Image
+                    src={event.imageUrl}
+                    alt={t(event.title, locale)}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/20" />
+                </>
               ) : (
-                <span className="absolute left-4 top-4 rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-dark-800">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl" />
+              )}
+
+              {event.live ? (
+                <span className="live-badge absolute left-4 top-4 z-10">● LIVE</span>
+              ) : (
+                <span className="absolute left-4 top-4 z-10 rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-dark-800 backdrop-blur">
                   SOON
                 </span>
               )}
 
-              <div className="mt-8 flex items-start gap-4">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-neon-cyan/10 text-3xl ring-1 ring-neon-cyan/20 transition group-hover:scale-110 group-hover:bg-neon-cyan/20">
-                  {event.icon}
-                </span>
-                <div>
-                  <p className="text-xs font-black uppercase tracking-wider text-neon-cyan">
-                    {t(event.league, locale)}
-                  </p>
-                  <h3 className="mt-1 text-lg font-black leading-snug text-white">
-                    {t(event.title, locale)}
-                  </h3>
-                  <p className="mt-2 inline-flex rounded-full bg-neon-gold/10 px-2 py-0.5 text-xs font-bold text-neon-gold ring-1 ring-neon-gold/30">
-                    {t(event.quality, locale)}
-                  </p>
+              <div className="relative z-10 flex h-full flex-col justify-end p-6">
+                <div className="flex items-end gap-4">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-black/40 text-3xl ring-1 ring-white/20 backdrop-blur transition group-hover:scale-110">
+                    {event.icon}
+                  </span>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-wider text-neon-cyan">
+                      {t(event.league, locale)}
+                    </p>
+                    <h3 className="mt-1 text-lg font-black leading-snug text-white">
+                      {t(event.title, locale)}
+                    </h3>
+                    <p className="mt-2 inline-flex rounded-full bg-neon-gold/10 px-2 py-0.5 text-xs font-bold text-neon-gold ring-1 ring-neon-gold/30">
+                      {t(event.quality, locale)}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-5 flex items-center gap-2 text-xs font-bold text-dark-700 opacity-0 transition group-hover:opacity-100">
-                <Play className="h-3.5 w-3.5 text-neon-green" />
-                {locale === "ar" ? "متاح مع الاشتراك" : "Included with subscription"}
+                <div className="mt-5 flex items-center gap-2 text-xs font-bold text-dark-800 opacity-0 transition group-hover:opacity-100">
+                  <Play className="h-3.5 w-3.5 text-neon-green" />
+                  {locale === "ar" ? "متاح مع الاشتراك" : "Included with subscription"}
+                </div>
               </div>
             </motion.article>
           ))}

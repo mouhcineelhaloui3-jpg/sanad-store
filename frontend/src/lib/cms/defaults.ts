@@ -134,7 +134,8 @@ export const defaultStoreContent = (): StoreContent => ({
           league: { ar: "Champions League", en: "Champions League" },
           title: { ar: "دوري أبطال أوروبا — كل المباريات", en: "UEFA Champions League — All Matches" },
           quality: { ar: "4K • 60FPS", en: "4K • 60FPS" },
-          live: true
+          live: true,
+          imageUrl: "/sports/champions-league.jpg"
         },
         {
           id: "laliga",
@@ -142,7 +143,8 @@ export const defaultStoreContent = (): StoreContent => ({
           league: { ar: "La Liga", en: "La Liga" },
           title: { ar: "الدوري الإسباني — Real • Barça • Atlético", en: "Spanish League — Real • Barça • Atlético" },
           quality: { ar: "FHD • LIVE", en: "FHD • LIVE" },
-          live: true
+          live: true,
+          imageUrl: "/sports/la-liga.jpg"
         },
         {
           id: "epl",
@@ -150,7 +152,8 @@ export const defaultStoreContent = (): StoreContent => ({
           league: { ar: "Premier League", en: "Premier League" },
           title: { ar: "الدوري الإنجليزي — كل الجولات", en: "English Premier League — Every Round" },
           quality: { ar: "4K • LIVE", en: "4K • LIVE" },
-          live: true
+          live: true,
+          imageUrl: "/sports/premier-league.jpg"
         },
         {
           id: "botola",
@@ -158,7 +161,8 @@ export const defaultStoreContent = (): StoreContent => ({
           league: { ar: "Botola Pro", en: "Botola Pro" },
           title: { ar: "الدوري المغربي — الرجاء • الوداد • الجيش", en: "Moroccan League — Raja • Wydad • AS FAR" },
           quality: { ar: "HD • LIVE", en: "HD • LIVE" },
-          live: false
+          live: false,
+          imageUrl: "/sports/botola.jpg"
         },
         {
           id: "can",
@@ -166,7 +170,8 @@ export const defaultStoreContent = (): StoreContent => ({
           league: { ar: "CAN / AFCON", en: "AFCON" },
           title: { ar: "كأس أمم أفريقيا — المنتخبات كلها", en: "Africa Cup of Nations — All Nations" },
           quality: { ar: "4K • LIVE", en: "4K • LIVE" },
-          live: true
+          live: true,
+          imageUrl: "/sports/afcon.jpg"
         },
         {
           id: "f1",
@@ -174,7 +179,8 @@ export const defaultStoreContent = (): StoreContent => ({
           league: { ar: "Formula 1", en: "Formula 1" },
           title: { ar: "Formula 1 — كل السباقات Live", en: "Formula 1 — Every Race Live" },
           quality: { ar: "FHD • LIVE", en: "FHD • LIVE" },
-          live: false
+          live: false,
+          imageUrl: "/sports/formula-1.jpg"
         }
       ]
     },

@@ -3,50 +3,167 @@ import type { MoviesSection } from "./types";
 export const defaultMoviesSection = (): MoviesSection => ({
   title: { ar: "🎬 +200,000 فيلم ومسلسل", en: "🎬 200,000+ Movies & Series" },
   subtitle: {
-    ar: "أحدث الأفلام العالمية، العربية، التركية، الهندية — محدثة يومياً بجودة 4K",
-    en: "Latest global, Arabic, Turkish & Indian films — updated daily in 4K"
+    ar: "أحدث إصدارات 2025 و 2026 — عالمي، عربي، تركي، Netflix — محدث يومياً بجودة 4K",
+    en: "Latest 2025 & 2026 releases — global, Arabic, Turkish, Netflix — updated daily in 4K"
   },
   totalCount: 200000,
   ctaLabel: { ar: "🍿 بدا التفرج دابا", en: "🍿 Start Watching Now" },
   genres: [
     { ar: "أكشن", en: "Action" },
-    { ar: "دراما", en: "Drama" },
-    { ar: "رعب", en: "Horror" },
-    { ar: "كوميديا", en: "Comedy" },
-    { ar: "عربي", en: "Arabic" },
-    { ar: "تركي", en: "Turkish" },
+    { ar: "Sci-Fi", en: "Sci-Fi" },
+    { ar: "مسلسلات", en: "Series" },
     { ar: "Netflix", en: "Netflix" },
-    { ar: "أنime", en: "Anime" }
+    { ar: "Marvel", en: "Marvel" },
+    { ar: "عائلي", en: "Family" },
+    { ar: "2025", en: "2025" },
+    { ar: "2026", en: "2026" }
   ],
   marqueeTitles: [
-    { ar: "Dune: Part Two", en: "Dune: Part Two" },
-    { ar: "Oppenheimer", en: "Oppenheimer" },
-    { ar: "Barbie", en: "Barbie" },
-    { ar: "Squid Game S2", en: "Squid Game S2" },
-    { ar: "The Last of Us", en: "The Last of Us" },
-    { ar: "Breaking Bad", en: "Breaking Bad" },
-    { ar: "Game of Thrones", en: "Game of Thrones" },
-    { ar: "Peaky Blinders", en: "Peaky Blinders" },
-    { ar: "La Casa de Papel", en: "Money Heist" },
-    { ar: "Ertugrul", en: "Diriliş: Ertuğrul" },
-    { ar: "المتوحش", en: "Al-Motawash" },
-    { ar: "Extraction 2", en: "Extraction 2" },
-    { ar: "John Wick 4", en: "John Wick 4" },
-    { ar: "Avatar 2", en: "Avatar: The Way of Water" },
-    { ar: "Spider-Verse", en: "Spider-Man: Across the Spider-Verse" }
+    { ar: "Superman", en: "Superman" },
+    { ar: "F1: The Movie", en: "F1: The Movie" },
+    { ar: "Avatar: Fire and Ash", en: "Avatar: Fire and Ash" },
+    { ar: "Mission: Impossible 8", en: "Mission: Impossible — Final Reckoning" },
+    { ar: "Squid Game S3", en: "Squid Game Season 3" },
+    { ar: "Wednesday S2", en: "Wednesday Season 2" },
+    { ar: "The Last of Us S2", en: "The Last of Us Season 2" },
+    { ar: "Jurassic World Rebirth", en: "Jurassic World Rebirth" },
+    { ar: "A Minecraft Movie", en: "A Minecraft Movie" },
+    { ar: "Thunderbolts*", en: "Thunderbolts*" },
+    { ar: "Captain America", en: "Captain America: Brave New World" },
+    { ar: "How to Train Your Dragon", en: "How to Train Your Dragon" }
   ],
   items: [
-    { id: "m1", title: { ar: "Dune: Part Two", en: "Dune: Part Two" }, genre: { ar: "Sci-Fi", en: "Sci-Fi" }, year: "2024", quality: { ar: "4K HDR", en: "4K HDR" }, rating: 8.8, posterGradient: "from-amber-700 via-orange-900 to-stone-950", featured: true },
-    { id: "m2", title: { ar: "Oppenheimer", en: "Oppenheimer" }, genre: { ar: "دراما", en: "Drama" }, year: "2023", quality: { ar: "4K", en: "4K" }, rating: 8.9, posterGradient: "from-slate-700 via-slate-900 to-black", featured: true },
-    { id: "m3", title: { ar: "Squid Game S2", en: "Squid Game S2" }, genre: { ar: "إثارة", en: "Thriller" }, year: "2024", quality: { ar: "4K", en: "4K" }, rating: 8.5, posterGradient: "from-pink-700 via-rose-900 to-black", featured: true },
-    { id: "m4", title: { ar: "The Last of Us", en: "The Last of Us" }, genre: { ar: "مسلسل", en: "Series" }, year: "2023", quality: { ar: "FHD", en: "FHD" }, rating: 9.0, posterGradient: "from-green-900 via-emerald-950 to-black", featured: true },
-    { id: "m5", title: { ar: "Breaking Bad", en: "Breaking Bad" }, genre: { ar: "جريمة", en: "Crime" }, year: "2013", quality: { ar: "4K", en: "4K" }, rating: 9.5, posterGradient: "from-yellow-700 via-amber-950 to-black", featured: true },
-    { id: "m6", title: { ar: "Diriliş: Ertuğrul", en: "Diriliş: Ertuğrul" }, genre: { ar: "تركي", en: "Turkish" }, year: "2019", quality: { ar: "HD", en: "HD" }, rating: 8.7, posterGradient: "from-stone-600 via-stone-900 to-black", featured: true },
-    { id: "m7", title: { ar: "John Wick 4", en: "John Wick 4" }, genre: { ar: "أكشن", en: "Action" }, year: "2023", quality: { ar: "4K", en: "4K" }, rating: 8.2, posterGradient: "from-red-800 via-red-950 to-black", featured: true },
-    { id: "m8", title: { ar: "Avatar 2", en: "Avatar: The Way of Water" }, genre: { ar: "Sci-Fi", en: "Sci-Fi" }, year: "2022", quality: { ar: "4K HDR", en: "4K HDR" }, rating: 8.1, posterGradient: "from-cyan-700 via-blue-950 to-black", featured: true },
-    { id: "m9", title: { ar: "Peaky Blinders", en: "Peaky Blinders" }, genre: { ar: "دراما", en: "Drama" }, year: "2022", quality: { ar: "FHD", en: "FHD" }, rating: 8.8, posterGradient: "from-neutral-700 via-neutral-950 to-black", featured: true },
-    { id: "m10", title: { ar: "La Casa de Papel", en: "Money Heist" }, genre: { ar: "إثارة", en: "Thriller" }, year: "2021", quality: { ar: "4K", en: "4K" }, rating: 8.2, posterGradient: "from-red-600 via-rose-950 to-black", featured: true },
-    { id: "m11", title: { ar: "Spider-Verse", en: "Spider-Man: Across the Spider-Verse" }, genre: { ar: "أنime", en: "Animation" }, year: "2023", quality: { ar: "4K", en: "4K" }, rating: 8.7, posterGradient: "from-indigo-600 via-purple-950 to-black", featured: true },
-    { id: "m12", title: { ar: "Extraction 2", en: "Extraction 2" }, genre: { ar: "أكشن", en: "Action" }, year: "2023", quality: { ar: "4K", en: "4K" }, rating: 7.9, posterGradient: "from-orange-700 via-orange-950 to-black", featured: true }
+    {
+      id: "m1",
+      title: { ar: "Superman", en: "Superman" },
+      genre: { ar: "Sci-Fi", en: "Sci-Fi" },
+      year: "2025",
+      quality: { ar: "4K HDR", en: "4K HDR" },
+      rating: 8.4,
+      posterGradient: "from-blue-700 via-red-900 to-stone-950",
+      posterUrl: "/posters/superman.jpg",
+      featured: true
+    },
+    {
+      id: "m2",
+      title: { ar: "Mission: Impossible — Final Reckoning", en: "Mission: Impossible — Final Reckoning" },
+      genre: { ar: "أكشن", en: "Action" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 8.7,
+      posterGradient: "from-slate-700 via-slate-900 to-black",
+      posterUrl: "/posters/mission-impossible.jpg",
+      featured: true
+    },
+    {
+      id: "m3",
+      title: { ar: "F1: The Movie", en: "F1: The Movie" },
+      genre: { ar: "دراما", en: "Drama" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 8.2,
+      posterGradient: "from-red-700 via-neutral-900 to-black",
+      posterUrl: "/posters/f1.jpg",
+      featured: true
+    },
+    {
+      id: "m4",
+      title: { ar: "Avatar: Fire and Ash", en: "Avatar: Fire and Ash" },
+      genre: { ar: "Sci-Fi", en: "Sci-Fi" },
+      year: "2025",
+      quality: { ar: "4K HDR", en: "4K HDR" },
+      rating: 8.5,
+      posterGradient: "from-orange-700 via-red-950 to-black",
+      posterUrl: "/posters/avatar-fire-and-ash.jpg",
+      featured: true
+    },
+    {
+      id: "m5",
+      title: { ar: "Squid Game — الموسم 3", en: "Squid Game Season 3" },
+      genre: { ar: "إثارة", en: "Thriller" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 8.6,
+      posterGradient: "from-pink-700 via-rose-900 to-black",
+      posterUrl: "/posters/squid-game.jpg",
+      featured: true
+    },
+    {
+      id: "m6",
+      title: { ar: "Wednesday — الموسم 2", en: "Wednesday Season 2" },
+      genre: { ar: "مسلسل", en: "Series" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 8.8,
+      posterGradient: "from-neutral-800 via-black to-black",
+      posterUrl: "/posters/wednesday.jpg",
+      featured: true
+    },
+    {
+      id: "m7",
+      title: { ar: "The Last of Us — الموسم 2", en: "The Last of Us Season 2" },
+      genre: { ar: "دراما", en: "Drama" },
+      year: "2025",
+      quality: { ar: "4K HDR", en: "4K HDR" },
+      rating: 9.0,
+      posterGradient: "from-green-900 via-emerald-950 to-black",
+      posterUrl: "/posters/last-of-us.jpg",
+      featured: true
+    },
+    {
+      id: "m8",
+      title: { ar: "Jurassic World Rebirth", en: "Jurassic World Rebirth" },
+      genre: { ar: "أكشن", en: "Action" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 7.9,
+      posterGradient: "from-lime-800 via-green-950 to-black",
+      posterUrl: "/posters/jurassic-world-rebirth.jpg",
+      featured: true
+    },
+    {
+      id: "m9",
+      title: { ar: "A Minecraft Movie", en: "A Minecraft Movie" },
+      genre: { ar: "عائلي", en: "Family" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 7.5,
+      posterGradient: "from-green-600 via-emerald-900 to-black",
+      posterUrl: "/posters/minecraft.jpg",
+      featured: true
+    },
+    {
+      id: "m10",
+      title: { ar: "Captain America: Brave New World", en: "Captain America: Brave New World" },
+      genre: { ar: "Marvel", en: "Marvel" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 7.8,
+      posterGradient: "from-red-700 via-blue-950 to-black",
+      posterUrl: "/posters/captain-america.jpg",
+      featured: true
+    },
+    {
+      id: "m11",
+      title: { ar: "Thunderbolts*", en: "Thunderbolts*" },
+      genre: { ar: "Marvel", en: "Marvel" },
+      year: "2025",
+      quality: { ar: "4K HDR", en: "4K HDR" },
+      rating: 8.1,
+      posterGradient: "from-purple-700 via-violet-950 to-black",
+      posterUrl: "/posters/thunderbolts.jpg",
+      featured: true
+    },
+    {
+      id: "m12",
+      title: { ar: "How to Train Your Dragon", en: "How to Train Your Dragon" },
+      genre: { ar: "فانتازيا", en: "Fantasy" },
+      year: "2025",
+      quality: { ar: "4K", en: "4K" },
+      rating: 8.3,
+      posterGradient: "from-sky-700 via-indigo-950 to-black",
+      posterUrl: "/posters/how-to-train-your-dragon.jpg",
+      featured: true
+    }
   ]
 });

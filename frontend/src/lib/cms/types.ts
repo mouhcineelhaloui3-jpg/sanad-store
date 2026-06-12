@@ -42,6 +42,7 @@ export type MovieItem = {
   quality: LocalizedText;
   rating: number;
   posterGradient: string;
+  posterUrl: string;
   featured: boolean;
 };
 
@@ -62,6 +63,7 @@ export type SportsEvent = {
   title: LocalizedText;
   quality: LocalizedText;
   live: boolean;
+  imageUrl: string;
 };
 
 export type SportsSection = {

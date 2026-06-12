@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Film, Play, Star } from "lucide-react";
+import Image from "next/image";
 import type { MoviesSection } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
@@ -37,7 +38,16 @@ function MovieCard({
       className="group relative aspect-[2/3] cursor-pointer overflow-hidden rounded-2xl border border-white/10 shadow-glass"
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${movie.posterGradient}`} />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+      {movie.posterUrl ? (
+        <Image
+          src={movie.posterUrl}
+          alt={t(movie.title, locale)}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
+      ) : null}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
       <div className="scanline pointer-events-none absolute inset-0 opacity-[0.04]" />
 
       <div className="relative flex h-full flex-col justify-between p-4">
@@ -142,8 +152,8 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
             </button>
             <p className="mt-3 text-xs text-dark-700">
               {locale === "ar"
-                ? "محتوى جديد كل يوم — أفلام 2024، 2025، 2026"
-                : "Fresh content daily — 2024, 2025, 2026 releases"}
+                ? "محتوى جديد كل يوم — أفلام ومسلسلات 2025 و 2026"
+                : "Fresh content daily — 2025 & 2026 movies and series"}
             </p>
           </div>
         </RevealOnScroll>
