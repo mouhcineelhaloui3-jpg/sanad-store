@@ -1,11 +1,11 @@
 import type { SiteLayout } from "./types";
 
 export const defaultSiteLayout = (): SiteLayout => ({
-  sectionPaddingY: 112,
-  sectionGap: 32,
-  showSectionDividers: true,
-  heroPaddingTop: 64,
-  heroPaddingBottom: 96
+  sectionPaddingY: 32,
+  sectionGap: 4,
+  showSectionDividers: false,
+  heroPaddingTop: 48,
+  heroPaddingBottom: 56
 });
 
 export function layoutCssVars(layout?: SiteLayout): Record<string, string> {

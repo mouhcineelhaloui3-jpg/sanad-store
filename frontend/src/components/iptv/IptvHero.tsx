@@ -4,11 +4,19 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import type { HeroContent } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
+import { ui } from "@/lib/i18n/ui-strings";
 import { whatsappUrl } from "@/lib/store-config";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { IptvHeroScreen } from "./IptvHeroScreen";
+
+const heroBadges = [
+  { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™", de: "🏆 FIFA 2026™", es: "🏆 FIFA 2026™", it: "🏆 FIFA 2026™" },
+  { ar: "📺 +100K قناة", en: "📺 +100K channels", de: "📺 +100K Sender", es: "📺 +100K canales", it: "📺 +100K canali" },
+  { ar: "🎬 +200K فيلم", en: "🎬 +200K movies", de: "🎬 +200K Filme", es: "🎬 +200K películas", it: "🎬 +200K film" },
+  { ar: "⚡ تفعيل فوري", en: "⚡ Instant setup", de: "⚡ Sofort aktiv", es: "⚡ Activación instantánea", it: "⚡ Attivazione immediata" }
+];
 
 export function IptvHero({
   hero,
@@ -36,17 +44,12 @@ export function IptvHero({
           transition={{ duration: 0.5 }}
         >
           <div className="mb-4 flex flex-wrap gap-2">
-            {[
-              { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™" },
-              { ar: "📺 +100K قناة", en: "📺 +100K channels" },
-              { ar: "🎬 +200K فيلم", en: "🎬 +200K movies" },
-              { ar: "⚡ تفعيل فوري", en: "⚡ Instant setup" }
-            ].map((badge) => (
+            {heroBadges.map((badge) => (
               <span
-                key={badge.ar}
+                key={badge.en}
                 className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-black text-white backdrop-blur-md md:text-xs"
               >
-                {locale === "ar" ? badge.ar : badge.en}
+                {t(badge, locale)}
               </span>
             ))}
           </div>
@@ -60,9 +63,7 @@ export function IptvHero({
             {headlineLines.map((line, i) => (
               <span
                 key={i}
-                className={
-                  i === 0 ? "neon-text block" : "mt-2 block text-white"
-                }
+                className={i === 0 ? "neon-text block" : "mt-2 block text-white"}
               >
                 {line}
               </span>
@@ -95,23 +96,13 @@ export function IptvHero({
             </a>
           </div>
 
-          <div className="mt-10 grid grid-cols-3 gap-3">
-            {[
-              { value: 100000, label: locale === "ar" ? "قناة" : "channels" },
-              { value: 50000, label: locale === "ar" ? "عميل" : "clients" },
-              { value: 99, label: locale === "ar" ? "رضا" : "rating", suffix: "%" as const }
-            ].map((stat) => (
-              <div key={stat.label} className="glass-card px-3 py-4 text-center">
-                <p className="text-xl font-black text-neon-cyan md:text-2xl">
-                  <AnimatedCounter
-                    value={stat.value}
-                    prefix={stat.suffix === "%" ? "" : "+"}
-                    suffix={stat.suffix ?? ""}
-                  />
-                </p>
-                <p className="mt-0.5 text-xs font-bold text-dark-700">{stat.label}</p>
-              </div>
-            ))}
+          <div className="mt-10 max-w-xs">
+            <div className="glass-card px-4 py-4 text-center">
+              <p className="text-2xl font-black text-neon-cyan md:text-3xl">
+                <AnimatedCounter value={100000} prefix="+" />
+              </p>
+              <p className="mt-0.5 text-xs font-bold text-dark-700">{ui("channels", locale)}</p>
+            </div>
           </div>
         </motion.div>
 

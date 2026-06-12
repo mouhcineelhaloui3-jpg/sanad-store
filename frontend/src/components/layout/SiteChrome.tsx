@@ -9,6 +9,7 @@ import { PremiumParticles } from "@/components/iptv/PremiumParticles";
 import { TrialModal } from "@/components/iptv/TrialModal";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { LocaleSync } from "@/components/layout/LocaleSync";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -26,6 +27,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <LocaleSync />
       <DynamicBackground />
       <PremiumParticles />
       <Header />

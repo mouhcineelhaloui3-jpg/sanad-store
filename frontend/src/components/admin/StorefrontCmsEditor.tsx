@@ -172,25 +172,58 @@ export function StorefrontCmsEditor() {
         )}
 
         {tab === "general" && (
-          <AdminCard title="Sections">
-            <div className="grid gap-2 sm:grid-cols-2">
-              {sectionKeys.map(([key, label]) => (
-                <CheckboxField
-                  key={key}
-                  label={label}
-                  checked={homepage.sections[key]}
-                  onChange={(v) =>
-                    update({
-                      homepage: {
-                        ...homepage,
-                        sections: { ...homepage.sections, [key]: v }
-                      }
-                    })
-                  }
+          <>
+            <AdminCard title="Sections — إظهار / إخفاء">
+              <p className="mb-4 text-sm text-slate-500">
+                فعّل أو عطّل أي section فالموقع. التغييرات كتبان مباشرة بعد الحفظ.
+              </p>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {sectionKeys.map(([key, label]) => (
+                  <CheckboxField
+                    key={key}
+                    label={label}
+                    checked={homepage.sections[key]}
+                    onChange={(v) =>
+                      update({
+                        homepage: {
+                          ...homepage,
+                          sections: { ...homepage.sections, [key]: v }
+                        }
+                      })
+                    }
+                  />
+                ))}
+              </div>
+            </AdminCard>
+
+            <AdminCard title="📞 Contact — WhatsApp / Telegram / Email">
+              <p className="mb-4 text-sm text-slate-500">
+                تحكم فأرقام التواصل اللي كيظهرو فالموقع (Contact, Footer, WhatsApp button).
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
+                <TextField
+                  label="WhatsApp Number (212...)"
+                  value={footer.whatsappNumber}
+                  onChange={(v) => update({ footer: { ...footer, whatsappNumber: v } })}
                 />
-              ))}
-            </div>
-          </AdminCard>
+                <TextAreaField
+                  label="WhatsApp Default Message"
+                  value={footer.whatsappMessage}
+                  onChange={(v) => update({ footer: { ...footer, whatsappMessage: v } })}
+                />
+                <TextField
+                  label="Telegram URL"
+                  value={footer.telegramUrl}
+                  onChange={(v) => update({ footer: { ...footer, telegramUrl: v } })}
+                />
+                <TextField
+                  label="Support Email"
+                  value={footer.supportEmail}
+                  onChange={(v) => update({ footer: { ...footer, supportEmail: v } })}
+                />
+              </div>
+            </AdminCard>
+          </>
         )}
 
         {tab === "layout" && content && (
@@ -467,25 +500,12 @@ export function StorefrontCmsEditor() {
           </AdminCard>
         )}
 
-        {(tab === "general" || tab === "seo") && (
+        {tab === "seo" && (
           <>
-            <AdminCard title="WhatsApp">
-              <div className="grid gap-4 md:grid-cols-2">
-                <TextField label="Number" value={footer.whatsappNumber} onChange={(v) => update({ footer: { ...footer, whatsappNumber: v } })} />
-                <TextAreaField label="Default Message" value={footer.whatsappMessage} onChange={(v) => update({ footer: { ...footer, whatsappMessage: v } })} />
-                <TextField label="Telegram URL" value={footer.telegramUrl} onChange={(v) => update({ footer: { ...footer, telegramUrl: v } })} />
-                <TextField label="Support Email" value={footer.supportEmail} onChange={(v) => update({ footer: { ...footer, supportEmail: v } })} />
-              </div>
-            </AdminCard>
-
             <AdminCard title="Header Promo">
               <TextAreaField label="Promo Bar (AR)" value={header.promoBar.ar} onChange={(v) => update({ header: { ...header, promoBar: { ...header.promoBar, ar: v } } })} />
             </AdminCard>
-          </>
-        )}
 
-        {tab === "seo" && (
-          <>
             <AdminCard title="SEO">
               <div className="grid gap-4">
                 <TextField label="Meta Title" value={seo.title} onChange={(v) => update({ seo: { ...seo, title: v } })} />

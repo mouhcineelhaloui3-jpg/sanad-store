@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LockKeyhole, MessageCircle } from "lucide-react";
 import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { t, localizedNavLinks } from "@/lib/i18n/localized";
+import { ui } from "@/lib/i18n/ui-strings";
 import { whatsappUrl } from "@/lib/store-config";
 import { useLocaleStore } from "@/store/localeStore";
 import { Logo } from "@/components/layout/Logo";
@@ -27,11 +28,11 @@ export function Footer() {
             className="btn-whatsapp mt-5"
           >
             <MessageCircle className="h-4 w-4" />
-            {locale === "ar" ? "تواصل عبر واتساب" : "WhatsApp"}
+            {ui("whatsappFooter", locale)}
           </a>
         </div>
         <div>
-          <h3 className="font-bold text-white">{locale === "ar" ? "روابط سريعة" : "Quick Links"}</h3>
+          <h3 className="font-bold text-white">{ui("quickLinks", locale)}</h3>
           <div className="mt-4 flex flex-col gap-3 text-sm text-dark-800">
             {storeLinks.map((link) => (
               <Link key={link.href} href={link.href} className="transition hover:text-neon-cyan">
@@ -41,7 +42,7 @@ export function Footer() {
           </div>
         </div>
         <div>
-          <h3 className="font-bold text-white">{locale === "ar" ? "السياسات" : "Policies"}</h3>
+          <h3 className="font-bold text-white">{ui("policies", locale)}</h3>
           <div className="mt-4 flex flex-col gap-3 text-sm text-dark-800">
             {policyLinks.map((link) => (
               <Link key={link.href} href={link.href} className="transition hover:text-neon-cyan">

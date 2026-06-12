@@ -1,24 +1,61 @@
 "use client";
 
-import { Globe } from "lucide-react";
+import { ChevronDown, Globe } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useStoreContent } from "@/components/cms/StoreContentProvider";
-import { t, localizedNavLinks } from "@/lib/i18n/localized";
+import { LOCALE_LABELS, localizedNavLinks, t, type Locale } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
+
+const locales: Locale[] = ["ar", "en", "de", "es", "it"];
 
 export function LanguageSwitcher() {
   const locale = useLocaleStore((s) => s.locale);
-  const toggle = useLocaleStore((s) => s.toggle);
+  const setLocale = useLocaleStore((s) => s.setLocale);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white transition hover:border-neon-cyan/40 hover:bg-neon-cyan/10"
-      aria-label="Toggle language"
-    >
-      <Globe className="h-4 w-4 text-neon-cyan" />
-      {locale === "ar" ? "EN" : "AR"}
-    </button>
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white transition hover:border-neon-cyan/40 hover:bg-neon-cyan/10"
+        aria-label="Language"
+        aria-expanded={open}
+      >
+        <Globe className="h-4 w-4 text-neon-cyan" />
+        {locale.toUpperCase()}
+        <ChevronDown className="h-3 w-3 opacity-60" />
+      </button>
+      {open ? (
+        <div className="absolute left-0 top-full z-50 mt-2 min-w-[140px] overflow-hidden rounded-xl border border-white/10 bg-dark-100/95 py-1 shadow-xl backdrop-blur-xl">
+          {locales.map((code) => (
+            <button
+              key={code}
+              type="button"
+              onClick={() => {
+                setLocale(code);
+                setOpen(false);
+              }}
+              className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm transition hover:bg-neon-cyan/10 ${
+                code === locale ? "font-black text-neon-cyan" : "text-white"
+              }`}
+            >
+              <span>{LOCALE_LABELS[code]}</span>
+              <span className="text-xs opacity-50">{code.toUpperCase()}</span>
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 

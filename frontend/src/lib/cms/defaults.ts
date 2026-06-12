@@ -87,8 +87,11 @@ export const defaultStoreContent = (): StoreContent => ({
       secondaryCtaLabel: { ar: "🔥 اشترك دابا", en: "🔥 Subscribe Now" },
       whatsappCtaLabel: { ar: "💬 تواصل عبر واتساب", en: "💬 WhatsApp" },
       trustLine: {
-        ar: "+100,000 قناة • +50,000 عميل • +99% رضا",
-        en: "+100,000 channels • +50,000 customers • +99% satisfaction"
+        ar: "+100,000 قناة مباشرة",
+        en: "+100,000 live channels",
+        de: "+100.000 Live-Sender",
+        es: "+100.000 canales en directo",
+        it: "+100.000 canali live"
       }
     },
     sections: {
@@ -115,7 +118,6 @@ export const defaultStoreContent = (): StoreContent => ({
         { ar: "🏆 La Liga", en: "🏆 La Liga" },
         { ar: "👑 Premier League", en: "👑 Premier League" },
         { ar: "🇲🇦 Botola Pro", en: "🇲🇦 Botola Pro" },
-        { ar: "🏎️ Formula 1", en: "🏎️ Formula 1" },
         { ar: "🥊 UFC", en: "🥊 UFC" },
         { ar: "🏀 NBA", en: "🏀 NBA" },
         { ar: "🌍 CAN 2025", en: "🌍 AFCON 2025" },
@@ -187,15 +189,6 @@ export const defaultStoreContent = (): StoreContent => ({
           quality: { ar: "4K • LIVE", en: "4K • LIVE" },
           live: true,
           imageUrl: "/sports/afcon.jpg"
-        },
-        {
-          id: "f1",
-          icon: "🏎️",
-          league: { ar: "Formula 1", en: "Formula 1" },
-          title: { ar: "Formula 1 — كل السباقات Live", en: "Formula 1 — Every Race Live" },
-          quality: { ar: "FHD • LIVE", en: "FHD • LIVE" },
-          live: false,
-          imageUrl: "/sports/formula-1.jpg"
         }
       ]
     },
@@ -278,11 +271,9 @@ export const defaultStoreContent = (): StoreContent => ({
       ]
     },
     stats: [
-      { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels" } },
-      { prefix: "+", value: 50000, suffix: "", label: { ar: "عميل", en: "customers" } },
-      { prefix: "+", value: 200000, suffix: "", label: { ar: "فيلم", en: "movies" } },
-      { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series" } },
-      { prefix: "", value: 99, suffix: "%", label: { ar: "رضا العملاء", en: "satisfaction" } }
+      { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels", de: "Sender", es: "canales", it: "canali" } },
+      { prefix: "+", value: 200000, suffix: "", label: { ar: "فيلم", en: "movies", de: "Filme", es: "películas", it: "film" } },
+      { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series", de: "Serien", es: "series", it: "serie" } }
     ],
     testimonialsTitle: { ar: "آراء العملاء", en: "Customer Reviews" },
     testimonialsSubtitle: {

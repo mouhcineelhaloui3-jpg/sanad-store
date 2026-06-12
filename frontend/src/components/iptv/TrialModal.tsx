@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { toast } from "sonner";
 import { DEVICE_OPTIONS } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
+import { trialModalText } from "@/lib/i18n/modal-strings";
 import { buildTrialWhatsAppMessage, whatsappUrl } from "@/lib/store-config";
 import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { useLocaleStore } from "@/store/localeStore";
@@ -25,18 +26,18 @@ export function TrialModal() {
   const isOpen = modal === "trial";
 
   const labels = {
-    title: locale === "ar" ? "🎁 طلب تجربة مجانية" : "🎁 Free Trial Request",
-    name: locale === "ar" ? "الاسم الكامل" : "Full Name",
-    phone: locale === "ar" ? "رقم واتساب" : "WhatsApp Number",
-    device: locale === "ar" ? "نوع الجهاز" : "Device Type",
-    message: locale === "ar" ? "رسالة اختيارية" : "Optional Message",
-    submit: locale === "ar" ? "إرسال" : "Submit"
+    title: trialModalText("title", locale),
+    name: trialModalText("name", locale),
+    phone: trialModalText("phone", locale),
+    device: trialModalText("device", locale),
+    message: trialModalText("message", locale),
+    submit: trialModalText("submit", locale)
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim()) {
-      toast.error(locale === "ar" ? "عمر الاسم ورقم واتساب" : "Fill name and WhatsApp");
+      toast.error(trialModalText("requiredError", locale));
       return;
     }
 
@@ -61,7 +62,7 @@ export function TrialModal() {
     });
 
     window.open(whatsappUrl(waMessage, footer.whatsappNumber), "_blank");
-    toast.success(locale === "ar" ? "تم إرسال طلب التجربة!" : "Trial request sent!");
+    toast.success(trialModalText("success", locale));
     close();
     setName("");
     setPhone("");

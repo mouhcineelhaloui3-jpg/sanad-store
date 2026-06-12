@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleStore } from "@/store/localeStore";
+import type { Locale } from "@/lib/i18n/localized";
 
-const matches = {
+const matches: Record<
+  Locale,
+  { home: string; away: string; league: string; score: string; min: string }[]
+> = {
   ar: [
     { home: "🇲🇦 المغرب", away: "🇧🇷 البرازيل", league: "كأس العالم FIFA 2026™", score: "2 - 1", min: "78'" },
     { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
@@ -13,6 +17,24 @@ const matches = {
   ],
   en: [
     { home: "🇲🇦 Morocco", away: "🇧🇷 Brazil", league: "FIFA World Cup 2026™", score: "2 - 1", min: "78'" },
+    { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
+    { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
+    { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
+  ],
+  de: [
+    { home: "🇲🇦 Marokko", away: "🇧🇷 Brasilien", league: "FIFA WM 2026™", score: "2 - 1", min: "78'" },
+    { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
+    { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
+    { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
+  ],
+  es: [
+    { home: "🇲🇦 Marruecos", away: "🇧🇷 Brasil", league: "Copa Mundial FIFA 2026™", score: "2 - 1", min: "78'" },
+    { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
+    { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
+    { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
+  ],
+  it: [
+    { home: "🇲🇦 Marocco", away: "🇧🇷 Brasile", league: "Coppa del Mondo FIFA 2026™", score: "2 - 1", min: "78'" },
     { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
     { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
     { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }

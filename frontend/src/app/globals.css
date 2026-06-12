@@ -77,12 +77,12 @@ a {
   }
 
   .iptv-section-spacing {
-    padding-top: var(--section-py, 7rem);
-    padding-bottom: var(--section-py, 7rem);
+    padding-top: var(--section-py, 2rem);
+    padding-bottom: var(--section-py, 2rem);
   }
 
   .iptv-section-gap {
-    margin-top: var(--section-gap, 2rem);
+    margin-top: var(--section-gap, 0.25rem);
   }
 
   .iptv-hero-spacing {

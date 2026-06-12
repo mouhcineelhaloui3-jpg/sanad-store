@@ -5,6 +5,7 @@ import { Play } from "lucide-react";
 import Image from "next/image";
 import type { SportsSection } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
+import { ui } from "@/lib/i18n/ui-strings";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 
@@ -81,7 +82,7 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
 
                 <div className="mt-5 flex items-center gap-2 text-xs font-bold text-dark-800 opacity-0 transition group-hover:opacity-100">
                   <Play className="h-3.5 w-3.5 text-neon-green" />
-                  {locale === "ar" ? "متاح مع الاشتراك" : "Included with subscription"}
+                  {ui("includedSub", locale)}
                 </div>
               </div>
             </motion.article>

@@ -36,10 +36,6 @@ const sports = [
   {
     slug: "afcon",
     url: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&q=80"
-  },
-  {
-    slug: "formula-1",
-    url: "https://images.unsplash.com/photo-1551958219-ac56c7d68982?w=800&q=80"
   }
 ];
 

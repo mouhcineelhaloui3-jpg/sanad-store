@@ -4,7 +4,8 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Film, Play, Star } from "lucide-react";
 import Image from "next/image";
 import type { MoviesSection } from "@/lib/cms/types";
-import { t } from "@/lib/i18n/localized";
+import { t, type Locale } from "@/lib/i18n/localized";
+import { ui } from "@/lib/i18n/ui-strings";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 import { AnimatedCounter } from "./AnimatedCounter";
@@ -15,7 +16,7 @@ function MovieCard({
   locale
 }: {
   movie: MoviesSection["items"][0];
-  locale: "ar" | "en";
+  locale: Locale;
 }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -70,7 +71,7 @@ function MovieCard({
           </h3>
           <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-neon-green opacity-0 transition group-hover:opacity-100">
             <Play className="h-3 w-3" />
-            {locale === "ar" ? "متاح للمشتركين" : "Available now"}
+            {ui("availableNow", locale)}
           </div>
         </div>
       </div>
@@ -105,7 +106,7 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
                 <AnimatedCounter value={movies.totalCount} prefix="+" />
               </p>
               <p className="text-xs font-bold text-dark-700">
-                {locale === "ar" ? "فيلم ومسلسل" : "titles"}
+                {ui("titles", locale)}
               </p>
             </div>
           </div>
@@ -150,11 +151,7 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
             <button type="button" onClick={() => openOrder()} className="btn-gold px-10 text-base">
               {t(movies.ctaLabel, locale)}
             </button>
-            <p className="mt-3 text-xs text-dark-700">
-              {locale === "ar"
-                ? "محتوى جديد كل يوم — أفلام ومسلسلات 2025 و 2026"
-                : "Fresh content daily — 2025 & 2026 movies and series"}
-            </p>
+            <p className="mt-3 text-xs text-dark-700">{ui("moviesFreshNote", locale)}</p>
           </div>
         </RevealOnScroll>
       </div>

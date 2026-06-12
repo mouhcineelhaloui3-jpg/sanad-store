@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ui } from "@/lib/i18n/ui-strings";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 
@@ -19,8 +20,8 @@ export function IptvStickyCta() {
   }, []);
 
   const labels = {
-    trial: locale === "ar" ? "🎁 تجربة" : "🎁 Trial",
-    subscribe: locale === "ar" ? "🔥 اشترك" : "🔥 Subscribe"
+    trial: ui("freeTrial", locale),
+    subscribe: ui("subscribe", locale)
   };
 
   return (

@@ -6,6 +6,8 @@ import { X } from "lucide-react";
 import { toast } from "sonner";
 import { DEVICE_OPTIONS } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
+import { formatPlanPrice } from "@/lib/i18n/currency";
+import { orderModalText } from "@/lib/i18n/modal-strings";
 import { mergePlansWithCms } from "@/lib/cms/merge-plans";
 import type { Plan } from "@/lib/plans";
 import { buildOrderWhatsAppMessage, whatsappUrl } from "@/lib/store-config";
@@ -17,6 +19,7 @@ export function OrderModal() {
   const { modal, selectedPlanSlug, close } = useIptvModalStore();
   const { plans: planOverrides, footer } = useStoreContent();
   const locale = useLocaleStore((s) => s.locale);
+  const currency = useLocaleStore((s) => s.currency);
   const plans = mergePlansWithCms(planOverrides);
 
   const [name, setName] = useState("");
@@ -35,19 +38,19 @@ export function OrderModal() {
   const selectedPlan = plans.find((p) => p.slug === planSlug);
 
   const labels = {
-    title: locale === "ar" ? "طلب اشتراك" : "Subscription Order",
-    name: locale === "ar" ? "الاسم الكامل" : "Full Name",
-    phone: locale === "ar" ? "رقم واتساب" : "WhatsApp Number",
-    device: locale === "ar" ? "نوع الجهاز" : "Device Type",
-    plan: locale === "ar" ? "مدة الاشتراك" : "Subscription Duration",
-    notes: locale === "ar" ? "ملاحظات (اختياري)" : "Notes (optional)",
-    submit: locale === "ar" ? "إرسال الطلب" : "Submit Order"
+    title: orderModalText("title", locale),
+    name: orderModalText("name", locale),
+    phone: orderModalText("phone", locale),
+    device: orderModalText("device", locale),
+    plan: orderModalText("plan", locale),
+    notes: orderModalText("notes", locale),
+    submit: orderModalText("submit", locale)
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim() || !planSlug) {
-      toast.error(locale === "ar" ? "عمر جميع الحقول المطلوبة" : "Fill all required fields");
+      toast.error(orderModalText("requiredError", locale));
       return;
     }
 
@@ -74,7 +77,7 @@ export function OrderModal() {
     });
 
     window.open(whatsappUrl(message, footer.whatsappNumber), "_blank");
-    toast.success(locale === "ar" ? "تم إرسال طلبك!" : "Order sent!");
+    toast.success(orderModalText("success", locale));
     close();
     setName("");
     setPhone("");
@@ -137,11 +140,14 @@ export function OrderModal() {
               </Field>
               <Field label={labels.plan}>
                 <select value={planSlug} onChange={(e) => setPlanSlug(e.target.value)} className="iptv-input">
-                  {plans.map((p: Plan) => (
-                    <option key={p.slug} value={p.slug}>
-                      {t(p.name, locale)} — {p.price} {p.currency}
-                    </option>
-                  ))}
+                  {plans.map((p: Plan) => {
+                    const price = formatPlanPrice(p.price, currency, locale);
+                    return (
+                      <option key={p.slug} value={p.slug}>
+                        {t(p.name, locale)} — {price.primary}
+                      </option>
+                    );
+                  })}
                 </select>
               </Field>
               <Field label={labels.notes}>
