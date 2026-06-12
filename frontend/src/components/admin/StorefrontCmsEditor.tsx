@@ -85,7 +85,7 @@ export function StorefrontCmsEditor() {
     return <p className="text-sm text-slate-500">جاري التحميل...</p>;
   }
 
-  const { homepage, header, footer, branding, seo } = content;
+  const { homepage, header, footer, branding, seo, integrations } = content;
 
   return (
     <>
@@ -456,13 +456,80 @@ export function StorefrontCmsEditor() {
           </div>
         </AdminCard>
 
-        <AdminCard title="SEO">
+        <AdminCard title="SEO — Meta Titles & Open Graph">
           <div className="space-y-4">
             <TextField label="Meta title" value={seo.title} onChange={(v) => update({ seo: { ...seo, title: v } })} />
             <TextAreaField label="Meta description" value={seo.description} onChange={(v) => update({ seo: { ...seo, description: v } })} />
-            <TextField label="Keywords" value={seo.keywords} onChange={(v) => update({ seo: { ...seo, keywords: v } })} />
+            <TextField label="Keywords (مفصولة بفاصلة)" value={seo.keywords} onChange={(v) => update({ seo: { ...seo, keywords: v } })} />
             <TextField label="OG title" value={seo.ogTitle} onChange={(v) => update({ seo: { ...seo, ogTitle: v } })} />
             <TextAreaField label="OG description" value={seo.ogDescription} onChange={(v) => update({ seo: { ...seo, ogDescription: v } })} />
+            <label className="block">
+              <span className="text-sm font-bold text-slate-700">صورة Open Graph (1200×630)</span>
+              <input
+                type="file"
+                accept="image/*"
+                className="mt-2 block w-full text-sm"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    const url = await uploadImage(file);
+                    update({ seo: { ...seo, ogImageUrl: url } });
+                    toast.success("تم رفع صورة OG");
+                  } catch {
+                    toast.error("تعذر رفع الصورة");
+                  }
+                }}
+              />
+            </label>
+            <TextField
+              label="OG image URL"
+              value={seo.ogImageUrl ?? ""}
+              onChange={(v) => update({ seo: { ...seo, ogImageUrl: v } })}
+            />
+            {seo.ogImageUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={seo.ogImageUrl} alt="OG preview" className="max-h-40 rounded-xl border border-slate-200" />
+            ) : (
+              <p className="text-xs text-slate-500">
+                بلا صورة مرفوعة، غادي تتولّد صورة OG تلقائياً من `/opengraph-image`.
+              </p>
+            )}
+            <TextField
+              label="Google Search Console verification"
+              value={seo.googleSiteVerification ?? ""}
+              onChange={(v) => update({ seo: { ...seo, googleSiteVerification: v } })}
+            />
+            <p className="text-xs text-slate-500">
+              Sitemap: <code>/sitemap.xml</code> · Robots: <code>/robots.txt</code>
+            </p>
+          </div>
+        </AdminCard>
+
+        <AdminCard title="Analytics & Tracking">
+          <div className="space-y-4">
+            <TextField
+              label="Google Analytics 4 ID (G-XXXX)"
+              value={integrations.gaMeasurementId ?? ""}
+              onChange={(v) => update({ integrations: { ...integrations, gaMeasurementId: v } })}
+            />
+            <TextField
+              label="Meta Pixel ID"
+              value={integrations.metaPixelId ?? ""}
+              onChange={(v) => update({ integrations: { ...integrations, metaPixelId: v } })}
+            />
+            <TextField
+              label="TikTok Pixel ID"
+              value={integrations.tiktokPixelId ?? ""}
+              onChange={(v) => update({ integrations: { ...integrations, tiktokPixelId: v } })}
+            />
+            <p className="text-xs text-slate-500">
+              يمكن تعيين نفس القيم في `.env` (`NEXT_PUBLIC_GA_MEASUREMENT_ID`, `NEXT_PUBLIC_META_PIXEL_ID`,
+              `NEXT_PUBLIC_TIKTOK_PIXEL_ID`). الأدمين كيغلب على `.env` إلا كانت الحقول معمّرة.
+            </p>
+            <p className="text-xs text-slate-500">
+              Error tracking: أخطاء المتصفح كتتسجّل فـ `/api/report-error`. لـ Sentry، عيّن `SENTRY_DSN` فـ `.env`.
+            </p>
           </div>
         </AdminCard>
 
@@ -541,6 +608,23 @@ export function StorefrontCmsEditor() {
                   onChange={(v) =>
                     updateProduct(product.slug, { bullets: v.split("\n").filter(Boolean) })
                   }
+                />
+                <TextField
+                  label="SEO title"
+                  value={override.seoTitle ?? ""}
+                  placeholder={product.shortName}
+                  onChange={(v) => updateProduct(product.slug, { seoTitle: v })}
+                />
+                <TextAreaField
+                  label="SEO description"
+                  value={override.seoDescription ?? ""}
+                  placeholder={product.subheadline}
+                  onChange={(v) => updateProduct(product.slug, { seoDescription: v })}
+                />
+                <TextField
+                  label="OG image URL"
+                  value={override.ogImageUrl ?? ""}
+                  onChange={(v) => updateProduct(product.slug, { ogImageUrl: v })}
                 />
                 <TextAreaField
                   label="Reviews (name|city|rating|text per line). Leave empty for Viagra/manual-only products."

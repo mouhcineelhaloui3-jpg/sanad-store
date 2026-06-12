@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductBuyBox } from "@/components/product/ProductBuyBox";
@@ -12,7 +13,10 @@ import { SocialProof } from "@/components/product/SocialProof";
 import { FAQAccordion } from "@/components/product/FAQAccordion";
 import { MobileStickyCTA } from "@/components/product/MobileStickyCTA";
 import { BuyNowButton } from "./product-actions";
-import { getMergedProductBySlug, getMergedCatalog } from "@/lib/cms/merge-products";
+import { getMergedProductBySlug, getMergedCatalog, getProductOverride } from "@/lib/cms/merge-products";
+import { getStoreContent } from "@/lib/cms/server";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { breadcrumbJsonLd, faqJsonLd, productJsonLd } from "@/lib/seo/structured-data";
 import { getCrossSells, products } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -25,23 +29,45 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getMergedProductBySlug(slug);
-  if (!product) return { title: "منتج غير موجود | سَنَد" };
-  return {
-    title: `${product.shortName} | سَنَد`,
-    description: product.subheadline
-  };
+  const [product, content] = await Promise.all([getMergedProductBySlug(slug), getStoreContent()]);
+  if (!product) return { title: "منتج غير موجود" };
+
+  const override = getProductOverride(content.products, slug);
+  const title = override?.seoTitle ?? product.shortName;
+  const description = override?.seoDescription ?? product.subheadline;
+  const ogImage = override?.ogImageUrl ?? override?.imageUrl ?? content.seo.ogImageUrl;
+
+  return buildPageMetadata({
+    title,
+    description,
+    path: `/product/${slug}`,
+    ogImage,
+    ogTitle: `${title} | ${content.branding.brandName}`
+  });
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = await getMergedProductBySlug(slug);
+  const [product, content] = await Promise.all([getMergedProductBySlug(slug), getStoreContent()]);
   if (!product) notFound();
 
+  const override = getProductOverride(content.products, slug);
   const crossSells = getCrossSells(product);
+  const productImage = override?.ogImageUrl ?? override?.imageUrl;
 
   return (
     <div className="pb-24 md:pb-0">
+      <JsonLd
+        data={[
+          productJsonLd(product, productImage),
+          breadcrumbJsonLd([
+            { name: "الرئيسية", path: "/" },
+            { name: "المنتجات", path: "/collection" },
+            { name: product.shortName, path: `/product/${product.slug}` }
+          ]),
+          faqJsonLd(product.faqs)
+        ].filter(Boolean) as Record<string, unknown>[]}
+      />
       {/* Sticky trust bar */}
       <div className="sticky top-0 z-20 border-b border-sand-100 bg-sand-50/95 px-4 py-3 backdrop-blur">
         <div className="mx-auto flex max-w-6xl justify-center">

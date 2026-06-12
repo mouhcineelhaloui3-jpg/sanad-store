@@ -73,6 +73,14 @@ export type SeoContent = {
   keywords: string;
   ogTitle: string;
   ogDescription: string;
+  ogImageUrl: string;
+  googleSiteVerification: string;
+};
+
+export type IntegrationsContent = {
+  gaMeasurementId: string;
+  metaPixelId: string;
+  tiktokPixelId: string;
 };
 
 export type ProductCmsOverride = {
@@ -84,6 +92,9 @@ export type ProductCmsOverride = {
   subheadline?: string;
   bullets?: string[];
   imageUrl?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  ogImageUrl?: string;
   reviews?: Review[];
   faqs?: Faq[];
   ratingValue?: number;
@@ -108,6 +119,7 @@ export type StoreContent = {
   header: HeaderContent;
   footer: FooterContent;
   seo: SeoContent;
+  integrations: IntegrationsContent;
   homepage: HomepageContent;
   products: ProductCmsOverride[];
 };

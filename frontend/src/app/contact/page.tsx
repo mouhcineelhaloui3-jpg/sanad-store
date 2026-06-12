@@ -1,10 +1,18 @@
+import type { Metadata } from "next";
 import { MessageCircle, Mail, Clock } from "lucide-react";
+import { getStoreContent } from "@/lib/cms/server";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import { storeConfig, whatsappUrl } from "@/lib/store-config";
 
-export const metadata = {
-  title: "اتصل بنا | سَنَد",
-  description: "تواصل مع فريق سَنَد — عبر واتساب أو البريد الإلكتروني."
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getStoreContent();
+  return buildPageMetadata({
+    title: "اتصل بنا",
+    description: "تواصل مع فريق سَنَد — عبر واتساب أو البريد الإلكتروني.",
+    path: "/contact",
+    ogImage: content.seo.ogImageUrl
+  });
+}
 
 export default function ContactPage() {
   return (

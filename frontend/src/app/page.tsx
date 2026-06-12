@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ProductCard } from "@/components/product/ProductCard";
 import { FAQAccordion } from "@/components/product/FAQAccordion";
 import { HomeFounderNote } from "@/components/home/HomeFounderNote";
@@ -12,7 +14,20 @@ import { HomeTrustStrip } from "@/components/home/HomeTrustStrip";
 import { ProductFinder } from "@/components/home/ProductFinder";
 import { mergeProductsWithCms } from "@/lib/cms/merge-products";
 import { getStoreContent } from "@/lib/cms/server";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { faqJsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo/structured-data";
 import { whatsappUrl } from "@/lib/store-config";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getStoreContent();
+  return buildPageMetadata({
+    title: content.seo.title,
+    description: content.seo.description,
+    path: "/",
+    ogImage: content.seo.ogImageUrl || content.homepage.hero.imageUrl,
+    ogTitle: content.seo.ogTitle
+  });
+}
 
 const productHighlights: Record<string, string> = {
   "sanad-align": "للكتاف والوضعية",
@@ -40,6 +55,20 @@ export default async function HomePage() {
 
   return (
     <div className="bg-sand-50 pb-20 md:pb-0">
+      <JsonLd
+        data={[
+          organizationJsonLd({
+            name: content.branding.brandName,
+            description: content.footer.description,
+            email: content.footer.supportEmail
+          }),
+          websiteJsonLd({
+            name: content.branding.brandName,
+            description: content.seo.description
+          }),
+          faqJsonLd(homepage.faqs)
+        ].filter(Boolean) as Record<string, unknown>[]}
+      />
       <HomeHero hero={homepage.hero} />
 
       {homepage.sections.trustStrip ? <HomeTrustStrip /> : null}

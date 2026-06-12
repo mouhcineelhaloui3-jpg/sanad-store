@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getStoreContent } from "@/lib/cms/server";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 const policies: Record<string, { title: string; body: string[] }> = {
   shipping: {
@@ -37,6 +40,24 @@ const policies: Record<string, { title: string; body: string[] }> = {
 
 export function generateStaticParams() {
   return Object.keys(policies).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const policy = policies[slug];
+  if (!policy) return { title: "سياسة غير موجودة" };
+
+  const content = await getStoreContent();
+  return buildPageMetadata({
+    title: policy.title,
+    description: policy.body[0],
+    path: `/policies/${slug}`,
+    ogImage: content.seo.ogImageUrl
+  });
 }
 
 export default async function PolicyPage({ params }: { params: Promise<{ slug: string }> }) {

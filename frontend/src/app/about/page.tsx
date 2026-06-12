@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { getStoreContent } from "@/lib/cms/server";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata = {
-  title: "من نحن | سَنَد"
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getStoreContent();
+  return buildPageMetadata({
+    title: "من نحن",
+    description:
+      "تعرف على قصة سَنَد، متجر مغربي متخصص في حلول الراحة اليومية ودعم الجسم بالدفع عند الاستلام.",
+    path: "/about",
+    ogImage: content.seo.ogImageUrl
+  });
+}
 
 export default function AboutPage() {
   return (

@@ -1,11 +1,19 @@
+import type { Metadata } from "next";
 import { ProductCard } from "@/components/product/ProductCard";
 import { TrustStrip } from "@/components/product/TrustStrip";
 import { getMergedCatalog } from "@/lib/cms/merge-products";
+import { getStoreContent } from "@/lib/cms/server";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata = {
-  title: "منتجات سَنَد | دعم الظهر والرقبة",
-  description: "ثلاثة حلول عملية للكتاف والوضعية، الرقبة، وأسفل الظهر — بالدفع عند الاستلام داخل المغرب."
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getStoreContent();
+  return buildPageMetadata({
+    title: "منتجات سَنَد | دعم الظهر والرقبة",
+    description: "ثلاثة حلول عملية للكتاف والوضعية، الرقبة، وأسفل الظهر — بالدفع عند الاستلام داخل المغرب.",
+    path: "/collection",
+    ogImage: content.seo.ogImageUrl
+  });
+}
 
 export default async function CollectionPage() {
   const products = await getMergedCatalog();

@@ -43,7 +43,14 @@ export const defaultStoreContent = (): StoreContent => ({
     description: "متجر مغربي متخصص في حلول دعم وراحة الظهر، الرقبة، والكتفين. الدفع عند الاستلام داخل المغرب.",
     keywords: "دعم الظهر, مصحح الوضعية, وسادة رقبة, حزام ظهر, المغرب, COD",
     ogTitle: "سَنَد | دعم ذكي لجسمك",
-    ogDescription: "دعم الظهر والرقبة بالدفع عند الاستلام داخل المغرب."
+    ogDescription: "دعم الظهر والرقبة بالدفع عند الاستلام داخل المغرب.",
+    ogImageUrl: "",
+    googleSiteVerification: ""
+  },
+  integrations: {
+    gaMeasurementId: "",
+    metaPixelId: "",
+    tiktokPixelId: ""
   },
   homepage: {
     hero: {

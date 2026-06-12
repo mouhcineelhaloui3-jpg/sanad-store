@@ -1,10 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CrossSellList } from "@/components/product/CrossSellList";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import { products } from "@/lib/products";
 
-export const metadata = {
-  title: "تم تسجيل الطلب | سَنَد"
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "تم تسجيل الطلب",
+  description: "تم تسجيل طلبك بنجاح. غادي نتاصلو بك للتأكيد قبل الإرسال.",
+  path: "/thank-you",
+  noIndex: true
+});
 
 export default async function ThankYouPage({ searchParams }: { searchParams: Promise<{ order?: string }> }) {
   const { order: orderId } = await searchParams;
