@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
+import { StoreContentProvider } from "@/components/cms/StoreContentProvider";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { getStoreContent } from "@/lib/cms/server";
 import "./globals.css";
 
 const arabic = IBM_Plex_Sans_Arabic({
@@ -31,11 +33,15 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const content = await getStoreContent();
+
   return (
     <html lang="ar" dir="rtl" className={`${arabic.variable} ${latin.variable}`}>
-      <body className="font-sans">
-        <SiteChrome>{children}</SiteChrome>
+      <body className="font-sans" style={{ "--brand-primary": content.branding.primaryColor, "--brand-accent": content.branding.accentColor } as React.CSSProperties}>
+        <StoreContentProvider content={content}>
+          <SiteChrome>{children}</SiteChrome>
+        </StoreContentProvider>
       </body>
     </html>
   );

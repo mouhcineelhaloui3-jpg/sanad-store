@@ -7,7 +7,10 @@ export const storeConfig = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sanad.ma"
 } as const;
 
-export function whatsappUrl(message = storeConfig.whatsappMessage) {
-  const phone = storeConfig.whatsappNumber.replace(/\D/g, "");
+export function whatsappUrl(
+  message: string = storeConfig.whatsappMessage,
+  phoneNumber: string = storeConfig.whatsappNumber
+) {
+  const phone = phoneNumber.replace(/\D/g, "");
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }

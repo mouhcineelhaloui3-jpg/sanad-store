@@ -1,13 +1,15 @@
 import { ProductCard } from "@/components/product/ProductCard";
 import { TrustStrip } from "@/components/product/TrustStrip";
-import { products } from "@/lib/products";
+import { getMergedCatalog } from "@/lib/cms/merge-products";
 
 export const metadata = {
   title: "منتجات سَنَد | دعم الظهر والرقبة",
   description: "ثلاثة حلول عملية للكتاف والوضعية، الرقبة، وأسفل الظهر — بالدفع عند الاستلام داخل المغرب."
 };
 
-export default function CollectionPage() {
+export default async function CollectionPage() {
+  const products = await getMergedCatalog();
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="max-w-2xl">

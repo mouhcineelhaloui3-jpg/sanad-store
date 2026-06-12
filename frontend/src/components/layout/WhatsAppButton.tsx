@@ -1,12 +1,16 @@
 "use client";
 
 import { MessageCircle } from "lucide-react";
+import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { whatsappUrl } from "@/lib/store-config";
 
 export function WhatsAppButton() {
+  const { footer, homepage } = useStoreContent();
+  if (!homepage.sections.whatsapp) return null;
+
   return (
     <a
-      href={whatsappUrl()}
+      href={whatsappUrl(footer.whatsappMessage, footer.whatsappNumber)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="تواصل معنا عبر واتساب"

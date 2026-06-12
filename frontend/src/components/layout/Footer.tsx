@@ -1,20 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import { LockKeyhole, MessageCircle } from "lucide-react";
+import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { Logo } from "@/components/layout/Logo";
-import { storeConfig, whatsappUrl } from "@/lib/store-config";
+import { whatsappUrl } from "@/lib/store-config";
 
 export function Footer() {
+  const { footer, branding } = useStoreContent();
+
   return (
     <footer className="border-t border-sand-100 bg-sand-950 text-sand-50">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-4">
         <div className="md:col-span-2">
           <Logo />
-          <p className="mt-4 max-w-md text-sm leading-7 text-sand-100">
-            سَنَد متجر مغربي متخصص في حلول الراحة اليومية ودعم الجسم، مصمم للناس
-            اللي نهارهم طويل وباغين يرجعو يحسو براحتهم بثقة وبساطة.
-          </p>
+          <p className="mt-4 max-w-md text-sm leading-7 text-sand-100">{footer.description}</p>
           <a
-            href={whatsappUrl()}
+            href={whatsappUrl(footer.whatsappMessage, footer.whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-black text-white transition hover:opacity-90"
@@ -26,25 +28,28 @@ export function Footer() {
         <div>
           <h3 className="font-bold">المتجر</h3>
           <div className="mt-4 flex flex-col gap-3 text-sm text-sand-100">
-            <Link href="/collection" className="transition hover:text-white">المنتجات</Link>
-            <Link href="/about" className="transition hover:text-white">من نحن</Link>
-            <Link href="/contact" className="transition hover:text-white">اتصل بنا</Link>
+            {footer.storeLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="transition hover:text-white">
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
         <div>
           <h3 className="font-bold">السياسات</h3>
           <div className="mt-4 flex flex-col gap-3 text-sm text-sand-100">
-            <Link href="/policies/shipping" className="transition hover:text-white">سياسة التوصيل</Link>
-            <Link href="/policies/returns" className="transition hover:text-white">سياسة الاستبدال</Link>
-            <Link href="/policies/privacy" className="transition hover:text-white">الخصوصية</Link>
-            <Link href="/policies/terms" className="transition hover:text-white">الشروط</Link>
+            {footer.policyLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="transition hover:text-white">
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-sand-100/70 sm:flex-row">
-          <p>© {new Date().getFullYear()} {storeConfig.brand}. جميع الحقوق محفوظة.</p>
-          <p>{storeConfig.supportEmail}</p>
+          <p>© {new Date().getFullYear()} {branding.brandName}. جميع الحقوق محفوظة.</p>
+          <p>{footer.supportEmail}</p>
           <Link
             href="/admin"
             aria-label="Admin"

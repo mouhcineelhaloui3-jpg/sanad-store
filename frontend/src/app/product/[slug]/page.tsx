@@ -12,7 +12,8 @@ import { SocialProof } from "@/components/product/SocialProof";
 import { FAQAccordion } from "@/components/product/FAQAccordion";
 import { MobileStickyCTA } from "@/components/product/MobileStickyCTA";
 import { BuyNowButton } from "./product-actions";
-import { getCrossSells, getProductBySlug, products } from "@/lib/products";
+import { getMergedProductBySlug, getMergedCatalog } from "@/lib/cms/merge-products";
+import { getCrossSells, products } from "@/lib/products";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -24,7 +25,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getMergedProductBySlug(slug);
   if (!product) return { title: "منتج غير موجود | سَنَد" };
   return {
     title: `${product.shortName} | سَنَد`,
@@ -34,7 +35,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getMergedProductBySlug(slug);
   if (!product) notFound();
 
   const crossSells = getCrossSells(product);

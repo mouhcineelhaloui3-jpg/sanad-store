@@ -18,3 +18,56 @@ body {
 a {
   text-decoration: none;
 }
+
+@layer components {
+  .section-eyebrow {
+    @apply text-sm font-black uppercase tracking-wide text-sage-700;
+  }
+
+  .section-title {
+    @apply text-3xl font-black leading-tight text-sand-950 md:text-4xl;
+  }
+
+  .section-subtitle {
+    @apply mt-4 max-w-2xl text-base leading-8 text-sand-700 md:text-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-sand-950 px-7 py-3.5 text-sm font-black text-white shadow-soft transition hover:scale-[1.02] hover:bg-sand-900 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border-2 border-sand-200 bg-white px-7 py-3.5 text-sm font-black text-sand-950 transition hover:border-sand-500 hover:shadow-sm active:scale-[0.98];
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 text-sm font-black text-white transition hover:opacity-90 active:scale-[0.98];
+  }
+
+  .card-premium {
+    @apply rounded-[1.75rem] border border-sand-100 bg-white shadow-soft;
+  }
+
+  .trust-pill {
+    @apply inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-sand-800 shadow-sm ring-1 ring-sand-100;
+  }
+
+  .trust-pill-dark {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white ring-1 ring-white/20;
+  }
+
+  .gradient-hero {
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(81, 113, 94, 0.12), transparent),
+      linear-gradient(180deg, #fbf7f0 0%, #f3e8d8 100%);
+  }
+
+  .hero-banner {
+    height: var(--hero-h-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .hero-banner {
+      height: var(--hero-h-desktop);
+    }
+  }
+}

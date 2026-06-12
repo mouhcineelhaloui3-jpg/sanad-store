@@ -1,0 +1,43 @@
+import { readFile, writeFile, mkdir } from "fs/promises";
+import path from "path";
+import { defaultStoreContent } from "./defaults";
+import type { StoreContent } from "./types";
+
+const DATA_DIR = path.join(process.cwd(), "data");
+const CONTENT_FILE = path.join(DATA_DIR, "store-content.json");
+
+function deepMerge<T extends Record<string, unknown>>(base: T, patch: Partial<T>): T {
+  const out = { ...base };
+  for (const key of Object.keys(patch) as (keyof T)[]) {
+    const value = patch[key];
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      out[key] = deepMerge(
+        (base[key] as Record<string, unknown>) ?? {},
+        value as Record<string, unknown>
+      ) as T[keyof T];
+    } else if (value !== undefined) {
+      out[key] = value as T[keyof T];
+    }
+  }
+  return out;
+}
+
+export async function getStoreContent(): Promise<StoreContent> {
+  try {
+    const raw = await readFile(CONTENT_FILE, "utf-8");
+    const parsed = JSON.parse(raw) as StoreContent;
+    return deepMerge(defaultStoreContent(), parsed);
+  } catch {
+    return defaultStoreContent();
+  }
+}
+
+export async function saveStoreContent(content: StoreContent): Promise<StoreContent> {
+  await mkdir(DATA_DIR, { recursive: true });
+  const payload: StoreContent = {
+    ...deepMerge(defaultStoreContent(), content),
+    updatedAt: new Date().toISOString()
+  };
+  await writeFile(CONTENT_FILE, JSON.stringify(payload, null, 2), "utf-8");
+  return payload;
+}

@@ -3,19 +3,15 @@
 import Link from "next/link";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
+import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { Logo } from "@/components/layout/Logo";
 import { useCartStore } from "@/store/cartStore";
-
-const links = [
-  { href: "/", label: "الرئيسية" },
-  { href: "/collection", label: "المنتجات" },
-  { href: "/about", label: "من نحن" },
-  { href: "/contact", label: "اتصل بنا" }
-];
 
 export function MobileNav({ cartCount }: { cartCount: number }) {
   const [open, setOpen] = useState(false);
   const openCart = useCartStore((state) => state.open);
+  const { header } = useStoreContent();
+  const links = header.navLinks;
 
   return (
     <>

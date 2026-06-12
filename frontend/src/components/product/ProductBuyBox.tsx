@@ -2,11 +2,18 @@
 
 import { Check, ShieldCheck } from "lucide-react";
 import { formatPrice, type Product } from "@/lib/products";
+import { Stars } from "@/components/product/Stars";
 import { useCartStore } from "@/store/cartStore";
 
 export function ProductBuyBox({ product }: { product: Product }) {
   const addProduct = useCartStore((state) => state.addProduct);
   const open = useCartStore((state) => state.open);
+  const hasReviews = product.reviews.length > 0;
+  const rating =
+    product.ratingValue > 0
+      ? product.ratingValue
+      : product.reviews.reduce((s, r) => s + r.rating, 0) / product.reviews.length;
+  const count = product.ratingCount > 0 ? product.ratingCount : product.reviews.length;
 
   function addToCart() {
     addProduct(product);
@@ -24,9 +31,15 @@ export function ProductBuyBox({ product }: { product: Product }) {
       </span>
       <h1 className="mt-5 text-3xl font-black leading-[1.3] text-sand-950 md:text-4xl">{product.nameAr}</h1>
 
-      <div className="mt-4 rounded-2xl border border-sand-100 bg-sand-50 px-4 py-3 text-sm font-bold leading-6 text-sand-800">
-        التقييمات غادي تبان هنا منين تكون عندنا مراجعات موثقة من عملاء حقيقيين.
-      </div>
+      {hasReviews ? (
+        <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-sand-100 bg-white px-4 py-3 shadow-sm">
+          <Stars rating={rating} />
+          <span className="text-sm font-black text-sand-950">{rating.toFixed(1)} / 5</span>
+          <span className="text-sm font-bold text-sand-600">
+            ({count} {count === 1 ? "مراجعة" : "مراجعات"})
+          </span>
+        </div>
+      ) : null}
 
       <p className="mt-4 text-lg leading-9 text-sand-700">{product.headline}</p>
 

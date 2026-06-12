@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
+import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { Logo } from "@/components/layout/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { useCartStore } from "@/store/cartStore";
@@ -9,22 +10,24 @@ import { useCartStore } from "@/store/cartStore";
 export function Header() {
   const { items, open } = useCartStore();
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
+  const { header } = useStoreContent();
 
   return (
     <header className="sticky top-0 z-40 border-b border-sand-100/80 bg-sand-50/90 backdrop-blur-md">
       <div className="bg-gradient-to-l from-sand-900 to-sand-950 px-4 py-2 text-center text-sm font-semibold text-white">
         <span className="inline-flex items-center gap-2">
           <span className="hidden sm:inline">🇲🇦</span>
-          الدفع عند الاستلام داخل المغرب • تأكيد قبل الإرسال • بدون أداء مسبق
+          {header.promoBar}
         </span>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4">
         <Logo />
         <nav className="hidden items-center gap-7 text-sm font-semibold text-sand-900 md:flex">
-          <Link href="/" className="transition hover:text-sand-700">الرئيسية</Link>
-          <Link href="/collection" className="transition hover:text-sand-700">المنتجات</Link>
-          <Link href="/about" className="transition hover:text-sand-700">من نحن</Link>
-          <Link href="/contact" className="transition hover:text-sand-700">اتصل بنا</Link>
+          {header.navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="transition hover:text-sand-700">
+              {link.label}
+            </Link>
+          ))}
         </nav>
         <div className="flex items-center gap-2">
           <button
