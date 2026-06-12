@@ -1,7 +1,7 @@
 export const storeConfig = {
   brand: "SANAD IPTV",
   tagline: "تفرج بلا حدود",
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "212600000000",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "212682217644",
   whatsappMessage: "السلام، بغيت نستافسر على SANAD IPTV.",
   supportEmail: "support@sanadiptv.com",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sanadiptv.com"

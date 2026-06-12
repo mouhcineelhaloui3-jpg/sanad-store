@@ -37,7 +37,7 @@ a {
   }
 
   .section-subtitle {
-    @apply mt-4 max-w-2xl text-base leading-8 text-dark-800 md:text-lg;
+    @apply mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg;
   }
 
   .glass-card {
@@ -431,5 +431,41 @@ a {
   .neon-text-shimmer,
   .divider-shine {
     animation: none !important;
+  }
+
+  main p.text-dark-800,
+  main li.text-dark-800,
+  main span.text-dark-800,
+  main .text-dark-700,
+  main .text-dark-800 {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  main .section-eyebrow,
+  main a.text-neon-cyan,
+  main .text-neon-cyan {
+    color: var(--neon-cyan);
+  }
+
+  footer .text-dark-800,
+  footer .text-dark-700,
+  footer .text-dark-600 {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  footer a:hover {
+    color: var(--neon-cyan);
+  }
+
+  .iptv-input {
+    color: #ffffff;
+  }
+
+  .iptv-input::placeholder {
+    color: rgba(0, 229, 255, 0.55);
+  }
+
+  label span.text-dark-800 {
+    color: #ffffff;
   }
 }

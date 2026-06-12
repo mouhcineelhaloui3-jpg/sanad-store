@@ -20,7 +20,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-4">
         <div className="md:col-span-2">
           <Logo />
-          <p className="mt-4 max-w-md text-sm leading-7 text-dark-800">{t(footer.description, locale)}</p>
+          <p className="mt-4 max-w-md text-sm leading-7 text-white/85">{t(footer.description, locale)}</p>
           <a
             href={whatsappUrl(footer.whatsappMessage, footer.whatsappNumber)}
             target="_blank"
@@ -33,7 +33,7 @@ export function Footer() {
         </div>
         <div>
           <h3 className="font-bold text-white">{ui("quickLinks", locale)}</h3>
-          <div className="mt-4 flex flex-col gap-3 text-sm text-dark-800">
+          <div className="mt-4 flex flex-col gap-3 text-sm text-white/85">
             {storeLinks.map((link) => (
               <Link key={link.href} href={link.href} className="transition hover:text-neon-cyan">
                 {link.label}
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
         <div>
           <h3 className="font-bold text-white">{ui("policies", locale)}</h3>
-          <div className="mt-4 flex flex-col gap-3 text-sm text-dark-800">
+          <div className="mt-4 flex flex-col gap-3 text-sm text-white/85">
             {policyLinks.map((link) => (
               <Link key={link.href} href={link.href} className="transition hover:text-neon-cyan">
                 {link.label}
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/5">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-dark-700 sm:flex-row">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/75 sm:flex-row">
           <p>
             © {new Date().getFullYear()} {branding.brandName} — {t(footer.copyright, locale)}
           </p>

@@ -40,9 +40,9 @@ export const defaultStoreContent = (): StoreContent => ({
       en: "SANAD IPTV — Professional IPTV subscriptions with free trial, fast WhatsApp support, and full admin control."
     },
     supportEmail: "support@sanadiptv.com",
-    whatsappNumber: "212600000000",
+    whatsappNumber: "212682217644",
     whatsappMessage: "السلام، بغيت نستافسر على SANAD IPTV.",
-    telegramUrl: "https://t.me/sanadiptv",
+    telegramUrl: "https://t.me/SANADIPTV",
     storeLinks: [
       { label: { ar: "الباقات", en: "Plans" }, href: "#plans" },
       { label: { ar: "التجربة المجانية", en: "Free Trial" }, href: "#trial" },
@@ -335,7 +335,7 @@ export const defaultStoreContent = (): StoreContent => ({
       title: { ar: "تواصل معنا", en: "Contact Us" },
       whatsappLabel: { ar: "💬 واتساب", en: "💬 WhatsApp" },
       emailLabel: { ar: "📧 Email", en: "📧 Email" },
-      telegramLabel: { ar: "🌐 Telegram", en: "🌐 Telegram" }
+      telegramLabel: { ar: "🌐 Telegram @SANADIPTV", en: "🌐 Telegram @SANADIPTV" }
     },
     faqTitle: { ar: "الأسئلة الشائعة", en: "FAQ" },
     faqSubtitle: { ar: "شنو بغيتي تعرف؟", en: "What would you like to know?" },
