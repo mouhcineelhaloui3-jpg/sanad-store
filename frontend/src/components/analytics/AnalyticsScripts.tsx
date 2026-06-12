@@ -19,9 +19,9 @@ export function AnalyticsScripts({ integrations }: AnalyticsScriptsProps) {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${ids.gaMeasurementId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="ga4-init" strategy="afterInteractive">
+          <Script id="ga4-init" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -33,7 +33,7 @@ export function AnalyticsScripts({ integrations }: AnalyticsScriptsProps) {
       ) : null}
 
       {ids.metaPixelId ? (
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -50,7 +50,7 @@ export function AnalyticsScripts({ integrations }: AnalyticsScriptsProps) {
       ) : null}
 
       {ids.tiktokPixelId ? (
-        <Script id="tiktok-pixel" strategy="afterInteractive">
+        <Script id="tiktok-pixel" strategy="lazyOnload">
           {`
             !function (w, d, t) {
               w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
@@ -74,7 +74,7 @@ export function AnalyticsScripts({ integrations }: AnalyticsScriptsProps) {
           defer
           data-domain={ids.plausibleDomain}
           src="https://plausible.io/js/script.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       ) : null}
     </>

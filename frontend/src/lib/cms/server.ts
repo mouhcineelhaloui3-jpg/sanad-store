@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { cache } from "react";
 import { defaultStoreContent } from "./defaults";
 import type { StoreContent } from "./types";
 
@@ -22,7 +23,7 @@ function deepMerge<T extends Record<string, unknown>>(base: T, patch: Partial<T>
   return out;
 }
 
-export async function getStoreContent(): Promise<StoreContent> {
+export const getStoreContent = cache(async function getStoreContent(): Promise<StoreContent> {
   try {
     const raw = await readFile(CONTENT_FILE, "utf-8");
     const parsed = JSON.parse(raw) as StoreContent;
@@ -30,7 +31,7 @@ export async function getStoreContent(): Promise<StoreContent> {
   } catch {
     return defaultStoreContent();
   }
-}
+});
 
 export async function saveStoreContent(content: StoreContent): Promise<StoreContent> {
   await mkdir(DATA_DIR, { recursive: true });

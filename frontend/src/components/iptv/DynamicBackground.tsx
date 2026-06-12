@@ -5,27 +5,18 @@ export function DynamicBackground() {
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
       <div className="bg-base absolute inset-0" />
 
-      <div className="aurora aurora-1" />
-      <div className="aurora aurora-2" />
-      <div className="aurora aurora-3" />
+      <div className="absolute inset-0 hidden md:block">
+        <div className="aurora aurora-1" />
+        <div className="aurora aurora-2" />
+        <div className="conic-spin absolute inset-0 opacity-[0.35]" />
+        <div className="mesh-orb mesh-orb-1" />
+        <div className="mesh-orb mesh-orb-2" />
+        <div className="mesh-orb mesh-orb-3" />
+        <div className="perspective-grid" />
+      </div>
 
-      <div className="conic-spin absolute inset-0 opacity-[0.35]" />
-
-      <div className="mesh-orb mesh-orb-1" />
-      <div className="mesh-orb mesh-orb-2" />
-      <div className="mesh-orb mesh-orb-3" />
-      <div className="mesh-orb mesh-orb-4" />
-      <div className="mesh-orb mesh-orb-5" />
-
-      <div className="perspective-grid" />
-      <div className="grid-bg absolute inset-0 opacity-30" />
-
-      <div className="light-beam light-beam-1" />
-      <div className="light-beam light-beam-2" />
-
+      <div className="grid-bg absolute inset-0 opacity-20 md:opacity-30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030308_72%)]" />
-      <div className="global-scanline absolute inset-0 opacity-[0.04]" />
-      <div className="bg-noise absolute inset-0" />
     </div>
   );
 }

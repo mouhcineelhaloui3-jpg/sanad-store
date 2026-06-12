@@ -29,9 +29,11 @@ export function PremiumParticles() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animId: number;
+    let animId = 0;
+    let running = true;
     const particles: Particle[] = [];
-    const linkDistance = 140;
+    const linkDistance = 120;
+    const drawLinks = window.innerWidth >= 1024;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -40,37 +42,47 @@ export function PremiumParticles() {
     resize();
     window.addEventListener("resize", resize);
 
-    const count = window.matchMedia("(max-width: 768px)").matches ? 55 : 90;
+    const count = drawLinks ? 45 : 0;
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.55,
-        vy: (Math.random() - 0.5) * 0.55,
-        r: Math.random() * 2.2 + 0.4,
-        a: Math.random() * 0.55 + 0.15,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        r: Math.random() * 2 + 0.4,
+        a: Math.random() * 0.45 + 0.12,
         color: COLORS[Math.floor(Math.random() * COLORS.length)]!
       });
     }
 
+    const onVisibility = () => {
+      running = document.visibilityState === "visible";
+      if (running) animId = requestAnimationFrame(draw);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     const draw = () => {
+      if (!running) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i]!;
-          const b = particles[j]!;
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < linkDistance) {
-            const alpha = (1 - dist / linkDistance) * 0.18;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
+      if (drawLinks) {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const a = particles[i]!;
+            const b = particles[j]!;
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < linkDistance) {
+              const alpha = (1 - dist / linkDistance) * 0.12;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -85,29 +97,25 @@ export function PremiumParticles() {
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${p.color}, ${p.a})`;
         ctx.fill();
-
-        if (p.r > 1.8) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${p.color}, ${p.a * 0.12})`;
-          ctx.fill();
-        }
       }
 
       animId = requestAnimationFrame(draw);
     };
-    draw();
+
+    if (count > 0) draw();
 
     return () => {
+      running = false;
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 -z-[5] opacity-50 mix-blend-screen"
+      className="pointer-events-none fixed inset-0 -z-[5] hidden opacity-40 mix-blend-screen md:block"
       aria-hidden
     />
   );
