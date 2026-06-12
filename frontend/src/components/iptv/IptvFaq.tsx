@@ -21,7 +21,7 @@ export function IptvFaq({
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="px-4 py-20">
+    <section id="faq" className="iptv-section-spacing px-4">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <p className="section-eyebrow">{t(title, locale)}</p>

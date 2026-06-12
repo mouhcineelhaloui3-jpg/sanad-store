@@ -26,15 +26,31 @@ export function IptvHero({
   const headlineLines = t(hero.headline, locale).split("\n");
 
   return (
-    <section className="relative overflow-hidden px-4 pb-16 pt-10 md:pb-24 md:pt-16">
+    <section className="iptv-hero-spacing relative overflow-hidden px-4">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-neon-cyan/10 blur-[120px]" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
+          <div className="mb-4 flex flex-wrap gap-2">
+            {[
+              { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™" },
+              { ar: "📺 +100K قناة", en: "📺 +100K channels" },
+              { ar: "🎬 +200K فيلم", en: "🎬 +200K movies" },
+              { ar: "⚡ تفعيل فوري", en: "⚡ Instant setup" }
+            ].map((badge) => (
+              <span
+                key={badge.ar}
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-black text-white backdrop-blur-md md:text-xs"
+              >
+                {locale === "ar" ? badge.ar : badge.en}
+              </span>
+            ))}
+          </div>
+
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-1.5 text-xs font-bold text-neon-cyan md:text-sm">
             <span className="h-2 w-2 animate-pulse rounded-full bg-neon-green" />
             {t(hero.trustLine, locale)}
@@ -45,7 +61,7 @@ export function IptvHero({
               <span
                 key={i}
                 className={
-                  i === 0 ? "neon-text-shimmer block" : "mt-2 block text-white"
+                  i === 0 ? "neon-text block" : "mt-2 block text-white"
                 }
               >
                 {line}
@@ -100,9 +116,9 @@ export function IptvHero({
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="relative"
         >
           <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-neon-cyan/20 to-neon-green/20 blur-2xl" />

@@ -10,7 +10,7 @@ export function IptvStats({ stats }: { stats: StatItem[] }) {
   const locale = useLocaleStore((s) => s.locale);
 
   return (
-    <section className="px-4 py-16">
+    <section className="iptv-section-spacing px-4">
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
           {stats.map((stat, i) => (

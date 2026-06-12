@@ -33,7 +33,7 @@ export function IptvTestimonials({
   const current = visible[index];
 
   return (
-    <section id="testimonials" className="px-4 py-20">
+    <section id="testimonials" className="iptv-section-spacing px-4">
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <p className="section-eyebrow">{t(title, locale)}</p>

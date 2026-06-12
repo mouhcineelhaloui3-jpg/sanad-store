@@ -1,9 +1,11 @@
 import type { StoreContent } from "./types";
 import { defaultMoviesSection } from "./default-movies";
+import { defaultSiteLayout } from "./layout-styles";
 
 export const defaultStoreContent = (): StoreContent => ({
-  version: 4,
+  version: 6,
   updatedAt: new Date().toISOString(),
+  layout: defaultSiteLayout(),
   branding: {
     brandName: "SANAD IPTV",
     tagline: {
@@ -13,12 +15,12 @@ export const defaultStoreContent = (): StoreContent => ({
     primaryColor: "#00E5FF",
     secondaryColor: "#00FF95",
     accentColor: "#FFB800",
-    logoUrl: ""
+    logoUrl: "/logo/sanad-iptv-logo.png"
   },
   header: {
     promoBar: {
-      ar: "⚽ Champions League LIVE • 🔥 تجربة مجانية • ⚡ تفعيل فوري 2026",
-      en: "⚽ Champions League LIVE • 🔥 Free trial • ⚡ Instant activation 2026"
+      ar: "🏆 كأس العالم FIFA 2026™ • ⚽ Champions League LIVE • 🔥 تجربة مجانية",
+      en: "🏆 FIFA World Cup 2026™ • ⚽ Champions League LIVE • 🔥 Free trial"
     },
     navLinks: [
       { label: { ar: "الرئيسية", en: "Home" }, href: "/" },
@@ -58,7 +60,7 @@ export const defaultStoreContent = (): StoreContent => ({
     description:
       "اشتراك SANAD IPTV — أكثر من 100,000 قناة مباشرة، أفلام ومسلسلات HD و4K، بطولات رياضية عالمية. تجربة مجانية ودعم واتساب.",
     keywords:
-      "IPTV, SANAD IPTV, اشتراك IPTV, قنوات مباشرة, Champions League, La Liga, Premier League, Botola, CAN, مباريات مباشرة, 4K, المغرب",
+      "IPTV, SANAD IPTV, اشتراك IPTV, قنوات مباشرة, FIFA World Cup 2026, كأس العالم 2026, Champions League, La Liga, Premier League, Botola, CAN, مباريات مباشرة, 4K, المغرب",
     ogTitle: "SANAD IPTV | تفرج بلا حدود",
     ogDescription: "أكثر من 100,000 قناة مباشرة وأفضل الأفلام والمسلسلات بجودة HD و4K.",
     ogImageUrl: "",
@@ -78,8 +80,8 @@ export const defaultStoreContent = (): StoreContent => ({
         en: "Enjoy 100,000+ live channels, the best movies, series, and global sports in HD, FHD, and 4K quality."
       },
       bannerText: {
-        ar: "🏆 تابع أقوى البطولات والمباريات مباشرة بدون تقطيع وبأعلى جودة.",
-        en: "🏆 Watch the biggest tournaments and matches live — no buffering, highest quality."
+        ar: "🏆 تابع كأس العالم FIFA 2026™ وأقوى البطولات مباشرة بدون تقطيع وبأعلى جودة.",
+        en: "🏆 Watch FIFA World Cup 2026™ and the biggest tournaments live — no buffering, highest quality."
       },
       primaryCtaLabel: { ar: "🎁 بغيت نجرب", en: "🎁 Free Trial" },
       secondaryCtaLabel: { ar: "🔥 اشترك دابا", en: "🔥 Subscribe Now" },
@@ -108,6 +110,7 @@ export const defaultStoreContent = (): StoreContent => ({
     liveTicker: {
       label: { ar: "🔴 LIVE NOW", en: "🔴 LIVE NOW" },
       items: [
+        { ar: "🏆 كأس العالم FIFA 2026™", en: "🏆 FIFA World Cup 2026™" },
         { ar: "⚽ Champions League", en: "⚽ Champions League" },
         { ar: "🏆 La Liga", en: "🏆 La Liga" },
         { ar: "👑 Premier League", en: "👑 Premier League" },
@@ -123,11 +126,23 @@ export const defaultStoreContent = (): StoreContent => ({
     sports: {
       title: { ar: "⚽ شاهد أقوى البطولات LIVE", en: "⚽ Watch Top Leagues LIVE" },
       subtitle: {
-        ar: "كل المباريات، كل البطولات، بجودة 4K وبدون تقطيع — فاش ما كتكون فالدار ولا فالخدمة",
-        en: "Every match, every league, in 4K with zero buffering — at home or on the go"
+        ar: "كأس العالم FIFA 2026™ وجميع البطولات — 4K بدون تقطيع فالدار ولا فالخدمة",
+        en: "FIFA World Cup 2026™ and every league — 4K, zero buffering at home or on the go"
       },
       ctaLabel: { ar: "🔥 اشترك وتابع LIVE", en: "🔥 Subscribe & Watch LIVE" },
       events: [
+        {
+          id: "wc2026",
+          icon: "🏆",
+          league: { ar: "FIFA World Cup™", en: "FIFA World Cup™" },
+          title: {
+            ar: "كأس العالم FIFA 2026™ — كل المباريات Live",
+            en: "FIFA World Cup 2026™ — Every Match Live"
+          },
+          quality: { ar: "4K • 60FPS", en: "4K • 60FPS" },
+          live: true,
+          imageUrl: "/sports/world-cup-2026.jpg"
+        },
         {
           id: "ucl",
           icon: "🏆",

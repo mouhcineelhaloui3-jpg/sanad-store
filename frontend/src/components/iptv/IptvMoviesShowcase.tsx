@@ -85,7 +85,7 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
   const doubled = [...movies.marqueeTitles, ...movies.marqueeTitles];
 
   return (
-    <section id="movies" className="relative overflow-hidden px-4 py-20 md:py-28">
+    <section id="movies" className="iptv-section-spacing relative overflow-hidden px-4">
       <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-purple-600/10 blur-[100px]" />
       <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-neon-cyan/10 blur-[100px]" />
 

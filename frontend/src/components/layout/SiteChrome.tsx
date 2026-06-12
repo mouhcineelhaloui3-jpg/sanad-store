@@ -29,7 +29,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <DynamicBackground />
       <PremiumParticles />
       <Header />
-      <main>{children}</main>
+      <main className="relative">{children}</main>
       <Footer />
       <OrderModal />
       <TrialModal />

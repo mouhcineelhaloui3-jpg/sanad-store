@@ -86,13 +86,13 @@ export default async function HomePage() {
 
   const content = await getStoreContent();
 
-  const { homepage, footer, branding, seo } = content;
+  const { homepage, footer, branding, seo, layout } = content;
 
   const plans = mergePlansWithCms(content.plans);
 
+
   const { sections } = homepage;
-
-
+  const showDivider = layout.showSectionDividers;
 
   const faqsForLd = homepage.faqs.map((f) => ({
 
@@ -172,13 +172,13 @@ export default async function HomePage() {
 
       {sections.sports ? <IptvSportsShowcase sports={homepage.sports} /> : null}
 
-      {sections.sports && sections.movies ? <SectionDivider /> : null}
+      {sections.sports && sections.movies && showDivider ? <SectionDivider /> : null}
 
       {sections.movies && homepage.movies ? (
         <IptvMoviesShowcase movies={homepage.movies} />
       ) : null}
 
-      {sections.movies && sections.features ? <SectionDivider /> : null}
+      {sections.movies && sections.features && showDivider ? <SectionDivider /> : null}
 
 
 

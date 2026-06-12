@@ -13,7 +13,7 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
   const openOrder = useIptvModalStore((s) => s.openOrder);
 
   return (
-    <section id="sports" className="relative px-4 py-20 md:py-28">
+    <section id="sports" className="iptv-section-spacing relative px-4">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neon-green/5 via-transparent to-transparent" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -32,7 +32,11 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.07, duration: 0.45 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group relative min-h-[220px] overflow-hidden rounded-2xl border border-white/10 shadow-glass transition hover:border-neon-cyan/40 hover:shadow-glow"
+              className={`group relative min-h-[220px] overflow-hidden rounded-2xl border shadow-glass transition hover:shadow-glow ${
+                event.id === "wc2026"
+                  ? "border-neon-gold/50 ring-2 ring-neon-gold/30 hover:border-neon-gold/70 hover:shadow-glow-gold"
+                  : "border-white/10 hover:border-neon-cyan/40"
+              }`}
             >
               {event.imageUrl ? (
                 <>

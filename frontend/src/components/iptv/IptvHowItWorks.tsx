@@ -9,7 +9,7 @@ export function IptvHowItWorks({ section }: { section: HowItWorksSection }) {
   const locale = useLocaleStore((s) => s.locale);
 
   return (
-    <section id="how-it-works" className="px-4 py-20">
+    <section id="how-it-works" className="iptv-section-spacing px-4">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <p className="section-eyebrow">SETUP</p>

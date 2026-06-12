@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { CmsHomeSectionsPanel, CmsLayoutPanel } from "@/components/admin/CmsExtendedPanels";
 import { AdminCard } from "@/components/admin/AdminCard";
 import { CheckboxField, PrimaryButton, TextAreaField, TextField } from "@/components/admin/AdminForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
@@ -26,10 +27,11 @@ const sectionKeys = [
   ["whatsapp", "WhatsApp button"]
 ] as const;
 
-type TabId = "general" | "content" | "movies" | "sports" | "seo";
+type TabId = "general" | "layout" | "content" | "movies" | "sports" | "seo";
 
 const tabs: { id: TabId; label: string }[] = [
   { id: "general", label: "عام" },
+  { id: "layout", label: "📐 Layout" },
   { id: "content", label: "المحتوى" },
   { id: "movies", label: "🎬 أفلام" },
   { id: "sports", label: "⚽ رياضة" },
@@ -117,7 +119,12 @@ export function StorefrontCmsEditor() {
                 <TextField label="Tagline (AR)" value={branding.tagline.ar} onChange={(v) => update({ branding: { ...branding, tagline: { ...branding.tagline, ar: v } } })} />
                 <TextField label="Primary Color" value={branding.primaryColor} onChange={(v) => update({ branding: { ...branding, primaryColor: v } })} />
                 <TextField label="Accent Color" value={branding.accentColor} onChange={(v) => update({ branding: { ...branding, accentColor: v } })} />
+                <TextField label="Logo URL" value={branding.logoUrl} onChange={(v) => update({ branding: { ...branding, logoUrl: v } })} />
               </div>
+              {branding.logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={branding.logoUrl} alt="Logo" className="mt-3 h-16 w-16 rounded-2xl border object-cover" />
+              ) : null}
             </AdminCard>
 
             <AdminCard title="Hero">
@@ -184,6 +191,10 @@ export function StorefrontCmsEditor() {
               ))}
             </div>
           </AdminCard>
+        )}
+
+        {tab === "layout" && content && (
+          <CmsLayoutPanel content={content} update={update} />
         )}
 
         {tab === "content" && (
@@ -294,6 +305,7 @@ export function StorefrontCmsEditor() {
                 ))}
               </div>
             </AdminCard>
+            <CmsHomeSectionsPanel content={content} update={update} />
           </>
         )}
 

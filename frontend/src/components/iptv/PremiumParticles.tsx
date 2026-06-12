@@ -2,6 +2,24 @@
 
 import { useEffect, useRef } from "react";
 
+type Particle = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  r: number;
+  a: number;
+  color: string;
+};
+
+const COLORS = [
+  "0, 229, 255",
+  "0, 255, 149",
+  "255, 184, 0",
+  "168, 85, 247",
+  "255, 255, 255"
+];
+
 export function PremiumParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -12,7 +30,8 @@ export function PremiumParticles() {
     if (!ctx) return;
 
     let animId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; r: number; a: number }[] = [];
+    const particles: Particle[] = [];
+    const linkDistance = 140;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -21,29 +40,60 @@ export function PremiumParticles() {
     resize();
     window.addEventListener("resize", resize);
 
-    for (let i = 0; i < 48; i++) {
+    const count = window.matchMedia("(max-width: 768px)").matches ? 55 : 90;
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 0.5,
-        a: Math.random() * 0.5 + 0.1
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        r: Math.random() * 2.2 + 0.4,
+        a: Math.random() * 0.55 + 0.15,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)]!
       });
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i]!;
+          const b = particles[j]!;
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < linkDistance) {
+            const alpha = (1 - dist / linkDistance) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 229, 255, ${p.a})`;
+        ctx.fillStyle = `rgba(${p.color}, ${p.a})`;
         ctx.fill();
+
+        if (p.r > 1.8) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.color}, ${p.a * 0.12})`;
+          ctx.fill();
+        }
       }
+
       animId = requestAnimationFrame(draw);
     };
     draw();
@@ -57,7 +107,7 @@ export function PremiumParticles() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 -z-[5] opacity-40"
+      className="pointer-events-none fixed inset-0 -z-[5] opacity-50 mix-blend-screen"
       aria-hidden
     />
   );

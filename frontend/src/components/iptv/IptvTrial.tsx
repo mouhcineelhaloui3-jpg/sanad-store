@@ -12,7 +12,7 @@ export function IptvTrial({ trial }: { trial: TrialSection }) {
   const openTrial = useIptvModalStore((s) => s.openTrial);
 
   return (
-    <section id="trial" className="px-4 py-20">
+    <section id="trial" className="iptv-section-spacing px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}

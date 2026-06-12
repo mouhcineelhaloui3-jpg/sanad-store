@@ -215,10 +215,19 @@ export type HomepageContent = {
   faqSubtitle: LocalizedText;
 };
 
+export type SiteLayout = {
+  sectionPaddingY: number;
+  sectionGap: number;
+  showSectionDividers: boolean;
+  heroPaddingTop: number;
+  heroPaddingBottom: number;
+};
+
 export type StoreContent = {
   version: number;
   updatedAt: string;
   branding: BrandingContent;
+  layout: SiteLayout;
   header: HeaderContent;
   footer: FooterContent;
   seo: SeoContent;

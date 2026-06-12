@@ -5,6 +5,7 @@ import { ErrorReporter } from "@/components/analytics/ErrorReporter";
 import { StoreContentProvider } from "@/components/cms/StoreContentProvider";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getStoreContent } from "@/lib/cms/server";
+import { layoutCssVars } from "@/lib/cms/layout-styles";
 import { buildRootMetadata } from "@/lib/seo/metadata";
 import "./globals.css";
 
@@ -28,13 +29,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const content = await getStoreContent();
+  const layoutVars = layoutCssVars(content.layout);
 
   return (
     <html lang="ar" dir="rtl" className={`${arabic.variable} ${latin.variable}`}>
       <body
-        className="font-sans bg-dark text-white"
+        className="font-sans text-white antialiased"
         style={
           {
+            ...layoutVars,
             "--brand-primary": content.branding.primaryColor,
             "--brand-secondary": content.branding.secondaryColor,
             "--brand-accent": content.branding.accentColor

@@ -17,6 +17,12 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     categories: ["entertainment", "shopping"],
     icons: [
       {
+        src: content.branding.logoUrl || "/logo/sanad-iptv-logo.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any"
+      },
+      {
         src: "/opengraph-image",
         sizes: "1200x630",
         type: "image/png",

@@ -9,7 +9,7 @@ export function IptvDeviceGrid({ section }: { section: DevicesSection }) {
   const locale = useLocaleStore((s) => s.locale);
 
   return (
-    <section id="devices" className="px-4 py-20">
+    <section id="devices" className="iptv-section-spacing px-4">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <p className="section-eyebrow">DEVICES</p>

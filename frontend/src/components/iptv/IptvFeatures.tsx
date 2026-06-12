@@ -18,7 +18,7 @@ export function IptvFeatures({
   const locale = useLocaleStore((s) => s.locale);
 
   return (
-    <section id="features" className="px-4 py-20 md:py-28">
+    <section id="features" className="iptv-section-spacing px-4">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <p className="section-eyebrow">PREMIUM 2026</p>
