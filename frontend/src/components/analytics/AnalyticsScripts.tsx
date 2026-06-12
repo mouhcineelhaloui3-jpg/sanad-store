@@ -68,6 +68,15 @@ export function AnalyticsScripts({ integrations }: AnalyticsScriptsProps) {
           `}
         </Script>
       ) : null}
+
+      {ids.plausibleDomain ? (
+        <Script
+          defer
+          data-domain={ids.plausibleDomain}
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
+      ) : null}
     </>
   );
 }

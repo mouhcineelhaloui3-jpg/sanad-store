@@ -18,14 +18,87 @@ export type HeroContent = {
 };
 
 export type SectionVisibility = {
+  liveTicker: boolean;
+  sports: boolean;
+  movies: boolean;
   features: boolean;
   plans: boolean;
+  howItWorks: boolean;
+  devices: boolean;
   trial: boolean;
   testimonials: boolean;
   stats: boolean;
   faq: boolean;
   contact: boolean;
+  stickyCta: boolean;
   whatsapp: boolean;
+};
+
+export type MovieItem = {
+  id: string;
+  title: LocalizedText;
+  genre: LocalizedText;
+  year: string;
+  quality: LocalizedText;
+  rating: number;
+  posterGradient: string;
+  featured: boolean;
+};
+
+export type MoviesSection = {
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  totalCount: number;
+  ctaLabel: LocalizedText;
+  genres: LocalizedText[];
+  marqueeTitles: LocalizedText[];
+  items: MovieItem[];
+};
+
+export type SportsEvent = {
+  id: string;
+  icon: string;
+  league: LocalizedText;
+  title: LocalizedText;
+  quality: LocalizedText;
+  live: boolean;
+};
+
+export type SportsSection = {
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  ctaLabel: LocalizedText;
+  events: SportsEvent[];
+};
+
+export type LiveTickerSection = {
+  label: LocalizedText;
+  items: LocalizedText[];
+};
+
+export type HowItWorksStep = {
+  num: string;
+  title: LocalizedText;
+  description: LocalizedText;
+  icon: string;
+};
+
+export type HowItWorksSection = {
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  steps: HowItWorksStep[];
+};
+
+export type DeviceItem = {
+  icon: string;
+  name: LocalizedText;
+  apps: LocalizedText;
+};
+
+export type DevicesSection = {
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  devices: DeviceItem[];
 };
 
 export type BrandingContent = {
@@ -68,6 +141,7 @@ export type IntegrationsContent = {
   gaMeasurementId: string;
   metaPixelId: string;
   tiktokPixelId: string;
+  plausibleDomain: string;
 };
 
 export type FeatureItem = {
@@ -118,11 +192,16 @@ export type PlanCmsOverride = {
 export type HomepageContent = {
   hero: HeroContent;
   sections: SectionVisibility;
+  liveTicker: LiveTickerSection;
+  sports: SportsSection;
+  movies: MoviesSection;
   featuresTitle: LocalizedText;
   featuresSubtitle: LocalizedText;
   features: FeatureItem[];
   plansTitle: LocalizedText;
   plansSubtitle: LocalizedText;
+  howItWorks: HowItWorksSection;
+  devices: DevicesSection;
   stats: StatItem[];
   testimonialsTitle: LocalizedText;
   testimonialsSubtitle: LocalizedText;

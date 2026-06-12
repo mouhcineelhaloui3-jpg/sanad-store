@@ -1,7 +1,8 @@
 import type { StoreContent } from "./types";
+import { defaultMoviesSection } from "./default-movies";
 
 export const defaultStoreContent = (): StoreContent => ({
-  version: 2,
+  version: 4,
   updatedAt: new Date().toISOString(),
   branding: {
     brandName: "SANAD IPTV",
@@ -16,17 +17,18 @@ export const defaultStoreContent = (): StoreContent => ({
   },
   header: {
     promoBar: {
-      ar: "🔥 تجربة مجانية • دعم سريع واتساب • تفعيل فوري",
-      en: "🔥 Free trial • Fast WhatsApp support • Instant activation"
+      ar: "⚽ Champions League LIVE • 🔥 تجربة مجانية • ⚡ تفعيل فوري 2026",
+      en: "⚽ Champions League LIVE • 🔥 Free trial • ⚡ Instant activation 2026"
     },
     navLinks: [
       { label: { ar: "الرئيسية", en: "Home" }, href: "/" },
+      { label: { ar: "⚽ الرياضة", en: "⚽ Sports" }, href: "#sports" },
+      { label: { ar: "🎬 الأفلام", en: "🎬 Movies" }, href: "#movies" },
       { label: { ar: "الباقات", en: "Plans" }, href: "#plans" },
       { label: { ar: "التجربة المجانية", en: "Free Trial" }, href: "#trial" },
       { label: { ar: "المميزات", en: "Features" }, href: "#features" },
       { label: { ar: "آراء العملاء", en: "Reviews" }, href: "#testimonials" },
-      { label: { ar: "الأسئلة الشائعة", en: "FAQ" }, href: "#faq" },
-      { label: { ar: "تواصل معنا", en: "Contact" }, href: "#contact" }
+      { label: { ar: "FAQ", en: "FAQ" }, href: "#faq" }
     ],
     subscribeCtaLabel: { ar: "🔥 اشترك الآن", en: "🔥 Subscribe Now" }
   },
@@ -55,7 +57,8 @@ export const defaultStoreContent = (): StoreContent => ({
     title: "SANAD IPTV | تفرج بلا حدود — +100,000 قناة",
     description:
       "اشتراك SANAD IPTV — أكثر من 100,000 قناة مباشرة، أفلام ومسلسلات HD و4K، بطولات رياضية عالمية. تجربة مجانية ودعم واتساب.",
-    keywords: "IPTV, SANAD IPTV, اشتراك IPTV, قنوات مباشرة, أفلام, مسلسلات, 4K, المغرب",
+    keywords:
+      "IPTV, SANAD IPTV, اشتراك IPTV, قنوات مباشرة, Champions League, La Liga, Premier League, Botola, CAN, مباريات مباشرة, 4K, المغرب",
     ogTitle: "SANAD IPTV | تفرج بلا حدود",
     ogDescription: "أكثر من 100,000 قناة مباشرة وأفضل الأفلام والمسلسلات بجودة HD و4K.",
     ogImageUrl: "",
@@ -64,7 +67,8 @@ export const defaultStoreContent = (): StoreContent => ({
   integrations: {
     gaMeasurementId: "",
     metaPixelId: "",
-    tiktokPixelId: ""
+    tiktokPixelId: "",
+    plausibleDomain: ""
   },
   homepage: {
     hero: {
@@ -86,15 +90,95 @@ export const defaultStoreContent = (): StoreContent => ({
       }
     },
     sections: {
+      liveTicker: true,
+      sports: true,
+      movies: true,
       features: true,
       plans: true,
+      howItWorks: true,
+      devices: true,
       trial: true,
       testimonials: true,
       stats: true,
       faq: true,
       contact: true,
+      stickyCta: true,
       whatsapp: true
     },
+    liveTicker: {
+      label: { ar: "🔴 LIVE NOW", en: "🔴 LIVE NOW" },
+      items: [
+        { ar: "⚽ Champions League", en: "⚽ Champions League" },
+        { ar: "🏆 La Liga", en: "🏆 La Liga" },
+        { ar: "👑 Premier League", en: "👑 Premier League" },
+        { ar: "🇲🇦 Botola Pro", en: "🇲🇦 Botola Pro" },
+        { ar: "🏎️ Formula 1", en: "🏎️ Formula 1" },
+        { ar: "🥊 UFC", en: "🥊 UFC" },
+        { ar: "🏀 NBA", en: "🏀 NBA" },
+        { ar: "🌍 CAN 2025", en: "🌍 AFCON 2025" },
+        { ar: "📺 beIN Sports", en: "📺 beIN Sports" },
+        { ar: "✨ 4K Ultra HD", en: "✨ 4K Ultra HD" }
+      ]
+    },
+    sports: {
+      title: { ar: "⚽ شاهد أقوى البطولات LIVE", en: "⚽ Watch Top Leagues LIVE" },
+      subtitle: {
+        ar: "كل المباريات، كل البطولات، بجودة 4K وبدون تقطيع — فاش ما كتكون فالدار ولا فالخدمة",
+        en: "Every match, every league, in 4K with zero buffering — at home or on the go"
+      },
+      ctaLabel: { ar: "🔥 اشترك وتابع LIVE", en: "🔥 Subscribe & Watch LIVE" },
+      events: [
+        {
+          id: "ucl",
+          icon: "🏆",
+          league: { ar: "Champions League", en: "Champions League" },
+          title: { ar: "دوري أبطال أوروبا — كل المباريات", en: "UEFA Champions League — All Matches" },
+          quality: { ar: "4K • 60FPS", en: "4K • 60FPS" },
+          live: true
+        },
+        {
+          id: "laliga",
+          icon: "⚽",
+          league: { ar: "La Liga", en: "La Liga" },
+          title: { ar: "الدوري الإسباني — Real • Barça • Atlético", en: "Spanish League — Real • Barça • Atlético" },
+          quality: { ar: "FHD • LIVE", en: "FHD • LIVE" },
+          live: true
+        },
+        {
+          id: "epl",
+          icon: "👑",
+          league: { ar: "Premier League", en: "Premier League" },
+          title: { ar: "الدوري الإنجليزي — كل الجولات", en: "English Premier League — Every Round" },
+          quality: { ar: "4K • LIVE", en: "4K • LIVE" },
+          live: true
+        },
+        {
+          id: "botola",
+          icon: "🇲🇦",
+          league: { ar: "Botola Pro", en: "Botola Pro" },
+          title: { ar: "الدوري المغربي — الرجاء • الوداد • الجيش", en: "Moroccan League — Raja • Wydad • AS FAR" },
+          quality: { ar: "HD • LIVE", en: "HD • LIVE" },
+          live: false
+        },
+        {
+          id: "can",
+          icon: "🌍",
+          league: { ar: "CAN / AFCON", en: "AFCON" },
+          title: { ar: "كأس أمم أفريقيا — المنتخبات كلها", en: "Africa Cup of Nations — All Nations" },
+          quality: { ar: "4K • LIVE", en: "4K • LIVE" },
+          live: true
+        },
+        {
+          id: "f1",
+          icon: "🏎️",
+          league: { ar: "Formula 1", en: "Formula 1" },
+          title: { ar: "Formula 1 — كل السباقات Live", en: "Formula 1 — Every Race Live" },
+          quality: { ar: "FHD • LIVE", en: "FHD • LIVE" },
+          live: false
+        }
+      ]
+    },
+    movies: defaultMoviesSection(),
     featuresTitle: { ar: "المميزات", en: "Features" },
     featuresSubtitle: {
       ar: "كل ما تحتاجه لتجربة بث ممتازة",
@@ -121,10 +205,61 @@ export const defaultStoreContent = (): StoreContent => ({
       ar: "اختار الباقة اللي تناسبك — الأسعار قابلة للتعديل من لوحة التحكم",
       en: "Choose the plan that fits you — prices editable from admin panel"
     },
+    howItWorks: {
+      title: { ar: "كيفاش تخدم؟", en: "How It Works" },
+      subtitle: {
+        ar: "3 خطوات بسيطة و تبدا تفرج فـ دقائق",
+        en: "3 simple steps — start watching in minutes"
+      },
+      steps: [
+        {
+          num: "01",
+          icon: "📱",
+          title: { ar: "طلب الاشتراك", en: "Subscribe" },
+          description: {
+            ar: "عمر الفورم ولا تواصل معنا على واتساب — غادي نجاوبوك فدقائق",
+            en: "Fill the form or contact us on WhatsApp — we reply in minutes"
+          }
+        },
+        {
+          num: "02",
+          icon: "🔑",
+          title: { ar: "تفعيل فوري", en: "Instant Activation" },
+          description: {
+            ar: "غادي نرسل ليك M3U / Xtream Codes عبر واتساب",
+            en: "We send M3U / Xtream codes via WhatsApp"
+          }
+        },
+        {
+          num: "03",
+          icon: "📺",
+          title: { ar: "تفرج LIVE", en: "Watch LIVE" },
+          description: {
+            ar: "ثبت التطبيق على Smart TV، Android، iPhone ولا PC و بدا",
+            en: "Install the app on Smart TV, Android, iPhone or PC and go"
+          }
+        }
+      ]
+    },
+    devices: {
+      title: { ar: "خدام على جميع الأجهزة", en: "Works on All Devices" },
+      subtitle: {
+        ar: "Smart TV، Android، iPhone، PC، Fire Stick — كله compatible",
+        en: "Smart TV, Android, iPhone, PC, Fire Stick — fully compatible"
+      },
+      devices: [
+        { icon: "📺", name: { ar: "Smart TV", en: "Smart TV" }, apps: { ar: "Smart IPTV • SS IPTV • TiviMate", en: "Smart IPTV • SS IPTV • TiviMate" } },
+        { icon: "🤖", name: { ar: "Android", en: "Android" }, apps: { ar: "IPTV Smarters • TiviMate • XCIPTV", en: "IPTV Smarters • TiviMate • XCIPTV" } },
+        { icon: "🍎", name: { ar: "iPhone / iPad", en: "iPhone / iPad" }, apps: { ar: "Smarters Player • GSE IPTV", en: "Smarters Player • GSE IPTV" } },
+        { icon: "💻", name: { ar: "PC / Mac", en: "PC / Mac" }, apps: { ar: "VLC • IPTV Smarters Web", en: "VLC • IPTV Smarters Web" } },
+        { icon: "🔥", name: { ar: "Fire Stick", en: "Fire Stick" }, apps: { ar: "Downloader • IPTV Smarters", en: "Downloader • IPTV Smarters" } },
+        { icon: "🎮", name: { ar: "Android Box", en: "Android Box" }, apps: { ar: "TiviMate • Perfect Player", en: "TiviMate • Perfect Player" } }
+      ]
+    },
     stats: [
       { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels" } },
       { prefix: "+", value: 50000, suffix: "", label: { ar: "عميل", en: "customers" } },
-      { prefix: "+", value: 15000, suffix: "", label: { ar: "فيلم", en: "movies" } },
+      { prefix: "+", value: 200000, suffix: "", label: { ar: "فيلم", en: "movies" } },
       { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series" } },
       { prefix: "", value: 99, suffix: "%", label: { ar: "رضا العملاء", en: "satisfaction" } }
     ],

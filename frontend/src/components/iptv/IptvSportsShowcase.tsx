@@ -1,0 +1,77 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Play } from "lucide-react";
+import type { SportsSection } from "@/lib/cms/types";
+import { t } from "@/lib/i18n/localized";
+import { useLocaleStore } from "@/store/localeStore";
+import { useIptvModalStore } from "@/store/iptvModalStore";
+
+export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
+  const locale = useLocaleStore((s) => s.locale);
+  const openOrder = useIptvModalStore((s) => s.openOrder);
+
+  return (
+    <section id="sports" className="relative px-4 py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neon-green/5 via-transparent to-transparent" />
+
+      <div className="relative mx-auto max-w-6xl">
+        <div className="text-center">
+          <p className="section-eyebrow">2026 SPORTS</p>
+          <h2 className="section-title mt-2">{t(sports.title, locale)}</h2>
+          <p className="section-subtitle mx-auto">{t(sports.subtitle, locale)}</p>
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {sports.events.map((event, i) => (
+            <motion.article
+              key={event.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.07, duration: 0.45 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 shadow-glass backdrop-blur-xl transition hover:border-neon-cyan/40 hover:shadow-glow"
+            >
+              {event.live ? (
+                <span className="live-badge absolute left-4 top-4">● LIVE</span>
+              ) : (
+                <span className="absolute left-4 top-4 rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-dark-800">
+                  SOON
+                </span>
+              )}
+
+              <div className="mt-8 flex items-start gap-4">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-neon-cyan/10 text-3xl ring-1 ring-neon-cyan/20 transition group-hover:scale-110 group-hover:bg-neon-cyan/20">
+                  {event.icon}
+                </span>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-wider text-neon-cyan">
+                    {t(event.league, locale)}
+                  </p>
+                  <h3 className="mt-1 text-lg font-black leading-snug text-white">
+                    {t(event.title, locale)}
+                  </h3>
+                  <p className="mt-2 inline-flex rounded-full bg-neon-gold/10 px-2 py-0.5 text-xs font-bold text-neon-gold ring-1 ring-neon-gold/30">
+                    {t(event.quality, locale)}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex items-center gap-2 text-xs font-bold text-dark-700 opacity-0 transition group-hover:opacity-100">
+                <Play className="h-3.5 w-3.5 text-neon-green" />
+                {locale === "ar" ? "متاح مع الاشتراك" : "Included with subscription"}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <button type="button" onClick={() => openOrder()} className="btn-neon px-10 text-base">
+            {t(sports.ctaLabel, locale)}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -41,7 +41,10 @@ const config: Config = {
         float: "float 4s ease-in-out infinite",
         pulse_neon: "pulseNeon 2s ease-in-out infinite",
         shimmer: "shimmer 2.5s linear infinite",
-        "slide-up": "slideUp 0.5s ease-out both"
+        "slide-up": "slideUp 0.5s ease-out both",
+        marquee: "marquee 35s linear infinite",
+        "marquee-slow": "marquee 55s linear infinite",
+        "divider-shine": "dividerShine 3s ease-in-out infinite"
       },
       keyframes: {
         fadeUp: {
@@ -63,6 +66,14 @@ const config: Config = {
         slideUp: {
           from: { opacity: "0", transform: "translateY(100%)" },
           to: { opacity: "1", transform: "translateY(0)" }
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
+        },
+        dividerShine: {
+          "0%, 100%": { opacity: "0", transform: "translateX(-100%)" },
+          "50%": { opacity: "1", transform: "translateX(100%)" }
         }
       },
       backgroundImage: {

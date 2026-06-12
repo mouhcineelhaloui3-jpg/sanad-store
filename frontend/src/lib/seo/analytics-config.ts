@@ -13,12 +13,17 @@ export function resolveIntegrations(cms?: IntegrationsContent) {
       cleanId(cms?.metaPixelId) ?? cleanId(process.env.NEXT_PUBLIC_META_PIXEL_ID),
     tiktokPixelId:
       cleanId(cms?.tiktokPixelId) ?? cleanId(process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID),
+    plausibleDomain:
+      cleanId(cms?.plausibleDomain) ?? cleanId(process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN),
     sentryDsn: cleanId(process.env.NEXT_PUBLIC_SENTRY_DSN)
   };
 }
 
 export function hasAnalytics(integrations: ReturnType<typeof resolveIntegrations>) {
   return Boolean(
-    integrations.gaMeasurementId || integrations.metaPixelId || integrations.tiktokPixelId
+    integrations.gaMeasurementId ||
+      integrations.metaPixelId ||
+      integrations.tiktokPixelId ||
+      integrations.plausibleDomain
   );
 }
