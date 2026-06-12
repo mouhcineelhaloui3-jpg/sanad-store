@@ -8,6 +8,7 @@ import { DEVICE_OPTIONS } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
 import { trialModalText } from "@/lib/i18n/modal-strings";
 import { buildTrialWhatsAppMessage, whatsappUrl } from "@/lib/store-config";
+import { getTrackingPayload, trackTrialSubmit } from "@/lib/analytics/track";
 import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
@@ -48,8 +49,9 @@ export function TrialModal() {
       await fetch("/api/trial-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, device, message })
+        body: JSON.stringify({ name, phone, device, message, tracking: getTrackingPayload() })
       });
+      trackTrialSubmit(device);
     } catch {
       // continue to WhatsApp
     }

@@ -15,6 +15,8 @@ export function resolveIntegrations(cms?: IntegrationsContent) {
       cleanId(cms?.tiktokPixelId) ?? cleanId(process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID),
     plausibleDomain:
       cleanId(cms?.plausibleDomain) ?? cleanId(process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN),
+    clarityProjectId:
+      cleanId(cms?.clarityProjectId) ?? cleanId(process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID),
     sentryDsn: cleanId(process.env.NEXT_PUBLIC_SENTRY_DSN)
   };
 }
@@ -24,6 +26,7 @@ export function hasAnalytics(integrations: ReturnType<typeof resolveIntegrations
     integrations.gaMeasurementId ||
       integrations.metaPixelId ||
       integrations.tiktokPixelId ||
-      integrations.plausibleDomain
+      integrations.plausibleDomain ||
+      integrations.clarityProjectId
   );
 }

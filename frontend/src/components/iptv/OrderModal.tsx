@@ -11,6 +11,7 @@ import { orderModalText } from "@/lib/i18n/modal-strings";
 import { mergePlansWithCms } from "@/lib/cms/merge-plans";
 import type { Plan } from "@/lib/plans";
 import { buildOrderWhatsAppMessage, whatsappUrl } from "@/lib/store-config";
+import { getTrackingPayload, trackLead } from "@/lib/analytics/track";
 import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
@@ -62,8 +63,9 @@ export function OrderModal() {
       await fetch("/api/subscription-orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, device, planSlug, notes })
+        body: JSON.stringify({ name, phone, device, planSlug, notes, tracking: getTrackingPayload() })
       });
+      trackLead(planSlug, device);
     } catch {
       // continue to WhatsApp even if API fails
     }

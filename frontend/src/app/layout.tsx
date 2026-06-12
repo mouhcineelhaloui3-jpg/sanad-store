@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
+import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { ErrorReporter } from "@/components/analytics/ErrorReporter";
 import { StoreContentProvider } from "@/components/cms/StoreContentProvider";
 import { SiteChrome } from "@/components/layout/SiteChrome";
@@ -47,6 +49,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       >
         <AnalyticsScripts integrations={content.integrations} />
         <ErrorReporter />
+        <Suspense fallback={null}>
+          <AnalyticsTracker />
+        </Suspense>
         <StoreContentProvider content={content}>
           <SiteChrome>{children}</SiteChrome>
         </StoreContentProvider>

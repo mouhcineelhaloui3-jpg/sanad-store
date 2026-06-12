@@ -524,6 +524,7 @@ export function StorefrontCmsEditor() {
                 <TextField label="Meta Pixel ID" value={integrations.metaPixelId} onChange={(v) => update({ integrations: { ...integrations, metaPixelId: v } })} />
                 <TextField label="TikTok Pixel ID" value={integrations.tiktokPixelId} onChange={(v) => update({ integrations: { ...integrations, tiktokPixelId: v } })} />
                 <TextField label="Plausible Domain" value={integrations.plausibleDomain ?? ""} onChange={(v) => update({ integrations: { ...integrations, plausibleDomain: v } })} />
+                <TextField label="Microsoft Clarity Project ID" value={integrations.clarityProjectId ?? ""} onChange={(v) => update({ integrations: { ...integrations, clarityProjectId: v } })} />
               </div>
             </AdminCard>
 

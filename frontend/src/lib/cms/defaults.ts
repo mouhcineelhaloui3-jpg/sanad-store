@@ -70,7 +70,8 @@ export const defaultStoreContent = (): StoreContent => ({
     gaMeasurementId: "",
     metaPixelId: "",
     tiktokPixelId: "",
-    plausibleDomain: ""
+    plausibleDomain: "",
+    clarityProjectId: ""
   },
   homepage: {
     hero: {

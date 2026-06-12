@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { getClientIp, getUserAgent } from "@/lib/analytics/request-meta";
+import type { TrackingPayload } from "@/lib/analytics/types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const TRIALS_FILE = path.join(DATA_DIR, "trial-requests.json");
@@ -12,6 +14,9 @@ type TrialRequest = {
   device: string;
   message?: string;
   status: "new" | "contacted" | "completed";
+  ip: string | null;
+  userAgent: string | null;
+  tracking: TrackingPayload | null;
   createdAt: string;
 };
 
@@ -31,6 +36,7 @@ export async function POST(request: Request) {
       phone?: string;
       device?: string;
       message?: string;
+      tracking?: TrackingPayload;
     };
 
     if (!body.name?.trim() || !body.phone?.trim()) {
@@ -46,6 +52,9 @@ export async function POST(request: Request) {
       device: body.device ?? "unknown",
       message: body.message?.trim(),
       status: "new",
+      ip: getClientIp(request),
+      userAgent: getUserAgent(request),
+      tracking: body.tracking ?? null,
       createdAt: new Date().toISOString()
     };
     trials.unshift(trial);

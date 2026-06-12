@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { getClientIp, getUserAgent } from "@/lib/analytics/request-meta";
+import type { TrackingPayload } from "@/lib/analytics/types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const ORDERS_FILE = path.join(DATA_DIR, "subscription-orders.json");
@@ -13,6 +15,9 @@ type SubscriptionOrder = {
   planSlug: string;
   notes?: string;
   status: "new" | "contacted" | "completed" | "cancelled";
+  ip: string | null;
+  userAgent: string | null;
+  tracking: TrackingPayload | null;
   createdAt: string;
 };
 
@@ -33,6 +38,7 @@ export async function POST(request: Request) {
       device?: string;
       planSlug?: string;
       notes?: string;
+      tracking?: TrackingPayload;
     };
 
     if (!body.name?.trim() || !body.phone?.trim() || !body.planSlug) {
@@ -49,6 +55,9 @@ export async function POST(request: Request) {
       planSlug: body.planSlug,
       notes: body.notes?.trim(),
       status: "new",
+      ip: getClientIp(request),
+      userAgent: getUserAgent(request),
+      tracking: body.tracking ?? null,
       createdAt: new Date().toISOString()
     };
     orders.unshift(order);

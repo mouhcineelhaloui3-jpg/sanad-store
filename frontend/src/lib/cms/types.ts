@@ -144,6 +144,7 @@ export type IntegrationsContent = {
   metaPixelId: string;
   tiktokPixelId: string;
   plausibleDomain: string;
+  clarityProjectId: string;
 };
 
 export type FeatureItem = {
