@@ -24,10 +24,48 @@ export function parseKeywords(keywords: string): string[] {
     .filter(Boolean);
 }
 
+function buildOpenGraph(options: {
+  title: string;
+  description: string;
+  url: string;
+  ogImage: string;
+  brand: string;
+}) {
+  return {
+    type: "website" as const,
+    locale: "ar_MA",
+    alternateLocale: ["en_US", "fr_FR"],
+    url: options.url,
+    siteName: options.brand,
+    title: options.title,
+    description: options.description,
+    images: [
+      {
+        url: options.ogImage,
+        width: 1200,
+        height: 630,
+        alt: options.title,
+        type: "image/png"
+      }
+    ]
+  };
+}
+
+function buildTwitter(options: { title: string; description: string; ogImage: string }) {
+  return {
+    card: "summary_large_image" as const,
+    title: options.title,
+    description: options.description,
+    images: [options.ogImage]
+  };
+}
+
 export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): Metadata {
   const siteUrl = getSiteUrl();
   const brand = branding?.brandName ?? storeConfig.brand;
   const ogImage = resolveOgImage(seo.ogImageUrl);
+  const ogTitle = seo.ogTitle || seo.title;
+  const ogDescription = seo.ogDescription || seo.description;
   const verification: Metadata["verification"] = {};
 
   if (seo.googleSiteVerification?.trim()) {
@@ -36,37 +74,50 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
 
   return {
     metadataBase: new URL(siteUrl),
+    applicationName: brand,
     title: {
       default: seo.title,
       template: `%s | ${brand}`
     },
     description: seo.description,
     keywords: parseKeywords(seo.keywords),
-    alternates: { canonical: "/" },
+    authors: [{ name: brand }],
+    creator: brand,
+    publisher: brand,
+    category: "IPTV",
+    alternates: {
+      canonical: "/",
+      languages: {
+        ar: "/",
+        en: "/",
+        "x-default": "/"
+      }
+    },
     verification,
-    openGraph: {
-      type: "website",
-      locale: "ar_MA",
+    openGraph: buildOpenGraph({
+      title: ogTitle,
+      description: ogDescription,
       url: siteUrl,
-      siteName: brand,
-      title: seo.ogTitle || seo.title,
-      description: seo.ogDescription || seo.description,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: seo.ogTitle || seo.title
-        }
-      ]
+      ogImage,
+      brand
+    }),
+    twitter: buildTwitter({ title: ogTitle, description: ogDescription, ogImage }),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1
+      }
     },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.ogTitle || seo.title,
-      description: seo.ogDescription || seo.description,
-      images: [ogImage]
-    },
-    robots: { index: true, follow: true }
+    other: {
+      "geo.region": "MA",
+      "geo.placename": "Morocco",
+      "content-language": "ar, en"
+    }
   };
 }
 
@@ -76,30 +127,34 @@ export function buildPageMetadata(options: {
   path: string;
   ogImage?: string;
   ogTitle?: string;
+  ogDescription?: string;
+  keywords?: string;
   noIndex?: boolean;
 }): Metadata {
   const canonical = absoluteUrl(options.path);
   const ogImage = resolveOgImage(options.ogImage);
   const ogTitle = options.ogTitle ?? options.title;
+  const ogDescription = options.ogDescription ?? options.description;
 
   return {
     title: options.title,
     description: options.description,
+    keywords: options.keywords ? parseKeywords(options.keywords) : undefined,
     alternates: { canonical },
-    openGraph: {
-      type: "website",
-      locale: "ar_MA",
+    openGraph: buildOpenGraph({
+      title: ogTitle,
+      description: ogDescription,
       url: canonical,
-      title: ogTitle,
-      description: options.description,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: ogTitle,
-      description: options.description,
-      images: [ogImage]
-    },
-    robots: options.noIndex ? { index: false, follow: false } : { index: true, follow: true }
+      ogImage,
+      brand: storeConfig.brand
+    }),
+    twitter: buildTwitter({ title: ogTitle, description: ogDescription, ogImage }),
+    robots: options.noIndex
+      ? { index: false, follow: false }
+      : {
+          index: true,
+          follow: true,
+          googleBot: { index: true, follow: true, "max-image-preview": "large" }
+        }
   };
 }

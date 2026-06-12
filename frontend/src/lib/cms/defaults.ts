@@ -1,49 +1,63 @@
 import type { StoreContent } from "./types";
 
 export const defaultStoreContent = (): StoreContent => ({
-  version: 1,
+  version: 2,
   updatedAt: new Date().toISOString(),
   branding: {
-    brandName: "سَنَد",
-    tagline: "دعم ذكي لجسمك في الأيام الطويلة",
-    primaryColor: "#1F1812",
-    accentColor: "#51715E",
+    brandName: "SANAD IPTV",
+    tagline: {
+      ar: "تفرج بلا حدود — أكثر من 100,000 قناة",
+      en: "Watch without limits — 100,000+ channels"
+    },
+    primaryColor: "#00E5FF",
+    secondaryColor: "#00FF95",
+    accentColor: "#FFB800",
     logoUrl: ""
   },
   header: {
-    promoBar: "الدفع عند الاستلام داخل المغرب • تأكيد قبل الإرسال • بدون أداء مسبق",
+    promoBar: {
+      ar: "🔥 تجربة مجانية • دعم سريع واتساب • تفعيل فوري",
+      en: "🔥 Free trial • Fast WhatsApp support • Instant activation"
+    },
     navLinks: [
-      { label: "الرئيسية", href: "/" },
-      { label: "المنتجات", href: "/collection" },
-      { label: "من نحن", href: "/about" },
-      { label: "اتصل بنا", href: "/contact" }
-    ]
+      { label: { ar: "الرئيسية", en: "Home" }, href: "/" },
+      { label: { ar: "الباقات", en: "Plans" }, href: "#plans" },
+      { label: { ar: "التجربة المجانية", en: "Free Trial" }, href: "#trial" },
+      { label: { ar: "المميزات", en: "Features" }, href: "#features" },
+      { label: { ar: "آراء العملاء", en: "Reviews" }, href: "#testimonials" },
+      { label: { ar: "الأسئلة الشائعة", en: "FAQ" }, href: "#faq" },
+      { label: { ar: "تواصل معنا", en: "Contact" }, href: "#contact" }
+    ],
+    subscribeCtaLabel: { ar: "🔥 اشترك الآن", en: "🔥 Subscribe Now" }
   },
   footer: {
-    description:
-      "سَنَد متجر مغربي متخصص في حلول الراحة اليومية ودعم الجسم، مصمم للناس اللي نهارهم طويل وباغين يرجعو يحسو براحتهم بثقة وبساطة.",
-    supportEmail: "support@sanad.ma",
+    description: {
+      ar: "SANAD IPTV — منصة احترافية لبيع اشتراكات IPTV مع تجربة مجانية، دعم سريع عبر واتساب، ولوحة تحكم متكاملة.",
+      en: "SANAD IPTV — Professional IPTV subscriptions with free trial, fast WhatsApp support, and full admin control."
+    },
+    supportEmail: "support@sanadiptv.com",
     whatsappNumber: "212600000000",
-    whatsappMessage: "السلام، بغيت نستافسر على منتجات سَنَد.",
+    whatsappMessage: "السلام، بغيت نستافسر على SANAD IPTV.",
+    telegramUrl: "https://t.me/sanadiptv",
     storeLinks: [
-      { label: "المنتجات", href: "/collection" },
-      { label: "من نحن", href: "/about" },
-      { label: "اتصل بنا", href: "/contact" }
+      { label: { ar: "الباقات", en: "Plans" }, href: "#plans" },
+      { label: { ar: "التجربة المجانية", en: "Free Trial" }, href: "#trial" },
+      { label: { ar: "المميزات", en: "Features" }, href: "#features" },
+      { label: { ar: "تواصل معنا", en: "Contact" }, href: "#contact" }
     ],
     policyLinks: [
-      { label: "سياسة التوصيل", href: "/policies/shipping" },
-      { label: "سياسة الاستبدال", href: "/policies/returns" },
-      { label: "الخصوصية", href: "/policies/privacy" },
-      { label: "الشروط", href: "/policies/terms" }
+      { label: { ar: "سياسة الخصوصية", en: "Privacy Policy" }, href: "/policies/privacy" },
+      { label: { ar: "الشروط والأحكام", en: "Terms & Conditions" }, href: "/policies/terms" }
     ],
-    socialLinks: []
+    copyright: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" }
   },
   seo: {
-    title: "سَنَد | دعم ذكي لجسمك في الأيام الطويلة",
-    description: "متجر مغربي متخصص في حلول دعم وراحة الظهر، الرقبة، والكتفين. الدفع عند الاستلام داخل المغرب.",
-    keywords: "دعم الظهر, مصحح الوضعية, وسادة رقبة, حزام ظهر, المغرب, COD",
-    ogTitle: "سَنَد | دعم ذكي لجسمك",
-    ogDescription: "دعم الظهر والرقبة بالدفع عند الاستلام داخل المغرب.",
+    title: "SANAD IPTV | تفرج بلا حدود — +100,000 قناة",
+    description:
+      "اشتراك SANAD IPTV — أكثر من 100,000 قناة مباشرة، أفلام ومسلسلات HD و4K، بطولات رياضية عالمية. تجربة مجانية ودعم واتساب.",
+    keywords: "IPTV, SANAD IPTV, اشتراك IPTV, قنوات مباشرة, أفلام, مسلسلات, 4K, المغرب",
+    ogTitle: "SANAD IPTV | تفرج بلا حدود",
+    ogDescription: "أكثر من 100,000 قناة مباشرة وأفضل الأفلام والمسلسلات بجودة HD و4K.",
     ogImageUrl: "",
     googleSiteVerification: ""
   },
@@ -54,71 +68,177 @@ export const defaultStoreContent = (): StoreContent => ({
   },
   homepage: {
     hero: {
-      imageUrl: "",
-      imageAlt: "سَنَد — الحلول الثلاثة للدعم اليومي",
-      layout: "banner-full",
-      bannerMode: "fixed-height",
-      aspectRatio: "21/9",
-      heightMobile: 280,
-      heightDesktop: 460,
-      maxHeight: 580,
-      maxWidth: 0,
-      imageFit: "cover",
-      objectPosition: "center",
-      rounded: false,
-      headline: "نهارك طويل؟ اختار الدعم المناسب لجسمك.",
-      subtitle: "3 حلول واضحة للكتاف، الرقبة، وأسفل الظهر. الدفع عند الاستلام والتأكيد بالهاتف.",
-      primaryCtaLabel: "اطلب بالدفع عند الاستلام",
-      primaryCtaHref: "#products",
-      secondaryCtaLabel: "ساعدني نختار",
-      secondaryCtaHref: "#find",
-      trustLine: "تأكيد هاتفي قبل الإرسال · دعم واتساب"
+      headline: { ar: "🔥 SANAD IPTV\nتفرج بلا حدود", en: "🔥 SANAD IPTV\nWatch Without Limits" },
+      subtitle: {
+        ar: "استمتع بأكثر من 100,000 قناة مباشرة وأفضل الأفلام والمسلسلات والبطولات الرياضية العالمية بجودة HD و FHD و 4K.",
+        en: "Enjoy 100,000+ live channels, the best movies, series, and global sports in HD, FHD, and 4K quality."
+      },
+      bannerText: {
+        ar: "🏆 تابع أقوى البطولات والمباريات مباشرة بدون تقطيع وبأعلى جودة.",
+        en: "🏆 Watch the biggest tournaments and matches live — no buffering, highest quality."
+      },
+      primaryCtaLabel: { ar: "🎁 بغيت نجرب", en: "🎁 Free Trial" },
+      secondaryCtaLabel: { ar: "🔥 اشترك دابا", en: "🔥 Subscribe Now" },
+      whatsappCtaLabel: { ar: "💬 تواصل عبر واتساب", en: "💬 WhatsApp" },
+      trustLine: {
+        ar: "+100,000 قناة • +50,000 عميل • +99% رضا",
+        en: "+100,000 channels • +50,000 customers • +99% satisfaction"
+      }
     },
     sections: {
-      trustStrip: true,
-      products: true,
-      productFinder: true,
-      productCompare: true,
-      sanadPromise: true,
+      features: true,
+      plans: true,
+      trial: true,
       testimonials: true,
-      founderNote: true,
-      howItWorks: true,
+      stats: true,
       faq: true,
-      finalCta: true,
-      stickyCta: true,
+      contact: true,
       whatsapp: true
     },
-    productsTitle: "3 حلول واضحة — اختار واطلب دابا",
-    productsSubtitle: "كل منتج مصمم لمنطقة محددة من الجسم. السعر واضح، والدفع عند الاستلام.",
-    faqs: [
+    featuresTitle: { ar: "المميزات", en: "Features" },
+    featuresSubtitle: {
+      ar: "كل ما تحتاجه لتجربة بث ممتازة",
+      en: "Everything you need for an amazing streaming experience"
+    },
+    features: [
+      { icon: "📺", label: { ar: "أكثر من 100,000 قناة", en: "100,000+ channels" } },
+      { icon: "⚽", label: { ar: "جميع القنوات الرياضية العالمية", en: "All global sports channels" } },
+      { icon: "🎬", label: { ar: "أفلام ومسلسلات محدثة يومياً", en: "Daily updated movies & series" } },
+      { icon: "📡", label: { ar: "جودة HD", en: "HD quality" } },
+      { icon: "🖥️", label: { ar: "جودة Full HD", en: "Full HD quality" } },
+      { icon: "✨", label: { ar: "جودة 4K", en: "4K quality" } },
+      { icon: "💬", label: { ar: "دعم سريع", en: "Fast support" } },
+      { icon: "🔒", label: { ar: "اشتغال مستقر", en: "Stable streaming" } },
+      { icon: "🔄", label: { ar: "تحديثات مستمرة", en: "Regular updates" } },
+      { icon: "📱", label: { ar: "متوافق مع Smart TV", en: "Smart TV compatible" } },
+      { icon: "🤖", label: { ar: "متوافق مع Android", en: "Android compatible" } },
+      { icon: "🍎", label: { ar: "متوافق مع iPhone", en: "iPhone compatible" } },
+      { icon: "💻", label: { ar: "متوافق مع PC", en: "PC compatible" } },
+      { icon: "🔥", label: { ar: "متوافق مع Fire Stick", en: "Fire Stick compatible" } }
+    ],
+    plansTitle: { ar: "الباقات", en: "Plans" },
+    plansSubtitle: {
+      ar: "اختار الباقة اللي تناسبك — الأسعار قابلة للتعديل من لوحة التحكم",
+      en: "Choose the plan that fits you — prices editable from admin panel"
+    },
+    stats: [
+      { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels" } },
+      { prefix: "+", value: 50000, suffix: "", label: { ar: "عميل", en: "customers" } },
+      { prefix: "+", value: 15000, suffix: "", label: { ar: "فيلم", en: "movies" } },
+      { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series" } },
+      { prefix: "", value: 99, suffix: "%", label: { ar: "رضا العملاء", en: "satisfaction" } }
+    ],
+    testimonialsTitle: { ar: "آراء العملاء", en: "Customer Reviews" },
+    testimonialsSubtitle: {
+      ar: "آلاف العملاء راضيين على خدمتنا",
+      en: "Thousands of satisfied customers"
+    },
+    testimonials: [
       {
-        question: "واش هاد المنتجات علاج طبي؟",
-        answer:
-          "لا. هادي منتجات دعم وراحة يومية. إذا عندك ألم قوي، مرض، أو تشخيص طبي، استشر مختص قبل الاستعمال."
+        id: "1",
+        name: { ar: "محمد — الدار البيضاء", en: "Mohamed — Casablanca" },
+        rating: 5,
+        comment: {
+          ar: "خدمة ممتازة، القنوات كاملة والجودة زوينة بزاف. الدعم جاوبني فدقائق.",
+          en: "Excellent service, all channels and great quality. Support replied in minutes."
+        },
+        visible: true
       },
       {
-        question: "واش خاصني نخلص قبل ما توصل السلعة؟",
-        answer: "لا. الدفع عند الاستلام فالمغرب. كنأكدو معاك الطلب بالهاتف قبل الإرسال."
+        id: "2",
+        name: { ar: "فاطمة — الرباط", en: "Fatima — Rabat" },
+        rating: 5,
+        comment: {
+          ar: "جربت التجربة المجانية ومن بعد اشتركت فباقة 6 أشهر. ما كاين حتى تقطيع.",
+          en: "Tried the free trial then subscribed to 6 months. No buffering at all."
+        },
+        visible: true
       },
       {
-        question: "كيفاش نعرف شنو يناسبني؟",
-        answer: "الكتاف = ألاين، الرقبة = هيت، أسفل الظهر = لومبو. استعمل مساعد الاختيار إلا بقيتي محتار."
+        id: "3",
+        name: { ar: "يoussef — مراكش", en: "Youssef — Marrakech" },
+        rating: 5,
+        comment: {
+          ar: "أحسن IPTV جربت. المباريات كاملة والأفلام محدثة كل يوم.",
+          en: "Best IPTV I've tried. All matches and daily updated movies."
+        },
+        visible: true
       },
       {
-        question: "شحال كياخد التوصيل؟",
-        answer: "المدة كتختلف حسب المدينة. كنأكدو معاك التفاصيل من بعد الطلب."
-      },
-      {
-        question: "واش نقدر نرجع السلعة؟",
-        answer: "عندنا سياسة استبدال واضحة. شوف صفحة السياسات قبل الطلب."
+        id: "4",
+        name: { ar: "سارة — طنجة", en: "Sara — Tangier" },
+        rating: 5,
+        comment: {
+          ar: "خدم على Smart TV و Android بلا مشكل. التفعيل كان سريع.",
+          en: "Works on Smart TV and Android perfectly. Activation was fast."
+        },
+        visible: true
       }
     ],
-    finalCtaTitle: "جاهز تطلب؟",
-    finalCtaSubtitle: "اختار المنتج، أضف للسلة، وتخلص عند الاستلام. غادي نتاصلو بك للتأكيد."
+    trial: {
+      title: { ar: "🎁 جرب الخدمة مجاناً", en: "🎁 Try Free" },
+      description: {
+        ar: "إذا كنت متردداً يمكنك تجربة الخدمة أولاً قبل الاشتراك.",
+        en: "Not sure yet? Try the service first before subscribing."
+      },
+      ctaLabel: { ar: "بغيت نجرب", en: "Start Free Trial" }
+    },
+    contact: {
+      title: { ar: "تواصل معنا", en: "Contact Us" },
+      whatsappLabel: { ar: "💬 واتساب", en: "💬 WhatsApp" },
+      emailLabel: { ar: "📧 Email", en: "📧 Email" },
+      telegramLabel: { ar: "🌐 Telegram", en: "🌐 Telegram" }
+    },
+    faqTitle: { ar: "الأسئلة الشائعة", en: "FAQ" },
+    faqSubtitle: { ar: "شنو بغيتي تعرف؟", en: "What would you like to know?" },
+    faqs: [
+      {
+        question: { ar: "شنو هو IPTV؟", en: "What is IPTV?" },
+        answer: {
+          ar: "IPTV هو بث تلفزيوني عبر الإنترنت. كتشوف القنوات المباشرة والأفلام والمسلسلات من أي جهاز متصل بالإنترنت.",
+          en: "IPTV is TV streaming over the internet. Watch live channels, movies, and series from any internet-connected device."
+        }
+      },
+      {
+        question: { ar: "كيفاش نخدم الاشتراك؟", en: "How do I use my subscription?" },
+        answer: {
+          ar: "من بعد ما تطلب، غادي نرسل ليك بيانات الدخول (M3U أو Xtream) عبر واتساب. تثبت التطبيق المناسب و تدخل البيانات.",
+          en: "After ordering, we send login details (M3U or Xtream) via WhatsApp. Install the right app and enter the credentials."
+        }
+      },
+      {
+        question: { ar: "واش كاينة تجربة مجانية؟", en: "Is there a free trial?" },
+        answer: {
+          ar: "نعم! يمكنك طلب تجربة مجانية من الموقع و غادي نتواصلو معاك عبر واتساب.",
+          en: "Yes! Request a free trial from the site and we'll contact you on WhatsApp."
+        }
+      },
+      {
+        question: { ar: "كيفاش نخلص؟", en: "How do I pay?" },
+        answer: {
+          ar: "الدفع عبر تحويل بنكي، Cash Plus، أو طرق أخرى. كنتواصلو معاك على واتساب باش نعطيوك التفاصيل.",
+          en: "Pay via bank transfer, Cash Plus, or other methods. We contact you on WhatsApp with details."
+        }
+      },
+      {
+        question: { ar: "واش خدام فـ Smart TV؟", en: "Does it work on Smart TV?" },
+        answer: {
+          ar: "نعم، خدام على Smart TV، Android، iPhone، PC، و Fire Stick.",
+          en: "Yes, it works on Smart TV, Android, iPhone, PC, and Fire Stick."
+        }
+      },
+      {
+        question: { ar: "واش كاين دعم تقني؟", en: "Is there technical support?" },
+        answer: {
+          ar: "نعم، فريق الدعم متاح عبر واتساب باش يساعدك فالتثبيت و أي مشكل.",
+          en: "Yes, our support team is available on WhatsApp to help with setup and any issues."
+        }
+      }
+    ]
   },
-  products: [
-    { slug: "sanad-align", enabled: true },
-    { slug: "sanad-heat", enabled: true },
-    { slug: "sanad-lumbo", enabled: true }
+  plans: [
+    { slug: "plan-3-months", enabled: true },
+    { slug: "plan-6-months", enabled: true, highlighted: true },
+    { slug: "plan-12-months", enabled: true }
   ]
 });

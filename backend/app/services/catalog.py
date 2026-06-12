@@ -1,21 +1,21 @@
 PRODUCTS = {
-    "sanad-align": {
-        "name": "سَنَد ألاين",
-        "price": 249,
-        "upsell_price": 199,
-        "cross_sell_priority": ["sanad-heat", "sanad-lumbo"],
+    "plan-3-months": {
+        "name": "باقة 3 أشهر",
+        "price": 150,
+        "upsell_price": 130,
+        "cross_sell_priority": ["plan-6-months", "plan-12-months"],
     },
-    "sanad-heat": {
-        "name": "سَنَد هيت",
-        "price": 299,
-        "upsell_price": 249,
-        "cross_sell_priority": ["sanad-lumbo", "sanad-align"],
+    "plan-6-months": {
+        "name": "باقة 6 أشهر",
+        "price": 250,
+        "upsell_price": 220,
+        "cross_sell_priority": ["plan-12-months", "plan-3-months"],
     },
-    "sanad-lumbo": {
-        "name": "سَنَد لومبو",
-        "price": 249,
-        "upsell_price": 199,
-        "cross_sell_priority": ["sanad-heat", "sanad-align"],
+    "plan-12-months": {
+        "name": "باقة سنة كاملة",
+        "price": 400,
+        "upsell_price": 350,
+        "cross_sell_priority": ["plan-6-months", "plan-3-months"],
     },
 }
 

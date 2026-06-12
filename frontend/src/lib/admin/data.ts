@@ -36,9 +36,9 @@ export const adminNav = [
 
 export const dashboardStats = [
   { label: "Total Sales", value: "0 د.م.", change: "0%", icon: ChartNoAxesCombined },
-  { label: "Total Orders", value: "0", change: "0%", icon: ClipboardList },
-  { label: "Total Customers", value: "0", change: "0%", icon: Users },
-  { label: "Total Products", value: "3", change: "seed", icon: Boxes }
+  { label: "Subscription Orders", value: "0", change: "0%", icon: ClipboardList },
+  { label: "Trial Requests", value: "0", change: "0%", icon: Users },
+  { label: "Active Plans", value: "3", change: "IPTV", icon: Boxes }
 ];
 
 export const salesSeries = [
@@ -52,9 +52,9 @@ export const salesSeries = [
 ];
 
 export const products = [
-  { id: "PRD-001", name: "سَنَد ألاين", category: "Posture", price: 249, stock: 64, sales: 428, status: "active" },
-  { id: "PRD-002", name: "سَنَد هيت", category: "Neck Relief", price: 299, stock: 21, sales: 612, status: "active" },
-  { id: "PRD-003", name: "سَنَد لومبو", category: "Back Support", price: 249, stock: 8, sales: 351, status: "low" }
+  { id: "PLN-001", name: "باقة 3 أشهر", category: "IPTV", price: 150, stock: 999, sales: 0, status: "active" },
+  { id: "PLN-002", name: "باقة 6 أشهر", category: "IPTV", price: 250, stock: 999, sales: 0, status: "active" },
+  { id: "PLN-003", name: "باقة سنة كاملة", category: "IPTV", price: 400, stock: 999, sales: 0, status: "active" }
 ];
 
 export const orders: Array<{

@@ -1,70 +1,57 @@
-import type { Faq, Review } from "@/lib/products";
+import type { LocalizedText } from "@/lib/i18n/localized";
 
-export type NavLink = { label: string; href: string };
+export type NavLink = { label: LocalizedText; href: string };
 
-export type HeroImageFit = "cover" | "contain";
-export type HeroLayout = "banner-full" | "banner-contained";
-export type HeroBannerMode = "fixed-height" | "aspect-ratio";
-export type HeroObjectPosition = "center" | "top" | "bottom";
+export type Faq = {
+  question: LocalizedText;
+  answer: LocalizedText;
+};
 
 export type HeroContent = {
-  imageUrl: string;
-  imageAlt: string;
-  layout: HeroLayout;
-  bannerMode: HeroBannerMode;
-  aspectRatio: string;
-  heightMobile: number;
-  heightDesktop: number;
-  maxHeight: number;
-  maxWidth: number;
-  imageFit: HeroImageFit;
-  objectPosition: HeroObjectPosition;
-  rounded: boolean;
-  headline: string;
-  subtitle: string;
-  primaryCtaLabel: string;
-  primaryCtaHref: string;
-  secondaryCtaLabel: string;
-  secondaryCtaHref: string;
-  trustLine: string;
+  headline: LocalizedText;
+  subtitle: LocalizedText;
+  bannerText: LocalizedText;
+  primaryCtaLabel: LocalizedText;
+  secondaryCtaLabel: LocalizedText;
+  whatsappCtaLabel: LocalizedText;
+  trustLine: LocalizedText;
 };
 
 export type SectionVisibility = {
-  trustStrip: boolean;
-  products: boolean;
-  productFinder: boolean;
-  productCompare: boolean;
-  sanadPromise: boolean;
+  features: boolean;
+  plans: boolean;
+  trial: boolean;
   testimonials: boolean;
-  founderNote: boolean;
-  howItWorks: boolean;
+  stats: boolean;
   faq: boolean;
-  finalCta: boolean;
-  stickyCta: boolean;
+  contact: boolean;
   whatsapp: boolean;
 };
 
 export type BrandingContent = {
   brandName: string;
-  tagline: string;
+  tagline: LocalizedText;
   primaryColor: string;
+  secondaryColor: string;
   accentColor: string;
   logoUrl: string;
 };
 
 export type HeaderContent = {
-  promoBar: string;
+  promoBar: LocalizedText;
   navLinks: NavLink[];
+  subscribeCtaLabel: LocalizedText;
 };
 
 export type FooterContent = {
-  description: string;
+  description: LocalizedText;
   supportEmail: string;
   whatsappNumber: string;
   whatsappMessage: string;
+  telegramUrl: string;
   storeLinks: NavLink[];
   policyLinks: NavLink[];
-  socialLinks: { label: string; href: string }[];
+  copyright: LocalizedText;
 };
 
 export type SeoContent = {
@@ -83,33 +70,68 @@ export type IntegrationsContent = {
   tiktokPixelId: string;
 };
 
-export type ProductCmsOverride = {
+export type FeatureItem = {
+  icon: string;
+  label: LocalizedText;
+};
+
+export type StatItem = {
+  value: number;
+  suffix: string;
+  prefix: string;
+  label: LocalizedText;
+};
+
+export type Testimonial = {
+  id: string;
+  name: LocalizedText;
+  rating: number;
+  comment: LocalizedText;
+  visible: boolean;
+};
+
+export type TrialSection = {
+  title: LocalizedText;
+  description: LocalizedText;
+  ctaLabel: LocalizedText;
+};
+
+export type ContactSection = {
+  title: LocalizedText;
+  whatsappLabel: LocalizedText;
+  emailLabel: LocalizedText;
+  telegramLabel: LocalizedText;
+};
+
+export type PlanCmsOverride = {
   slug: string;
-  nameAr?: string;
+  name?: LocalizedText;
+  duration?: LocalizedText;
   price?: number;
-  upsellPrice?: number;
-  headline?: string;
-  subheadline?: string;
-  bullets?: string[];
-  imageUrl?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  ogImageUrl?: string;
-  reviews?: Review[];
-  faqs?: Faq[];
-  ratingValue?: number;
-  ratingCount?: number;
+  currency?: string;
+  badge?: LocalizedText | null;
+  features?: LocalizedText[];
+  highlighted?: boolean;
   enabled?: boolean;
 };
 
 export type HomepageContent = {
   hero: HeroContent;
   sections: SectionVisibility;
-  productsTitle: string;
-  productsSubtitle: string;
+  featuresTitle: LocalizedText;
+  featuresSubtitle: LocalizedText;
+  features: FeatureItem[];
+  plansTitle: LocalizedText;
+  plansSubtitle: LocalizedText;
+  stats: StatItem[];
+  testimonialsTitle: LocalizedText;
+  testimonialsSubtitle: LocalizedText;
+  testimonials: Testimonial[];
+  trial: TrialSection;
+  contact: ContactSection;
   faqs: Faq[];
-  finalCtaTitle: string;
-  finalCtaSubtitle: string;
+  faqTitle: LocalizedText;
+  faqSubtitle: LocalizedText;
 };
 
 export type StoreContent = {
@@ -121,5 +143,15 @@ export type StoreContent = {
   seo: SeoContent;
   integrations: IntegrationsContent;
   homepage: HomepageContent;
-  products: ProductCmsOverride[];
+  plans: PlanCmsOverride[];
 };
+
+export type DeviceType = "smart-tv" | "android" | "iphone" | "pc" | "fire-stick";
+
+export const DEVICE_OPTIONS: { value: DeviceType; label: LocalizedText }[] = [
+  { value: "smart-tv", label: { ar: "Smart TV", en: "Smart TV" } },
+  { value: "android", label: { ar: "Android", en: "Android" } },
+  { value: "iphone", label: { ar: "iPhone", en: "iPhone" } },
+  { value: "pc", label: { ar: "PC", en: "PC" } },
+  { value: "fire-stick", label: { ar: "Fire Stick", en: "Fire Stick" } }
+];

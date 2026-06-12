@@ -1,39 +1,33 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getStoreContent } from "@/lib/cms/server";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { breadcrumbJsonLd } from "@/lib/seo/structured-data";
 
-const policies: Record<string, { title: string; body: string[] }> = {
-  shipping: {
-    title: "سياسة التوصيل",
-    body: [
-      "نوفّر التوصيل داخل المغرب. بعد تسجيل الطلب، يقوم فريق سَنَد بالتواصل معك لتأكيد الطلب والمعلومات قبل الإرسال.",
-      "الدفع يتم عند الاستلام. لا تحتاج إلى أداء مسبق في النسخة الحالية من المتجر.",
-      "مدة التوصيل تختلف حسب المدينة وشركة التوصيل، وغالباً تكون بين 24 و72 ساعة في المدن الكبرى."
-    ]
-  },
-  returns: {
-    title: "سياسة الاستبدال",
-    body: [
-      "إذا وصلك منتج متضرر أو مختلف عن الطلب، تواصل معنا في أقرب وقت مع رقم الطلب وصورة واضحة للمشكل.",
-      "يجب التواصل خلال 24 إلى 48 ساعة من الاستلام.",
-      "المنتج يجب أن يكون غير مستعمل بشكل واضح، باستثناء حالة الضرر عند الوصول."
-    ]
-  },
+const policies: Record<string, { title: string; description: string; body: string[] }> = {
   privacy: {
-    title: "سياسة الخصوصية",
+    title: "سياسة الخصوصية — SANAD IPTV",
+    description:
+      "كيفاش كنجمعو و كستعملو معلوماتك ف SANAD IPTV: الاسم، واتساب، نوع الجهاز، وبيانات تقنية للحماية.",
     body: [
-      "نجمع المعلومات الضرورية فقط لمعالجة الطلب والتواصل معك: الاسم، رقم الهاتف، المنتجات المطلوبة، وبعض المعلومات التقنية للحماية من الطلبات الوهمية.",
-      "نستعمل البيانات لتأكيد الطلب، تجهيز التوصيل، تحسين تجربة الموقع، وقياس أداء الإعلانات.",
-      "لا نبيع بياناتك لأطراف خارجية."
+      "نجمعو غير المعلومات الضرورية باش نفعّلو اشتراك IPTV ونتواصلو معاك: الاسم الكامل، رقم واتساب، نوع الجهاز، ومدة الاشتراك المطلوبة.",
+      "كنجمعو أيضاً بعض البيانات التقنية (IP، نوع المتصفح) باش نحمو الموقع من الطلبات الوهمية ونحسّنو الأداء.",
+      "ما كنبيعوش بياناتك لأطراف خارجية. المعلومات كتستعمل غير لتفعيل الاشتراك، الدعم التقني، وتحسين الخدمة.",
+      "عندك الحق تطلب حذف بياناتك أو تعديلها عبر التواصل معنا على واتساب أو الإيميل."
     ]
   },
   terms: {
-    title: "الشروط والأحكام",
+    title: "الشروط والأحكام — SANAD IPTV",
+    description:
+      "شروط استخدام SANAD IPTV: الاشتراك، الدفع، التفعيل، الدعم التقني، ومسؤوليات المستخدم.",
     body: [
-      "الأسعار المعروضة بالدرهم المغربي، والدفع عند الاستلام.",
-      "يجب إدخال رقم هاتف صحيح وقابل للتواصل. قد يتم إلغاء الطلب إذا تعذر التأكيد.",
-      "منتجات سَنَد مخصصة للدعم والراحة اليومية وليست بديلاً عن استشارة مختص."
+      "SANAD IPTV كيقدّم خدمة بث IPTV باشتراك مدفوع. الأسعار معروضة بالدرهم المغربي ويمكن تتبدّل.",
+      "من بعد الطلب، غادي نتواصلو معاك عبر واتساب باش نأكّدو الدفع و نرسلو بيانات التفعيل (M3U / Xtream).",
+      "المستخدم مسؤول على استعمال الخدمة بشكل قانوني و على حماية بيانات الدخول ديالو.",
+      "الخدمة ماشي بديل لأي اشتراك رسمي للقنوات. كنوفّرو بث عبر الإنترنت مع دعم تقني.",
+      "يمكن إيقاف أو تعليق الاشتراك فحالة إساءة الاستخدام أو مخالفة الشروط."
     ]
   }
 };
@@ -49,14 +43,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const policy = policies[slug];
-  if (!policy) return { title: "سياسة غير موجودة" };
+  if (!policy) return { title: "سياسة غير موجودة", robots: { index: false } };
 
   const content = await getStoreContent();
   return buildPageMetadata({
     title: policy.title,
-    description: policy.body[0],
+    description: policy.description,
     path: `/policies/${slug}`,
-    ogImage: content.seo.ogImageUrl
+    ogImage: content.seo.ogImageUrl,
+    ogTitle: policy.title,
+    keywords: content.seo.keywords
   });
 }
 
@@ -65,14 +61,28 @@ export default async function PolicyPage({ params }: { params: Promise<{ slug: s
   const policy = policies[slug];
   if (!policy) notFound();
 
+  const content = await getStoreContent();
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-14">
-      <h1 className="text-4xl font-black text-sand-950">{policy.title}</h1>
-      <div className="mt-8 space-y-5 rounded-[2rem] bg-white p-6 leading-9 text-sand-700 shadow-soft">
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: content.branding.brandName, path: "/" },
+            { name: policy.title, path: `/policies/${slug}` }
+          ])
+        ]}
+      />
+      <p className="section-eyebrow">{content.branding.brandName}</p>
+      <h1 className="section-title mt-2">{policy.title}</h1>
+      <div className="mt-8 space-y-5 glass-card p-6 leading-9 text-dark-800 md:p-8">
         {policy.body.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
+      <Link href="/" className="btn-neon-outline mt-8 inline-flex">
+        الرجوع للرئيسية
+      </Link>
     </div>
   );
 }

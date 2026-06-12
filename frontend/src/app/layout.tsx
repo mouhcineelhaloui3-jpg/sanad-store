@@ -31,7 +31,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="ar" dir="rtl" className={`${arabic.variable} ${latin.variable}`}>
-      <body className="font-sans" style={{ "--brand-primary": content.branding.primaryColor, "--brand-accent": content.branding.accentColor } as React.CSSProperties}>
+      <body
+        className="font-sans bg-dark text-white"
+        style={
+          {
+            "--brand-primary": content.branding.primaryColor,
+            "--brand-secondary": content.branding.secondaryColor,
+            "--brand-accent": content.branding.accentColor
+          } as React.CSSProperties
+        }
+      >
         <AnalyticsScripts integrations={content.integrations} />
         <ErrorReporter />
         <StoreContentProvider content={content}>
