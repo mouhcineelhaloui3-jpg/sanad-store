@@ -60,12 +60,16 @@ function LoginForm() {
             required
             autoFocus
             className="w-full rounded-2xl border border-white/10 bg-white py-3 pl-11 pr-4 text-slate-950 outline-none focus:border-cyan-400"
-            placeholder="M2o3u1h1@"
+            placeholder="••••••••"
           />
         </div>
       </label>
 
       {error ? <p className="mt-3 text-center text-sm font-bold text-red-300">{error}</p> : null}
+
+      <p className="mt-4 text-center text-xs text-white/50">
+        Accès réservé aux administrateurs SANAD IPTV.
+      </p>
 
       <button
         className="mt-6 w-full rounded-2xl bg-gradient-to-r from-cyan-500 to-emerald-500 px-5 py-3 font-black text-slate-950 disabled:opacity-60"

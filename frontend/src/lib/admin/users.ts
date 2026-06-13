@@ -10,7 +10,8 @@ export type AdminUserRecord = {
 };
 
 function envPassword(key: string, fallback: string) {
-  return process.env[key] ?? fallback;
+  const value = process.env[key]?.trim();
+  return value || fallback;
 }
 
 export function getAdminUsers(): AdminUserRecord[] {
@@ -52,8 +53,12 @@ export function getAdminUsers(): AdminUserRecord[] {
 
 export function authenticateAdminUser(email: string, password: string): AdminUserRecord | null {
   const normalizedEmail = email.trim().toLowerCase();
+  const normalizedPassword = password.trim();
   const user = getAdminUsers().find(
-    (entry) => entry.active && entry.email.toLowerCase() === normalizedEmail && entry.password === password
+    (entry) =>
+      entry.active &&
+      entry.email.toLowerCase() === normalizedEmail &&
+      entry.password.trim() === normalizedPassword
   );
   return user ?? null;
 }
@@ -62,7 +67,8 @@ export function authenticateAdminAccessCode(password: string): AdminUserRecord |
   const code = password.trim();
   if (!code) return null;
 
-  return getAdminUsers().find((entry) => entry.active && entry.password === code) ?? null;
+  const matches = getAdminUsers().filter((entry) => entry.active && entry.password.trim() === code);
+  return matches.find((entry) => entry.role === "super_admin") ?? matches[0] ?? null;
 }
 
 export function getAdminUserById(id: string): AdminUserRecord | null {

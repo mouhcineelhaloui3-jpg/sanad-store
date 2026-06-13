@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
       return apiError("INVALID_PAYLOAD", "Invalid login payload", 400);
     }
     if (!user) {
-      return apiError("INVALID_CREDENTIALS", "Invalid email or password", 401);
+      return apiError("INVALID_CREDENTIALS", "Mot de passe incorrect", 401);
     }
 
     const token = createAdminSessionToken({

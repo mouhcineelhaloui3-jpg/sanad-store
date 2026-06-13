@@ -11,6 +11,7 @@ const strings = {
   whatsappFooter: { ar: "تواصل عبر واتساب", en: "WhatsApp" },
   quickLinks: { ar: "روابط سريعة", en: "Quick Links" },
   policies: { ar: "السياسات", en: "Policies" },
+  adminPanel: { ar: "لوحة التحكم", en: "Admin panel" },
   moviesFreshNote: {
     ar: "محتوى جديد كل يوم — أفلام ومسلسلات 2025 و 2026",
     en: "Fresh content daily — 2025 & 2026 movies and series"

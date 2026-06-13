@@ -58,15 +58,14 @@ export function Footer() {
             © {new Date().getFullYear()} {branding.brandName} — {t(footer.copyright, locale)}
           </p>
           <p>{footer.supportEmail}</p>
-          {process.env.NODE_ENV !== "production" ? (
-            <Link
-              href="/admin"
-              aria-label="Admin"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-dark-600 transition hover:bg-white/5 hover:text-white"
-            >
-              <LockKeyhole className="h-4 w-4" />
-            </Link>
-          ) : null}
+          <Link
+            href="/admin/login"
+            aria-label={ui("adminPanel", locale)}
+            title={ui("adminPanel", locale)}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white/50 transition hover:bg-white/5 hover:text-neon-cyan"
+          >
+            <LockKeyhole className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </footer>
