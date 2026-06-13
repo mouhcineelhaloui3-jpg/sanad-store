@@ -26,6 +26,11 @@ const IptvStickyCta = dynamic(
   { ssr: false }
 );
 
+const UrgencyBanner = dynamic(
+  () => import("@/components/cro/UrgencyBanner").then((m) => m.UrgencyBanner),
+  { ssr: false }
+);
+
 const CroEffects = dynamic(
   () => import("@/components/cro/CroEffects").then((m) => m.CroEffects),
   { ssr: false }
@@ -51,6 +56,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         <DynamicBackground />
         <DeferredSiteEffects />
         <Header />
+        <UrgencyBanner />
         <main className="relative">{children}</main>
         <Footer />
         <LazySiteModals />

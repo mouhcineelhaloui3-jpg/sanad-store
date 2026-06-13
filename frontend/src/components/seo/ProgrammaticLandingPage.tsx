@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MarketingPageLayout } from "@/components/seo/MarketingPageLayout";
 import { PlanLandingCta } from "@/components/seo/PlanLandingCta";
+import { SeoInternalLinks } from "@/components/seo/SeoInternalLinks";
 import { StructuredData, faqJsonLd, productJsonLd, webPageJsonLd } from "@/components/seo/StructuredData";
 import { getStoreContent } from "@/lib/cms/server";
 import { mergePlansWithCms } from "@/lib/cms/merge-plans";
@@ -13,12 +14,13 @@ export async function ProgrammaticLandingPage({ page }: { page: ProgrammaticPage
   const plans = mergePlansWithCms(content.plans);
   const plan = page.planSlug ? plans.find((p) => p.slug === page.planSlug) : plans.find((p) => p.highlighted);
   const price = plan ? formatPlanPrice(plan.price, "MAD", "ar-ma").primary : null;
+  const pagePath = `/iptv/${page.slug}`;
 
   return (
     <>
       <StructuredData
         data={[
-          webPageJsonLd({ name: page.title, description: page.description, url: `/iptv/${page.slug}` }),
+          webPageJsonLd({ name: page.title, description: page.description, url: pagePath }),
           faqJsonLd(page.faqs),
           plan
             ? productJsonLd({
@@ -26,7 +28,7 @@ export async function ProgrammaticLandingPage({ page }: { page: ProgrammaticPage
                 description: page.description,
                 price: plan.price,
                 currency: plan.currency,
-                url: `/iptv/${page.slug}`,
+                url: pagePath,
                 brand: content.branding.brandName
               })
             : null
@@ -47,13 +49,22 @@ export async function ProgrammaticLandingPage({ page }: { page: ProgrammaticPage
           </p>
         ) : null}
 
-        {page.sections.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        {page.contentBlocks?.length
+          ? page.contentBlocks.map((block) => (
+              <section key={block.heading}>
+                <h2 className="text-2xl font-black text-white">{block.heading}</h2>
+                {block.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="mt-4">
+                    {paragraph}
+                  </p>
+                ))}
+              </section>
+            ))
+          : page.sections.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
 
         <section aria-labelledby="faq-heading">
           <h2 id="faq-heading" className="text-2xl font-black text-white">
-            أسئلة شائعة
+            أسئلة شائعة — IPTV FAQ
           </h2>
           <dl className="mt-4 space-y-4">
             {page.faqs.map((faq) => (
@@ -96,6 +107,8 @@ export async function ProgrammaticLandingPage({ page }: { page: ProgrammaticPage
             </li>
           </ul>
         </nav>
+
+        <SeoInternalLinks currentPath={pagePath} />
       </MarketingPageLayout>
     </>
   );

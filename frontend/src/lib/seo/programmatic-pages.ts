@@ -1,3 +1,8 @@
+export type ContentBlock = {
+  heading: string;
+  paragraphs: string[];
+};
+
 export type ProgrammaticPage = {
   slug: string;
   title: string;
@@ -5,6 +10,7 @@ export type ProgrammaticPage = {
   subtitle: string;
   keywords: string;
   sections: string[];
+  contentBlocks?: ContentBlock[];
   faqs: ReadonlyArray<{ question: string; answer: string }>;
   relatedSlugs: string[];
   planSlug?: "plan-3-months" | "plan-6-months" | "plan-12-months";
@@ -22,6 +28,33 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       "SANAD IPTV كتوفر بث مستقر للقنوات المغربية والعالمية مع تحديث يومي للمحتوى.",
       "الباقات: 3 أشهر (150 د.م.)، 6 أشهر (250 د.م.)، سنة (400 د.م.) — تفعيل فوري.",
       "جرّب مجاناً قبل الاشتراك وتواصل معنا عبر واتساب للتفعيل."
+    ],
+    contentBlocks: [
+      {
+        heading: "اشتراك IPTV Morocco — شنو كتستنا؟",
+        paragraphs: [
+          "SANAD IPTV هي خدمة IPTV subscription محسّنة للمغرب: قنوات مغربية، عربية، فرنسية، وإسبانية، مع VOD أفلام ومسلسلات ورياضة 4K.",
+          "الفرق بين SANAD وبين مزودين آخرين هو الاستقرار فالبث، الدعم بالدارجة والعربية عبر واتساب، والتحديث اليومي للمحتوى.",
+          "إذا كنت كتقلب على abonnement IPTV Maroc موثوق، SANAD كتوفر trial مجاني قبل ما تختار الباقة المناسبة."
+        ]
+      },
+      {
+        heading: "قنوات مغربية ورياضة — Botola Pro و beIN",
+        paragraphs: [
+          "مع SANAD IPTV، تقدر تشوف Botola Pro، القنوات الوطنية 2M و SNRT، وقنوات رياضية عالمية: Champions League، La Liga، Premier League.",
+          "البث كيخدم على Smart TV، Android، iPhone، Fire Stick، و Android Box — شوف دليل التثبيت فصفحات الأجهزة.",
+          "للمباريات الكبيرة، ننصحو ب Ethernet أو Wi-Fi 5GHz باش تفادى التقطيع."
+        ]
+      },
+      {
+        heading: "أسعار IPTV فالمغرب — باقات SANAD",
+        paragraphs: [
+          "باقة 3 أشهر: 150 د.م. — مثالية للتجربة الأولى.",
+          "باقة 6 أشهر: 250 د.م. — الأكثر اختياراً (أحسن rapport qualité/prix).",
+          "باقة سنة: 400 د.م. — أفضل قيمة للاستعمال اليومي.",
+          "التفعيل فوري عبر واتساب بعد الدفع — ما كاينش انتظار طويل."
+        ]
+      }
     ],
     faqs: [
       { question: "واش SANAD IPTV خدام فالمغرب؟", answer: "نعم، الخدمة محسّنة للمغرب مع دعم محلي." },
@@ -41,6 +74,34 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       "دخل M3U أو Xtream codes من SANAD IPTV.",
       "فعّل EPG باش تشوف دليل البرامج."
     ],
+    contentBlocks: [
+      {
+        heading: "IPTV Smart TV — Samsung و LG و Android TV",
+        paragraphs: [
+          "Smart TV IPTV كيتثبت بسهولة عبر تطبيقات Smart IPTV، SS IPTV، أو TiviMate (Android TV).",
+          "SANAD IPTV كتوفر Xtream codes و M3U playlist جاهزة للنسخ — التفعيل فوري بعد الاشتراك.",
+          "ل Samsung و LG، Smart IPTV هو الحل الأسرع. ل Android TV و Google TV، TiviMate أحسن تجربة."
+        ]
+      },
+      {
+        heading: "خطوات التثبيت على Smart TV",
+        paragraphs: [
+          "1. اشترك ف SANAD IPTV وتواصل عبر واتساب.",
+          "2. حمّل التطبيق من متجر التلفاز.",
+          "3. دخل الرابط أو Xtream (Server, Username, Password).",
+          "4. فعّل EPG ورتّب القنوات المفضلة.",
+          "5. للجودة 4K، تأكد من سرعة الإنترنت 25 Mbps+."
+        ]
+      },
+      {
+        heading: "مقارنة التطبيقات — Smart IPTV vs TiviMate",
+        paragraphs: [
+          "Smart IPTV: سهل، خدام على أغلب Smart TV، مناسب للمبتدئين.",
+          "TiviMate: واجهة احترافية، EPG قوي، مناسب Android TV و Fire Stick.",
+          "SS IPTV: بديل جيد ل Samsung — مجاني لفترة تجريبية."
+        ]
+      }
+    ],
     faqs: [
       { question: "واش خدام على Samsung؟", answer: "نعم، Smart IPTV خدام على أغلب Smart TV." },
       { question: "واش TiviMate أحسن؟", answer: "TiviMate ممتاز على Android TV و Fire Stick." }
@@ -58,6 +119,33 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       "IPTV Smarters Pro سهل للمبتدئين.",
       "TiviMate الأفضل للمستخدم المتقدم.",
       "استعمل Ethernet على Android Box للاستقرار."
+    ],
+    contentBlocks: [
+      {
+        heading: "IPTV Android — هاتف، تابلت، و Android Box",
+        paragraphs: [
+          "IPTV Android كيتم عبر IPTV Smarters Pro للمبتدئين أو TiviMate للمستخدم المتقدم.",
+          "SANAD IPTV subscription كيخدم على جميع أجهزة Android: Samsung Galaxy، Xiaomi، Huawei، و TV Box.",
+          "للاستقرار، استعمل Ethernet على Android Box و Wi-Fi 5GHz على الهاتف."
+        ]
+      },
+      {
+        heading: "أحسن تطبيقات IPTV على Android",
+        paragraphs: [
+          "IPTV Smarters Pro: واجهة بسيطة، login ب Xtream، مناسب للمبتدئين.",
+          "TiviMate: EPG، multi-view، recording — الأفضل على Android TV.",
+          "Perfect Player: خيار للمستخدمين التقنيين."
+        ]
+      },
+      {
+        heading: "إعداد SANAD IPTV على Android",
+        paragraphs: [
+          "حمّل التطبيق من Google Play أو APK رسمي.",
+          "دخل Xtream codes من SANAD (بعد الاشتراك عبر واتساب).",
+          "فعّل Hardware decoding للبث 4K.",
+          "شوف أيضاً: IPTV Smart TV و IPTV 4K للجودة العالية."
+        ]
+      }
     ],
     faqs: [
       { question: "شنو أفضل تطبيق؟", answer: "TiviMate للتلفاز، Smarters للهاتف." },

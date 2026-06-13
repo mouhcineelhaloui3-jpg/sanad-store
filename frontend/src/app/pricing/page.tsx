@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingPageLayout } from "@/components/seo/MarketingPageLayout";
 import { PlanLandingCta } from "@/components/seo/PlanLandingCta";
+import { SeoInternalLinks } from "@/components/seo/SeoInternalLinks";
 import { StructuredData, productJsonLd, webPageJsonLd } from "@/components/seo/StructuredData";
 import { createPageMetadata } from "@/components/seo/MetaTags";
 import { getStoreContent } from "@/lib/cms/server";
@@ -94,6 +95,7 @@ export default async function PricingPage() {
           })}
         </div>
         <PlanLandingCta />
+        <SeoInternalLinks currentPath="/pricing" />
       </MarketingPageLayout>
     </>
   );
