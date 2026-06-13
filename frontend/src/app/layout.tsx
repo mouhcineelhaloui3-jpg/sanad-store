@@ -38,9 +38,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const layoutVars = layoutCssVars(content.layout);
 
   return (
-    <html lang="ar-MA" dir="rtl" className={`${arabic.variable} ${latin.variable}`}>
+    <html lang="ar-MA" dir="rtl" className={`${arabic.variable} ${latin.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var r=localStorage.getItem('sanad-theme');if(!r)return;var j=JSON.parse(r);var t=j&&j.state&&j.state.theme;if(t==='light'){document.documentElement.dataset.theme='light';document.documentElement.classList.add('light');document.documentElement.style.colorScheme='light';}}catch(e){}})();`
+          }}
+        />
+      </head>
       <body
-        className="font-sans text-white antialiased"
+        className="font-sans text-white antialiased site-body"
         style={
           {
             ...layoutVars,

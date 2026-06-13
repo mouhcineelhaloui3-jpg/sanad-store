@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useThemeStore } from "@/store/themeStore";
 
 export function DynamicBackground() {
+  const theme = useThemeStore((s) => s.theme);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -16,6 +18,15 @@ export function DynamicBackground() {
     const id = window.setTimeout(enable, delay);
     return () => window.clearTimeout(id);
   }, []);
+
+  if (theme === "light") {
+    return (
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-sky-50 via-white to-slate-100"
+        aria-hidden
+      />
+    );
+  }
 
   if (!show) {
     return <div className="pointer-events-none fixed inset-0 -z-10 bg-[#0a0a0a]" aria-hidden />;

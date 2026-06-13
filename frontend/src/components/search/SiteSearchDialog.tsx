@@ -59,12 +59,12 @@ export function SiteSearchDialog() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center bg-black/70 p-4 pt-[12vh] backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-start justify-center bg-black/70 p-4 pt-[12vh] backdrop-blur-sm search-dialog-overlay"
       role="dialog"
       aria-modal="true"
       aria-labelledby="site-search-title"
     >
-      <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-dark shadow-2xl">
+      <div className="search-dialog w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-dark shadow-2xl">
         <h2 id="site-search-title" className="sr-only">
           بحث في الموقع
         </h2>

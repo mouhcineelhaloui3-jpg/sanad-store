@@ -25,7 +25,7 @@ export function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white transition hover:border-neon-cyan/40 hover:bg-neon-cyan/10"
+        className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white transition hover:border-neon-cyan/40 hover:bg-neon-cyan/10 lang-switcher-btn"
         aria-label="تغيير اللغة"
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -35,7 +35,7 @@ export function LanguageSwitcher() {
         <ChevronDown className="h-3 w-3 opacity-60" />
       </button>
       {open ? (
-        <div className="absolute left-0 top-full z-50 mt-2 min-w-[140px] overflow-hidden rounded-xl border border-white/10 bg-dark-100/95 py-1 shadow-xl backdrop-blur-xl">
+        <div className="lang-switcher-menu absolute left-0 top-full z-50 mt-2 min-w-[140px] overflow-hidden rounded-xl border border-white/10 bg-dark-100/95 py-1 shadow-xl backdrop-blur-xl">
           {ALL_LOCALES.map((code) => (
             <button
               key={code}

@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { LazySiteModals } from "@/components/layout/LazySiteModals";
 import { LocaleSync } from "@/components/layout/LocaleSync";
+import { ThemeSync } from "@/components/layout/ThemeSync";
+import { useThemeStore } from "@/store/themeStore";
 import { MotionShell } from "@/components/motion/MotionShell";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
@@ -36,8 +38,11 @@ const CroEffects = dynamic(
 );
 
 function StorefrontChrome({ children }: { children: React.ReactNode }) {
+  const theme = useThemeStore((s) => s.theme);
+
   return (
     <>
+      <ThemeSync />
       <LocaleSync />
       <DynamicBackground />
       <DeferredSiteEffects />
@@ -51,7 +56,7 @@ function StorefrontChrome({ children }: { children: React.ReactNode }) {
       <IptvStickyCta />
       <WhatsAppButton />
       <CroEffects />
-      <Toaster richColors position="top-center" theme="dark" />
+      <Toaster richColors position="top-center" theme={theme === "light" ? "light" : "dark"} />
     </>
   );
 }

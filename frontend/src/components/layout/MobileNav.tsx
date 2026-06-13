@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { LanguageSwitcher, useNavLinks, usePromoBar, useSubscribeLabel } from "@/components/layout/LanguageSwitcher";
 import { Logo } from "@/components/layout/Logo";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 
 export function MobileNav() {
@@ -38,7 +39,7 @@ export function MobileNav() {
             onClick={() => setOpen(false)}
             aria-label="إغلاق القائمة"
           />
-          <aside className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-white/10 bg-dark-50 p-5 shadow-glow">
+          <aside className="mobile-nav-panel absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-white/10 bg-dark-50 p-5 shadow-glow">
             <h2 id="mobile-nav-title" className="sr-only">
               القائمة
             </h2>
@@ -61,6 +62,7 @@ export function MobileNav() {
               ))}
             </nav>
             <div className="mt-6 flex flex-col gap-3">
+              <ThemeToggle />
               <LanguageSwitcher />
               <button
                 type="button"
