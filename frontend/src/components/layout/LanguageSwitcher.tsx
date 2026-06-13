@@ -3,16 +3,16 @@
 import { ChevronDown, Globe } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useStoreContent } from "@/components/cms/StoreContentProvider";
-import { LOCALE_LABELS, localizedNavLinks, t, type Locale } from "@/lib/i18n/localized";
+import { LOCALE_LABELS, localizedNavLinks, localesForMarket, t } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
-
-const locales: Locale[] = ["ar", "en", "de", "es", "it"];
 
 export function LanguageSwitcher() {
   const locale = useLocaleStore((s) => s.locale);
+  const market = useLocaleStore((s) => s.market);
   const setLocale = useLocaleStore((s) => s.setLocale);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const available = localesForMarket(market);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -21,6 +21,8 @@ export function LanguageSwitcher() {
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
   }, []);
+
+  if (available.length <= 1) return null;
 
   return (
     <div ref={ref} className="relative">
@@ -37,7 +39,7 @@ export function LanguageSwitcher() {
       </button>
       {open ? (
         <div className="absolute left-0 top-full z-50 mt-2 min-w-[140px] overflow-hidden rounded-xl border border-white/10 bg-dark-100/95 py-1 shadow-xl backdrop-blur-xl">
-          {locales.map((code) => (
+          {available.map((code) => (
             <button
               key={code}
               type="button"

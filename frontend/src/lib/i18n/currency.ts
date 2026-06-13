@@ -1,8 +1,8 @@
-import type { Locale } from "./localized";
+import { LOCALE_BCP47, type Locale, type Market } from "./localized";
 
 export type CurrencyCode = "MAD" | "EUR" | "USD" | "GBP";
 
-/** Approximate rates: 1 MAD → foreign currency */
+/** Plan prices are stored in MAD; convert for display. */
 const RATES_FROM_MAD: Record<CurrencyCode, number> = {
   MAD: 1,
   EUR: 0.092,
@@ -10,16 +10,9 @@ const RATES_FROM_MAD: Record<CurrencyCode, number> = {
   GBP: 0.078
 };
 
-export const LOCALE_CURRENCY: Record<Locale, CurrencyCode> = {
-  ar: "MAD",
-  en: "MAD",
-  de: "MAD",
-  es: "MAD",
-  it: "MAD"
-};
-
-export function currencyForLocale(locale: Locale): CurrencyCode {
-  return LOCALE_CURRENCY[locale];
+/** Morocco: dirham. All other markets: US dollars. */
+export function currencyForMarket(market: Market): CurrencyCode {
+  return market === "morocco" ? "MAD" : "USD";
 }
 
 export function convertFromMad(amountMad: number, currency: CurrencyCode): number {
@@ -33,8 +26,7 @@ export function formatPlanPrice(
   locale: Locale
 ): { primary: string; madNote: string | null } {
   const converted = convertFromMad(amountMad, currency);
-  const localeTag =
-    locale === "ar" ? "ar-MA" : locale === "de" ? "de-DE" : locale === "es" ? "es-ES" : locale === "it" ? "it-IT" : "en-US";
+  const localeTag = currency === "MAD" ? "ar-MA" : LOCALE_BCP47[locale];
 
   const primary = new Intl.NumberFormat(localeTag, {
     style: "currency",

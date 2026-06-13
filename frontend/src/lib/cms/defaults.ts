@@ -89,10 +89,7 @@ export const defaultStoreContent = (): StoreContent => ({
       whatsappCtaLabel: { ar: "💬 تواصل عبر واتساب", en: "💬 WhatsApp" },
       trustLine: {
         ar: "+100,000 قناة مباشرة",
-        en: "+100,000 live channels",
-        de: "+100.000 Live-Sender",
-        es: "+100.000 canales en directo",
-        it: "+100.000 canali live"
+        en: "+100,000 live channels"
       }
     },
     sections: {
@@ -272,9 +269,9 @@ export const defaultStoreContent = (): StoreContent => ({
       ]
     },
     stats: [
-      { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels", de: "Sender", es: "canales", it: "canali" } },
-      { prefix: "+", value: 200000, suffix: "", label: { ar: "فيلم", en: "movies", de: "Filme", es: "películas", it: "film" } },
-      { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series", de: "Serien", es: "series", it: "serie" } }
+      { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels" } },
+      { prefix: "+", value: 200000, suffix: "", label: { ar: "فيلم", en: "movies" } },
+      { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series" } }
     ],
     testimonialsTitle: { ar: "آراء العملاء", en: "Customer Reviews" },
     testimonialsSubtitle: {

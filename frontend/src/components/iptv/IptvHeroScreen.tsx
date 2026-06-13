@@ -20,24 +20,6 @@ const matches: Record<
     { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
     { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
     { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
-  ],
-  de: [
-    { home: "🇲🇦 Marokko", away: "🇧🇷 Brasilien", league: "FIFA WM 2026™", score: "2 - 1", min: "78'" },
-    { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
-    { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
-    { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
-  ],
-  es: [
-    { home: "🇲🇦 Marruecos", away: "🇧🇷 Brasil", league: "Copa Mundial FIFA 2026™", score: "2 - 1", min: "78'" },
-    { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
-    { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
-    { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
-  ],
-  it: [
-    { home: "🇲🇦 Marocco", away: "🇧🇷 Brasile", league: "Coppa del Mondo FIFA 2026™", score: "2 - 1", min: "78'" },
-    { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },
-    { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
-    { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
   ]
 };
 

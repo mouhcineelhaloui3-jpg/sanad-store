@@ -12,10 +12,10 @@ import { AnimatedCounter } from "./AnimatedCounter";
 import { IptvHeroScreen } from "./IptvHeroScreen";
 
 const heroBadges = [
-  { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™", de: "🏆 FIFA 2026™", es: "🏆 FIFA 2026™", it: "🏆 FIFA 2026™" },
-  { ar: "📺 +100K قناة", en: "📺 +100K channels", de: "📺 +100K Sender", es: "📺 +100K canales", it: "📺 +100K canali" },
-  { ar: "🎬 +200K فيلم", en: "🎬 +200K movies", de: "🎬 +200K Filme", es: "🎬 +200K películas", it: "🎬 +200K film" },
-  { ar: "⚡ تفعيل فوري", en: "⚡ Instant setup", de: "⚡ Sofort aktiv", es: "⚡ Activación instantánea", it: "⚡ Attivazione immediata" }
+  { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™" },
+  { ar: "📺 +100K قناة", en: "📺 +100K channels" },
+  { ar: "🎬 +200K فيلم", en: "🎬 +200K movies" },
+  { ar: "⚡ تفعيل فوري", en: "⚡ Instant setup" }
 ];
 
 export function IptvHero({

@@ -1,46 +1,126 @@
-import { currencyForLocale, type CurrencyCode } from "./currency";
-import type { Locale } from "./localized";
+import type { ArabicVariant, Locale, Market } from "./localized";
+import { currencyForMarket, type CurrencyCode } from "./currency";
 
-const SUPPORTED: Locale[] = ["ar", "en", "de", "es", "it"];
+const ARAB_COUNTRY_CODES = new Set([
+  "MA",
+  "DZ",
+  "TN",
+  "LY",
+  "EG",
+  "SD",
+  "SA",
+  "AE",
+  "QA",
+  "BH",
+  "KW",
+  "OM",
+  "YE",
+  "JO",
+  "LB",
+  "SY",
+  "IQ",
+  "PS",
+  "MR",
+  "SO",
+  "DJ",
+  "KM"
+]);
 
-function localeFromTag(tag: string): Locale | null {
-  const code = tag.toLowerCase().replace("_", "-");
-  if (code.startsWith("ar")) return "ar";
-  if (code.startsWith("de")) return "de";
-  if (code.startsWith("es")) return "es";
-  if (code.startsWith("it")) return "it";
-  if (code.startsWith("en")) return "en";
-  return null;
+const ARAB_TIMEZONES = new Set([
+  "Africa/Casablanca",
+  "Africa/Algiers",
+  "Africa/Tunis",
+  "Africa/Tripoli",
+  "Africa/Cairo",
+  "Africa/Khartoum",
+  "Asia/Riyadh",
+  "Asia/Dubai",
+  "Asia/Qatar",
+  "Asia/Bahrain",
+  "Asia/Kuwait",
+  "Asia/Muscat",
+  "Asia/Aden",
+  "Asia/Amman",
+  "Asia/Beirut",
+  "Asia/Damascus",
+  "Asia/Baghdad",
+  "Asia/Gaza",
+  "Asia/Hebron",
+  "Africa/Nouakchott",
+  "Africa/Mogadishu",
+  "Africa/Djibouti",
+  "Indian/Comoro"
+]);
+
+function regionFromTag(tag: string): string | null {
+  const normalized = tag.trim().replace("_", "-");
+  const parts = normalized.split("-");
+  return parts[1]?.toUpperCase() ?? null;
 }
 
-function currencyFromTag(tag: string): CurrencyCode | null {
-  const code = tag.toLowerCase();
-  if (code.includes("-ma") || code.startsWith("ar")) return "MAD";
-  return null;
+function isMorocco(region: string | null, timezone: string | null): boolean {
+  return region === "MA" || timezone === "Africa/Casablanca";
 }
 
-export function detectLocaleAndCurrency(): { locale: Locale; currency: CurrencyCode } {
-  if (typeof window === "undefined") {
-    return { locale: "ar", currency: "MAD" };
-  }
+function isArabRegion(region: string | null, timezone: string | null): boolean {
+  if (region && ARAB_COUNTRY_CODES.has(region)) return true;
+  if (timezone && ARAB_TIMEZONES.has(timezone)) return true;
+  return false;
+}
 
+function readTimezone(): string | null {
   try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (tz === "Africa/Casablanca") {
-      return { locale: "ar", currency: "MAD" };
-    }
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
   } catch {
-    /* ignore */
+    return null;
+  }
+}
+
+function detectMarket(region: string | null, timezone: string | null): Market {
+  if (isMorocco(region, timezone)) return "morocco";
+  if (isArabRegion(region, timezone)) return "arab";
+  return "international";
+}
+
+export type DetectResult = {
+  locale: Locale;
+  currency: CurrencyCode;
+  arabicVariant: ArabicVariant;
+  market: Market;
+};
+
+function resultForMarket(market: Market, preferredLocale?: Locale): DetectResult {
+  const currency = currencyForMarket(market);
+  if (market === "morocco") {
+    const locale = preferredLocale === "en" ? "en" : "ar";
+    return { locale, currency, arabicVariant: "ma", market };
+  }
+  if (market === "arab") {
+    return { locale: "ar", currency, arabicVariant: "standard", market };
+  }
+  return { locale: "en", currency, arabicVariant: "standard", market };
+}
+
+export function detectLocaleAndCurrency(): DetectResult {
+  if (typeof window === "undefined") {
+    return resultForMarket("morocco");
   }
 
+  const timezone = readTimezone();
   const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
+
+  let market: Market | null = null;
+  let preferredLocale: Locale | undefined;
+
   for (const raw of langs) {
-    const locale = localeFromTag(raw);
-    if (locale && SUPPORTED.includes(locale)) {
-      const currency = currencyFromTag(raw) ?? currencyForLocale(locale);
-      return { locale, currency };
-    }
+    const region = regionFromTag(raw);
+    if (!market) market = detectMarket(region, timezone);
+
+    const lang = raw.trim().toLowerCase().replace("_", "-").split("-")[0];
+    if (lang === "en") preferredLocale = "en";
+    if (lang === "ar") preferredLocale = "ar";
   }
 
-  return { locale: "en", currency: "MAD" };
+  if (!market) market = detectMarket(null, timezone);
+  return resultForMarket(market, preferredLocale);
 }
