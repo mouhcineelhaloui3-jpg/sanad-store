@@ -15,12 +15,6 @@ const matches: Record<
     { home: "Man City", away: "Liverpool", league: "Premier League", score: "1 - 1", min: "HT" },
     { home: "PSG", away: "Bayern", league: "Champions League", score: "0 - 0", min: "23'" }
   ],
-  ar: [
-    { home: "🇲🇦 المغرب", away: "🇧🇷 البرازيل", league: "كأس العالم FIFA 2026™", score: "2 - 1", min: "78'" },
-    { home: "ريال مدريد", away: "برشلونة", league: "الدوري الإسباني", score: "2 - 1", min: "67'" },
-    { home: "مان سيتي", away: "ليفربول", league: "الدوري الإنجليزي", score: "1 - 1", min: "HT" },
-    { home: "PSG", away: "بايرن", league: "دوري أبطال أوروبا", score: "0 - 0", min: "23'" }
-  ],
   en: [
     { home: "🇲🇦 Morocco", away: "🇧🇷 Brazil", league: "FIFA World Cup 2026™", score: "2 - 1", min: "78'" },
     { home: "Real Madrid", away: "Barcelona", league: "La Liga", score: "2 - 1", min: "67'" },

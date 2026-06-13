@@ -21,12 +21,12 @@ export function organizationJsonLd(options: {
     email: options.email,
     logo: options.logoUrl ? absoluteUrl(options.logoUrl) : absoluteUrl("/opengraph-image"),
     areaServed: { "@type": "Country", name: "Morocco" },
-    inLanguage: ["ar-MA", "ar", "en"],
+    inLanguage: ["ar-MA", "en"],
     ...(sameAs.length ? { sameAs } : {}),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      availableLanguage: ["Moroccan Arabic", "Arabic", "English"],
+      availableLanguage: ["Moroccan Arabic", "English"],
       ...(options.whatsappNumber
         ? { telephone: `+${options.whatsappNumber.replace(/\D/g, "")}` }
         : {})
@@ -41,7 +41,7 @@ export function websiteJsonLd(options: { name: string; description: string }) {
     name: options.name,
     description: options.description,
     url: absoluteUrl("/"),
-    inLanguage: ["ar-MA", "ar", "en"],
+    inLanguage: ["ar-MA", "en"],
     publisher: { "@type": "Organization", name: options.name }
   };
 }

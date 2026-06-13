@@ -1,4 +1,4 @@
-import { LOCALE_BCP47, type Locale, type Market } from "./localized";
+import { LOCALE_BCP47, type Locale } from "./localized";
 
 export type CurrencyCode = "MAD" | "EUR" | "USD" | "GBP";
 
@@ -10,9 +10,9 @@ const RATES_FROM_MAD: Record<CurrencyCode, number> = {
   GBP: 0.078
 };
 
-/** Morocco: dirham. All other markets: US dollars. */
-export function currencyForMarket(market: Market): CurrencyCode {
-  return market === "morocco" ? "MAD" : "USD";
+/** Moroccan language → dirham. English → US dollars. */
+export function currencyForLocale(locale: Locale): CurrencyCode {
+  return locale === "en" ? "USD" : "MAD";
 }
 
 export function convertFromMad(amountMad: number, currency: CurrencyCode): number {
