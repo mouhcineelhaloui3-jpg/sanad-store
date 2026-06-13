@@ -159,7 +159,7 @@ export function buildPageMetadata(options: PageMetadataInput): Metadata {
     title: options.title,
     description:
       options.description?.trim() ||
-      "SANAD IPTV — IPTV Morocco subscription: 100,000+ channels, 4K sports, movies, free trial.",
+      "SANAD IPTV — IPTV Morocco subscription: 115,000+ channels, 120,000+ VOD, 4K sports, free trial.",
     keywords: options.keywords ? parseKeywords(options.keywords) : undefined,
     alternates: { canonical },
     openGraph: {

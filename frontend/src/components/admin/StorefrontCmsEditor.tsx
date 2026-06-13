@@ -370,7 +370,7 @@ export function StorefrontCmsEditor() {
         )}
 
         {tab === "movies" && movies && (
-          <AdminCard title="Movies (+200K)">
+          <AdminCard title="Movies (+120K VOD)">
             <div className="grid gap-4 md:grid-cols-2">
               <TextField
                 label="Total count"
@@ -380,7 +380,7 @@ export function StorefrontCmsEditor() {
                   update({
                     homepage: {
                       ...homepage,
-                      movies: { ...movies, totalCount: Number(v) || 200000 }
+                      movies: { ...movies, totalCount: Number(v) || 120000 }
                     }
                   })
                 }

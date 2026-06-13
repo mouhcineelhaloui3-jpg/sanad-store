@@ -8,8 +8,10 @@ import { mergePlansWithCms } from "@/lib/cms/merge-plans";
 import { formatPlanPrice } from "@/lib/i18n/currency";
 import type { Plan } from "@/lib/plans";
 
+import type { PlanSlug } from "@/lib/plan-routes";
+
 type PlanLandingConfig = {
-  slug: "plan-3-months" | "plan-6-months" | "plan-12-months";
+  slug: PlanSlug;
   path: string;
   title: string;
   description: string;

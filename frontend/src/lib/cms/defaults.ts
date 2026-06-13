@@ -3,14 +3,14 @@ import { defaultMoviesSection } from "./default-movies";
 import { defaultSiteLayout } from "./layout-styles";
 
 export const defaultStoreContent = (): StoreContent => ({
-  version: 6,
+  version: 7,
   updatedAt: new Date().toISOString(),
   layout: defaultSiteLayout(),
   branding: {
     brandName: "SANAD IPTV",
     tagline: {
-      ar: "تفرج بلا حدود — أكثر من 100,000 قناة",
-      en: "Watch without limits — 100,000+ channels"
+      ar: "تفرج بلا حدود — أكثر من 115,000 قناة",
+      en: "Watch without limits — 115,000+ channels"
     },
     primaryColor: "#00E5FF",
     secondaryColor: "#00FF95",
@@ -27,6 +27,7 @@ export const defaultStoreContent = (): StoreContent => ({
       { label: { ar: "⚽ الرياضة", en: "⚽ Sports" }, href: "#sports" },
       { label: { ar: "🎬 الأفلام", en: "🎬 Movies" }, href: "#movies" },
       { label: { ar: "الباقات", en: "Plans" }, href: "#plans" },
+      { label: { ar: "المدونة", en: "Blog" }, href: "/blog" },
       { label: { ar: "التجربة المجانية", en: "Free Trial" }, href: "#trial" },
       { label: { ar: "المميزات", en: "Features" }, href: "#features" },
       { label: { ar: "آراء العملاء", en: "Reviews" }, href: "#testimonials" },
@@ -56,13 +57,14 @@ export const defaultStoreContent = (): StoreContent => ({
     copyright: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" }
   },
   seo: {
-    title: "SANAD IPTV | تفرج بلا حدود — +100,000 قناة",
+    title: "SANAD IPTV | اشتراك IPTV المغرب — +115,000 قناة 4K/UHD",
     description:
-      "اشتراك SANAD IPTV — أكثر من 100,000 قناة مباشرة، أفلام ومسلسلات HD و4K، بطولات رياضية عالمية. تجربة مجانية ودعم واتساب.",
+      "اشتراك IPTV SANAD — +115,000 قناة مباشرة، 120,000+ فيلم ومسلسل VOD، رياضة 4K، Botola Pro، beIN. تفعيل فوري خلال 5 دقائق، تجربة مجانية، دعم واتساب 24/7.",
     keywords:
-      "IPTV, SANAD IPTV, اشتراك IPTV, قنوات مباشرة, FIFA World Cup 2026, كأس العالم 2026, Champions League, La Liga, Premier League, Botola, CAN, مباريات مباشرة, 4K, المغرب",
-    ogTitle: "SANAD IPTV | تفرج بلا حدود",
-    ogDescription: "أكثر من 100,000 قناة مباشرة وأفضل الأفلام والمسلسلات بجودة HD و4K.",
+      "IPTV, SANAD IPTV, اشتراك IPTV, abonnement IPTV Maroc, IPTV المغرب, +115000 قناة, IPTV 4K, IPTV Smarters, TiviMate, قنوات مباشرة, FIFA World Cup 2026, كأس العالم 2026, Champions League, Botola Pro, beIN Sports, CAN, مباريات مباشرة, VOD, المغرب",
+    ogTitle: "SANAD IPTV | أحسن IPTV فالمغرب — +115,000 قناة",
+    ogDescription:
+      "+115,000 قناة مباشرة، 120,000+ VOD، رياضة 4K، تفعيل فوري — تجربة مجانية ودعم واتساب 24/7.",
     ogImageUrl: "",
     googleSiteVerification: ""
   },
@@ -75,10 +77,10 @@ export const defaultStoreContent = (): StoreContent => ({
   },
   homepage: {
     hero: {
-      headline: { ar: "🔥 SANAD IPTV\nتفرج بلا حدود", en: "🔥 SANAD IPTV\nWatch Without Limits" },
+      headline: { ar: "SANAD IPTV\nأحسن IPTV فالمغرب", en: "SANAD IPTV\nBest IPTV in Morocco" },
       subtitle: {
-        ar: "استمتع بأكثر من 100,000 قناة مباشرة وأفضل الأفلام والمسلسلات والبطولات الرياضية العالمية بجودة HD و FHD و 4K.",
-        en: "Enjoy 100,000+ live channels, the best movies, series, and global sports in HD, FHD, and 4K quality."
+        ar: "اشتراك IPTV 4K و HD — +115,000 قناة مباشرة، 120,000+ فيلم ومسلسل VOD، رياضة مباشرة (Botola Pro، beIN، Champions League). تفعيل فوري خلال 5 دقائق على Smart TV، Android، iPhone و Fire Stick.",
+        en: "4K & HD IPTV subscription — 115,000+ live channels, 120,000+ VOD titles, live sports (Botola Pro, beIN, Champions League). Instant activation within 5 minutes on Smart TV, Android, iPhone & Fire Stick."
       },
       bannerText: {
         ar: "🏆 تابع كأس العالم FIFA 2026™ وأقوى البطولات مباشرة بدون تقطيع وبأعلى جودة.",
@@ -88,8 +90,8 @@ export const defaultStoreContent = (): StoreContent => ({
       secondaryCtaLabel: { ar: "🔥 اشترك دابا", en: "🔥 Subscribe Now" },
       whatsappCtaLabel: { ar: "💬 تواصل عبر واتساب", en: "💬 WhatsApp" },
       trustLine: {
-        ar: "+100,000 قناة مباشرة",
-        en: "+100,000 live channels"
+        ar: "⭐ أحسن IPTV المغرب 2026 — تقييم 4.9/5",
+        en: "⭐ Best IPTV Morocco 2026 — Rated 4.9/5"
       }
     },
     sections: {
@@ -193,11 +195,12 @@ export const defaultStoreContent = (): StoreContent => ({
     movies: defaultMoviesSection(),
     featuresTitle: { ar: "المميزات", en: "Features" },
     featuresSubtitle: {
-      ar: "كل ما تحتاجه لتجربة بث ممتازة",
-      en: "Everything you need for an amazing streaming experience"
+      ar: "SANAD IPTV — +115,000 قناة، 120,000+ VOD، بث 4K مستقر 99.9%، تفعيل فوري",
+      en: "SANAD IPTV — 115,000+ channels, 120,000+ VOD, 99.9% stable 4K streaming, instant activation"
     },
     features: [
-      { icon: "📺", label: { ar: "أكثر من 100,000 قناة", en: "100,000+ channels" } },
+      { icon: "📺", label: { ar: "115,000+ قناة مباشرة", en: "115,000+ live channels" } },
+      { icon: "🎬", label: { ar: "120,000+ أفلام ومسلسلات VOD", en: "120,000+ movies & series VOD" } },
       { icon: "⚽", label: { ar: "جميع القنوات الرياضية العالمية", en: "All global sports channels" } },
       { icon: "🎬", label: { ar: "أفلام ومسلسلات محدثة يومياً", en: "Daily updated movies & series" } },
       { icon: "📡", label: { ar: "جودة HD", en: "HD quality" } },
@@ -212,10 +215,10 @@ export const defaultStoreContent = (): StoreContent => ({
       { icon: "💻", label: { ar: "متوافق مع PC", en: "PC compatible" } },
       { icon: "🔥", label: { ar: "متوافق مع Fire Stick", en: "Fire Stick compatible" } }
     ],
-    plansTitle: { ar: "الباقات", en: "Plans" },
+    plansTitle: { ar: "اختر باقة اشتراك IPTV", en: "Choose Your IPTV Subscription" },
     plansSubtitle: {
-      ar: "اختار الباقة اللي تناسبك — الأسعار قابلة للتعديل من لوحة التحكم",
-      en: "Choose the plan that fits you — prices editable from admin panel"
+      ar: "باقات 3، 6 و 12 شهر — +115,000 قناة، تفعيل فوري، بدون رسوم مخفية",
+      en: "3, 6 & 12-month plans — 115,000+ channels, instant activation, no hidden fees"
     },
     howItWorks: {
       title: { ar: "كيفاش تخدم؟", en: "How It Works" },
@@ -269,9 +272,11 @@ export const defaultStoreContent = (): StoreContent => ({
       ]
     },
     stats: [
-      { prefix: "+", value: 100000, suffix: "", label: { ar: "قناة", en: "channels" } },
-      { prefix: "+", value: 200000, suffix: "", label: { ar: "فيلم", en: "movies" } },
-      { prefix: "+", value: 10000, suffix: "", label: { ar: "مسلسل", en: "series" } }
+      { prefix: "+", value: 115000, suffix: "", label: { ar: "قناة مباشرة", en: "live channels" } },
+      { prefix: "+", value: 120000, suffix: "", label: { ar: "فيلم ومسلسل VOD", en: "VOD titles" } },
+      { prefix: "+", value: 25000, suffix: "", label: { ar: "مشترك", en: "subscribers" } },
+      { prefix: "", value: 99, suffix: "%", label: { ar: "استقرار البث", en: "uptime" } },
+      { prefix: "", value: 24, suffix: "/7", label: { ar: "دعم واتساب", en: "WhatsApp support" } }
     ],
     testimonialsTitle: { ar: "آراء العملاء", en: "Customer Reviews" },
     testimonialsSubtitle: {
@@ -375,8 +380,50 @@ export const defaultStoreContent = (): StoreContent => ({
       {
         question: { ar: "واش كاين دعم تقني؟", en: "Is there technical support?" },
         answer: {
-          ar: "نعم، فريق الدعم متاح عبر واتساب باش يساعدك فالتثبيت و أي مشكل.",
-          en: "Yes, our support team is available on WhatsApp to help with setup and any issues."
+          ar: "نعم، فريق الدعم متاح عبر واتساب 24/7 باش يساعدك فالتثبيت و أي مشكل — جواب فـ 30 دقيقة.",
+          en: "Yes, our support team is available on WhatsApp 24/7 to help with setup and any issues — reply within 30 minutes."
+        }
+      },
+      {
+        question: { ar: "علاش SANAD IPTV أحسن IPTV فالمغرب؟", en: "Why is SANAD IPTV the best IPTV in Morocco?" },
+        answer: {
+          ar: "SANAD IPTV كتوفر +115,000 قناة، 120,000+ VOD، بث 4K مستقر 99.9%، تفعيل فوري خلال 5 دقائق، ودعم واتساب بالدارجة والعربية.",
+          en: "SANAD IPTV offers 115,000+ channels, 120,000+ VOD, 99.9% stable 4K streaming, 5-minute activation, and WhatsApp support in Arabic and Darija."
+        }
+      },
+      {
+        question: { ar: "شحال كتاخد التفعيل؟", en: "How long does activation take?" },
+        answer: {
+          ar: "التفعيل فوري — من بعد الدفع غادي نرسل ليك Xtream Codes أو M3U عبر واتساب فـ أقل من 5 دقائق.",
+          en: "Instant activation — after payment we send Xtream codes or M3U via WhatsApp in under 5 minutes."
+        }
+      },
+      {
+        question: { ar: "واش كاين Replay TV؟", en: "Is Replay TV included?" },
+        answer: {
+          ar: "نعم، Replay TV مدمج فجميع الباقات. باقة 6 و 12 شهر كتشمل Replay 7 أيام.",
+          en: "Yes, Replay TV is included in all plans. 6 and 12-month plans include 7-day Replay."
+        }
+      },
+      {
+        question: { ar: "شنو سرعة الإنترنت اللي خاصني لل 4K؟", en: "What internet speed do I need for 4K?" },
+        answer: {
+          ar: "لل HD خاصك 10 Mbps على الأقل. لل 4K ننصحو ب 25 Mbps+ عبر Wi-Fi 5GHz أو Ethernet.",
+          en: "For HD you need at least 10 Mbps. For 4K we recommend 25 Mbps+ over 5GHz Wi-Fi or Ethernet."
+        }
+      },
+      {
+        question: { ar: "واش نقدر نخدم الاشتراك فـ أكثر من جهاز؟", en: "Can I use my subscription on multiple devices?" },
+        answer: {
+          ar: "كل باقة كتخدم على جهاز واحد. إذا بغيتي جهازين، تواصل معنا عبر واتساب باش نعطيوك عرض خاص.",
+          en: "Each plan works on one device. For two devices, contact us on WhatsApp for a special offer."
+        }
+      },
+      {
+        question: { ar: "كيفاش نجدد الاشتراك؟", en: "How do I renew my subscription?" },
+        answer: {
+          ar: "تواصل معنا عبر واتساب قبل ما ينتهي الاشتراك — غادي نجددو ليك بنفس البيانات أو نعطيوك جديدة.",
+          en: "Contact us on WhatsApp before expiry — we'll renew with the same credentials or provide new ones."
         }
       }
     ]
@@ -384,6 +431,7 @@ export const defaultStoreContent = (): StoreContent => ({
   plans: [
     { slug: "plan-3-months", enabled: true },
     { slug: "plan-6-months", enabled: true, highlighted: true },
-    { slug: "plan-12-months", enabled: true }
+    { slug: "plan-12-months", enabled: true },
+    { slug: "plan-2-screens", enabled: true }
   ]
 });

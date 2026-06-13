@@ -46,7 +46,7 @@ export const LazyIptvFeatures = lazyNamed(
 export const LazyIptvPlans = lazyNamed(
   () => import("@/components/iptv/IptvPlans"),
   "IptvPlans",
-  { ssr: false }
+  { ssr: true }
 );
 
 export const LazyIptvHowItWorks = lazyNamed(
@@ -76,13 +76,13 @@ export const LazyIptvTestimonials = lazyNamed(
 export const LazyIptvStats = lazyNamed(
   () => import("@/components/iptv/IptvStats"),
   "IptvStats",
-  { ssr: false }
+  { ssr: true }
 );
 
 export const LazyIptvFaq = lazyNamed(
   () => import("@/components/iptv/IptvFaq"),
   "IptvFaq",
-  { ssr: false }
+  { ssr: true }
 );
 
 export const LazyIptvContact = lazyNamed(

@@ -23,7 +23,7 @@ export default function Image() {
         <div style={{ fontSize: 28, color: "#00E5FF", marginBottom: 16 }}>🔥 IPTV Subscriptions</div>
         <div style={{ fontSize: 88, fontWeight: 800, lineHeight: 1.05 }}>SANAD IPTV</div>
         <div style={{ fontSize: 34, marginTop: 24, lineHeight: 1.4, maxWidth: 820, opacity: 0.95 }}>
-          Watch without limits — 100,000+ channels in HD, FHD & 4K
+          Watch without limits — 115,000+ channels & 120,000+ VOD in HD, FHD & 4K
         </div>
         <div style={{ marginTop: 48, fontSize: 24, color: "#00FF95" }}>Free trial available</div>
       </div>

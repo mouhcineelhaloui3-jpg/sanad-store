@@ -1,3 +1,5 @@
+import type { PlanSlug } from "@/lib/plan-routes";
+
 export type ContentBlock = {
   heading: string;
   paragraphs: string[];
@@ -13,7 +15,7 @@ export type ProgrammaticPage = {
   contentBlocks?: ContentBlock[];
   faqs: ReadonlyArray<{ question: string; answer: string }>;
   relatedSlugs: string[];
-  planSlug?: "plan-3-months" | "plan-6-months" | "plan-12-months";
+  planSlug?: PlanSlug;
 };
 
 export const programmaticPages: Record<string, ProgrammaticPage> = {
@@ -21,7 +23,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
     slug: "iptv-maroc",
     title: "IPTV المغرب — اشتراك SANAD IPTV",
     description:
-      "أحسن IPTV فالمغرب: +100K قناة، رياضة 4K، أفلام ومسلسلات. تفعيل فوري ودعم واتساب 24/7.",
+      "أحسن IPTV فالمغرب: +115K قناة، 120K+ VOD، رياضة 4K. تفعيل فوري خلال 5 دقائق ودعم واتساب 24/7.",
     subtitle: "خدمة IPTV موثوقة للمغاربة — Botola Pro، beIN، Netflix-style VOD.",
     keywords: "IPTV Maroc, abonnement IPTV Maroc, SANAD IPTV, قنوات مغربية",
     sections: [
@@ -49,9 +51,9 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       {
         heading: "أسعار IPTV فالمغرب — باقات SANAD",
         paragraphs: [
-          "باقة 3 أشهر: 150 د.م. — مثالية للتجربة الأولى.",
-          "باقة 6 أشهر: 250 د.م. — الأكثر اختياراً (أحسن rapport qualité/prix).",
-          "باقة سنة: 400 د.م. — أفضل قيمة للاستعمال اليومي.",
+          "باقة بداية 3 أشهر: 150 د.م. — مثالية للتجربة الأولى.",
+          "باقة راحة 6 أشهر: 250 د.م. — الأكثر اختياراً (+115K قناة، Replay 7 أيام).",
+          "باقة مميز 12 شهر: 400 د.م. — أفضل قيمة (+115K قناة، 120K+ VOD، ضمان 30 يوم).",
           "التفعيل فوري عبر واتساب بعد الدفع — ما كاينش انتظار طويل."
         ]
       }
@@ -67,7 +69,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
     slug: "iptv-smart-tv",
     title: "IPTV Smart TV — Samsung, LG, Android TV",
     description: "ثبت IPTV على Smart TV: Smart IPTV، SS IPTV، TiviMate. دليل SANAD IPTV.",
-    subtitle: "خطوات بسيطة باش تشوف +100K قناة على التلفاز الذكي.",
+    subtitle: "خطوات بسيطة باش تشوف +115K قناة على التلفاز الذكي.",
     keywords: "IPTV Smart TV, Samsung IPTV, LG IPTV, TiviMate Maroc",
     sections: [
       "حمّل Smart IPTV أو SS IPTV من متجر التطبيقات.",
@@ -229,11 +231,11 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
   "iptv-films": {
     slug: "iptv-films",
     title: "IPTV أفلام — VOD و 4K Movies",
-    description: "+200K فيلم IPTV: أحدث الأفلام، VOD، 4K. SANAD IPTV المغرب.",
+    description: "+120K VOD IPTV: أحدث الأفلام والمسلسلات، 4K. SANAD IPTV المغرب.",
     subtitle: "مكتبة أفلام ضخمة محدّثة يومياً.",
     keywords: "IPTV movies, VOD IPTV, 4K movies IPTV, أفلام IPTV",
     sections: [
-      "+200,000 فيلم ووثائقي.",
+      "+120,000 فيلم ومسلسل VOD.",
       "جودة HD، FHD، و 4K.",
       "تصنيفات: Action، Drama، Arabic، Netflix-style."
     ],

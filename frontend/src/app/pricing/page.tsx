@@ -9,11 +9,12 @@ import { getStoreContent } from "@/lib/cms/server";
 import { mergePlansWithCms } from "@/lib/cms/merge-plans";
 import { organizationJsonLd, plansOfferCatalogJsonLd } from "@/lib/seo/structured-data";
 import { formatPlanPrice } from "@/lib/i18n/currency";
+import { planLandingPath } from "@/lib/plan-routes";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "أسعار IPTV المغرب — باقات SANAD IPTV",
+  title: "أسعار IPTV المغرب — باقات SANAD IPTV | +115,000 قناة",
   description:
-    "باقات IPTV SANAD: 3 أشهر، 6 أشهر، وسنة كاملة. قنوات، أفلام، رياضة 4K، تفعيل فوري عبر واتساب.",
+    "باقات IPTV SANAD: بداية 3 أشهر، راحة 6 أشهر، مميز 12 شهر. +115,000 قناة، 120,000+ VOD، رياضة 4K، تفعيل فوري عبر واتساب.",
   path: "/pricing",
   keywords: "أسعار IPTV, abonnement IPTV Maroc, SANAD IPTV, IPTV 4K"
 });
@@ -37,22 +38,16 @@ export default async function PricingPage() {
       telegramUrl: content.footer.telegramUrl
     }),
     plansOfferCatalogJsonLd(plans, content.branding.brandName),
-    ...plans.map((plan) => {
-      const landingPath =
-        plan.slug === "plan-3-months"
-          ? "/iptv-3-months"
-          : plan.slug === "plan-6-months"
-            ? "/iptv-6-months"
-            : "/iptv-12-months";
-      return productJsonLd({
+    ...plans.map((plan) =>
+      productJsonLd({
         name: plan.name.ar,
         description: plan.features.map((f) => f.ar).join(" • "),
         price: plan.price,
         currency: plan.currency,
-        url: landingPath,
+        url: planLandingPath(plan.slug),
         brand: content.branding.brandName
-      });
-    })
+      })
+    )
   ];
 
   return (
@@ -64,17 +59,12 @@ export default async function PricingPage() {
           { label: "الأسعار" }
         ]}
         title="أسعار اشتراك IPTV"
-        subtitle="اختر الباقة المناسبة ليك — تفعيل سريع، دعم واتساب، وجودة HD / 4K."
+        subtitle="اختر باقة اشتراك IPTV — +115,000 قناة، 120,000+ VOD، تفعيل سريع، دعم واتساب 24/7، جودة HD / 4K."
       >
-        <div className="not-prose grid gap-4 md:grid-cols-3">
+        <div className="not-prose grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan) => {
             const price = formatPlanPrice(plan.price, "MAD", "ar-ma");
-            const landingPath =
-              plan.slug === "plan-3-months"
-                ? "/iptv-3-months"
-                : plan.slug === "plan-6-months"
-                  ? "/iptv-6-months"
-                  : "/iptv-12-months";
+            const landingPath = planLandingPath(plan.slug);
             return (
               <div
                 key={plan.slug}

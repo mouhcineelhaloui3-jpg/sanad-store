@@ -1,6 +1,5 @@
 "use client";
 
-import { m  } from "@/components/motion";
 import { Check } from "lucide-react";
 import type { LocalizedText } from "@/lib/i18n/localized";
 import { t } from "@/lib/i18n/localized";
@@ -9,6 +8,11 @@ import { ui } from "@/lib/i18n/ui-strings";
 import type { Plan } from "@/lib/plans";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
+
+const paymentNote: LocalizedText = {
+  ar: "دفع واحد · بلا اشتراك شهري",
+  en: "One-time payment · No monthly subscription"
+};
 
 export function IptvPlans({
   title,
@@ -22,6 +26,7 @@ export function IptvPlans({
   const locale = useLocaleStore((s) => s.locale);
   const currency = useLocaleStore((s) => s.currency);
   const openOrder = useIptvModalStore((s) => s.openOrder);
+  const cols = plans.length >= 4 ? "sm:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-3";
 
   return (
     <section id="plans" className="iptv-section-spacing px-4">
@@ -32,17 +37,13 @@ export function IptvPlans({
           <p className="section-subtitle mx-auto">{t(subtitle, locale)}</p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {plans.map((plan, i) => {
+        <div className={`mt-12 grid gap-6 ${cols}`}>
+          {plans.map((plan) => {
             const price = formatPlanPrice(plan.price, currency, locale);
             return (
-              <m.div
+              <article
                 key={plan.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className={`relative flex flex-col rounded-2xl border p-8 ${
+                className={`relative flex flex-col rounded-2xl border p-6 lg:p-8 ${
                   plan.highlighted
                     ? "border-neon-cyan/50 bg-gradient-to-b from-neon-cyan/10 to-transparent shadow-glow"
                     : "glass-card"
@@ -56,18 +57,19 @@ export function IptvPlans({
 
                 <h3 className="text-xl font-black text-white">{t(plan.name, locale)}</h3>
                 <p className="mt-1 text-sm text-white/75">{t(plan.duration, locale)}</p>
+                <p className="mt-1 text-xs font-bold text-white/55">{t(paymentNote, locale)}</p>
 
-                <div className="my-6">
-                  <span className="text-4xl font-black text-neon-cyan">{price.primary}</span>
+                <div className="my-5">
+                  <span className="text-3xl font-black text-neon-cyan lg:text-4xl">{price.primary}</span>
                   {price.madNote ? (
                     <p className="mt-1 text-xs font-bold text-white/70">{price.madNote}</p>
                   ) : null}
                 </div>
 
-                <ul className="mb-8 flex-1 space-y-3">
+                <ul className="mb-6 flex-1 space-y-2.5">
                   {plan.features.map((f) => (
-                    <li key={f.ar} className="flex items-center gap-2 text-sm text-white/85">
-                      <Check className="h-4 w-4 shrink-0 text-neon-green" />
+                    <li key={f.ar} className="flex items-start gap-2 text-sm text-white/85">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-neon-green" />
                       {t(f, locale)}
                     </li>
                   ))}
@@ -80,7 +82,7 @@ export function IptvPlans({
                 >
                   {ui("subscribeNow", locale)}
                 </button>
-              </m.div>
+              </article>
             );
           })}
         </div>

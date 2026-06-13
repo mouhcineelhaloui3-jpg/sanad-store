@@ -4,13 +4,15 @@ import { PlanLandingPage, buildPlanLandingMetadata } from "@/components/seo/Plan
 const config = {
   slug: "plan-12-months" as const,
   path: "/iptv-12-months",
-  title: "اشتراك IPTV سنة كاملة",
-  description: "باقة IPTV 12 شهر — أفضل قيمة. قنوات، أفلام، رياضة 4K طوال السنة.",
-  subtitle: "وفّر أكثر مع الاشتراك السنوي — أفضل قيمة.",
+  title: "اشتراك IPTV 12 شهر — باقة مميز | +115,000 قناة SANAD",
+  description:
+    "باقة IPTV مميز 12 شهر — أفضل قيمة. 115,000+ قناة، 120,000+ VOD، رياضة 4K، دعم أولوية 24/7، ضمان 30 يوم.",
+  subtitle: "وفّر أكثر مع الاشتراك السنوي — FIFA 2026™ وكل البطولات طوال السنة.",
   bullets: [
-    "سنة كاملة بث بدون انقطاع",
-    "أفضل قيمة مقابل السعر",
-    "دعم تقني أولوية",
+    "115,000+ قناة — 120,000+ VOD",
+    "أفضل قيمة مقابل السعر — سنة كاملة",
+    "دعم واتساب أولوية 24/7",
+    "Replay TV 7 أيام — جودة 4K/8K",
     "FIFA World Cup 2026™ وكل البطولات"
   ]
 };

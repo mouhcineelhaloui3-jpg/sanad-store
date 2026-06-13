@@ -73,6 +73,10 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       },
       {
+        source: "/((?!admin|api).*)",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=60, stale-while-revalidate=300" }]
+      },
+      {
         source: "/sports/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" }]
       }

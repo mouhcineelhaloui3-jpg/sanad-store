@@ -1,12 +1,12 @@
 import type { MoviesSection } from "./types";
 
 export const defaultMoviesSection = (): MoviesSection => ({
-  title: { ar: "🎬 +200,000 فيلم ومسلسل", en: "🎬 200,000+ Movies & Series" },
+  title: { ar: "🎬 +120,000 فيلم ومسلسل", en: "🎬 120,000+ Movies & Series" },
   subtitle: {
     ar: "أحدث إصدارات 2025 و 2026 — عالمي، عربي، تركي، Netflix — محدث يومياً بجودة 4K",
     en: "Latest 2025 & 2026 releases — global, Arabic, Turkish, Netflix — updated daily in 4K"
   },
-  totalCount: 200000,
+  totalCount: 120000,
   ctaLabel: { ar: "🍿 بدا التفرج دابا", en: "🍿 Start Watching Now" },
   genres: [
     { ar: "أكشن", en: "Action" },

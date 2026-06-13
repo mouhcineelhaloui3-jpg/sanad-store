@@ -86,7 +86,7 @@ export function ExitIntentModal() {
         <h2 id="exit-title" className="mt-2 text-2xl font-black text-white">
           جرّب SANAD IPTV مجاناً قبل المغادرة
         </h2>
-        <p className="mt-3 text-sm text-white/70">+100K قناة • رياضة 4K • تفعيل فوري</p>
+        <p className="mt-3 text-sm text-white/70">+115K قناة • +120K VOD • رياضة 4K • تفعيل 5 دقائق</p>
         <button type="button" onClick={onCta} className="btn-gold mt-6 w-full">
           <MessageCircle className="inline h-5 w-5" /> ابدأ التجربة المجانية
         </button>

@@ -22,9 +22,9 @@ const IptvHeroScreen = dynamic(
 
 const heroBadges = [
   { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™" },
-  { ar: "📺 +100K قناة", en: "📺 +100K channels" },
-  { ar: "🎬 +200K فيلم", en: "🎬 +200K movies" },
-  { ar: "⚡ تفعيل فوري", en: "⚡ Instant setup" }
+  { ar: "📺 +115K قناة", en: "📺 +115K channels" },
+  { ar: "🎬 +120K VOD", en: "🎬 +120K VOD" },
+  { ar: "⚡ تفعيل 5 دقائق", en: "⚡ 5-min activation" }
 ];
 
 /** Client island: CTAs + locale text + deferred TV widget */
@@ -104,7 +104,7 @@ export function IptvHeroClient({
           <div className="mt-10 max-w-xs">
             <div className="glass-card px-4 py-4 text-center">
               <p className="text-2xl font-black text-neon-cyan md:text-3xl">
-                <AnimatedCounter value={100000} prefix="+" />
+                <AnimatedCounter value={115000} prefix="+" />
               </p>
               <p className="mt-0.5 text-xs font-bold text-white/85">{ui("channels", locale)}</p>
             </div>

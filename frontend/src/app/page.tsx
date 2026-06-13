@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IptvHeroClient } from "@/components/iptv/IptvHeroClient";
+import { IptvHeroTrustCards } from "@/components/iptv/IptvHeroTrustCards";
+import { IptvSeoIntro } from "@/components/iptv/IptvSeoIntro";
 import {
   LazyIptvContact,
   LazyIptvDeviceGrid,
@@ -21,14 +23,9 @@ import { mergePlansWithCms } from "@/lib/cms/merge-plans";
 import { getStoreContent } from "@/lib/cms/server";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import {
-  aggregateRatingJsonLd,
   faqJsonLd,
   organizationJsonLd,
   plansOfferCatalogJsonLd,
-  productJsonLd,
-  reviewJsonLd,
-  serviceJsonLd,
-  webPageJsonLd,
   websiteJsonLd
 } from "@/lib/seo/structured-data";
 
@@ -64,19 +61,6 @@ export default async function HomePage() {
     answer: f.answer.ar
   }));
 
-  const featuredPlan = plans.find((p) => p.highlighted) ?? plans[0];
-  const reviewSchemas = homepage.testimonials
-    .filter((t) => t.visible)
-    .slice(0, 3)
-    .map((t) =>
-      reviewJsonLd({
-        itemName: `${branding.brandName} IPTV`,
-        author: t.name.ar,
-        rating: t.rating,
-        reviewBody: t.comment.ar
-      })
-    );
-
   const jsonLd = [
     organizationJsonLd({
       name: branding.brandName,
@@ -87,25 +71,7 @@ export default async function HomePage() {
       telegramUrl: footer.telegramUrl
     }),
     websiteJsonLd({ name: branding.brandName, description: seo.description, searchUrl: "/search?q={search_term_string}" }),
-    webPageJsonLd({ name: seo.title, description: seo.description }),
-    serviceJsonLd({
-      name: `${branding.brandName} IPTV`,
-      description: seo.description,
-      provider: branding.brandName
-    }),
     plansOfferCatalogJsonLd(plans, branding.brandName),
-    featuredPlan
-      ? productJsonLd({
-          name: featuredPlan.name.ar,
-          description: seo.description,
-          price: featuredPlan.price,
-          currency: featuredPlan.currency,
-          url: "/#plans",
-          brand: branding.brandName
-        })
-      : null,
-    aggregateRatingJsonLd(homepage.testimonials, branding.brandName),
-    ...reviewSchemas,
     faqJsonLd(faqsForLd)
   ].filter(Boolean) as Record<string, unknown>[];
 
@@ -118,6 +84,16 @@ export default async function HomePage() {
         whatsappNumber={footer.whatsappNumber}
         whatsappMessage={footer.whatsappMessage}
       />
+
+      <IptvHeroTrustCards />
+
+      {sections.stats ? <LazyIptvStats stats={homepage.stats} /> : null}
+
+      {sections.plans ? (
+        <LazyIptvPlans title={homepage.plansTitle} subtitle={homepage.plansSubtitle} plans={plans} />
+      ) : null}
+
+      <IptvSeoIntro />
 
       {sections.liveTicker ? <LazyIptvLiveTicker ticker={homepage.liveTicker} /> : null}
 
@@ -136,10 +112,6 @@ export default async function HomePage() {
         />
       ) : null}
 
-      {sections.plans ? (
-        <LazyIptvPlans title={homepage.plansTitle} subtitle={homepage.plansSubtitle} plans={plans} />
-      ) : null}
-
       {sections.howItWorks ? <LazyIptvHowItWorks section={homepage.howItWorks} /> : null}
       {sections.devices ? <LazyIptvDeviceGrid section={homepage.devices} /> : null}
       {sections.trial ? <LazyIptvTrial trial={homepage.trial} /> : null}
@@ -151,8 +123,6 @@ export default async function HomePage() {
           testimonials={homepage.testimonials}
         />
       ) : null}
-
-      {sections.stats ? <LazyIptvStats stats={homepage.stats} /> : null}
 
       {sections.faq ? (
         <LazyIptvFaq title={homepage.faqTitle} subtitle={homepage.faqSubtitle} faqs={homepage.faqs} />

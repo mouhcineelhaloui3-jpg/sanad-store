@@ -4,14 +4,16 @@ import { PlanLandingPage, buildPlanLandingMetadata } from "@/components/seo/Plan
 const config = {
   slug: "plan-3-months" as const,
   path: "/iptv-3-months",
-  title: "اشتراك IPTV 3 أشهر",
-  description: "باقة IPTV 3 أشهر — قنوات، أفلام، رياضة 4K، تفعيل فوري عبر واتساب.",
-  subtitle: "أحسن بداية — 3 أشهر بث مستقر ودعم سريع.",
+  title: "اشتراك IPTV 3 أشهر — باقة بداية | +115,000 قناة SANAD",
+  description:
+    "باقة IPTV بداية 3 أشهر — 115,000+ قناة، 120,000+ VOD، رياضة 4K، تفعيل فوري خلال 5 دقائق عبر واتساب.",
+  subtitle: "أحسن بداية — 3 أشهر بث مستقر 99.9% ودعم واتساب سريع.",
   bullets: [
-    "جميع القنوات الرياضية والعالمية",
-    "أفلام ومسلسلات محدثة يومياً",
-    "تفعيل فوري عبر واتساب",
-    "متوافق Smart TV، Android، iPhone"
+    "115,000+ قناة مباشرة",
+    "120,000+ أفلام ومسلسلات VOD",
+    "جودة HD و 4K — Replay TV",
+    "تفعيل خلال 5 دقائق عبر واتساب",
+    "متوافق Smart TV، Android، iPhone، Fire Stick"
   ]
 };
 
