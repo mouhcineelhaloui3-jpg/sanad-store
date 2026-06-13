@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence  } from "@/components/motion";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 import { DEVICE_OPTIONS } from "@/lib/cms/types";
@@ -76,7 +76,7 @@ export function TrialModal() {
     <AnimatePresence>
       {isOpen ? (
         <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center">
-          <motion.button
+          <m.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export function TrialModal() {
             onClick={close}
             aria-label="Close"
           />
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
@@ -136,7 +136,7 @@ export function TrialModal() {
                 {submitting ? "..." : labels.submit}
               </button>
             </form>
-          </motion.div>
+          </m.div>
         </div>
       ) : null}
     </AnimatePresence>

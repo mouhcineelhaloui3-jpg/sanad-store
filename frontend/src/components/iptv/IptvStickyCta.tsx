@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence  } from "@/components/motion";
 import { ui } from "@/lib/i18n/ui-strings";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
@@ -27,7 +27,7 @@ export function IptvStickyCta() {
   return (
     <AnimatePresence>
       {visible ? (
-        <motion.div
+        <m.div
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
@@ -41,7 +41,7 @@ export function IptvStickyCta() {
               {labels.subscribe}
             </button>
           </div>
-        </motion.div>
+        </m.div>
       ) : null}
     </AnimatePresence>
   );

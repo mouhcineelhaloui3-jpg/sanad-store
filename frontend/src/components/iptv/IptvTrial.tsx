@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import { Gift } from "lucide-react";
 import type { TrialSection } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
@@ -13,7 +13,7 @@ export function IptvTrial({ trial }: { trial: TrialSection }) {
 
   return (
     <section id="trial" className="iptv-section-spacing px-4">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -28,7 +28,7 @@ export function IptvTrial({ trial }: { trial: TrialSection }) {
         <button type="button" onClick={openTrial} className="btn-gold mt-8 min-w-[240px] text-lg">
           {t(trial.ctaLabel, locale)}
         </button>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

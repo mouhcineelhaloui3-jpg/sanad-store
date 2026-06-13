@@ -102,6 +102,46 @@ export function plansOfferCatalogJsonLd(plans: Plan[], brandName: string) {
   };
 }
 
+export function productJsonLd(options: {
+  name: string;
+  description: string;
+  price: number;
+  currency: string;
+  url: string;
+  brand: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: options.name,
+    description: options.description,
+    brand: { "@type": "Brand", name: options.brand },
+    offers: {
+      "@type": "Offer",
+      price: options.price,
+      priceCurrency: options.currency,
+      availability: "https://schema.org/InStock",
+      url: options.url
+    }
+  };
+}
+
+export function reviewJsonLd(options: {
+  itemName: string;
+  author: string;
+  rating: number;
+  reviewBody: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: { "@type": "Product", name: options.itemName },
+    author: { "@type": "Person", name: options.author },
+    reviewRating: { "@type": "Rating", ratingValue: options.rating, bestRating: 5 },
+    reviewBody: options.reviewBody
+  };
+}
+
 export function aggregateRatingJsonLd(testimonials: Testimonial[], brandName: string) {
   const visible = testimonials.filter((t) => t.visible);
   if (!visible.length) return null;
@@ -128,7 +168,7 @@ export function aggregateRatingJsonLd(testimonials: Testimonial[], brandName: st
   };
 }
 
-export function faqJsonLd(faqs: { question: string; answer: string }[]) {
+export function faqJsonLd(faqs: ReadonlyArray<{ question: string; answer: string }>) {
   if (!faqs.length) return null;
   return {
     "@context": "https://schema.org",

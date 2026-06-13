@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import { Play } from "lucide-react";
 import Image from "next/image";
 import type { SportsSection } from "@/lib/cms/types";
@@ -26,7 +26,7 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sports.events.map((event, i) => (
-            <motion.article
+            <m.article
               key={event.id}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -45,6 +45,7 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
                     src={event.imageUrl}
                     alt={t(event.title, locale)}
                     fill
+                    loading="lazy"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
@@ -85,7 +86,7 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
                   {ui("includedSub", locale)}
                 </div>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
 

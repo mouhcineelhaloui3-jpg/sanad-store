@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import type { StatItem } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
@@ -14,7 +14,7 @@ export function IptvStats({ stats }: { stats: StatItem[] }) {
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
           {stats.map((stat, i) => (
-            <motion.div
+            <m.div
               key={stat.label.ar}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -26,7 +26,7 @@ export function IptvStats({ stats }: { stats: StatItem[] }) {
                 <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
               </p>
               <p className="mt-2 text-sm font-bold text-dark-700">{t(stat.label, locale)}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

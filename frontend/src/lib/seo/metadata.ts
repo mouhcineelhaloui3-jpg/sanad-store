@@ -126,7 +126,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
   };
 }
 
-export function buildPageMetadata(options: {
+export type PageMetadataInput = {
   title: string;
   description: string;
   path: string;
@@ -135,7 +135,9 @@ export function buildPageMetadata(options: {
   ogDescription?: string;
   keywords?: string;
   noIndex?: boolean;
-}): Metadata {
+};
+
+export function buildPageMetadata(options: PageMetadataInput): Metadata {
   const canonical = absoluteUrl(options.path);
   const ogImage = resolveOgImage(options.ogImage);
   const ogTitle = options.ogTitle ?? options.title;

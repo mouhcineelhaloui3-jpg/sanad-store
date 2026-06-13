@@ -12,10 +12,10 @@ export default async function AdminDashboardPage() {
   const summary = await getAnalyticsSummary();
 
   const dashboardStats = [
-    { label: "Page Views", value: String(summary.pageViews), change: "7 days", icon: ChartNoAxesCombined },
-    { label: "Subscription Orders", value: String(summary.subscriptionOrders), change: "saved", icon: ClipboardList },
-    { label: "Trial Requests", value: String(summary.trialRequests), change: "saved", icon: Users },
-    { label: "Active Plans", value: "3", change: "IPTV", icon: Boxes }
+    { label: "Visitors", value: String(summary.uniqueSessions || summary.pageViews), change: "sessions", icon: Users },
+    { label: "Orders", value: String(summary.subscriptionOrders), change: "saved", icon: ClipboardList },
+    { label: "Conversion Rate", value: `${summary.orderConversionRate}%`, change: "orders / views", icon: ChartNoAxesCombined },
+    { label: "Revenue (MAD)", value: `${summary.revenueMAD.toLocaleString("fr-MA")}`, change: "estimated", icon: Boxes }
   ];
 
   return (

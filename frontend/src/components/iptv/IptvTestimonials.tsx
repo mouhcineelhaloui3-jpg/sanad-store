@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence  } from "@/components/motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import type { Testimonial } from "@/lib/cms/types";
 import type { LocalizedText } from "@/lib/i18n/localized";
@@ -43,7 +43,7 @@ export function IptvTestimonials({
 
         <div className="relative mt-12">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={current.id}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -58,7 +58,7 @@ export function IptvTestimonials({
               </div>
               <p className="mt-6 text-lg leading-9 text-dark-800">&ldquo;{t(current.comment, locale)}&rdquo;</p>
               <p className="mt-6 font-black text-neon-cyan">{t(current.name, locale)}</p>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
 
           <div className="mt-6 flex items-center justify-center gap-4">

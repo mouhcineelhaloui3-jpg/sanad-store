@@ -7,16 +7,16 @@ export default async function AnalyticsPage() {
   const summary = await getAnalyticsSummary();
 
   const stats = [
+    { label: "Visitors", value: String(summary.uniqueSessions) },
     { label: "Page Views", value: String(summary.pageViews) },
-    { label: "Unique Sessions", value: String(summary.uniqueSessions) },
+    { label: "Orders", value: String(summary.subscriptionOrders) },
+    { label: "Conversion Rate", value: `${summary.orderConversionRate}%` },
+    { label: "Revenue (MAD)", value: summary.revenueMAD.toLocaleString("fr-MA") },
     { label: "Unique IPs", value: String(summary.uniqueIps) },
-    { label: "Clicks Tracked", value: String(summary.clicks) },
-    { label: "Modal Opens", value: String(summary.modalOpens) },
     { label: "Leads", value: String(summary.leads) },
     { label: "Trial Submits", value: String(summary.trials) },
     { label: "WhatsApp Clicks", value: String(summary.whatsappClicks) },
-    { label: "Orders Saved", value: String(summary.subscriptionOrders) },
-    { label: "Conversion Rate", value: `${summary.conversionRate}%` }
+    { label: "Lead Conversion", value: `${summary.conversionRate}%` }
   ];
 
   return (

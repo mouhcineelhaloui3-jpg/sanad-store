@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "@/components/motion";
 import { useLocaleStore } from "@/store/localeStore";
 import { t, type Locale, type LocalizedText } from "@/lib/i18n/localized";
 
@@ -78,7 +78,7 @@ export function IptvHeroScreen() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,transparent_40%,rgba(0,245,255,0.06)_50%,transparent_60%)] animate-[shimmer_4s_ease-in-out_infinite]" />
 
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={idx}
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
@@ -136,7 +136,7 @@ export function IptvHeroScreen() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
       <p className="mt-2 text-center text-[10px] font-medium text-white/40">{slideText(ui.disclaimer, locale)}</p>

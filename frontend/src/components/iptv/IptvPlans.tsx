@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import { Check } from "lucide-react";
 import type { LocalizedText } from "@/lib/i18n/localized";
 import { t } from "@/lib/i18n/localized";
@@ -36,7 +36,7 @@ export function IptvPlans({
           {plans.map((plan, i) => {
             const price = formatPlanPrice(plan.price, currency, locale);
             return (
-              <motion.div
+              <m.div
                 key={plan.slug}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +80,7 @@ export function IptvPlans({
                 >
                   {ui("subscribeNow", locale)}
                 </button>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

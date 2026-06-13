@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import type { DevicesSection } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
@@ -19,7 +19,7 @@ export function IptvDeviceGrid({ section }: { section: DevicesSection }) {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {section.devices.map((device, i) => (
-            <motion.div
+            <m.div
               key={device.name.ar}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -31,7 +31,7 @@ export function IptvDeviceGrid({ section }: { section: DevicesSection }) {
               <span className="text-4xl">{device.icon}</span>
               <h3 className="mt-4 text-lg font-black text-white">{t(device.name, locale)}</h3>
               <p className="mt-2 text-sm leading-6 text-dark-700">{t(device.apps, locale)}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

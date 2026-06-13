@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { m } from "@/components/motion";
 import { MessageCircle } from "lucide-react";
 import type { HeroContent } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
@@ -48,7 +48,7 @@ export function IptvHero({
       <div className="pointer-events-none absolute left-1/2 top-0 hidden h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-neon-cyan/10 blur-[120px] md:block" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <motion.div
+        <m.div
           initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -114,9 +114,9 @@ export function IptvHero({
               <p className="mt-0.5 text-xs font-bold text-white/80">{ui("channels", locale)}</p>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -124,7 +124,7 @@ export function IptvHero({
         >
           <div className="absolute -inset-4 hidden rounded-3xl bg-gradient-to-r from-neon-cyan/20 to-neon-green/20 blur-2xl md:block" />
           <IptvHeroScreen />
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

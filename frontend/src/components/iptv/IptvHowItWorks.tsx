@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import type { HowItWorksSection } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
 import { useLocaleStore } from "@/store/localeStore";
@@ -21,7 +21,7 @@ export function IptvHowItWorks({ section }: { section: HowItWorksSection }) {
           <div className="pointer-events-none absolute top-12 hidden h-0.5 w-full bg-gradient-to-r from-transparent via-neon-cyan/40 to-transparent md:block" />
 
           {section.steps.map((step, i) => (
-            <motion.div
+            <m.div
               key={step.num}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ export function IptvHowItWorks({ section }: { section: HowItWorksSection }) {
               </span>
               <h3 className="mt-2 text-xl font-black text-white">{t(step.title, locale)}</h3>
               <p className="mt-3 text-sm leading-7 text-dark-800">{t(step.description, locale)}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

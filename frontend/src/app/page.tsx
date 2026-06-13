@@ -25,6 +25,8 @@ import {
   faqJsonLd,
   organizationJsonLd,
   plansOfferCatalogJsonLd,
+  productJsonLd,
+  reviewJsonLd,
   serviceJsonLd,
   webPageJsonLd,
   websiteJsonLd
@@ -58,6 +60,19 @@ export default async function HomePage() {
     answer: f.answer.ar
   }));
 
+  const featuredPlan = plans.find((p) => p.highlighted) ?? plans[0];
+  const reviewSchemas = homepage.testimonials
+    .filter((t) => t.visible)
+    .slice(0, 3)
+    .map((t) =>
+      reviewJsonLd({
+        itemName: `${branding.brandName} IPTV`,
+        author: t.name.ar,
+        rating: t.rating,
+        reviewBody: t.comment.ar
+      })
+    );
+
   const jsonLd = [
     organizationJsonLd({
       name: branding.brandName,
@@ -75,7 +90,18 @@ export default async function HomePage() {
       provider: branding.brandName
     }),
     plansOfferCatalogJsonLd(plans, branding.brandName),
+    featuredPlan
+      ? productJsonLd({
+          name: featuredPlan.name.ar,
+          description: seo.description,
+          price: featuredPlan.price,
+          currency: featuredPlan.currency,
+          url: "/#plans",
+          brand: branding.brandName
+        })
+      : null,
     aggregateRatingJsonLd(homepage.testimonials, branding.brandName),
+    ...reviewSchemas,
     faqJsonLd(faqsForLd)
   ].filter(Boolean) as Record<string, unknown>[];
 

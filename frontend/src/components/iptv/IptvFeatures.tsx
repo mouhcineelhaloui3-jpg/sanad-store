@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m  } from "@/components/motion";
 import type { FeatureItem } from "@/lib/cms/types";
 import type { LocalizedText } from "@/lib/i18n/localized";
 import { t } from "@/lib/i18n/localized";
@@ -30,7 +30,7 @@ export function IptvFeatures({
           {features.map((feature, i) => {
             const wide = i === 0 || i === 5;
             return (
-              <motion.div
+              <m.div
                 key={feature.label.ar}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export function IptvFeatures({
                 <span className="mt-3 text-base font-black text-white md:text-lg">
                   {t(feature.label, locale)}
                 </span>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { m, useMotionValue, useSpring, useTransform  } from "@/components/motion";
 import { Film, Play, Star } from "lucide-react";
 import Image from "next/image";
 import type { MoviesSection } from "@/lib/cms/types";
@@ -24,7 +24,7 @@ function MovieCard({
   const rotateY = useSpring(useTransform(x, [-80, 80], [-8, 8]));
 
   return (
-    <motion.article
+    <m.article
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -44,6 +44,7 @@ function MovieCard({
           src={movie.posterUrl}
           alt={t(movie.title, locale)}
           fill
+          loading="lazy"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
@@ -75,7 +76,7 @@ function MovieCard({
           </div>
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 

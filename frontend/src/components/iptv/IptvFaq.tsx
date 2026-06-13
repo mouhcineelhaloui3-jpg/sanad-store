@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence  } from "@/components/motion";
 import { ChevronDown } from "lucide-react";
 import type { Faq } from "@/lib/cms/types";
 import type { LocalizedText } from "@/lib/i18n/localized";
@@ -46,7 +46,7 @@ export function IptvFaq({
                 </button>
                 <AnimatePresence>
                   {isOpen ? (
-                    <motion.div
+                    <m.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -55,7 +55,7 @@ export function IptvFaq({
                       <p className="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-dark-800">
                         {t(faq.answer, locale)}
                       </p>
-                    </motion.div>
+                    </m.div>
                   ) : null}
                 </AnimatePresence>
               </div>

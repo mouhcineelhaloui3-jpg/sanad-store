@@ -42,6 +42,8 @@ type TrialRequest = {
   ip?: string | null;
 };
 
+import { defaultPlans } from "@/lib/plans";
+
 export type AnalyticsSummary = {
   pageViews: number;
   uniqueSessions: number;
@@ -54,6 +56,8 @@ export type AnalyticsSummary = {
   subscriptionOrders: number;
   trialRequests: number;
   conversionRate: number;
+  orderConversionRate: number;
+  revenueMAD: number;
   topPages: { path: string; count: number }[];
   topClicks: { label: string; count: number }[];
   planBreakdown: { planSlug: string; count: number }[];
@@ -121,6 +125,11 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
   }));
 
   const conversionRate = pageViews > 0 ? Math.round((leads / pageViews) * 1000) / 10 : 0;
+  const orderConversionRate =
+    pageViews > 0 ? Math.round((orders.length / pageViews) * 1000) / 10 : 0;
+
+  const planPrices = new Map(defaultPlans.map((plan) => [plan.slug, plan.price]));
+  const revenueMAD = orders.reduce((total, order) => total + (planPrices.get(order.planSlug) ?? 0), 0);
 
   return {
     pageViews,
@@ -134,6 +143,8 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
     subscriptionOrders: orders.length,
     trialRequests: trials.length,
     conversionRate,
+    orderConversionRate,
+    revenueMAD,
     topPages: [...pageCounts.entries()]
       .map(([path, count]) => ({ path, count }))
       .sort((a, b) => b.count - a.count)

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MotionConfig } from "framer-motion";
+import { LazyMotion, domAnimation } from "@/components/motion";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -43,7 +44,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
       <LocaleSync />
       <DynamicBackground />
       <DeferredSiteEffects />
@@ -55,5 +57,6 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <WhatsAppButton />
       <Toaster richColors position="top-center" theme="dark" />
     </MotionConfig>
+    </LazyMotion>
   );
 }
