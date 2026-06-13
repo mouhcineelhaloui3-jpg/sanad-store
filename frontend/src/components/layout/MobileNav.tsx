@@ -20,26 +20,35 @@ export function MobileNav() {
         type="button"
         onClick={() => setOpen(true)}
         className="rounded-full border border-white/10 bg-white/5 p-3 text-white md:hidden"
-        aria-label="Open menu"
+        aria-label="فتح القائمة"
       >
         <Menu className="h-5 w-5" />
       </button>
 
       {open ? (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div
+          className="fixed inset-0 z-50 md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-nav-title"
+        >
           <button
+            type="button"
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={() => setOpen(false)}
-            aria-label="Close menu"
+            aria-label="إغلاق القائمة"
           />
           <aside className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-white/10 bg-dark-50 p-5 shadow-glow">
+            <h2 id="mobile-nav-title" className="sr-only">
+              القائمة
+            </h2>
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <Logo />
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close">
-                <X className="h-5 w-5 text-white" />
+              <button type="button" onClick={() => setOpen(false)} aria-label="إغلاق">
+                <X className="h-5 w-5 text-white" aria-hidden="true" />
               </button>
             </div>
-            <nav className="mt-6 flex flex-col gap-1">
+            <nav className="mt-6 flex flex-col gap-1" aria-label="روابط التنقل">
               {links.map((link) => (
                 <Link
                   key={link.href}

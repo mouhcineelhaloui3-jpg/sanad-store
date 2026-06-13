@@ -50,7 +50,7 @@ export function AdminSidebar({
           </Link>
         </div>
 
-        <nav className="flex-1 space-y-1 overflow-y-auto p-4">
+        <nav className="flex-1 space-y-1 overflow-y-auto p-4" aria-label="Admin navigation">
           <p className="px-3 pb-2 text-xs font-black uppercase tracking-wider text-slate-400">Workspace</p>
           {coreNav.map(({ href, icon: Icon, label }) => {
             const active = pathname === href || (href !== "/admin" && pathname.startsWith(href));
@@ -112,8 +112,12 @@ export function AdminTopbar({
         </div>
 
         <div className="hidden flex-1 items-center gap-3 rounded-2xl bg-slate-100 px-4 py-2 text-slate-500 dark:bg-slate-900 md:flex">
-          <Search className="h-4 w-4" />
+          <Search className="h-4 w-4" aria-hidden="true" />
+          <label htmlFor="admin-dashboard-search" className="sr-only">
+            Search dashboard
+          </label>
           <input
+            id="admin-dashboard-search"
             className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
             placeholder="Search dashboard, CMS, settings..."
           />
@@ -134,7 +138,12 @@ export function AdminTopbar({
           </button>
 
           <div className="group relative">
-            <button type="button" className="flex items-center gap-3 rounded-2xl bg-slate-100 px-3 py-2 dark:bg-slate-900">
+            <button
+              type="button"
+              className="flex items-center gap-3 rounded-2xl bg-slate-100 px-3 py-2 dark:bg-slate-900"
+              aria-label={`${user.name} account menu`}
+              aria-haspopup="menu"
+            >
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-sm font-black text-white dark:bg-cyan-500 dark:text-slate-950">
                 {user.name.slice(0, 2).toUpperCase()}
               </span>

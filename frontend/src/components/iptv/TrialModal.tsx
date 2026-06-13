@@ -75,14 +75,19 @@ export function TrialModal() {
   return (
     <AnimatePresence>
       {isOpen ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center">
+        <div
+          className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="trial-modal-title"
+        >
           <m.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={close}
-            aria-label="Close"
+            aria-label="إغلاق"
           />
           <m.div
             initial={{ opacity: 0, y: 40 }}
@@ -91,8 +96,10 @@ export function TrialModal() {
             className="relative w-full max-w-md rounded-2xl border border-neon-green/30 bg-dark-50 p-6 shadow-glow-green"
           >
             <div className="mb-6 flex items-center justify-between">
-              <h3 className="text-xl font-black text-white">{labels.title}</h3>
-              <button type="button" onClick={close} className="rounded-full p-2 text-dark-700 hover:text-white">
+              <h3 id="trial-modal-title" className="text-xl font-black text-white">
+                {labels.title}
+              </h3>
+              <button type="button" onClick={close} className="rounded-full p-2 text-dark-700 hover:text-white" aria-label="إغلاق">
                 <X className="h-5 w-5" />
               </button>
             </div>

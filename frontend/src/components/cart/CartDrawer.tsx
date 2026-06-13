@@ -18,10 +18,17 @@ export function CartDrawer() {
       {isOpen ? (
         <div className="fixed inset-0 z-50">
           <button className="absolute inset-0 bg-black/40" onClick={close} aria-label="إغلاق السلة" />
-          <aside className="absolute left-0 top-0 flex h-full w-full max-w-md flex-col bg-white p-5 shadow-soft sm:left-4 sm:top-4 sm:h-[calc(100%-2rem)] sm:rounded-[2rem]">
+          <aside
+            className="absolute left-0 top-0 flex h-full w-full max-w-md flex-col bg-white p-5 shadow-soft sm:left-4 sm:top-4 sm:h-[calc(100%-2rem)] sm:rounded-[2rem]"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cart-drawer-title"
+          >
             <div className="flex items-center justify-between border-b border-sand-100 pb-4">
               <div>
-                <h2 className="text-2xl font-black text-sand-950">سلتك</h2>
+                <h2 id="cart-drawer-title" className="text-2xl font-black text-sand-950">
+                  سلتك
+                </h2>
                 <p className="mt-1 text-xs font-semibold text-sage-700">الخطوة الجاية: الاسم + رقم الهاتف فقط</p>
               </div>
               <button onClick={close} type="button" aria-label="إغلاق">
@@ -53,17 +60,23 @@ export function CartDrawer() {
                       </div>
                       <div className="mt-3 flex items-center gap-3">
                         <button
+                          type="button"
                           className="rounded-full border border-sand-100 p-2"
                           onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                          aria-label={`تقليل كمية ${item.name}`}
                         >
-                          <Minus className="h-4 w-4" />
+                          <Minus className="h-4 w-4" aria-hidden="true" />
                         </button>
-                        <span className="font-bold">{item.quantity}</span>
+                        <span className="font-bold" aria-live="polite">
+                          {item.quantity}
+                        </span>
                         <button
+                          type="button"
                           className="rounded-full border border-sand-100 p-2"
                           onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                          aria-label={`زيادة كمية ${item.name}`}
                         >
-                          <Plus className="h-4 w-4" />
+                          <Plus className="h-4 w-4" aria-hidden="true" />
                         </button>
                       </div>
                     </div>

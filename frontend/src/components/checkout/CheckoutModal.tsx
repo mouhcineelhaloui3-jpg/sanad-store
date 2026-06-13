@@ -70,18 +70,25 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/45 p-4">
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/45 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="checkout-modal-title"
+    >
       <div className="mx-auto mt-8 max-h-[calc(100vh-4rem)] max-w-lg overflow-y-auto rounded-[2rem] bg-white p-6 shadow-soft">
         {!orderId ? (
           <>
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-black text-sand-950">خطوة أخيرة ونثبّتو طلبك</h2>
+                <h2 id="checkout-modal-title" className="text-2xl font-black text-sand-950">
+                  خطوة أخيرة ونثبّتو طلبك
+                </h2>
                 <p className="mt-2 text-sm leading-6 text-sand-700">
                   الدفع عند الاستلام. غادي نتاصلو بك لتأكيد الطلب والعنوان قبل الإرسال.
                 </p>
               </div>
-              <button onClick={onClose} className="text-sand-700" type="button">
+              <button onClick={onClose} className="text-sand-700" type="button" aria-label="إغلاق">
                 إغلاق
               </button>
             </div>

@@ -26,7 +26,8 @@ export function LanguageSwitcher() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white transition hover:border-neon-cyan/40 hover:bg-neon-cyan/10"
-        aria-label="Language"
+        aria-label="تغيير اللغة"
+        aria-haspopup="listbox"
         aria-expanded={open}
       >
         <Globe className="h-4 w-4 text-neon-cyan" />
