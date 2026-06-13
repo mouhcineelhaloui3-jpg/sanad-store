@@ -1,1 +1,1 @@
-export { getWhatsAppMetrics } from "../../../../extensions/analytics-extension/aggregator";
+export { getWhatsAppMetrics } from "../../../packages/extensions/analytics-extension/aggregator";

@@ -3,8 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const coreRoot = path.join(__dirname, "../core/src/index.ts");
-const extensionsRoot = path.join(__dirname, "../extensions/index.ts");
+const coreRoot = path.join(__dirname, "./packages/core/src/index.ts");
+const extensionsRoot = path.join(__dirname, "./packages/extensions/index.ts");
 
 const csp = [
   "default-src 'self'",
@@ -33,8 +33,8 @@ const nextConfig = {
   transpilePackages: ["@sanad/core", "@sanad/extensions"],
   turbopack: {
     resolveAlias: {
-      "@sanad/core": "../core/src/index.ts",
-      "@sanad/extensions": "../extensions/index.ts"
+      "@sanad/core": "./packages/core/src/index.ts",
+      "@sanad/extensions": "./packages/extensions/index.ts"
     }
   },
   poweredByHeader: false,
@@ -50,7 +50,7 @@ const nextConfig = {
     config.resolve.alias["@sanad/extensions"] = extensionsRoot;
     config.resolve.alias["@sanad/extensions/analytics-extension/aggregator"] = path.join(
       __dirname,
-      "../extensions/analytics-extension/aggregator.ts"
+      "./packages/extensions/analytics-extension/aggregator.ts"
     );
     if (!isServer) {
       config.resolve.alias["@sanad/core"] = false;

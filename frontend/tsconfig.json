@@ -24,9 +24,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@sanad/core": ["../core/src/index.ts"],
-      "@sanad/extensions": ["../extensions/index.ts"],
-      "@sanad/extensions/*": ["../extensions/*"]
+      "@sanad/core": ["./packages/core/src/index.ts"],
+      "@sanad/extensions": ["./packages/extensions/index.ts"],
+      "@sanad/extensions/*": ["./packages/extensions/*"]
     }
   },
   "include": [
