@@ -1,40 +1,31 @@
 import type { StoreContent } from "./types";
+import { adminFetch } from "@/lib/admin/fetch-client";
+import { defaultStoreContent } from "./defaults";
 
-const ADMIN_KEY =
-  typeof window !== "undefined"
-    ? (localStorage.getItem("sanad-admin-api-key") ?? "sanad-admin-dev")
-    : "sanad-admin-dev";
-
-export async function fetchStoreContent(): Promise<StoreContent> {
-  const response = await fetch("/api/admin/cms", {
-    headers: { "x-admin-key": ADMIN_KEY }
-  });
-  if (!response.ok) throw new Error("Failed to load CMS content");
-  return response.json();
+export async function fetchStoreContent(): Promise<{ content: StoreContent; fromFallback: boolean }> {
+  try {
+    const content = await adminFetch<StoreContent>("/api/admin/cms");
+    return { content, fromFallback: false };
+  } catch (error) {
+    console.error("[cms/admin-client] fetchStoreContent failed, using defaults", error);
+    return { content: defaultStoreContent(), fromFallback: true };
+  }
 }
 
 export async function saveStoreContent(content: StoreContent): Promise<StoreContent> {
-  const response = await fetch("/api/admin/cms", {
+  return adminFetch<StoreContent>("/api/admin/cms", {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-key": ADMIN_KEY
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(content)
   });
-  if (!response.ok) throw new Error("Failed to save CMS content");
-  return response.json();
 }
 
 export async function uploadImage(file: File): Promise<string> {
   const form = new FormData();
   form.append("file", file);
-  const response = await fetch("/api/admin/upload", {
+  const data = await adminFetch<{ url: string }>("/api/admin/upload", {
     method: "POST",
-    headers: { "x-admin-key": ADMIN_KEY },
     body: form
   });
-  if (!response.ok) throw new Error("Failed to upload image");
-  const data = (await response.json()) as { url: string };
   return data.url;
 }

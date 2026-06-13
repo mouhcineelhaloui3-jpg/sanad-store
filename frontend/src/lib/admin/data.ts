@@ -4,6 +4,7 @@ import {
   Boxes,
   ChartNoAxesCombined,
   ClipboardList,
+  CreditCard,
   FolderTree,
   Home,
   Megaphone,
@@ -14,26 +15,37 @@ import {
   Star,
   Users
 } from "lucide-react";
+import type { AdminPermission } from "./rbac";
 
 export type AdminStatus = "paid" | "pending" | "failed" | "delivered" | "shipped" | "confirmed" | "low" | "active";
 
-export const adminNav = [
-  { label: "Dashboard", href: "/admin", icon: Home },
-  { label: "Storefront CMS", href: "/admin/storefront", icon: Home },
-  { label: "Products", href: "/admin/products", icon: ShoppingBag },
-  { label: "Orders", href: "/admin/orders", icon: ClipboardList },
-  { label: "Customers", href: "/admin/customers", icon: Users },
-  { label: "Categories", href: "/admin/categories", icon: FolderTree },
-  { label: "Coupons", href: "/admin/coupons", icon: Percent },
-  { label: "Reviews", href: "/admin/reviews", icon: Star },
-  { label: "Analytics", href: "/admin/analytics", icon: BarChart3 },
-  { label: "SEO", href: "/admin/seo", icon: ChartNoAxesCombined },
-  { label: "Blog", href: "/admin/blog", icon: Megaphone },
-  { label: "Integrations", href: "/admin/integrations", icon: Activity },
-  { label: "Notifications", href: "/admin/notifications", icon: Megaphone },
-  { label: "Roles", href: "/admin/roles", icon: ShieldCheck },
-  { label: "Activity Logs", href: "/admin/activity-logs", icon: Activity },
-  { label: "Settings", href: "/admin/settings", icon: Settings }
+export type AdminNavItem = {
+  label: string;
+  href: string;
+  icon: typeof Home;
+  permission?: AdminPermission;
+  section?: "core" | "commerce" | "system" | "future";
+};
+
+export const adminNav: AdminNavItem[] = [
+  { label: "Dashboard", href: "/admin", icon: Home, permission: "dashboard:read", section: "core" },
+  { label: "Storefront CMS", href: "/admin/storefront", icon: Megaphone, permission: "cms:read", section: "core" },
+  { label: "Settings", href: "/admin/settings", icon: Settings, permission: "settings:read", section: "core" },
+  { label: "Users", href: "/admin/users", icon: Users, permission: "users:read", section: "core" },
+  { label: "Activity Logs", href: "/admin/activity-logs", icon: Activity, permission: "logs:read", section: "core" },
+  { label: "Analytics", href: "/admin/analytics", icon: BarChart3, permission: "analytics:read", section: "system" },
+  { label: "Billing", href: "/admin/billing", icon: CreditCard, permission: "billing:read", section: "future" },
+  { label: "Products", href: "/admin/products", icon: ShoppingBag, permission: "dashboard:read", section: "commerce" },
+  { label: "Orders", href: "/admin/orders", icon: ClipboardList, permission: "dashboard:read", section: "commerce" },
+  { label: "Customers", href: "/admin/customers", icon: Users, permission: "dashboard:read", section: "commerce" },
+  { label: "Categories", href: "/admin/categories", icon: FolderTree, permission: "dashboard:read", section: "commerce" },
+  { label: "Coupons", href: "/admin/coupons", icon: Percent, permission: "dashboard:read", section: "commerce" },
+  { label: "Reviews", href: "/admin/reviews", icon: Star, permission: "dashboard:read", section: "commerce" },
+  { label: "SEO", href: "/admin/seo", icon: ChartNoAxesCombined, permission: "dashboard:read", section: "system" },
+  { label: "Blog", href: "/admin/blog", icon: Megaphone, permission: "cms:read", section: "system" },
+  { label: "Integrations", href: "/admin/integrations", icon: Activity, permission: "settings:read", section: "system" },
+  { label: "Notifications", href: "/admin/notifications", icon: Megaphone, permission: "settings:read", section: "system" },
+  { label: "Roles", href: "/admin/roles", icon: ShieldCheck, permission: "users:read", section: "system" }
 ];
 
 export const dashboardStats = [
@@ -60,37 +72,74 @@ export const products = [
 ];
 
 export const orders: Array<{
-  id: string; customer: string; phone: string;
-  total: number; payment: string; shipping: string; status: string; date: string;
+  id: string;
+  customer: string;
+  phone: string;
+  total: number;
+  payment: string;
+  shipping: string;
+  status: string;
+  date: string;
 }> = [];
 
 export const customers: Array<{
-  id: string; name: string; phone: string; city: string;
-  orders: number; spent: number; activity: string; date: string;
+  id: string;
+  name: string;
+  phone: string;
+  city: string;
+  orders: number;
+  spent: number;
+  activity: string;
+  date: string;
 }> = [];
 
 export const activityLogs: Array<{
-  id: string; event: string; actor: string; target: string; time: string;
+  id: string;
+  event: string;
+  actor: string;
+  target: string;
+  time: string;
 }> = [];
 
 export const notifications: Array<{
-  title: string; description: string; icon: typeof Home;
+  title: string;
+  description: string;
+  icon: typeof Home;
 }> = [];
 
 export const categories: Array<{
-  id: string; name: string; slug: string; products: number; status: string;
+  id: string;
+  name: string;
+  slug: string;
+  products: number;
+  status: string;
 }> = [];
 
 export const coupons: Array<{
-  id: string; code: string; type: string; value: number;
-  expiry: string; uses: number; limit: number; status: string;
+  id: string;
+  code: string;
+  type: string;
+  value: number;
+  expiry: string;
+  uses: number;
+  limit: number;
+  status: string;
 }> = [];
 
 export const reviews: Array<{
-  id: string; customer: string; product: string;
-  rating: number; text: string; status: string; date: string;
+  id: string;
+  customer: string;
+  product: string;
+  rating: number;
+  text: string;
+  status: string;
+  date: string;
 }> = [];
 
 export const roles: Array<{
-  id: string; role: string; permissions: string; users: number; status: string;
+  id: string;
+  role: string;
+  permissions: string;
+  users: number;
+  status: string;
 }> = [];

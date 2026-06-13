@@ -1,17 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { apiError, apiSuccess } from "@/lib/admin/api-response";
+import { requireAdminPermission } from "@/lib/admin/auth-server";
 import { getAnalyticsSummary } from "@/lib/analytics/server";
 
-function isAuthorized(request: NextRequest) {
-  const key = request.headers.get("x-admin-key");
-  const expected = process.env.ADMIN_API_KEY ?? process.env.NEXT_PUBLIC_ADMIN_API_KEY ?? "sanad-admin-dev";
-  return key === expected;
-}
-
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const { error } = requireAdminPermission(request, "analytics:read");
+  if (error) return error;
 
-  const summary = await getAnalyticsSummary();
-  return NextResponse.json(summary);
+  try {
+    const summary = await getAnalyticsSummary();
+    return apiSuccess(summary);
+  } catch (err) {
+    console.error("[api/admin/analytics] GET failed", err);
+    return apiError("ANALYTICS_FETCH_FAILED", "Failed to load analytics", 500);
+  }
 }

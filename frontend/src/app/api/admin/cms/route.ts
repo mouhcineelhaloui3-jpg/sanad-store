@@ -1,26 +1,49 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { apiError, apiSuccess } from "@/lib/admin/api-response";
+import { requireAdminPermission } from "@/lib/admin/auth-server";
+import { validateCsrf } from "@/lib/admin/csrf";
+import { recordAuditLog } from "@/lib/admin/audit";
+import { defaultStoreContent } from "@/lib/cms/defaults";
 import { getStoreContent, saveStoreContent } from "@/lib/cms/server";
 import type { StoreContent } from "@/lib/cms/types";
 
-function isAuthorized(request: NextRequest) {
-  const key = request.headers.get("x-admin-key");
-  const expected = process.env.ADMIN_API_KEY ?? process.env.NEXT_PUBLIC_ADMIN_API_KEY ?? "sanad-admin-dev";
-  return key === expected;
-}
-
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { error } = requireAdminPermission(request, "cms:read");
+  if (error) return error;
+
+  try {
+    const content = await getStoreContent();
+    return apiSuccess(content);
+  } catch (err) {
+    console.error("[api/admin/cms] GET failed, returning defaults", err);
+    return apiSuccess(defaultStoreContent());
   }
-  const content = await getStoreContent();
-  return NextResponse.json(content);
 }
 
 export async function PUT(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { session, error } = requireAdminPermission(request, "cms:write");
+  if (error) return error;
+
+  if (!validateCsrf(request)) {
+    return apiError("CSRF_INVALID", "Invalid CSRF token", 403);
   }
-  const body = (await request.json()) as StoreContent;
-  const saved = await saveStoreContent(body);
-  return NextResponse.json(saved);
+
+  try {
+    const body = (await request.json()) as StoreContent;
+    const saved = await saveStoreContent(body);
+
+    if (session) {
+      recordAuditLog({
+        actorId: session.userId,
+        actorEmail: session.email,
+        action: "update",
+        resource: "cms"
+      });
+    }
+
+    return apiSuccess(saved);
+  } catch (err) {
+    console.error("[api/admin/cms] PUT failed", err);
+    return apiError("CMS_SAVE_FAILED", "Failed to save CMS content", 500);
+  }
 }

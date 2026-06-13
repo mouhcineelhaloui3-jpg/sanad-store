@@ -30,7 +30,8 @@ const loadStoreContentFromDisk = unstable_cache(
       const raw = await readFile(CONTENT_FILE, "utf-8");
       const parsed = JSON.parse(raw) as StoreContent;
       return deepMerge(defaultStoreContent(), parsed);
-    } catch {
+    } catch (error) {
+      console.warn("[cms] store-content.json unavailable, using defaults", error);
       return defaultStoreContent();
     }
   },
@@ -43,11 +44,16 @@ export const getStoreContent = cache(async function getStoreContent(): Promise<S
 });
 
 export async function saveStoreContent(content: StoreContent): Promise<StoreContent> {
-  await mkdir(DATA_DIR, { recursive: true });
-  const payload: StoreContent = {
-    ...deepMerge(defaultStoreContent(), content),
-    updatedAt: new Date().toISOString()
-  };
-  await writeFile(CONTENT_FILE, JSON.stringify(payload, null, 2), "utf-8");
-  return payload;
+  try {
+    await mkdir(DATA_DIR, { recursive: true });
+    const payload: StoreContent = {
+      ...deepMerge(defaultStoreContent(), content),
+      updatedAt: new Date().toISOString()
+    };
+    await writeFile(CONTENT_FILE, JSON.stringify(payload, null, 2), "utf-8");
+    return payload;
+  } catch (error) {
+    console.error("[cms] saveStoreContent failed", error);
+    throw error;
+  }
 }

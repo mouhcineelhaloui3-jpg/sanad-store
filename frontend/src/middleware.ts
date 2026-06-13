@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { hasValidAdminSessionCookie } from "@/lib/admin/session-edge";
 
 const securityHeaders: Record<string, string> = {
   "X-Content-Type-Options": "nosniff",
@@ -9,7 +10,7 @@ const securityHeaders: Record<string, string> = {
   "X-DNS-Prefetch-Control": "on"
 };
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
   for (const [key, value] of Object.entries(securityHeaders)) {
@@ -23,8 +24,24 @@ export function middleware(request: NextRequest) {
       const adminKey = request.headers.get("x-admin-key");
       const expected = process.env.ADMIN_API_KEY ?? "";
       if (!expected || adminKey !== expected) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return NextResponse.json({ ok: false, error: { code: "UNAUTHORIZED", message: "Unauthorized" } }, { status: 401 });
       }
+    }
+  }
+
+  if (path.startsWith("/admin") && path !== "/admin/login") {
+    const validSession = await hasValidAdminSessionCookie(request);
+    if (!validSession) {
+      const loginUrl = new URL("/admin/login", request.url);
+      loginUrl.searchParams.set("next", path);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  if (path === "/admin/login") {
+    const validSession = await hasValidAdminSessionCookie(request);
+    if (validSession) {
+      return NextResponse.redirect(new URL("/admin", request.url));
     }
   }
 

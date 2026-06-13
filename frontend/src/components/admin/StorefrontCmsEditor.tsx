@@ -6,7 +6,10 @@ import { CmsHomeSectionsPanel, CmsLayoutPanel } from "@/components/admin/CmsExte
 import { AdminCard } from "@/components/admin/AdminCard";
 import { CheckboxField, PrimaryButton, TextAreaField, TextField } from "@/components/admin/AdminForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { fetchStoreContent, saveStoreContent } from "@/lib/cms/admin-client";
+import { AdminPageSkeleton } from "@/components/admin/AdminSkeleton";
+import { useAdminCms, useSaveAdminCms, useAdminSession } from "@/lib/admin/queries";
+import { hasPermission } from "@/lib/admin/rbac";
+import { defaultStoreContent } from "@/lib/cms/defaults";
 import type { PlanCmsOverride, StoreContent } from "@/lib/cms/types";
 import { defaultPlans } from "@/lib/plans";
 
@@ -39,15 +42,28 @@ const tabs: { id: TabId; label: string }[] = [
 ];
 
 export function StorefrontCmsEditor() {
+  const session = useAdminSession();
+  const { data, isLoading, isError, refetch } = useAdminCms();
+  const saveMutation = useSaveAdminCms();
   const [content, setContent] = useState<StoreContent | null>(null);
-  const [saving, setSaving] = useState(false);
+  const [usingFallback, setUsingFallback] = useState(false);
   const [tab, setTab] = useState<TabId>("general");
+  const canWrite = session.data?.user ? hasPermission(session.data.user.role, "cms:write") : false;
 
   useEffect(() => {
-    fetchStoreContent()
-      .then(setContent)
-      .catch(() => toast.error("تعذر تحميل إعدادات الموقع"));
-  }, []);
+    if (data) {
+      setContent(data);
+      setUsingFallback(false);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (isError) {
+      setContent(defaultStoreContent());
+      setUsingFallback(true);
+      toast.error("تعذر تحميل إعدادات الموقع — تم استخدام الإعدادات الافتراضية");
+    }
+  }, [isError]);
 
   const update = (patch: Partial<StoreContent>) => {
     if (!content) return;
@@ -56,15 +72,17 @@ export function StorefrontCmsEditor() {
 
   const save = async () => {
     if (!content) return;
-    setSaving(true);
+    if (!canWrite) {
+      toast.error("You do not have permission to save CMS content");
+      return;
+    }
+
     try {
-      const saved = await saveStoreContent(content);
+      const saved = await saveMutation.mutateAsync(content);
       setContent(saved);
       toast.success("تم حفظ التغييرات");
     } catch {
       toast.error("تعذر الحفظ");
-    } finally {
-      setSaving(false);
     }
   };
 
@@ -74,8 +92,8 @@ export function StorefrontCmsEditor() {
     update({ plans });
   };
 
-  if (!content) {
-    return <p className="text-sm text-slate-500">جاري التحميل...</p>;
+  if (isLoading || !content) {
+    return <AdminPageSkeleton />;
   }
 
   const { homepage, header, footer, branding, seo, integrations } = content;
@@ -87,11 +105,20 @@ export function StorefrontCmsEditor() {
         title="SANAD IPTV CMS"
         description="تحكم كامل فالمحتوى: أفلام، رياضة، باقات، SEO، Plausible، و API."
         action={
-          <PrimaryButton onClick={save} disabled={saving}>
-            {saving ? "جاري الحفظ..." : "حفظ كل التغييرات"}
+          <PrimaryButton onClick={save} disabled={saveMutation.isPending || !canWrite}>
+            {saveMutation.isPending ? "جاري الحفظ..." : "حفظ كل التغييرات"}
           </PrimaryButton>
         }
       />
+
+      {usingFallback ? (
+        <div className="mb-6 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-100">
+          <p>يتم عرض الإعدادات الافتراضية. يمكنك إعادة المحاولة.</p>
+          <button type="button" className="mt-3 rounded-xl bg-amber-600 px-4 py-2 font-bold text-white" onClick={() => refetch()}>
+            إعادة المحاولة
+          </button>
+        </div>
+      ) : null}
 
       <div className="mb-6 flex flex-wrap gap-2">
         {tabs.map((t) => (
