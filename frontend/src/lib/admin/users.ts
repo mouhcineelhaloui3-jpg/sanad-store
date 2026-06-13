@@ -41,6 +41,14 @@ export function getAdminUsers(): AdminUserRecord[] {
       active: true
     },
     {
+      id: "usr_manager",
+      email: "manager@sanad.iptv",
+      name: "Operations Manager",
+      role: "manager",
+      password: envPassword("ADMIN_MANAGER_CODE", "sanad-manager"),
+      active: true
+    },
+    {
       id: "usr_support",
       email: "support@sanad.iptv",
       name: "Support Agent",

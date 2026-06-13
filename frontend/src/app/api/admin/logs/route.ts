@@ -8,7 +8,8 @@ export async function GET(request: NextRequest) {
   if (error) return error;
 
   try {
-    return apiSuccess({ logs: getAuditLogs(100) });
+    const logs = await getAuditLogs(100);
+    return apiSuccess({ logs });
   } catch (err) {
     console.error("[api/admin/logs] GET failed", err);
     return apiError("LOGS_FETCH_FAILED", "Failed to load activity logs", 500);

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { AdminRootLayout } from "@/components/admin/AdminRootLayout";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "SANAD Admin Dashboard",
   description: "Production-ready SaaS admin dashboard",

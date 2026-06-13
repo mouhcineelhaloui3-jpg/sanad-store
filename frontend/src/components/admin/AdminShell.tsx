@@ -110,12 +110,14 @@ export function AdminTopbar({
   dark,
   onToggleTheme,
   onOpenSidebar,
+  onOpenSearch,
   onLogout
 }: {
   user: AdminSessionUser;
   dark: boolean;
   onToggleTheme: () => void;
   onOpenSidebar: () => void;
+  onOpenSearch: () => void;
   onLogout: () => void;
 }) {
   return (
@@ -130,17 +132,15 @@ export function AdminTopbar({
           <span className="text-sm font-black">Dashboard</span>
         </div>
 
-        <div className="hidden flex-1 items-center gap-3 rounded-2xl bg-slate-100 px-4 py-2 text-slate-500 dark:bg-slate-900 md:flex">
-          <Search className="h-4 w-4" aria-hidden="true" />
-          <label htmlFor="admin-dashboard-search" className="sr-only">
-            Search dashboard
-          </label>
-          <input
-            id="admin-dashboard-search"
-            className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
-            placeholder="Search dashboard, CMS, settings..."
-          />
-        </div>
+        <button
+          type="button"
+          onClick={onOpenSearch}
+          className="hidden flex-1 items-center gap-3 rounded-2xl bg-slate-100 px-4 py-2 text-left text-slate-500 dark:bg-slate-900 md:flex"
+        >
+          <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span className="text-sm">Search dashboard, products, orders…</span>
+          <kbd className="ml-auto rounded-lg bg-white px-2 py-0.5 text-xs font-bold dark:bg-slate-800">Ctrl K</kbd>
+        </button>
 
         <div className="ml-auto flex items-center gap-2">
           <button

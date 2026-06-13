@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AdminSidebar, AdminTopbar } from "@/components/admin/AdminShell";
 import { AdminPageSkeleton } from "@/components/admin/AdminSkeleton";
+import { CommandPalette } from "@/components/admin/CommandPalette";
 import { useAdminSession } from "@/lib/admin/queries";
 import { adminFetch } from "@/lib/admin/fetch-client";
 
@@ -12,10 +13,22 @@ export function AdminLayoutShell({ children }: { children: React.ReactNode }) {
   const { data, isLoading } = useAdminSession();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [commandOpen, setCommandOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setCommandOpen((value) => !value);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   async function logout() {
     try {
@@ -50,10 +63,13 @@ export function AdminLayoutShell({ children }: { children: React.ReactNode }) {
           dark={dark}
           onToggleTheme={() => setDark((value) => !value)}
           onOpenSidebar={() => setSidebarOpen(true)}
+          onOpenSearch={() => setCommandOpen(true)}
           onLogout={logout}
         />
         <main className="p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
+
+      {commandOpen ? <CommandPalette onClose={() => setCommandOpen(false)} /> : null}
     </div>
   );
 }

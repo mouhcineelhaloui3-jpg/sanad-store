@@ -60,11 +60,29 @@ export function OrderModal() {
     const planLabel = selectedPlan ? t(selectedPlan.name, locale) : planSlug;
 
     try {
-      await fetch("/api/subscription-orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, device, planSlug, notes, tracking: getTrackingPayload() })
-      });
+      const tracking = getTrackingPayload();
+      await Promise.all([
+        fetch("/api/subscription-orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, phone, device, planSlug, notes, tracking })
+        }),
+        fetch("/api/leads/capture", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            phone,
+            device,
+            planSlug,
+            source: "storefront",
+            utm_source: tracking.utm_source,
+            utm_medium: tracking.utm_medium,
+            utm_campaign: tracking.utm_campaign,
+            whatsappClicked: true
+          })
+        })
+      ]);
       trackLead(planSlug, device);
     } catch {
       // continue to WhatsApp even if API fails

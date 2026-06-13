@@ -1,48 +1,15 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
-import path from "path";
 import type { AnalyticsEventRecord } from "./types";
-
-const DATA_DIR = path.join(process.cwd(), "data");
-const EVENTS_FILE = path.join(DATA_DIR, "analytics-events.json");
-const ORDERS_FILE = path.join(DATA_DIR, "subscription-orders.json");
-const TRIALS_FILE = path.join(DATA_DIR, "trial-requests.json");
-const MAX_EVENTS = 5000;
-
-async function readJson<T>(file: string, fallback: T): Promise<T> {
-  try {
-    const raw = await readFile(file, "utf-8");
-    return JSON.parse(raw) as T;
-  } catch {
-    return fallback;
-  }
-}
-
-export async function readAnalyticsEvents(): Promise<AnalyticsEventRecord[]> {
-  return readJson<AnalyticsEventRecord[]>(EVENTS_FILE, []);
-}
-
-export async function appendAnalyticsEvent(event: AnalyticsEventRecord) {
-  await mkdir(DATA_DIR, { recursive: true });
-  const events = await readAnalyticsEvents();
-  events.unshift(event);
-  if (events.length > MAX_EVENTS) events.length = MAX_EVENTS;
-  await writeFile(EVENTS_FILE, JSON.stringify(events, null, 2), "utf-8");
-}
-
-type SubscriptionOrder = {
-  id: string;
-  planSlug: string;
-  createdAt: string;
-  ip?: string | null;
-};
-
-type TrialRequest = {
-  id: string;
-  createdAt: string;
-  ip?: string | null;
-};
-
 import { defaultPlans } from "@/lib/plans";
+import {
+  appendAnalyticsEventToDb,
+  getOrderCountFromDb,
+  getPlanBreakdownFromDb,
+  getRecentOrdersFromDb,
+  getRecentTrialsFromDb,
+  getRevenueFromDb,
+  getTrialCountFromDb,
+  readAnalyticsEventsFromDb
+} from "@/lib/db/analytics-events";
 
 export type AnalyticsSummary = {
   pageViews: number;
@@ -63,8 +30,8 @@ export type AnalyticsSummary = {
   planBreakdown: { planSlug: string; count: number }[];
   dailyPageViews: { label: string; count: number }[];
   recentEvents: AnalyticsEventRecord[];
-  recentOrders: SubscriptionOrder[];
-  recentTrials: TrialRequest[];
+  recentOrders: { id: string; planSlug: string; createdAt: string; ip?: string | null }[];
+  recentTrials: { id: string; createdAt: string; ip?: string | null }[];
 };
 
 function dayKey(iso: string) {
@@ -75,12 +42,25 @@ function weekdayLabel(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", { weekday: "short" });
 }
 
+export async function readAnalyticsEvents(): Promise<AnalyticsEventRecord[]> {
+  return readAnalyticsEventsFromDb();
+}
+
+export async function appendAnalyticsEvent(event: AnalyticsEventRecord) {
+  await appendAnalyticsEventToDb(event);
+}
+
 export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
-  const [events, orders, trials] = await Promise.all([
-    readAnalyticsEvents(),
-    readJson<SubscriptionOrder[]>(ORDERS_FILE, []),
-    readJson<TrialRequest[]>(TRIALS_FILE, [])
-  ]);
+  const [events, orderCount, trialCount, planBreakdown, recentOrders, recentTrials, revenueMAD] =
+    await Promise.all([
+      readAnalyticsEventsFromDb(),
+      getOrderCountFromDb(),
+      getTrialCountFromDb(),
+      getPlanBreakdownFromDb(),
+      getRecentOrdersFromDb(),
+      getRecentTrialsFromDb(),
+      getRevenueFromDb()
+    ]);
 
   const pageViews = events.filter((e) => e.name === "page_view").length;
   const clicks = events.filter((e) => e.name === "click").length;
@@ -108,11 +88,6 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
     }
   }
 
-  const planCounts = new Map<string, number>();
-  for (const order of orders) {
-    planCounts.set(order.planSlug, (planCounts.get(order.planSlug) ?? 0) + 1);
-  }
-
   const last7Days = Array.from({ length: 7 }).map((_, index) => {
     const date = new Date();
     date.setDate(date.getDate() - (6 - index));
@@ -125,11 +100,7 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
   }));
 
   const conversionRate = pageViews > 0 ? Math.round((leads / pageViews) * 1000) / 10 : 0;
-  const orderConversionRate =
-    pageViews > 0 ? Math.round((orders.length / pageViews) * 1000) / 10 : 0;
-
-  const planPrices = new Map(defaultPlans.map((plan) => [plan.slug, plan.price]));
-  const revenueMAD = orders.reduce((total, order) => total + (planPrices.get(order.planSlug) ?? 0), 0);
+  const orderConversionRate = pageViews > 0 ? Math.round((orderCount / pageViews) * 1000) / 10 : 0;
 
   return {
     pageViews,
@@ -140,11 +111,14 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
     leads,
     trials: trialSubmits,
     whatsappClicks,
-    subscriptionOrders: orders.length,
-    trialRequests: trials.length,
+    subscriptionOrders: orderCount,
+    trialRequests: trialCount,
     conversionRate,
     orderConversionRate,
-    revenueMAD,
+    revenueMAD: revenueMAD || planBreakdown.reduce((sum, item) => {
+      const price = defaultPlans.find((p) => p.slug === item.planSlug)?.price ?? 0;
+      return sum + price * item.count;
+    }, 0),
     topPages: [...pageCounts.entries()]
       .map(([path, count]) => ({ path, count }))
       .sort((a, b) => b.count - a.count)
@@ -153,12 +127,18 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
       .map(([label, count]) => ({ label, count }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 8),
-    planBreakdown: [...planCounts.entries()]
-      .map(([planSlug, count]) => ({ planSlug, count }))
-      .sort((a, b) => b.count - a.count),
+    planBreakdown,
     dailyPageViews,
     recentEvents: events.slice(0, 20),
-    recentOrders: orders.slice(0, 10),
-    recentTrials: trials.slice(0, 10)
+    recentOrders: recentOrders.map((o) => ({
+      id: o.id,
+      planSlug: o.planSlug,
+      createdAt: o.createdAt.toISOString(),
+      ip: o.ip
+    })),
+    recentTrials: recentTrials.map((t) => ({
+      id: t.id,
+      createdAt: t.createdAt.toISOString()
+    }))
   };
 }

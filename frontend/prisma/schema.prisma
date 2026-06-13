@@ -1,0 +1,484 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum OrderStatus {
+  new
+  contacted
+  completed
+  cancelled
+  pending
+  confirmed
+  shipped
+  delivered
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  failed
+  refunded
+}
+
+enum ShippingStatus {
+  pending
+  confirmed
+  shipped
+  delivered
+  returned
+}
+
+enum SubscriptionStatus {
+  active
+  expired
+  cancelled
+}
+
+enum LeadStatus {
+  new
+  contacted
+  interested
+  negotiation
+  paid
+  delivered
+  renewal_due
+  expired
+  lost
+}
+
+enum CustomerSegment {
+  vip
+  active
+  expired
+  new
+  returning
+}
+
+enum CouponType {
+  percentage
+  fixed
+}
+
+enum CouponStatus {
+  active
+  inactive
+  expired
+}
+
+enum ReviewStatus {
+  pending
+  approved
+  rejected
+}
+
+enum NotificationChannel {
+  dashboard
+  email
+  whatsapp
+}
+
+enum NotificationStatus {
+  unread
+  read
+  archived
+}
+
+enum AffiliateStatus {
+  active
+  inactive
+  pending
+}
+
+model Role {
+  id          String           @id
+  name        String           @unique
+  label       String
+  users       User[]
+  permissions RolePermission[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  key         String           @unique
+  label       String
+  roles       RolePermission[]
+  createdAt   DateTime         @default(now())
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String
+  passwordHash String?
+  roleId       String
+  role         Role          @relation(fields: [roleId], references: [id])
+  active       Boolean       @default(true)
+  auditLogs           AuditLog[]
+  activityLogs        ActivityLog[]
+  assignedLeads       Lead[]                @relation("LeadAssignee")
+  leadNotes           LeadNote[]
+  leadTimelineEvents  LeadTimelineEvent[]
+  leadAssignments     LeadAssignment[]      @relation("AssignmentAssignee")
+  leadAssignmentsMade LeadAssignment[]      @relation("AssignmentAssigner")
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  isActive    Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id            String         @id @default(cuid())
+  name          String
+  description   String?
+  price         Decimal        @db.Decimal(10, 2)
+  duration      String
+  categorySlug  String
+  categoryId    String?
+  category      Category?      @relation(fields: [categoryId], references: [id])
+  quality       String
+  deviceLimit   Int            @default(1)
+  isActive      Boolean        @default(true)
+  visibleFrom   DateTime?
+  visibleTo     DateTime?
+  orders        Order[]
+  subscriptions Subscription[]
+  reviews       Review[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Customer {
+  id            String           @id @default(cuid())
+  name          String
+  phone         String           @unique
+  email         String?
+  city          String?
+  country       String?          @default("MA")
+  segment       CustomerSegment  @default(new)
+  notes         String?
+  totalOrders   Int              @default(0)
+  totalSpent    Decimal          @default(0) @db.Decimal(12, 2)
+  orders        Order[]
+  leads         Lead[]
+  subscriptions Subscription[]
+  reviews       Review[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@index([segment])
+  @@index([createdAt])
+}
+
+model Lead {
+  id                String              @id @default(cuid())
+  name              String
+  phone             String
+  device            String?
+  planSlug          String?
+  country           String?
+  source            String?
+  status            LeadStatus          @default(new)
+  utmSource         String?
+  utmMedium         String?
+  utmCampaign       String?
+  whatsappClickedAt DateTime?
+  convertedAt       DateTime?
+  assignedToId      String?
+  assignedTo        User?               @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  customerId        String?
+  customer          Customer?           @relation(fields: [customerId], references: [id])
+  metadata          Json?
+  notes             LeadNote[]
+  timeline          LeadTimelineEvent[]
+  assignments       LeadAssignment[]
+  tags              LeadTagOnLead[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  @@index([phone])
+  @@index([status])
+  @@index([createdAt])
+  @@index([assignedToId])
+  @@index([utmCampaign])
+}
+
+model LeadNote {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  authorId  String?
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  body      String
+  internal  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+model LeadTag {
+  id    String          @id @default(cuid())
+  name  String          @unique
+  color String          @default("#0891b2")
+  leads LeadTagOnLead[]
+}
+
+model LeadTagOnLead {
+  leadId String
+  tagId  String
+  lead   Lead    @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  tag    LeadTag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([leadId, tagId])
+}
+
+model LeadTimelineEvent {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  type      String
+  title     String
+  metadata  Json?
+  actorId   String?
+  actor     User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+model LeadAssignment {
+  id           String   @id @default(cuid())
+  leadId       String
+  lead         Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  assigneeId   String
+  assignee     User     @relation("AssignmentAssignee", fields: [assigneeId], references: [id])
+  assignedById String?
+  assignedBy   User?    @relation("AssignmentAssigner", fields: [assignedById], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now())
+
+  @@index([leadId])
+  @@index([assigneeId])
+}
+
+model Order {
+  id             String         @id @default(uuid())
+  customerId     String?
+  customer       Customer?      @relation(fields: [customerId], references: [id])
+  productId      String?
+  product        Product?       @relation(fields: [productId], references: [id])
+  name           String
+  phone          String
+  device         String
+  planSlug       String
+  notes          String?
+  status         OrderStatus    @default(new)
+  paymentStatus  PaymentStatus  @default(pending)
+  shippingStatus ShippingStatus @default(pending)
+  total          Decimal        @db.Decimal(10, 2) @default(0)
+  ip             String?
+  userAgent      String?
+  tracking       Json?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([phone])
+}
+
+model Subscription {
+  id         String             @id @default(cuid())
+  customerId String
+  customer   Customer           @relation(fields: [customerId], references: [id])
+  productId  String?
+  product    Product?           @relation(fields: [productId], references: [id])
+  planSlug   String
+  status     SubscriptionStatus @default(active)
+  startsAt   DateTime           @default(now())
+  expiresAt  DateTime
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+
+  @@index([status])
+  @@index([expiresAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  module     String
+  entityType String?
+  entityId   String?
+  metadata   Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([module])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model ActivityLog {
+  id       String   @id @default(cuid())
+  actorId  String?
+  actor    User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action   String
+  resource String
+  metadata Json?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model SiteSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+model SearchIndex {
+  id         String   @id @default(cuid())
+  entityType String
+  entityId   String
+  title      String
+  subtitle   String?
+  href       String
+  keywords   String?
+  updatedAt  DateTime @updatedAt
+
+  @@unique([entityType, entityId])
+  @@index([title])
+}
+
+model Coupon {
+  id         String       @id @default(cuid())
+  code       String       @unique
+  type       CouponType
+  value      Decimal      @db.Decimal(10, 2)
+  expiresAt  DateTime?
+  usageLimit Int          @default(100)
+  usageCount Int          @default(0)
+  status     CouponStatus @default(active)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@index([status])
+  @@index([code])
+}
+
+model Review {
+  id           String       @id @default(cuid())
+  customerId   String?
+  customer     Customer?    @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  productId    String?
+  product      Product?     @relation(fields: [productId], references: [id], onDelete: SetNull)
+  customerName String
+  productName  String
+  rating       Int
+  text         String
+  status       ReviewStatus @default(pending)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AdminNotification {
+  id        String              @id @default(cuid())
+  title     String
+  body      String
+  channel   NotificationChannel @default(dashboard)
+  status    NotificationStatus  @default(unread)
+  userId    String?
+  metadata  Json?
+  createdAt DateTime            @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model NotificationSettings {
+  id        String   @id @default("default")
+  config    Json
+  updatedAt DateTime @updatedAt
+}
+
+model Affiliate {
+  id          String          @id @default(cuid())
+  name        String
+  code        String          @unique
+  email       String?
+  phone       String?
+  commission  Decimal         @default(0) @db.Decimal(5, 2)
+  clicks      Int             @default(0)
+  conversions Int             @default(0)
+  earnings    Decimal         @default(0) @db.Decimal(12, 2)
+  whatsappLeads Int           @default(0)
+  status      AffiliateStatus @default(pending)
+  enabled     Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([status])
+  @@index([code])
+}
+
+model CmsContent {
+  id        String   @id @default("storefront")
+  content   Json
+  updatedAt DateTime @updatedAt
+}
+
+model SeoSettings {
+  id        String   @id @default("default")
+  config    Json
+  updatedAt DateTime @updatedAt
+}
+
+model AnalyticsEvent {
+  id         String   @id @default(cuid())
+  name       String
+  path       String
+  properties Json?
+  ip         String?
+  userAgent  String?
+  utm        Json?
+  sessionId  String?
+  createdAt  DateTime @default(now())
+
+  @@index([name])
+  @@index([createdAt])
+  @@index([sessionId])
+  @@index([path])
+}

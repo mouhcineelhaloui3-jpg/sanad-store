@@ -26,28 +26,33 @@ async function hmacSha256Hex(secret: string, message: string) {
     .join("");
 }
 
-export async function hasValidAdminSessionCookie(request: NextRequest): Promise<boolean> {
+export async function parseAdminSessionFromRequest(request: NextRequest): Promise<{ userId: string; role: string } | null> {
   const token = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
-  if (!token) return false;
+  if (!token) return null;
 
   const [payloadB64, signature] = token.split(".");
-  if (!payloadB64 || !signature) return false;
+  if (!payloadB64 || !signature) return null;
 
   try {
     const expected = await hmacSha256Hex(getSessionSecret(), payloadB64);
-    if (expected.length !== signature.length) return false;
+    if (expected.length !== signature.length) return null;
 
     let mismatch = 0;
     for (let index = 0; index < expected.length; index++) {
       mismatch |= expected.charCodeAt(index) ^ signature.charCodeAt(index);
     }
 
-    if (mismatch !== 0) return false;
+    if (mismatch !== 0) return null;
 
     const payload = decodeBase64Url(payloadB64);
-    const parts = payload.split("|");
-    return parts.length === 5 && Boolean(parts[0]) && Boolean(parts[3]);
+    const [userId, , , role] = payload.split("|");
+    if (!userId || !role) return null;
+    return { userId, role };
   } catch {
-    return false;
+    return null;
   }
+}
+
+export async function hasValidAdminSessionCookie(request: NextRequest): Promise<boolean> {
+  return (await parseAdminSessionFromRequest(request)) !== null;
 }

@@ -34,13 +34,18 @@ export async function adminFetch<T>(
 
       const payload = await response.json().catch(() => null);
 
-      if (response.ok && payload && typeof payload === "object" && "ok" in payload && payload.ok === true) {
-        return payload.data as T;
+      if (response.ok) {
+        if (payload && typeof payload === "object" && "ok" in payload && payload.ok === true) {
+          return payload.data as T;
+        }
+        return payload as T;
       }
 
       const message =
         payload && typeof payload === "object" && "error" in payload && payload.error
-          ? String((payload.error as { message?: string }).message ?? "Request failed")
+          ? typeof payload.error === "string"
+            ? payload.error
+            : String((payload.error as { message?: string }).message ?? "Request failed")
           : `Request failed with status ${response.status}`;
 
       const error = new Error(message) as AdminFetchError;
