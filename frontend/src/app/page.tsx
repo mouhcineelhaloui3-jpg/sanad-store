@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 import { JsonLd } from "@/components/seo/JsonLd";
+import { IptvHeroClient } from "@/components/iptv/IptvHeroClient";
 import {
   LazyIptvContact,
   LazyIptvDeviceGrid,
   LazyIptvFaq,
   LazyIptvFeatures,
-  LazyIptvHeroDeferred,
   LazyIptvHowItWorks,
   LazyIptvLiveTicker,
   LazyIptvMoviesShowcase,
@@ -37,7 +36,7 @@ export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getStoreContent();
-  return buildPageMetadata({
+  const meta = buildPageMetadata({
     title: content.seo.title,
     description: content.seo.description,
     path: "/",
@@ -46,6 +45,10 @@ export async function generateMetadata(): Promise<Metadata> {
     ogDescription: content.seo.ogDescription,
     keywords: content.seo.keywords
   });
+  return {
+    ...meta,
+    description: content.seo.description?.trim() || meta.description
+  };
 }
 
 export default async function HomePage() {
@@ -110,13 +113,11 @@ export default async function HomePage() {
     <div className="relative min-h-screen pb-16 md:pb-0">
       <JsonLd data={jsonLd} />
 
-      <Suspense fallback={null}>
-        <LazyIptvHeroDeferred
-          hero={homepage.hero}
-          whatsappNumber={footer.whatsappNumber}
-          whatsappMessage={footer.whatsappMessage}
-        />
-      </Suspense>
+      <IptvHeroClient
+        hero={homepage.hero}
+        whatsappNumber={footer.whatsappNumber}
+        whatsappMessage={footer.whatsappMessage}
+      />
 
       {sections.liveTicker ? <LazyIptvLiveTicker ticker={homepage.liveTicker} /> : null}
 

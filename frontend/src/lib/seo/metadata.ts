@@ -79,7 +79,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
       default: seo.title,
       template: `%s | ${brand}`
     },
-    description: seo.description,
+    description: seo.description?.trim() || `${brand} — IPTV Morocco subscription with free trial and WhatsApp support.`,
     keywords: parseKeywords(seo.keywords),
     authors: [{ name: brand, url: siteUrl }],
     creator: brand,
@@ -157,7 +157,9 @@ export function buildPageMetadata(options: PageMetadataInput): Metadata {
 
   return {
     title: options.title,
-    description: options.description,
+    description:
+      options.description?.trim() ||
+      "SANAD IPTV — IPTV Morocco subscription: 100,000+ channels, 4K sports, movies, free trial.",
     keywords: options.keywords ? parseKeywords(options.keywords) : undefined,
     alternates: { canonical },
     openGraph: {

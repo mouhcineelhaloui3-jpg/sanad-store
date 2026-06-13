@@ -103,6 +103,6 @@ function HeroFallback() {
 }
 
 export const LazyIptvHeroDeferred = dynamic(
-  () => import("@/components/iptv/IptvHero").then((m) => ({ default: m.IptvHero })),
+  () => import("@/components/iptv/IptvHeroClient").then((m) => ({ default: m.IptvHeroClient })),
   { loading: HeroFallback, ssr: true }
 );

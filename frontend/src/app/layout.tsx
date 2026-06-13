@@ -3,6 +3,7 @@ import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { DeferredAnalytics } from "@/components/analytics/DeferredAnalytics";
 import { StoreContentProvider } from "@/components/cms/StoreContentProvider";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getStoreContent } from "@/lib/cms/server";
 import { layoutCssVars } from "@/lib/cms/layout-styles";
@@ -11,11 +12,12 @@ import "./globals.css";
 
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
-  weight: ["400", "700"],
+  weight: ["700"],
   variable: "--font-arabic",
   display: "swap",
   preload: true,
-  adjustFontFallback: true
+  adjustFontFallback: true,
+  fallback: ["Tahoma", "Arial", "sans-serif"]
 });
 
 const latin = Inter({
@@ -48,6 +50,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           } as React.CSSProperties
         }
       >
+        <SkipLink />
         <AnalyticsScripts integrations={content.integrations} />
         <DeferredAnalytics />
         <StoreContentProvider content={content}>

@@ -1,6 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export function DynamicBackground() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const mobile = window.matchMedia("(max-width: 768px)").matches;
+    const delay = mobile ? 2500 : 1200;
+    const enable = () => setShow(true);
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(enable, { timeout: delay });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(enable, delay);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  if (!show) {
+    return <div className="pointer-events-none fixed inset-0 -z-10 bg-[#0a0a0a]" aria-hidden />;
+  }
+
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
       <div className="bg-base absolute inset-0" />

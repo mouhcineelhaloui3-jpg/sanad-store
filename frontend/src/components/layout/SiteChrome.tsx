@@ -2,13 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { MotionConfig } from "framer-motion";
-import { LazyMotion, domAnimation } from "@/components/motion";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { LazySiteModals } from "@/components/layout/LazySiteModals";
 import { LocaleSync } from "@/components/layout/LocaleSync";
+import { MotionShell } from "@/components/motion/MotionShell";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 const DynamicBackground = dynamic(
@@ -36,6 +35,27 @@ const CroEffects = dynamic(
   { ssr: false }
 );
 
+function StorefrontChrome({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <LocaleSync />
+      <DynamicBackground />
+      <DeferredSiteEffects />
+      <Header />
+      <UrgencyBanner />
+      <main id="main-content" className="relative">
+        {children}
+      </main>
+      <Footer />
+      <LazySiteModals />
+      <IptvStickyCta />
+      <WhatsAppButton />
+      <CroEffects />
+      <Toaster richColors position="top-center" theme="dark" />
+    </>
+  );
+}
+
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
@@ -50,21 +70,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <LazyMotion features={domAnimation} strict>
-      <MotionConfig reducedMotion="user">
-        <LocaleSync />
-        <DynamicBackground />
-        <DeferredSiteEffects />
-        <Header />
-        <UrgencyBanner />
-        <main className="relative">{children}</main>
-        <Footer />
-        <LazySiteModals />
-        <IptvStickyCta />
-        <WhatsAppButton />
-        <CroEffects />
-        <Toaster richColors position="top-center" theme="dark" />
-      </MotionConfig>
-    </LazyMotion>
+    <MotionShell>
+      <StorefrontChrome>{children}</StorefrontChrome>
+    </MotionShell>
   );
 }

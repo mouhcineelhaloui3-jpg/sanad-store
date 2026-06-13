@@ -23,6 +23,24 @@ body {
   color: #ffffff;
 }
 
+/* Accessibility: minimum contrast on dark theme */
+.text-white\/70,
+.text-white\/75 {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.text-dark-700 {
+  color: #b8b8b8;
+}
+
+.text-dark-800 {
+  color: #d4d4d4;
+}
+
+.iptv-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 a {
   text-decoration: none;
 }
@@ -573,7 +591,7 @@ a {
   }
 
   .iptv-input::placeholder {
-    color: rgba(0, 229, 255, 0.55);
+    color: rgba(255, 255, 255, 0.55);
   }
 
   label span.text-dark-800 {

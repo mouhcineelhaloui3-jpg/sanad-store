@@ -21,7 +21,7 @@ export function Header() {
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4">
         <Logo />
-        <nav className="hidden items-center gap-6 text-sm font-semibold text-dark-900 md:flex">
+        <nav className="hidden items-center gap-6 text-sm font-semibold text-white/90 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
