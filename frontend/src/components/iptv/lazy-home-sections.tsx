@@ -4,6 +4,11 @@ function SectionFallback() {
   return <div className="iptv-section-spacing min-h-[8rem] animate-pulse bg-white/[0.02]" aria-hidden />;
 }
 
+export const LazyIptvLiveTicker = dynamic(
+  () => import("@/components/iptv/IptvLiveTicker").then((m) => m.IptvLiveTicker),
+  { loading: SectionFallback, ssr: false }
+);
+
 export const LazyIptvSportsShowcase = dynamic(
   () => import("@/components/iptv/IptvSportsShowcase").then((m) => m.IptvSportsShowcase),
   { loading: SectionFallback }

@@ -34,7 +34,7 @@ function buildOpenGraph(options: {
   return {
     type: "website" as const,
     locale: "ar_MA",
-    alternateLocale: ["en_US", "fr_FR"],
+    alternateLocale: ["en_US"],
     url: options.url,
     siteName: options.brand,
     title: options.title,
@@ -88,7 +88,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
     alternates: {
       canonical: "/",
       languages: {
-        ar: "/",
+        "ar-MA": "/",
         en: "/",
         "x-default": "/"
       }
@@ -116,7 +116,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
     other: {
       "geo.region": "MA",
       "geo.placename": "Morocco",
-      "content-language": "ar, en"
+      "content-language": "ar-MA, en"
     }
   };
 }

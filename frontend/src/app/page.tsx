@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IptvHero } from "@/components/iptv/IptvHero";
-import { IptvLiveTicker } from "@/components/iptv/IptvLiveTicker";
 import {
   LazyIptvContact,
   LazyIptvDeviceGrid,
   LazyIptvFaq,
   LazyIptvFeatures,
   LazyIptvHowItWorks,
+  LazyIptvLiveTicker,
   LazyIptvMoviesShowcase,
   LazyIptvPlans,
   LazyIptvSportsShowcase,
@@ -29,6 +29,8 @@ import {
   webPageJsonLd,
   websiteJsonLd
 } from "@/lib/seo/structured-data";
+
+export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getStoreContent();
@@ -87,7 +89,7 @@ export default async function HomePage() {
         whatsappMessage={footer.whatsappMessage}
       />
 
-      {sections.liveTicker ? <IptvLiveTicker ticker={homepage.liveTicker} /> : null}
+      {sections.liveTicker ? <LazyIptvLiveTicker ticker={homepage.liveTicker} /> : null}
 
       {sections.sports ? <LazyIptvSportsShowcase sports={homepage.sports} /> : null}
       {sections.sports && sections.movies && showDivider ? <SectionDivider /> : null}

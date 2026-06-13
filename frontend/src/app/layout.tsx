@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const layoutVars = layoutCssVars(content.layout);
 
   return (
-    <html lang="ar" dir="rtl" className={`${arabic.variable} ${latin.variable}`}>
+    <html lang="ar-MA" dir="rtl" className={`${arabic.variable} ${latin.variable}`}>
       <body
         className="font-sans text-white antialiased"
         style={

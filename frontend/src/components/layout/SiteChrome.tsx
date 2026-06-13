@@ -1,17 +1,21 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MotionConfig } from "framer-motion";
 import { Toaster } from "sonner";
-import { DynamicBackground } from "@/components/iptv/DynamicBackground";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { DeferredSiteEffects } from "@/components/layout/DeferredSiteEffects";
 import { LazySiteModals } from "@/components/layout/LazySiteModals";
 import { LocaleSync } from "@/components/layout/LocaleSync";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+
+const DynamicBackground = dynamic(
+  () => import("@/components/iptv/DynamicBackground").then((m) => m.DynamicBackground),
+  { ssr: false }
+);
 
 const IptvStickyCta = dynamic(
   () => import("@/components/iptv/IptvStickyCta").then((m) => m.IptvStickyCta),

@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { defaultStoreContent } from "./defaults";
 import type { StoreContent } from "./types";
@@ -23,14 +24,22 @@ function deepMerge<T extends Record<string, unknown>>(base: T, patch: Partial<T>
   return out;
 }
 
+const loadStoreContentFromDisk = unstable_cache(
+  async (): Promise<StoreContent> => {
+    try {
+      const raw = await readFile(CONTENT_FILE, "utf-8");
+      const parsed = JSON.parse(raw) as StoreContent;
+      return deepMerge(defaultStoreContent(), parsed);
+    } catch {
+      return defaultStoreContent();
+    }
+  },
+  ["store-content"],
+  { revalidate: 60, tags: ["cms"] }
+);
+
 export const getStoreContent = cache(async function getStoreContent(): Promise<StoreContent> {
-  try {
-    const raw = await readFile(CONTENT_FILE, "utf-8");
-    const parsed = JSON.parse(raw) as StoreContent;
-    return deepMerge(defaultStoreContent(), parsed);
-  } catch {
-    return defaultStoreContent();
-  }
+  return loadStoreContentFromDisk();
 });
 
 export async function saveStoreContent(content: StoreContent): Promise<StoreContent> {

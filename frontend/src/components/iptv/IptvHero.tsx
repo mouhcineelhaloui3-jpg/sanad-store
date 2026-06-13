@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import type { HeroContent } from "@/lib/cms/types";
@@ -9,7 +10,16 @@ import { whatsappUrl } from "@/lib/store-config";
 import { useLocaleStore } from "@/store/localeStore";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 import { AnimatedCounter } from "./AnimatedCounter";
-import { IptvHeroScreen } from "./IptvHeroScreen";
+
+const IptvHeroScreen = dynamic(
+  () => import("./IptvHeroScreen").then((m) => m.IptvHeroScreen),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="tv-frame mx-auto aspect-video w-full max-w-md animate-pulse rounded-xl bg-white/5" aria-hidden />
+    )
+  }
+);
 
 const heroBadges = [
   { ar: "🏆 FIFA 2026™", en: "🏆 FIFA 2026™" },
