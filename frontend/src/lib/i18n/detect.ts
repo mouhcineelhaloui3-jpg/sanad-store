@@ -1,4 +1,4 @@
-import type { ArabicVariant, Locale, Market } from "./localized";
+import type { Locale, Market } from "./localized";
 import { currencyForMarket, type CurrencyCode } from "./currency";
 
 const ARAB_COUNTRY_CODES = new Set([
@@ -85,20 +85,24 @@ function detectMarket(region: string | null, timezone: string | null): Market {
 export type DetectResult = {
   locale: Locale;
   currency: CurrencyCode;
-  arabicVariant: ArabicVariant;
   market: Market;
 };
 
 function resultForMarket(market: Market, preferredLocale?: Locale): DetectResult {
   const currency = currencyForMarket(market);
   if (market === "morocco") {
-    const locale = preferredLocale === "en" ? "en" : "ar";
-    return { locale, currency, arabicVariant: "ma", market };
+    const locale =
+      preferredLocale === "en"
+        ? "en"
+        : preferredLocale === "ar"
+          ? "ar"
+          : "ar-ma";
+    return { locale, currency, market };
   }
   if (market === "arab") {
-    return { locale: "ar", currency, arabicVariant: "standard", market };
+    return { locale: "ar", currency, market };
   }
-  return { locale: "en", currency, arabicVariant: "standard", market };
+  return { locale: "en", currency, market };
 }
 
 export function detectLocaleAndCurrency(): DetectResult {
@@ -116,9 +120,10 @@ export function detectLocaleAndCurrency(): DetectResult {
     const region = regionFromTag(raw);
     if (!market) market = detectMarket(region, timezone);
 
-    const lang = raw.trim().toLowerCase().replace("_", "-").split("-")[0];
-    if (lang === "en") preferredLocale = "en";
-    if (lang === "ar") preferredLocale = "ar";
+    const lang = raw.trim().toLowerCase().replace("_", "-");
+    if (lang.startsWith("en")) preferredLocale = "en";
+    else if (lang === "ar-ma") preferredLocale = "ar-ma";
+    else if (lang.startsWith("ar")) preferredLocale = regionFromTag(raw) === "MA" ? "ar-ma" : "ar";
   }
 
   if (!market) market = detectMarket(null, timezone);

@@ -34,7 +34,7 @@ export function LanguageSwitcher() {
         aria-expanded={open}
       >
         <Globe className="h-4 w-4 text-neon-cyan" />
-        {locale.toUpperCase()}
+        {locale === "ar-ma" ? "MA" : locale.toUpperCase()}
         <ChevronDown className="h-3 w-3 opacity-60" />
       </button>
       {open ? (
@@ -52,7 +52,9 @@ export function LanguageSwitcher() {
               }`}
             >
               <span>{LOCALE_LABELS[code]}</span>
-              <span className="text-xs opacity-50">{code.toUpperCase()}</span>
+              <span className="text-xs opacity-50">
+                {code === "ar-ma" ? "MA" : code.toUpperCase()}
+              </span>
             </button>
           ))}
         </div>
