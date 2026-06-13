@@ -26,11 +26,9 @@ export const LOCALE_BCP47: Record<Locale, string> = {
   en: "en-US"
 };
 
-/** Languages shown per market. */
-export function localesForMarket(market: Market): Locale[] {
-  if (market === "morocco") return ["ar-ma", "ar", "en"];
-  if (market === "arab") return ["ar"];
-  return ["en"];
+/** All three storefront languages — always available for manual selection. */
+export function localesForMarket(_market: Market): Locale[] {
+  return ALL_LOCALES;
 }
 
 export function htmlLang(locale: Locale): string {

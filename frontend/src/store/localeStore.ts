@@ -2,9 +2,9 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { detectLocaleAndCurrency } from "@/lib/i18n/detect";
+import { DEFAULT_LOCALE, detectLocaleAndCurrency } from "@/lib/i18n/detect";
 import type { CurrencyCode } from "@/lib/i18n/currency";
-import { localesForMarket, type Locale, type Market } from "@/lib/i18n/localized";
+import { ALL_LOCALES, type Locale, type Market } from "@/lib/i18n/localized";
 
 type LocaleState = {
   locale: Locale;
@@ -19,13 +19,12 @@ type LocaleState = {
 export const useLocaleStore = create<LocaleState>()(
   persist(
     (set, get) => ({
-      locale: "ar-ma",
+      locale: DEFAULT_LOCALE,
       currency: "MAD",
       market: "morocco",
       userSet: false,
       setLocale: (locale) => {
-        const { market } = get();
-        if (!localesForMarket(market).includes(locale)) return;
+        if (!ALL_LOCALES.includes(locale)) return;
         set({ locale, userSet: true });
       },
       setCurrency: (currency) => set({ currency, userSet: true }),
@@ -39,6 +38,6 @@ export const useLocaleStore = create<LocaleState>()(
         });
       }
     }),
-    { name: "sanad-iptv-locale-v6" }
+    { name: "sanad-iptv-locale-v7" }
   )
 );

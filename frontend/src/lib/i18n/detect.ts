@@ -88,44 +88,30 @@ export type DetectResult = {
   market: Market;
 };
 
-function resultForMarket(market: Market, preferredLocale?: Locale): DetectResult {
-  const currency = currencyForMarket(market);
-  if (market === "morocco") {
-    const locale =
-      preferredLocale === "en"
-        ? "en"
-        : preferredLocale === "ar"
-          ? "ar"
-          : "ar-ma";
-    return { locale, currency, market };
-  }
-  if (market === "arab") {
-    return { locale: "ar", currency, market };
-  }
-  return { locale: "en", currency, market };
-}
+/** Official storefront language — Standard Arabic for every first visit. */
+export const DEFAULT_LOCALE: Locale = "ar";
 
-export function detectLocaleAndCurrency(): DetectResult {
-  if (typeof window === "undefined") {
-    return resultForMarket("morocco");
-  }
+function detectMarketFromBrowser(): Market {
+  if (typeof window === "undefined") return "morocco";
 
   const timezone = readTimezone();
   const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
 
-  let market: Market | null = null;
-  let preferredLocale: Locale | undefined;
-
   for (const raw of langs) {
     const region = regionFromTag(raw);
-    if (!market) market = detectMarket(region, timezone);
-
-    const lang = raw.trim().toLowerCase().replace("_", "-");
-    if (lang.startsWith("en")) preferredLocale = "en";
-    else if (lang === "ar-ma") preferredLocale = "ar-ma";
-    else if (lang.startsWith("ar")) preferredLocale = regionFromTag(raw) === "MA" ? "ar-ma" : "ar";
+    const market = detectMarket(region, timezone);
+    if (market !== "international" || region) return market;
   }
 
-  if (!market) market = detectMarket(null, timezone);
-  return resultForMarket(market, preferredLocale);
+  return detectMarket(null, timezone);
+}
+
+/** Auto-detect currency/market only. Language is never forced to English. */
+export function detectLocaleAndCurrency(): DetectResult {
+  const market = detectMarketFromBrowser();
+  return {
+    locale: DEFAULT_LOCALE,
+    currency: currencyForMarket(market),
+    market
+  };
 }
