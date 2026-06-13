@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const coreRoot = path.join(__dirname, "../core/src/index.ts");
+const extensionsRoot = path.join(__dirname, "../extensions/index.ts");
+
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://connect.facebook.net https://analytics.tiktok.com https://plausible.io",
@@ -23,6 +30,13 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  transpilePackages: ["@sanad/core", "@sanad/extensions"],
+  turbopack: {
+    resolveAlias: {
+      "@sanad/core": "../core/src/index.ts",
+      "@sanad/extensions": "../extensions/index.ts"
+    }
+  },
   poweredByHeader: false,
   compress: true,
   images: {
@@ -31,8 +45,22 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256]
   },
+  webpack: (config, { isServer }) => {
+    config.resolve.alias["@sanad/core"] = coreRoot;
+    config.resolve.alias["@sanad/extensions"] = extensionsRoot;
+    config.resolve.alias["@sanad/extensions/analytics-extension/aggregator"] = path.join(
+      __dirname,
+      "../extensions/analytics-extension/aggregator.ts"
+    );
+    if (!isServer) {
+      config.resolve.alias["@sanad/core"] = false;
+      config.resolve.alias["@sanad/extensions"] = false;
+    }
+    return config;
+  },
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion", "sonner"]
+    optimizePackageImports: ["lucide-react", "framer-motion", "sonner"],
+    externalDir: true
   },
   async headers() {
     return [

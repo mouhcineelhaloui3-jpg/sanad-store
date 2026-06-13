@@ -1,0 +1,14 @@
+{
+  "name": "@sanad/extensions",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./*": "./*"
+  },
+  "dependencies": {
+    "@sanad/core": "file:../core"
+  }
+}

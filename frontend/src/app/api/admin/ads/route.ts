@@ -1,0 +1,9 @@
+import { NextRequest } from "next/server";
+import { requireAdminPermission } from "@/lib/admin/auth-server";
+import { handleExtensionRoute } from "@/lib/extensions/route-handler";
+
+export async function GET(request: NextRequest) {
+  const { error } = requireAdminPermission(request, "ads:read");
+  if (error) return error;
+  return handleExtensionRoute(request, "GET", "/api/admin/ads");
+}

@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",
+    "@sanad/core": "file:../core",
+    "@sanad/extensions": "file:../extensions",
     "@tanstack/react-query": "^5.101.0",
     "clsx": "latest",
     "framer-motion": "^12.40.0",

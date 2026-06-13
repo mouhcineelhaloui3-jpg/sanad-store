@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Bell, LayoutDashboard, Menu, Moon, Search, Settings, Sun } from "lucide-react";
 import { hasPermission, type AdminRole } from "@/lib/admin/rbac";
-import { adminNav } from "@/lib/admin/data";
+import { adminNav, type AdminNavItem } from "@/lib/admin/data";
 import type { AdminSessionUser } from "@/lib/admin/queries";
 
 const LOGO_SRC = "/logo/sanad-iptv-logo.png";
@@ -20,9 +20,18 @@ export function AdminSidebar({
   role: AdminRole;
 }) {
   const pathname = usePathname();
-  const coreNav = adminNav.filter(
-    (item) => item.section === "core" && (!item.permission || hasPermission(role, item.permission))
-  );
+  const sections: Array<{ key: AdminNavItem["section"]; label: string }> = [
+    { key: "core", label: "Workspace" },
+    { key: "extensions", label: "Extensions" },
+    { key: "commerce", label: "Commerce" },
+    { key: "system", label: "System" }
+  ];
+
+  function navForSection(section: AdminNavItem["section"]) {
+    return adminNav.filter(
+      (item) => item.section === section && (!item.permission || hasPermission(role, item.permission))
+    );
+  }
 
   return (
     <>
@@ -50,24 +59,34 @@ export function AdminSidebar({
           </Link>
         </div>
 
-        <nav className="flex-1 space-y-1 overflow-y-auto p-4" aria-label="Admin navigation">
-          <p className="px-3 pb-2 text-xs font-black uppercase tracking-wider text-slate-400">Workspace</p>
-          {coreNav.map(({ href, icon: Icon, label }) => {
-            const active = pathname === href || (href !== "/admin" && pathname.startsWith(href));
+        <nav className="flex-1 space-y-4 overflow-y-auto p-4" aria-label="Admin navigation">
+          {sections.map(({ key, label }) => {
+            const items = navForSection(key);
+            if (items.length === 0) return null;
             return (
-              <Link
-                key={href}
-                href={href}
-                onClick={onClose}
-                className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold transition ${
-                  active
-                    ? "bg-slate-900 text-white dark:bg-cyan-500 dark:text-slate-950"
-                    : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
-                }`}
-              >
-                <Icon className="h-5 w-5" />
-                {label}
-              </Link>
+              <div key={key}>
+                <p className="px-3 pb-2 text-xs font-black uppercase tracking-wider text-slate-400">{label}</p>
+                <div className="space-y-1">
+                  {items.map(({ href, icon: Icon, label: itemLabel }) => {
+                    const active = pathname === href || (href !== "/admin" && pathname.startsWith(href));
+                    return (
+                      <Link
+                        key={href}
+                        href={href}
+                        onClick={onClose}
+                        className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold transition ${
+                          active
+                            ? "bg-slate-900 text-white dark:bg-cyan-500 dark:text-slate-950"
+                            : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                        }`}
+                      >
+                        <Icon className="h-5 w-5" />
+                        {itemLabel}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             );
           })}
         </nav>

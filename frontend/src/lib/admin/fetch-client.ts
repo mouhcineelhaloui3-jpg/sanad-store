@@ -26,6 +26,7 @@ export async function adminFetch<T>(
         ...init,
         credentials: "include",
         headers: {
+          ...(init.body && typeof init.body === "string" ? { "Content-Type": "application/json" } : {}),
           ...(needsCsrf && csrfToken ? { "x-csrf-token": csrfToken } : {}),
           ...(init.headers ?? {})
         }
