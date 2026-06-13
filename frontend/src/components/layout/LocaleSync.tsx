@@ -9,7 +9,13 @@ export function LocaleSync() {
   const initFromBrowser = useLocaleStore((s) => s.initFromBrowser);
 
   useEffect(() => {
-    initFromBrowser();
+    const run = () => initFromBrowser();
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(run, { timeout: 2000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(run, 800);
+    return () => window.clearTimeout(id);
   }, [initFromBrowser]);
 
   useEffect(() => {

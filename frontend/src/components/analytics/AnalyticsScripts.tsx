@@ -1,5 +1,3 @@
-"use client";
-
 import Script from "next/script";
 import type { IntegrationsContent } from "@/lib/cms/types";
 import { hasAnalytics, resolveIntegrations } from "@/lib/seo/analytics-config";
@@ -8,6 +6,7 @@ type AnalyticsScriptsProps = {
   integrations?: IntegrationsContent;
 };
 
+/** Server Component — third-party scripts load after idle to protect TBT. */
 export function AnalyticsScripts({ integrations }: AnalyticsScriptsProps) {
   const ids = resolveIntegrations(integrations);
 

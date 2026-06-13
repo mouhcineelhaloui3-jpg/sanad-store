@@ -46,6 +46,8 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
                     alt={t(event.title, locale)}
                     fill
                     loading="lazy"
+                    fetchPriority="low"
+                    decoding="async"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />

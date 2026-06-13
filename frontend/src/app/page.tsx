@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { JsonLd } from "@/components/seo/JsonLd";
-import { IptvHero } from "@/components/iptv/IptvHero";
 import {
   LazyIptvContact,
   LazyIptvDeviceGrid,
   LazyIptvFaq,
   LazyIptvFeatures,
+  LazyIptvHeroDeferred,
   LazyIptvHowItWorks,
   LazyIptvLiveTicker,
   LazyIptvMoviesShowcase,
@@ -109,11 +110,13 @@ export default async function HomePage() {
     <div className="relative min-h-screen pb-16 md:pb-0">
       <JsonLd data={jsonLd} />
 
-      <IptvHero
-        hero={homepage.hero}
-        whatsappNumber={footer.whatsappNumber}
-        whatsappMessage={footer.whatsappMessage}
-      />
+      <Suspense fallback={null}>
+        <LazyIptvHeroDeferred
+          hero={homepage.hero}
+          whatsappNumber={footer.whatsappNumber}
+          whatsappMessage={footer.whatsappMessage}
+        />
+      </Suspense>
 
       {sections.liveTicker ? <LazyIptvLiveTicker ticker={homepage.liveTicker} /> : null}
 

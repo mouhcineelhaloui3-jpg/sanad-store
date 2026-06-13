@@ -1,67 +1,108 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import type { ComponentType } from "react";
 
 function SectionFallback() {
   return <div className="iptv-section-spacing min-h-[8rem] animate-pulse bg-white/[0.02]" aria-hidden />;
 }
 
-export const LazyIptvLiveTicker = dynamic(
-  () => import("@/components/iptv/IptvLiveTicker").then((m) => m.IptvLiveTicker),
-  { loading: SectionFallback, ssr: false }
+function lazyNamed<P extends object>(
+  importFn: () => Promise<Record<string, ComponentType<P>>>,
+  name: string,
+  options?: { ssr?: boolean }
+) {
+  return dynamic(() => importFn().then((mod) => ({ default: mod[name] })), {
+    loading: SectionFallback,
+    ssr: options?.ssr ?? true
+  });
+}
+
+/** Below-fold sections use ssr:false to defer client JS and reduce TBT. */
+export const LazyIptvLiveTicker = lazyNamed(
+  () => import("@/components/iptv/IptvLiveTicker"),
+  "IptvLiveTicker",
+  { ssr: false }
 );
 
-export const LazyIptvSportsShowcase = dynamic(
-  () => import("@/components/iptv/IptvSportsShowcase").then((m) => m.IptvSportsShowcase),
-  { loading: SectionFallback }
+export const LazyIptvSportsShowcase = lazyNamed(
+  () => import("@/components/iptv/IptvSportsShowcase"),
+  "IptvSportsShowcase",
+  { ssr: false }
 );
 
-export const LazyIptvMoviesShowcase = dynamic(
-  () => import("@/components/iptv/IptvMoviesShowcase").then((m) => m.IptvMoviesShowcase),
-  { loading: SectionFallback }
+export const LazyIptvMoviesShowcase = lazyNamed(
+  () => import("@/components/iptv/IptvMoviesShowcase"),
+  "IptvMoviesShowcase",
+  { ssr: false }
 );
 
-export const LazyIptvFeatures = dynamic(
-  () => import("@/components/iptv/IptvFeatures").then((m) => m.IptvFeatures),
-  { loading: SectionFallback }
+export const LazyIptvFeatures = lazyNamed(
+  () => import("@/components/iptv/IptvFeatures"),
+  "IptvFeatures",
+  { ssr: false }
 );
 
-export const LazyIptvPlans = dynamic(
-  () => import("@/components/iptv/IptvPlans").then((m) => m.IptvPlans),
-  { loading: SectionFallback }
+export const LazyIptvPlans = lazyNamed(
+  () => import("@/components/iptv/IptvPlans"),
+  "IptvPlans",
+  { ssr: false }
 );
 
-export const LazyIptvHowItWorks = dynamic(
-  () => import("@/components/iptv/IptvHowItWorks").then((m) => m.IptvHowItWorks),
-  { loading: SectionFallback }
+export const LazyIptvHowItWorks = lazyNamed(
+  () => import("@/components/iptv/IptvHowItWorks"),
+  "IptvHowItWorks",
+  { ssr: false }
 );
 
-export const LazyIptvDeviceGrid = dynamic(
-  () => import("@/components/iptv/IptvDeviceGrid").then((m) => m.IptvDeviceGrid),
-  { loading: SectionFallback }
+export const LazyIptvDeviceGrid = lazyNamed(
+  () => import("@/components/iptv/IptvDeviceGrid"),
+  "IptvDeviceGrid",
+  { ssr: false }
 );
 
-export const LazyIptvTrial = dynamic(
-  () => import("@/components/iptv/IptvTrial").then((m) => m.IptvTrial),
-  { loading: SectionFallback }
+export const LazyIptvTrial = lazyNamed(
+  () => import("@/components/iptv/IptvTrial"),
+  "IptvTrial",
+  { ssr: false }
 );
 
-export const LazyIptvTestimonials = dynamic(
-  () => import("@/components/iptv/IptvTestimonials").then((m) => m.IptvTestimonials),
-  { loading: SectionFallback }
+export const LazyIptvTestimonials = lazyNamed(
+  () => import("@/components/iptv/IptvTestimonials"),
+  "IptvTestimonials",
+  { ssr: false }
 );
 
-export const LazyIptvStats = dynamic(
-  () => import("@/components/iptv/IptvStats").then((m) => m.IptvStats),
-  { loading: SectionFallback }
+export const LazyIptvStats = lazyNamed(
+  () => import("@/components/iptv/IptvStats"),
+  "IptvStats",
+  { ssr: false }
 );
 
-export const LazyIptvFaq = dynamic(
-  () => import("@/components/iptv/IptvFaq").then((m) => m.IptvFaq),
-  { loading: SectionFallback }
+export const LazyIptvFaq = lazyNamed(
+  () => import("@/components/iptv/IptvFaq"),
+  "IptvFaq",
+  { ssr: false }
 );
 
-export const LazyIptvContact = dynamic(
-  () => import("@/components/iptv/IptvContact").then((m) => m.IptvContact),
-  { loading: SectionFallback }
+export const LazyIptvContact = lazyNamed(
+  () => import("@/components/iptv/IptvContact"),
+  "IptvContact",
+  { ssr: false }
+);
+
+function HeroFallback() {
+  return (
+    <section className="iptv-hero-spacing px-4" aria-hidden>
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+        <div className="min-h-[420px] animate-pulse rounded-3xl bg-white/[0.03]" />
+        <div className="tv-frame mx-auto aspect-video w-full max-w-md animate-pulse rounded-xl bg-white/5" />
+      </div>
+    </section>
+  );
+}
+
+export const LazyIptvHeroDeferred = dynamic(
+  () => import("@/components/iptv/IptvHero").then((m) => ({ default: m.IptvHero })),
+  { loading: HeroFallback, ssr: true }
 );

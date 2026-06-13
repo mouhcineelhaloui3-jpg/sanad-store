@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { m } from "@/components/motion";
 import { MessageCircle } from "lucide-react";
 import type { HeroContent } from "@/lib/cms/types";
 import { t } from "@/lib/i18n/localized";
@@ -12,7 +11,7 @@ import { useIptvModalStore } from "@/store/iptvModalStore";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const IptvHeroScreen = dynamic(
-  () => import("./IptvHeroScreen").then((m) => m.IptvHeroScreen),
+  () => import("./IptvHeroScreen").then((mod) => mod.IptvHeroScreen),
   {
     ssr: false,
     loading: () => (
@@ -48,11 +47,7 @@ export function IptvHero({
       <div className="pointer-events-none absolute left-1/2 top-0 hidden h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-neon-cyan/10 blur-[120px] md:block" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <m.div
-          initial={{ opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <div className="mb-4 flex flex-wrap gap-2">
             {heroBadges.map((badge) => (
               <span
@@ -88,7 +83,7 @@ export function IptvHero({
             <p className="text-sm font-bold text-neon-gold md:text-base">{t(hero.bannerText, locale)}</p>
           </div>
 
-          <div className="cta-panel mt-8 flex w-full flex-col gap-3 rounded-2xl p-4 sm:flex-row sm:flex-wrap sm:gap-3 md:bg-transparent md:p-0 md:border-0">
+          <div className="cta-panel mt-8 flex w-full flex-col gap-3 rounded-2xl p-4 sm:flex-row sm:flex-wrap sm:gap-3 md:border-0 md:bg-transparent md:p-0">
             <button type="button" onClick={openTrial} className="btn-gold w-full sm:w-auto">
               {t(hero.primaryCtaLabel, locale)}
             </button>
@@ -114,17 +109,12 @@ export function IptvHero({
               <p className="mt-0.5 text-xs font-bold text-white/80">{ui("channels", locale)}</p>
             </div>
           </div>
-        </m.div>
+        </div>
 
-        <m.div
-          initial={{ opacity: 1, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative"
-        >
+        <div className="relative">
           <div className="absolute -inset-4 hidden rounded-3xl bg-gradient-to-r from-neon-cyan/20 to-neon-green/20 blur-2xl md:block" />
           <IptvHeroScreen />
-        </m.div>
+        </div>
       </div>
     </section>
   );

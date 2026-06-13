@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
-import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
-import { ErrorReporter } from "@/components/analytics/ErrorReporter";
+import { DeferredAnalytics } from "@/components/analytics/DeferredAnalytics";
 import { StoreContentProvider } from "@/components/cms/StoreContentProvider";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getStoreContent } from "@/lib/cms/server";
@@ -16,13 +14,16 @@ const arabic = IBM_Plex_Sans_Arabic({
   weight: ["400", "700"],
   variable: "--font-arabic",
   display: "swap",
-  preload: true
+  preload: true,
+  adjustFontFallback: true
 });
 
 const latin = Inter({
   subsets: ["latin"],
   variable: "--font-latin",
-  display: "swap"
+  display: "swap",
+  preload: false,
+  adjustFontFallback: true
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -48,10 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         }
       >
         <AnalyticsScripts integrations={content.integrations} />
-        <ErrorReporter />
-        <Suspense fallback={null}>
-          <AnalyticsTracker />
-        </Suspense>
+        <DeferredAnalytics />
         <StoreContentProvider content={content}>
           <SiteChrome>{children}</SiteChrome>
         </StoreContentProvider>

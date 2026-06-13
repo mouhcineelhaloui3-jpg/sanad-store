@@ -81,10 +81,20 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
     },
     description: seo.description,
     keywords: parseKeywords(seo.keywords),
-    authors: [{ name: brand }],
+    authors: [{ name: brand, url: siteUrl }],
     creator: brand,
     publisher: brand,
     category: "IPTV",
+    formatDetection: {
+      telephone: true,
+      email: true,
+      address: false
+    },
+    appleWebApp: {
+      capable: true,
+      title: brand,
+      statusBarStyle: "black-translucent"
+    },
     alternates: {
       canonical: "/",
       languages: {
@@ -135,6 +145,7 @@ export type PageMetadataInput = {
   ogDescription?: string;
   keywords?: string;
   noIndex?: boolean;
+  type?: "website" | "article";
 };
 
 export function buildPageMetadata(options: PageMetadataInput): Metadata {
@@ -142,26 +153,40 @@ export function buildPageMetadata(options: PageMetadataInput): Metadata {
   const ogImage = resolveOgImage(options.ogImage);
   const ogTitle = options.ogTitle ?? options.title;
   const ogDescription = options.ogDescription ?? options.description;
+  const pageType = options.type ?? "website";
 
   return {
     title: options.title,
     description: options.description,
     keywords: options.keywords ? parseKeywords(options.keywords) : undefined,
     alternates: { canonical },
-    openGraph: buildOpenGraph({
-      title: ogTitle,
-      description: ogDescription,
-      url: canonical,
-      ogImage,
-      brand: storeConfig.brand
-    }),
+    openGraph: {
+      ...buildOpenGraph({
+        title: ogTitle,
+        description: ogDescription,
+        url: canonical,
+        ogImage,
+        brand: storeConfig.brand
+      }),
+      ...(pageType === "article" ? { type: "article" as const } : {})
+    },
     twitter: buildTwitter({ title: ogTitle, description: ogDescription, ogImage }),
     robots: options.noIndex
       ? { index: false, follow: false }
       : {
           index: true,
           follow: true,
-          googleBot: { index: true, follow: true, "max-image-preview": "large" }
-        }
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1
+          }
+        },
+    other: {
+      "geo.region": "MA",
+      "geo.placename": "Morocco"
+    }
   };
 }

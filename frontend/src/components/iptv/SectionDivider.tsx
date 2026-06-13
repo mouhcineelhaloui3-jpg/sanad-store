@@ -1,5 +1,3 @@
-"use client";
-
 export function SectionDivider() {
   return (
     <div className="relative mx-auto my-4 h-px max-w-4xl overflow-hidden">
