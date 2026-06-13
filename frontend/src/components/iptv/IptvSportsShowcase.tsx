@@ -90,9 +90,11 @@ export function IptvSportsShowcase({ sports }: { sports: SportsSection }) {
         </div>
 
         <div className="mt-12 text-center">
-          <button type="button" onClick={() => openOrder()} className="btn-neon px-10 text-base">
-            {t(sports.ctaLabel, locale)}
-          </button>
+          <div className="cta-panel mx-auto inline-flex w-full max-w-md justify-center rounded-2xl p-4 md:bg-transparent md:p-0 md:border-0">
+            <button type="button" onClick={() => openOrder()} className="btn-neon w-full px-10 text-base">
+              {t(sports.ctaLabel, locale)}
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -49,17 +49,66 @@ a {
   }
 
   .btn-neon {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-neon-cyan to-neon-green px-7 py-3.5 text-sm font-black text-white shadow-glow transition hover:scale-[1.03] hover:shadow-glow-green active:scale-[0.98];
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 2px solid #ffffff;
+    background: #0073e6;
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 900;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 115, 230, 0.45);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .btn-neon:hover {
+    background: #0088ff;
+    transform: scale(1.02);
   }
 
   .btn-neon-outline {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full border-2 border-neon-cyan bg-neon-cyan/10 px-7 py-3.5 text-sm font-black text-white transition hover:border-neon-cyan hover:bg-neon-cyan/20 active:scale-[0.98];
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 2px solid #0073e6;
+    background: #ffffff;
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 900;
+    color: #004a99;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .btn-neon-outline:hover {
+    background: #e8f4ff;
+    transform: scale(1.02);
   }
 
   .btn-gold {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-neon-gold to-orange-500 px-7 py-3.5 text-sm font-black text-white shadow-glow-gold transition hover:scale-[1.03] active:scale-[0.98];
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 2px solid #ffffff;
+    background: #ffffff;
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 900;
+    color: #004a99;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .btn-gold:hover {
+    background: #e8f4ff;
+    transform: scale(1.02);
   }
 
   .btn-whatsapp {
@@ -452,17 +501,20 @@ a {
   .btn-neon,
   .btn-gold,
   .btn-neon-outline {
-    min-height: 3rem;
-    font-size: 0.9375rem;
-    letter-spacing: 0.01em;
+    width: 100%;
+    max-width: 100%;
+    min-height: 3.25rem;
+    font-size: 1rem;
   }
 
-  .btn-neon {
-    background: linear-gradient(135deg, #0088aa 0%, #00b36b 100%);
+  main .flex.flex-wrap.gap-3,
+  main .flex.flex-col.gap-4 {
+    width: 100%;
   }
 
-  .btn-gold {
-    background: linear-gradient(135deg, #d99000 0%, #e06600 100%);
+  .cta-panel {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(8, 20, 40, 0.92);
   }
 
   main p.text-dark-800,

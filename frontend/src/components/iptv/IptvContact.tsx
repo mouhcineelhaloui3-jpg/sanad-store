@@ -55,7 +55,7 @@ export function IptvContact({
             <MessageCircle className="h-5 w-5" />
             {t(contact.whatsappLabel, locale)}
           </a>
-          <a href={`mailto:${email}`} className="btn-neon-outline min-w-[180px] text-white">
+          <a href={`mailto:${email}`} className="btn-neon-outline min-w-[180px]">
             <Mail className="h-5 w-5" />
             {t(contact.emailLabel, locale)}
           </a>
@@ -64,7 +64,7 @@ export function IptvContact({
               href={telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-neon-outline min-w-[180px] text-white"
+              className="btn-neon-outline min-w-[180px]"
             >
               <Send className="h-5 w-5" />
               {t(contact.telegramLabel, locale)}

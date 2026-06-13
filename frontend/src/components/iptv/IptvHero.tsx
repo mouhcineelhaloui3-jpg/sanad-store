@@ -78,18 +78,18 @@ export function IptvHero({
             <p className="text-sm font-bold text-neon-gold md:text-base">{t(hero.bannerText, locale)}</p>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button type="button" onClick={openTrial} className="btn-gold">
+          <div className="cta-panel mt-8 flex w-full flex-col gap-3 rounded-2xl p-4 sm:flex-row sm:flex-wrap sm:gap-3 md:bg-transparent md:p-0 md:border-0">
+            <button type="button" onClick={openTrial} className="btn-gold w-full sm:w-auto">
               {t(hero.primaryCtaLabel, locale)}
             </button>
-            <button type="button" onClick={() => openOrder()} className="btn-neon">
+            <button type="button" onClick={() => openOrder()} className="btn-neon w-full sm:w-auto">
               {t(hero.secondaryCtaLabel, locale)}
             </button>
             <a
               href={whatsappUrl(whatsappMessage, whatsappNumber)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-whatsapp"
+              className="btn-whatsapp w-full sm:w-auto"
             >
               <MessageCircle className="h-5 w-5" />
               {t(hero.whatsappCtaLabel, locale)}
