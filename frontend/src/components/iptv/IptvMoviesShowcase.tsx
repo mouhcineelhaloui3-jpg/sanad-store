@@ -87,8 +87,8 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
 
   return (
     <section id="movies" className="iptv-section-spacing relative overflow-hidden px-4">
-      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-purple-600/10 blur-[100px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-neon-cyan/10 blur-[100px]" />
+      <div className="pointer-events-none absolute -left-32 top-1/3 hidden h-96 w-96 rounded-full bg-purple-600/10 blur-[100px] md:block" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 hidden h-80 w-80 rounded-full bg-neon-cyan/10 blur-[100px] md:block" />
 
       <div className="relative mx-auto max-w-6xl">
         <RevealOnScroll>
@@ -105,7 +105,7 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
               <p className="text-3xl font-black text-neon-cyan">
                 <AnimatedCounter value={movies.totalCount} prefix="+" />
               </p>
-              <p className="text-xs font-bold text-dark-700">
+              <p className="text-xs font-bold text-white/75">
                 {ui("titles", locale)}
               </p>
             </div>
@@ -130,7 +130,7 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
             {doubled.map((title, i) => (
               <span
                 key={`${title.ar}-${i}`}
-                className="shrink-0 text-sm font-bold text-dark-700 md:text-base"
+                className="shrink-0 text-sm font-bold text-white/80 md:text-base"
               >
                 🎬 {t(title, locale)}
               </span>
@@ -151,7 +151,7 @@ export function IptvMoviesShowcase({ movies }: { movies: MoviesSection }) {
             <button type="button" onClick={() => openOrder()} className="btn-gold px-10 text-base">
               {t(movies.ctaLabel, locale)}
             </button>
-            <p className="mt-3 text-xs text-dark-700">{ui("moviesFreshNote", locale)}</p>
+            <p className="mt-3 text-xs text-white/75">{ui("moviesFreshNote", locale)}</p>
           </div>
         </RevealOnScroll>
       </div>

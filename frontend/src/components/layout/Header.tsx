@@ -14,7 +14,7 @@ export function Header() {
   const openOrder = useIptvModalStore((s) => s.openOrder);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-dark/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/5 bg-dark md:bg-dark/80 md:backdrop-blur-xl">
       <div className="bg-gradient-to-l from-neon-cyan/20 to-neon-green/20 px-4 py-2 text-center text-sm font-semibold text-white">
         {promoBar}
       </div>

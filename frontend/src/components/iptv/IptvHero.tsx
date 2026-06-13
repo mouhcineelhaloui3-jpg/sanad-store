@@ -35,7 +35,7 @@ export function IptvHero({
 
   return (
     <section className="iptv-hero-spacing relative overflow-hidden px-4">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-neon-cyan/10 blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 hidden h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-neon-cyan/10 blur-[120px] md:block" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div
@@ -70,7 +70,7 @@ export function IptvHero({
             ))}
           </h1>
 
-          <p className="mt-5 max-w-xl text-base leading-8 text-dark-800 md:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-8 text-white/90 md:text-lg">
             {t(hero.subtitle, locale)}
           </p>
 
@@ -101,7 +101,7 @@ export function IptvHero({
               <p className="text-2xl font-black text-neon-cyan md:text-3xl">
                 <AnimatedCounter value={100000} prefix="+" />
               </p>
-              <p className="mt-0.5 text-xs font-bold text-dark-700">{ui("channels", locale)}</p>
+              <p className="mt-0.5 text-xs font-bold text-white/80">{ui("channels", locale)}</p>
             </div>
           </div>
         </motion.div>
@@ -112,7 +112,7 @@ export function IptvHero({
           transition={{ duration: 0.5, delay: 0.1 }}
           className="relative"
         >
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-neon-cyan/20 to-neon-green/20 blur-2xl" />
+          <div className="absolute -inset-4 hidden rounded-3xl bg-gradient-to-r from-neon-cyan/20 to-neon-green/20 blur-2xl md:block" />
           <IptvHeroScreen />
         </motion.div>
       </div>

@@ -49,15 +49,17 @@ a {
   }
 
   .btn-neon {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-neon-cyan to-neon-green px-7 py-3.5 text-sm font-black text-dark shadow-glow transition hover:scale-[1.03] hover:shadow-glow-green active:scale-[0.98];
+    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-neon-cyan to-neon-green px-7 py-3.5 text-sm font-black text-white shadow-glow transition hover:scale-[1.03] hover:shadow-glow-green active:scale-[0.98];
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   }
 
   .btn-neon-outline {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full border-2 border-neon-cyan/50 bg-transparent px-7 py-3.5 text-sm font-black text-neon-cyan transition hover:border-neon-cyan hover:bg-neon-cyan/10 active:scale-[0.98];
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border-2 border-neon-cyan bg-neon-cyan/10 px-7 py-3.5 text-sm font-black text-white transition hover:border-neon-cyan hover:bg-neon-cyan/20 active:scale-[0.98];
   }
 
   .btn-gold {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-neon-gold to-orange-500 px-7 py-3.5 text-sm font-black text-dark shadow-glow-gold transition hover:scale-[1.03] active:scale-[0.98];
+    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-neon-gold to-orange-500 px-7 py-3.5 text-sm font-black text-white shadow-glow-gold transition hover:scale-[1.03] active:scale-[0.98];
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   }
 
   .btn-whatsapp {
@@ -426,11 +428,41 @@ a {
     -webkit-backdrop-filter: none;
   }
 
+  header,
+  .backdrop-blur-xl,
+  .backdrop-blur-sm {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
   .marquee-track,
   .marquee-track-slow,
   .neon-text-shimmer,
   .divider-shine {
     animation: none !important;
+  }
+
+  .neon-text {
+    color: var(--neon-cyan) !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+
+  .btn-neon,
+  .btn-gold,
+  .btn-neon-outline {
+    min-height: 3rem;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-neon {
+    background: linear-gradient(135deg, #0088aa 0%, #00b36b 100%);
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #d99000 0%, #e06600 100%);
   }
 
   main p.text-dark-800,

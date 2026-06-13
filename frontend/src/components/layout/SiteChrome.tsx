@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 import { Toaster } from "sonner";
 import { DynamicBackground } from "@/components/iptv/DynamicBackground";
 import { Footer } from "@/components/layout/Footer";
@@ -19,6 +21,13 @@ const IptvStickyCta = dynamic(
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
+  const [reduceMotion, setReduceMotion] = useState(true);
+
+  useEffect(() => {
+    const mobile = window.matchMedia("(max-width: 768px)").matches;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReduceMotion(mobile || prefersReduced);
+  }, []);
 
   if (isAdmin) {
     return (
@@ -30,7 +39,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <>
+    <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
       <LocaleSync />
       <DynamicBackground />
       <DeferredSiteEffects />
@@ -41,6 +50,6 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <IptvStickyCta />
       <WhatsAppButton />
       <Toaster richColors position="top-center" theme="dark" />
-    </>
+    </MotionConfig>
   );
 }

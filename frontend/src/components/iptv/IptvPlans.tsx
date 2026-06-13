@@ -49,24 +49,24 @@ export function IptvPlans({
                 }`}
               >
                 {plan.badge ? (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-neon-gold to-orange-500 px-4 py-1 text-xs font-black text-dark">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-neon-gold to-orange-500 px-4 py-1 text-xs font-black text-white">
                     {t(plan.badge, locale)}
                   </span>
                 ) : null}
 
                 <h3 className="text-xl font-black text-white">{t(plan.name, locale)}</h3>
-                <p className="mt-1 text-sm text-dark-700">{t(plan.duration, locale)}</p>
+                <p className="mt-1 text-sm text-white/75">{t(plan.duration, locale)}</p>
 
                 <div className="my-6">
                   <span className="text-4xl font-black text-neon-cyan">{price.primary}</span>
                   {price.madNote ? (
-                    <p className="mt-1 text-xs font-bold text-dark-700">{price.madNote}</p>
+                    <p className="mt-1 text-xs font-bold text-white/70">{price.madNote}</p>
                   ) : null}
                 </div>
 
                 <ul className="mb-8 flex-1 space-y-3">
                   {plan.features.map((f) => (
-                    <li key={f.ar} className="flex items-center gap-2 text-sm text-dark-800">
+                    <li key={f.ar} className="flex items-center gap-2 text-sm text-white/85">
                       <Check className="h-4 w-4 shrink-0 text-neon-green" />
                       {t(f, locale)}
                     </li>
