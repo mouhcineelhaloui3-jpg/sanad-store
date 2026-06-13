@@ -27,6 +27,8 @@ export const adminNav = [
   { label: "Coupons", href: "/admin/coupons", icon: Percent },
   { label: "Reviews", href: "/admin/reviews", icon: Star },
   { label: "Analytics", href: "/admin/analytics", icon: BarChart3 },
+  { label: "SEO", href: "/admin/seo", icon: ChartNoAxesCombined },
+  { label: "Blog", href: "/admin/blog", icon: Megaphone },
   { label: "Integrations", href: "/admin/integrations", icon: Activity },
   { label: "Notifications", href: "/admin/notifications", icon: Megaphone },
   { label: "Roles", href: "/admin/roles", icon: ShieldCheck },

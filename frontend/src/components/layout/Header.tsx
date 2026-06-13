@@ -5,6 +5,7 @@ import { useStoreContent } from "@/components/cms/StoreContentProvider";
 import { LanguageSwitcher, useNavLinks, usePromoBar, useSubscribeLabel } from "@/components/layout/LanguageSwitcher";
 import { Logo } from "@/components/layout/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { SiteSearchDialog } from "@/components/search/SiteSearchDialog";
 import { useIptvModalStore } from "@/store/iptvModalStore";
 
 export function Header() {
@@ -32,6 +33,7 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <SiteSearchDialog />
           <LanguageSwitcher />
           <button type="button" onClick={() => openOrder()} className="btn-neon hidden px-5 py-2.5 text-xs sm:inline-flex">
             {subscribeLabel}

@@ -1,4 +1,5 @@
 import {
+  articleJsonLd,
   aggregateRatingJsonLd,
   breadcrumbJsonLd,
   faqJsonLd,
@@ -27,6 +28,7 @@ export function StructuredData({ data }: StructuredDataProps) {
 
 export {
   aggregateRatingJsonLd,
+  articleJsonLd,
   breadcrumbJsonLd,
   faqJsonLd,
   organizationJsonLd,

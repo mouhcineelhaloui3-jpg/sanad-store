@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { appendAnalyticsEvent } from "@/lib/analytics/server";
 import type { AnalyticsEventName, AnalyticsEventRecord } from "@/lib/analytics/types";
 import { getClientIp, getUserAgent } from "@/lib/analytics/request-meta";
+import { getClientKey, rateLimit } from "@/lib/security/rate-limit";
 
 const ALLOWED_EVENTS: AnalyticsEventName[] = [
   "page_view",
@@ -14,6 +15,11 @@ const ALLOWED_EVENTS: AnalyticsEventName[] = [
 ];
 
 export async function POST(request: NextRequest) {
+  const limited = rateLimit(getClientKey(request, "analytics-post"), 120, 60_000);
+  if (!limited.ok) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   try {
     const body = (await request.json()) as {
       name?: AnalyticsEventName;

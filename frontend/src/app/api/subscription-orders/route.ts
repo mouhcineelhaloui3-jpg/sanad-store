@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { getClientIp, getUserAgent } from "@/lib/analytics/request-meta";
+import { getClientKey, rateLimit } from "@/lib/security/rate-limit";
 import type { TrackingPayload } from "@/lib/analytics/types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -31,6 +32,11 @@ async function readOrders(): Promise<SubscriptionOrder[]> {
 }
 
 export async function POST(request: Request) {
+  const limited = rateLimit(getClientKey(request, "orders-post"), 10, 60_000);
+  if (!limited.ok) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429, headers: { "Retry-After": String(Math.ceil(limited.retryAfterMs / 1000)) } });
+  }
+
   try {
     const body = (await request.json()) as {
       name?: string;
@@ -69,7 +75,12 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const adminKey = request.headers.get("x-admin-key");
+  const expected = process.env.ADMIN_API_KEY ?? "";
+  if (!expected || adminKey !== expected) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const orders = await readOrders();
   return NextResponse.json(orders);
 }

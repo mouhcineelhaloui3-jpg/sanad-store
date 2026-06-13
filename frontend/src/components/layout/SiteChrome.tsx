@@ -23,6 +23,11 @@ const IptvStickyCta = dynamic(
   { ssr: false }
 );
 
+const CroEffects = dynamic(
+  () => import("@/components/cro/CroEffects").then((m) => m.CroEffects),
+  { ssr: false }
+);
+
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
@@ -55,6 +60,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <LazySiteModals />
       <IptvStickyCta />
       <WhatsAppButton />
+      <CroEffects />
       <Toaster richColors position="top-center" theme="dark" />
     </MotionConfig>
     </LazyMotion>

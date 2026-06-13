@@ -34,7 +34,7 @@ export function organizationJsonLd(options: {
   };
 }
 
-export function websiteJsonLd(options: { name: string; description: string }) {
+export function websiteJsonLd(options: { name: string; description: string; searchUrl?: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -42,7 +42,15 @@ export function websiteJsonLd(options: { name: string; description: string }) {
     description: options.description,
     url: absoluteUrl("/"),
     inLanguage: ["ar-MA", "en"],
-    publisher: { "@type": "Organization", name: options.name }
+    publisher: { "@type": "Organization", name: options.name },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: absoluteUrl(options.searchUrl ?? "/api/search?q={search_term_string}")
+      },
+      "query-input": "required name=search_term_string"
+    }
   };
 }
 
@@ -191,5 +199,33 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       name: item.name,
       item: absoluteUrl(item.path)
     }))
+  };
+}
+
+export function articleJsonLd(options: {
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+  author?: string;
+  imageUrl?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: options.title,
+    description: options.description,
+    url: absoluteUrl(options.url),
+    datePublished: options.publishedAt,
+    dateModified: options.publishedAt,
+    inLanguage: "ar-MA",
+    author: { "@type": "Organization", name: options.author ?? "SANAD IPTV" },
+    publisher: {
+      "@type": "Organization",
+      name: options.author ?? "SANAD IPTV",
+      logo: { "@type": "ImageObject", url: absoluteUrl("/opengraph-image") }
+    },
+    ...(options.imageUrl ? { image: absoluteUrl(options.imageUrl) } : { image: absoluteUrl("/opengraph-image") }),
+    mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(options.url) }
   };
 }

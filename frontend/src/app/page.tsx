@@ -82,7 +82,7 @@ export default async function HomePage() {
       whatsappNumber: footer.whatsappNumber,
       telegramUrl: footer.telegramUrl
     }),
-    websiteJsonLd({ name: branding.brandName, description: seo.description }),
+    websiteJsonLd({ name: branding.brandName, description: seo.description, searchUrl: "/search?q={search_term_string}" }),
     webPageJsonLd({ name: seo.title, description: seo.description }),
     serviceJsonLd({
       name: `${branding.brandName} IPTV`,

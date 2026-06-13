@@ -3,25 +3,49 @@ import { AdminCard } from "@/components/admin/AdminCard";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminTable } from "@/components/admin/AdminTable";
 import { StatusBadge } from "@/components/admin/StatusBadge";
-import { orders } from "@/lib/admin/data";
+import { getSubscriptionOrders } from "@/lib/admin/orders-server";
 
-export default function OrdersPage() {
+export default async function OrdersPage() {
+  const orders = await getSubscriptionOrders();
+
   return (
     <>
-      <AdminPageHeader title="Orders Management" description="Manage COD order confirmation, payment status, shipping status, and invoices." />
+      <AdminPageHeader
+        title="Subscription Orders"
+        description="Live IPTV subscription leads saved from the storefront."
+      />
       <AdminCard>
-        <AdminTable
-          rows={orders}
-          columns={[
-            { header: "Order", cell: (row) => <Link href={`/admin/orders/${row.id}`} className="font-black text-sand-700">{row.id}</Link> },
-            { header: "Customer", cell: (row) => <div><p className="font-bold">{row.customer}</p><p className="text-xs text-slate-500">{row.phone}</p></div> },
-            { header: "Total", cell: (row) => `${row.total} د.م.` },
-            { header: "Payment", cell: (row) => <StatusBadge status={row.payment} /> },
-            { header: "Shipping", cell: (row) => <StatusBadge status={row.shipping} /> },
-            { header: "Order status", cell: (row) => <StatusBadge status={row.status} /> },
-            { header: "Invoice", cell: () => <button className="font-bold text-sand-700">Generate</button> }
-          ]}
-        />
+        {orders.length === 0 ? (
+          <p className="text-sm text-slate-500">No subscription orders saved yet.</p>
+        ) : (
+          <AdminTable
+            rows={orders}
+            columns={[
+              {
+                header: "Order",
+                cell: (row) => (
+                  <Link href={`/admin/orders/${row.id}`} className="font-black text-sand-700">
+                    {row.id.slice(0, 8)}…
+                  </Link>
+                )
+              },
+              {
+                header: "Customer",
+                cell: (row) => (
+                  <div>
+                    <p className="font-bold">{row.name}</p>
+                    <p className="text-xs text-slate-500">{row.phone}</p>
+                  </div>
+                )
+              },
+              { header: "Plan", cell: (row) => row.planSlug },
+              { header: "Total", cell: (row) => `${row.total} د.م.` },
+              { header: "Device", cell: (row) => row.device },
+              { header: "Status", cell: (row) => <StatusBadge status={row.status} /> },
+              { header: "Date", cell: (row) => new Date(row.createdAt).toLocaleString("ar-MA") }
+            ]}
+          />
+        )}
       </AdminCard>
     </>
   );

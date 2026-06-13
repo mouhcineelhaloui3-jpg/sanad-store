@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { getClientIp, getUserAgent } from "@/lib/analytics/request-meta";
+import { getClientKey, rateLimit } from "@/lib/security/rate-limit";
 import type { TrackingPayload } from "@/lib/analytics/types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -30,6 +31,11 @@ async function readTrials(): Promise<TrialRequest[]> {
 }
 
 export async function POST(request: Request) {
+  const limited = rateLimit(getClientKey(request, "trials-post"), 10, 60_000);
+  if (!limited.ok) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   try {
     const body = (await request.json()) as {
       name?: string;
@@ -66,7 +72,12 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const adminKey = request.headers.get("x-admin-key");
+  const expected = process.env.ADMIN_API_KEY ?? "";
+  if (!expected || adminKey !== expected) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const trials = await readTrials();
   return NextResponse.json(trials);
 }
