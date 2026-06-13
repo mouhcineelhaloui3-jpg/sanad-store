@@ -94,6 +94,11 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
       }
     },
     verification,
+    icons: {
+      icon: [{ url: "/icon", type: "image/png", sizes: "32x32" }],
+      apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+      shortcut: "/icon"
+    },
     openGraph: buildOpenGraph({
       title: ogTitle,
       description: ogDescription,

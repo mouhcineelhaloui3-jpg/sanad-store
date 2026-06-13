@@ -12,21 +12,26 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     display: "standalone",
     background_color: "#0A0A0A",
     theme_color: content.branding.primaryColor,
-    lang: "ar",
+    lang: "ar-MA",
     dir: "rtl",
     categories: ["entertainment", "shopping"],
     icons: [
       {
-        src: content.branding.logoUrl || "/logo/sanad-iptv-logo.png",
-        sizes: "512x512",
+        src: "/icon",
+        sizes: "32x32",
+        type: "image/png"
+      },
+      {
+        src: "/apple-icon",
+        sizes: "180x180",
         type: "image/png",
         purpose: "any"
       },
       {
-        src: "/opengraph-image",
-        sizes: "1200x630",
+        src: content.branding.logoUrl || "/logo/sanad-iptv-logo.png",
+        sizes: "512x512",
         type: "image/png",
-        purpose: "any"
+        purpose: "maskable"
       }
     ]
   };
