@@ -724,39 +724,39 @@ a {
     background: rgba(8, 20, 40, 0.92);
   }
 
-  main p.text-dark-800,
-  main li.text-dark-800,
-  main span.text-dark-800,
-  main .text-dark-700,
-  main .text-dark-800 {
+  html:not([data-theme="light"]) main p.text-dark-800,
+  html:not([data-theme="light"]) main li.text-dark-800,
+  html:not([data-theme="light"]) main span.text-dark-800,
+  html:not([data-theme="light"]) main .text-dark-700,
+  html:not([data-theme="light"]) main .text-dark-800 {
     color: rgba(255, 255, 255, 0.92);
   }
 
-  main .section-eyebrow,
-  main a.text-neon-cyan,
-  main .text-neon-cyan {
+  html:not([data-theme="light"]) main .section-eyebrow,
+  html:not([data-theme="light"]) main a.text-neon-cyan,
+  html:not([data-theme="light"]) main .text-neon-cyan {
     color: var(--neon-cyan);
   }
 
-  footer .text-dark-800,
-  footer .text-dark-700,
-  footer .text-dark-600 {
+  html:not([data-theme="light"]) footer .text-dark-800,
+  html:not([data-theme="light"]) footer .text-dark-700,
+  html:not([data-theme="light"]) footer .text-dark-600 {
     color: rgba(255, 255, 255, 0.9);
   }
 
-  footer a:hover {
+  html:not([data-theme="light"]) footer a:hover {
     color: var(--neon-cyan);
   }
 
-  .iptv-input {
+  html:not([data-theme="light"]) .iptv-input {
     color: #ffffff;
   }
 
-  .iptv-input::placeholder {
+  html:not([data-theme="light"]) .iptv-input::placeholder {
     color: rgba(255, 255, 255, 0.55);
   }
 
-  label span.text-dark-800 {
+  html:not([data-theme="light"]) label span.text-dark-800 {
     color: #ffffff;
   }
 }
@@ -939,4 +939,190 @@ a {
 [data-theme="light"] main .text-dark-700,
 [data-theme="light"] main .text-dark-800 {
   color: var(--text-secondary);
+}
+
+/* ─── Light mode: global readable text (storefront) ─── */
+
+/* Map Tailwind white text utilities to dark readable colors */
+[data-theme="light"] .text-white {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .text-white\/90,
+[data-theme="light"] .text-white\/85,
+[data-theme="light"] .text-white\/80 {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .text-white\/75,
+[data-theme="light"] .text-white\/70,
+[data-theme="light"] .text-white\/65,
+[data-theme="light"] .text-white\/60,
+[data-theme="light"] .text-white\/55,
+[data-theme="light"] .text-white\/50,
+[data-theme="light"] .text-white\/40,
+[data-theme="light"] .text-white\/35 {
+  color: var(--text-muted);
+}
+
+/* Preserve brand accent colors */
+[data-theme="light"] .text-neon-cyan {
+  color: var(--neon-cyan);
+}
+
+[data-theme="light"] .text-neon-green {
+  color: var(--neon-green);
+}
+
+[data-theme="light"] .text-neon-gold {
+  color: var(--neon-gold);
+}
+
+[data-theme="light"] .section-eyebrow {
+  color: var(--neon-cyan);
+}
+
+/* Keep white label text on filled CTA / badge buttons */
+[data-theme="light"] .btn-neon,
+[data-theme="light"] .btn-whatsapp,
+[data-theme="light"] .header-cta-inner,
+[data-theme="light"] .live-badge {
+  color: #ffffff !important;
+}
+
+/* Surfaces & borders on light backgrounds */
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/15 {
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] .bg-dark,
+[data-theme="light"] .bg-dark-50,
+[data-theme="light"] .bg-dark-100,
+[data-theme="light"] .bg-dark\/97 {
+  background-color: var(--surface);
+}
+
+[data-theme="light"] .bg-white\/5,
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.06\] {
+  background-color: rgba(15, 23, 42, 0.04);
+}
+
+/* Header & navigation */
+[data-theme="light"] .nav-more-trigger {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .nav-more-trigger.text-neon-cyan {
+  color: var(--neon-cyan);
+}
+
+[data-theme="light"] .nav-mega-item .text-white {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .nav-mega-item .text-white\/50,
+[data-theme="light"] .nav-mega-item .text-white\/65 {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .nav-mega-item:hover .text-white {
+  color: #0073e6;
+}
+
+/* Mobile menu */
+[data-theme="light"] .mobile-nav-sheet {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+[data-theme="light"] .mobile-nav-trigger {
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  background: #ffffff;
+}
+
+[data-theme="light"] .mobile-nav-link {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .mobile-nav-link:hover {
+  color: #0073e6;
+}
+
+/* Forms & inputs */
+[data-theme="light"] .iptv-input,
+[data-theme="light"] input.iptv-input,
+[data-theme="light"] textarea.iptv-input,
+[data-theme="light"] select.iptv-input {
+  color: var(--text-primary);
+  background: #ffffff;
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] .iptv-input::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] label span.text-dark-800,
+[data-theme="light"] label {
+  color: var(--text-secondary);
+}
+
+/* Marketing / blog / inner pages */
+[data-theme="light"] .prose-invert,
+[data-theme="light"] .prose-invert p,
+[data-theme="light"] .prose-invert li,
+[data-theme="light"] .prose-invert dd {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] article .font-black.text-white,
+[data-theme="light"] article h1.text-white,
+[data-theme="light"] article h2.text-white {
+  color: var(--text-primary);
+}
+
+/* Comparison table */
+[data-theme="light"] .compare-table-wrap {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 229, 255, 0.25);
+}
+
+[data-theme="light"] .compare-table td,
+[data-theme="light"] .compare-table th {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .compare-table thead tr {
+  background: rgba(0, 229, 255, 0.08);
+}
+
+[data-theme="light"] .compare-table .text-white\/65 {
+  color: var(--text-muted);
+}
+
+/* Modals & overlays */
+[data-theme="light"] .cta-panel {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .glass-card .text-white,
+[data-theme="light"] .glass-card-hover .text-white {
+  color: var(--text-primary);
+}
+
+/* Logo wordmark */
+[data-theme="light"] .logo-link .font-extrabold.text-white {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .logo-link .text-white\/50 {
+  color: var(--text-muted);
+}
+
+/* Sticky / urgency panels stay readable */
+[data-theme="light"] .cta-panel .text-white {
+  color: var(--text-primary);
 }

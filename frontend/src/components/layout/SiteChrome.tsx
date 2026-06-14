@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { LazySiteModals } from "@/components/layout/LazySiteModals";
 import { LocaleSync } from "@/components/layout/LocaleSync";
@@ -42,6 +43,7 @@ function StorefrontChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <SkipLink />
       <ThemeSync />
       <LocaleSync />
       <DynamicBackground />

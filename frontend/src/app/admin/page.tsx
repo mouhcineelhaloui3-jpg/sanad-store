@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AdminCard } from "@/components/admin/AdminCard";
+import { AdminDbUnavailable } from "@/components/admin/AdminDbUnavailable";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminTable } from "@/components/admin/AdminTable";
 import { StatCard } from "@/components/admin/StatCard";
@@ -16,7 +17,13 @@ import {
 } from "lucide-react";
 
 export default async function AdminDashboardPage() {
-  const overview = await getDashboardOverview();
+  let overview;
+  try {
+    overview = await getDashboardOverview();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Database connection failed";
+    return <AdminDbUnavailable detail={message} />;
+  }
 
   const stats = [
     { label: "Revenue Today", value: `${overview.revenueToday.toLocaleString("fr-MA")} د.م.`, change: "MAD", icon: TrendingUp },

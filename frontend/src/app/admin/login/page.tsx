@@ -46,10 +46,10 @@ function LoginForm() {
       <div className="mx-auto flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-white/10">
         <Image src={LOGO_SRC} alt="SANAD IPTV" width={64} height={64} className="h-16 w-16 object-cover" priority />
       </div>
-      <h1 className="mt-5 text-center text-2xl font-black">SANAD Admin</h1>
-      <p className="mt-2 text-center text-sm text-white/60">Dashboard · Mot de passe admin</p>
+      <h1 className="mt-5 text-center text-2xl font-black text-slate-50">SANAD Admin</h1>
+      <p className="mt-2 text-center text-sm text-slate-400">Dashboard · Mot de passe admin</p>
 
-      <label className="mt-6 block text-sm font-bold text-white/80">
+      <label className="mt-6 block text-sm font-bold text-slate-200">
         Mot de passe
         <div className="relative mt-2">
           <LockKeyhole className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
@@ -67,7 +67,7 @@ function LoginForm() {
 
       {error ? <p className="mt-3 text-center text-sm font-bold text-red-300">{error}</p> : null}
 
-      <p className="mt-4 text-center text-xs text-white/50">
+      <p className="mt-4 text-center text-xs text-slate-500">
         Accès réservé aux administrateurs SANAD IPTV.
       </p>
 
@@ -79,15 +79,15 @@ function LoginForm() {
         {loading ? "Connexion..." : "Entrer au Dashboard"}
       </button>
 
-      <p className="mt-6 text-center text-xs text-white/40">SANAD IPTV · Admin Panel</p>
+      <p className="mt-6 text-center text-xs text-slate-600">SANAD IPTV · Admin Panel</p>
     </form>
   );
 }
 
 export default function AdminLoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 p-4 text-white" dir="ltr">
-      <Suspense fallback={<div className="text-white/70">Loading...</div>}>
+    <div className="flex min-h-screen items-center justify-center bg-slate-950 p-4 text-slate-50" dir="ltr">
+      <Suspense fallback={<div className="text-slate-400">Loading...</div>}>
         <LoginForm />
       </Suspense>
     </div>

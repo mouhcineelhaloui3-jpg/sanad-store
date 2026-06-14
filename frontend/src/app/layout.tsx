@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var r=localStorage.getItem('sanad-theme');if(!r)return;var j=JSON.parse(r);var t=j&&j.state&&j.state.theme;if(t==='light'){document.documentElement.dataset.theme='light';document.documentElement.classList.add('light');document.documentElement.style.colorScheme='light';}}catch(e){}})();`
+            __html: `(function(){try{if(location.pathname.indexOf('/admin')===0){document.documentElement.dataset.theme='dark';document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';return;}var r=localStorage.getItem('sanad-theme');if(!r)return;var j=JSON.parse(r);var t=j&&j.state&&j.state.theme;if(t==='light'){document.documentElement.dataset.theme='light';document.documentElement.classList.add('light');document.documentElement.style.colorScheme='light';}}catch(e){}})();`
           }}
         />
       </head>
@@ -57,7 +57,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           } as React.CSSProperties
         }
       >
-        <SkipLink />
         <AnalyticsScripts integrations={content.integrations} />
         <DeferredAnalytics />
         <StoreContentProvider content={content}>

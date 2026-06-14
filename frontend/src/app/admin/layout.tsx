@@ -10,5 +10,14 @@ export const metadata: Metadata = {
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return <AdminRootLayout>{children}</AdminRootLayout>;
+  return (
+    <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.dataset.theme='dark';document.documentElement.dataset.admin='true';document.documentElement.style.colorScheme='dark';`
+        }}
+      />
+      <AdminRootLayout>{children}</AdminRootLayout>
+    </>
+  );
 }
