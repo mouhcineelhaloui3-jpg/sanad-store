@@ -64,9 +64,8 @@ function StorefrontChrome({ children }: { children: React.ReactNode }) {
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
-  const isPromo = pathname.startsWith("/promo");
 
-  if (isAdmin || isPromo) {
+  if (isAdmin) {
     return (
       <>
         {children}

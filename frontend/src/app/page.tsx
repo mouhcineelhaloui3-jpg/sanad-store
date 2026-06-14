@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IptvHeroClient } from "@/components/iptv/IptvHeroClient";
 import { IptvHeroTrustCards } from "@/components/iptv/IptvHeroTrustCards";
+import { IptvComparison } from "@/components/iptv/IptvComparison";
 import { IptvSeoIntro } from "@/components/iptv/IptvSeoIntro";
 import {
   LazyIptvContact,
@@ -92,6 +93,8 @@ export default async function HomePage() {
       {sections.plans ? (
         <LazyIptvPlans title={homepage.plansTitle} subtitle={homepage.plansSubtitle} plans={plans} />
       ) : null}
+
+      <IptvComparison />
 
       <IptvSeoIntro />
 
