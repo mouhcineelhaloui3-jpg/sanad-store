@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { CmsHomeSectionsPanel, CmsLayoutPanel } from "@/components/admin/CmsExtendedPanels";
+import { CmsPlansPanel } from "@/components/admin/CmsPlansPanel";
 import { AdminCard } from "@/components/admin/AdminCard";
 import { CheckboxField, PrimaryButton, TextAreaField, TextField } from "@/components/admin/AdminForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
@@ -12,7 +14,6 @@ import { useAdminCms, useSaveAdminCms, useAdminSession } from "@/lib/admin/queri
 import { hasPermission } from "@/lib/admin/rbac";
 import { defaultStoreContent } from "@/lib/cms/defaults";
 import type { PlanCmsOverride, StoreContent } from "@/lib/cms/types";
-import { defaultPlans } from "@/lib/plans";
 
 const sectionKeys = [
   ["liveTicker", "Live ticker"],
@@ -31,25 +32,34 @@ const sectionKeys = [
   ["whatsapp", "WhatsApp button"]
 ] as const;
 
-type TabId = "general" | "layout" | "content" | "movies" | "sports" | "seo";
+type TabId = "plans" | "general" | "layout" | "content" | "movies" | "sports" | "seo";
 
 const tabs: { id: TabId; label: string }[] = [
-  { id: "general", label: "عام" },
+  { id: "plans", label: "📦 Plans / الباقات" },
+  { id: "general", label: "General" },
   { id: "layout", label: "📐 Layout" },
-  { id: "content", label: "المحتوى" },
-  { id: "movies", label: "🎬 أفلام" },
-  { id: "sports", label: "⚽ رياضة" },
+  { id: "content", label: "Content" },
+  { id: "movies", label: "🎬 Movies" },
+  { id: "sports", label: "⚽ Sports" },
   { id: "seo", label: "SEO & API" }
 ];
 
 export function StorefrontCmsEditor() {
+  const searchParams = useSearchParams();
   const session = useAdminSession();
   const { data, isLoading, isError, refetch } = useAdminCms();
   const saveMutation = useSaveAdminCms();
   const [content, setContent] = useState<StoreContent | null>(null);
   const [usingFallback, setUsingFallback] = useState(false);
-  const [tab, setTab] = useState<TabId>("general");
+  const [tab, setTab] = useState<TabId>("plans");
   const canWrite = session.data?.user ? hasPermission(session.data.user.role, "cms:write") : false;
+
+  useEffect(() => {
+    const requested = searchParams.get("tab") as TabId | null;
+    if (requested && tabs.some((t) => t.id === requested)) {
+      setTab(requested);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (data) {
@@ -89,8 +99,16 @@ export function StorefrontCmsEditor() {
 
   const updatePlan = (slug: string, patch: Partial<PlanCmsOverride>) => {
     if (!content) return;
-    const plans = content.plans.map((p) => (p.slug === slug ? { ...p, ...patch } : p));
+    const existing = content.plans.find((p) => p.slug === slug);
+    const plans = existing
+      ? content.plans.map((p) => (p.slug === slug ? { ...p, ...patch } : p))
+      : [...content.plans, { slug, ...patch }];
     update({ plans });
+  };
+
+  const updateHomepage = (patch: Partial<StoreContent["homepage"]>) => {
+    if (!content) return;
+    update({ homepage: { ...content.homepage, ...patch } });
   };
 
   if (isLoading || !content) {
@@ -145,6 +163,10 @@ export function StorefrontCmsEditor() {
       </div>
 
       <div className="grid gap-6 pb-24">
+        {tab === "plans" && content ? (
+          <CmsPlansPanel content={content} updatePlan={updatePlan} updateHomepage={updateHomepage} />
+        ) : null}
+
         {(tab === "general" || tab === "content") && (
           <>
             <AdminCard title="Branding">
@@ -169,37 +191,6 @@ export function StorefrontCmsEditor() {
                 <TextAreaField label="Subtitle (EN)" value={homepage.hero.subtitle.en} onChange={(v) => update({ homepage: { ...homepage, hero: { ...homepage.hero, subtitle: { ...homepage.hero.subtitle, en: v } } } })} />
                 <TextAreaField label="Banner (AR)" value={homepage.hero.bannerText.ar} onChange={(v) => update({ homepage: { ...homepage, hero: { ...homepage.hero, bannerText: { ...homepage.hero.bannerText, ar: v } } } })} />
                 <TextAreaField label="Banner (EN)" value={homepage.hero.bannerText.en} onChange={(v) => update({ homepage: { ...homepage, hero: { ...homepage.hero, bannerText: { ...homepage.hero.bannerText, en: v } } } })} />
-              </div>
-            </AdminCard>
-
-            <AdminCard title="Plans (Prices)">
-              <div className="grid gap-4">
-                {defaultPlans.map((plan) => {
-                  const override = content.plans.find((p) => p.slug === plan.slug) ?? { slug: plan.slug };
-                  return (
-                    <div key={plan.slug} className="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
-                      <p className="mb-3 font-bold">{plan.name.ar}</p>
-                      <div className="grid gap-3 md:grid-cols-3">
-                        <TextField
-                          label="Price (MAD)"
-                          type="number"
-                          value={String(override.price ?? plan.price)}
-                          onChange={(v) => updatePlan(plan.slug, { price: Number(v) || plan.price })}
-                        />
-                        <CheckboxField
-                          label="Enabled"
-                          checked={override.enabled !== false}
-                          onChange={(v) => updatePlan(plan.slug, { enabled: v })}
-                        />
-                        <CheckboxField
-                          label="Highlighted"
-                          checked={override.highlighted ?? plan.highlighted}
-                          onChange={(v) => updatePlan(plan.slug, { highlighted: v })}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
               </div>
             </AdminCard>
           </>

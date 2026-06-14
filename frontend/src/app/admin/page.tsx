@@ -54,6 +54,32 @@ export default async function AdminDashboardPage() {
         ))}
       </div>
 
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Link
+          href="/admin/storefront?tab=plans"
+          className="rounded-2xl border border-cyan-200 bg-cyan-50 p-5 transition hover:border-cyan-400 dark:border-cyan-900 dark:bg-cyan-950/30"
+        >
+          <p className="text-lg font-black text-cyan-900 dark:text-cyan-100">📦 Edit Plans / الباقات</p>
+          <p className="mt-1 text-sm text-cyan-800/80 dark:text-cyan-200/80">
+            اختر باقة اشتراك IPTV — titles, prices, features, badges
+          </p>
+        </Link>
+        <Link
+          href="/admin/storefront"
+          className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-slate-300 dark:border-slate-700 dark:bg-slate-900"
+        >
+          <p className="text-lg font-black">Website Editor</p>
+          <p className="mt-1 text-sm text-slate-500">Hero, movies, sports, FAQ, SEO</p>
+        </Link>
+        <Link
+          href="/admin/products"
+          className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-slate-300 dark:border-slate-700 dark:bg-slate-900"
+        >
+          <p className="text-lg font-black">Plans (Live Site)</p>
+          <p className="mt-1 text-sm text-slate-500">Quick price update from products list</p>
+        </Link>
+      </div>
+
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <AdminCard title="Top Products">
           {overview.topProducts.length === 0 ? (

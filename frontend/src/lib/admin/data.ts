@@ -8,6 +8,7 @@ import {
   Home,
   Kanban,
   Megaphone,
+  Package,
   Percent,
   Puzzle,
   Settings,
@@ -45,6 +46,7 @@ export type AdminNavItem = {
 
 export const adminNav: AdminNavItem[] = [
   { label: "Dashboard", href: "/admin", icon: Home, permission: "dashboard:read", section: "core" },
+  { label: "Plans Editor", href: "/admin/storefront?tab=plans", icon: Package, permission: "cms:read", section: "core" },
   { label: "Website Editor", href: "/admin/storefront", icon: Megaphone, permission: "cms:read", section: "core" },
   { label: "Settings", href: "/admin/settings", icon: Settings, permission: "settings:read", section: "core" },
   { label: "Users", href: "/admin/users", icon: Users, permission: "users:read", section: "core" },
