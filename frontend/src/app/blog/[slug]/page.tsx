@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarketingPageLayout } from "@/components/seo/MarketingPageLayout";
@@ -42,7 +43,8 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             title: article.title,
             description: article.description,
             url: `/blog/${slug}`,
-            publishedAt: article.publishedAt
+            publishedAt: article.publishedAt,
+            imageUrl: article.coverImage
           }),
           faqJsonLd(article.faqs)
         ]}
@@ -59,6 +61,17 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
         <p className="text-sm font-bold text-neon-cyan">
           {blogCategoryLabels[article.category]} • {readTime} د قراءة • {article.publishedAt}
         </p>
+
+        <div className="not-prose relative my-6 aspect-[1200/630] overflow-hidden rounded-2xl bg-white/5">
+          <Image
+            src={article.coverImage}
+            alt={article.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 800px"
+          />
+        </div>
 
         {article.sections.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>

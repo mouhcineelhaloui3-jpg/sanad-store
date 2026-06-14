@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { MarketingPageLayout } from "@/components/seo/MarketingPageLayout";
@@ -17,7 +18,7 @@ function BlogList({ query }: { query?: string }) {
   const list = query ? searchBlogPosts(query) : Object.values(blogPosts);
 
   return (
-    <div className="not-prose grid gap-4">
+    <div className="not-prose grid gap-6 md:grid-cols-2">
       {list.length === 0 ? (
         <p className="text-white/60">لا توجد مقالات مطابقة.</p>
       ) : (
@@ -25,21 +26,32 @@ function BlogList({ query }: { query?: string }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="glass-card block rounded-2xl p-6 transition hover:ring-2 hover:ring-neon-cyan/40"
+            className="glass-card group block overflow-hidden rounded-2xl transition hover:ring-2 hover:ring-neon-cyan/40"
           >
-            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-neon-cyan">
-              <span>{blogCategoryLabels[post.category]}</span>
-              <span className="text-white/40">•</span>
-              <span className="text-white/50">{postReadingTime(post)} د read</span>
+            <div className="relative aspect-[1200/630] w-full overflow-hidden bg-white/5">
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                fill
+                className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
-            <h2 className="mt-2 text-xl font-black text-white">{post.title}</h2>
-            <p className="mt-2 text-sm text-white/70">{post.excerpt}</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span key={tag} className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-white/60">
-                  {tag}
-                </span>
-              ))}
+            <div className="p-6">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-neon-cyan">
+                <span>{blogCategoryLabels[post.category]}</span>
+                <span className="text-white/40">•</span>
+                <span className="text-white/50">{postReadingTime(post)} د read</span>
+              </div>
+              <h2 className="mt-2 text-xl font-black text-white">{post.title}</h2>
+              <p className="mt-2 text-sm text-white/70">{post.excerpt}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-white/60">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </Link>
         ))

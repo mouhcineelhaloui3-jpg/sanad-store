@@ -27,7 +27,7 @@ export const defaultPlans: Plan[] = [
     slug: "plan-3-months",
     name: { ar: "بداية", en: "Starter" },
     duration: { ar: "اشتراك IPTV 3 أشهر", en: "3-month IPTV subscription" },
-    price: 150,
+    price: 80,
     currency: "MAD",
     badge: null,
     features: [...sharedFeatures, { ar: "دعم واتساب", en: "WhatsApp support" }, { ar: "🛡️ ضمان استرداد 30 يوم", en: "🛡️ 30-day money-back guarantee" }],
@@ -37,7 +37,7 @@ export const defaultPlans: Plan[] = [
     slug: "plan-6-months",
     name: { ar: "راحة", en: "Confort" },
     duration: { ar: "اشتراك IPTV 6 أشهر", en: "6-month IPTV subscription" },
-    price: 250,
+    price: 140,
     currency: "MAD",
     badge: { ar: "الأكثر طلباً 🔥", en: "Most Popular 🔥" },
     features: [
@@ -55,7 +55,7 @@ export const defaultPlans: Plan[] = [
     slug: "plan-12-months",
     name: { ar: "مميز", en: "Premium" },
     duration: { ar: "اشتراك IPTV 12 شهر", en: "12-month IPTV subscription" },
-    price: 400,
+    price: 240,
     currency: "MAD",
     badge: { ar: "أفضل قيمة 💎", en: "Best Value 💎" },
     features: [
@@ -73,7 +73,7 @@ export const defaultPlans: Plan[] = [
     slug: "plan-2-screens",
     name: { ar: "باقة جهازين", en: "Pack 2 Screens" },
     duration: { ar: "اشتراك IPTV 12 شهر — جهازين", en: "12-month IPTV — 2 devices" },
-    price: 700,
+    price: 400,
     currency: "MAD",
     badge: { ar: "جهازين 📺📺", en: "2 Devices 📺📺" },
     features: [
