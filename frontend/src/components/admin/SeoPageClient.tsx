@@ -10,6 +10,7 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { CheckboxField, PrimaryButton, TextAreaField, TextField } from "@/components/admin/AdminForm";
 import { adminFetch } from "@/lib/admin/fetch-client";
 import { blogPosts } from "@/lib/blog/posts";
+import { t } from "@/lib/i18n/localized";
 import { programmaticPages } from "@/lib/seo/programmatic-pages";
 import { getAllPublicPaths } from "@/lib/seo/routes";
 
@@ -131,7 +132,7 @@ export function SeoPageClient() {
           <ul className="space-y-2 text-sm">
             {Object.values(blogPosts).map((post) => (
               <li key={post.slug} className="flex items-center justify-between rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
-                <span className="font-bold">{post.title}</span>
+                <span className="font-bold">{t(post.title, "ar-ma")}</span>
                 <span className="text-xs text-slate-500">{post.category}</span>
               </li>
             ))}

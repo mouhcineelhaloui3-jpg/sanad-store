@@ -1,8 +1,8 @@
-import type { BlogPost } from "./types";
+import type { BlogPostRaw } from "./types";
 
-const cover = (slug: string) => `/blog/${slug}.svg`;
+const cover = (slug: string) => `/blog/${slug}.png`;
 
-export const blogPostsData: Record<string, BlogPost> = {
+export const blogPostsData: Record<string, BlogPostRaw> = {
   "prix-abonnement-iptv-maroc": {
     slug: "prix-abonnement-iptv-maroc",
     title: "أسعار اشتراك IPTV في المغرب 2026 — دليل SANAD IPTV",

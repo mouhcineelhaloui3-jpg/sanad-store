@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AdminCard } from "@/components/admin/AdminCard";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { blogCategoryLabels, blogPosts, postReadingTime } from "@/lib/blog/posts";
+import { t } from "@/lib/i18n/localized";
 
 export default function AdminBlogPage() {
   const posts = Object.values(blogPosts);
@@ -23,9 +24,9 @@ export default function AdminBlogPage() {
           {posts.map((post) => (
             <div key={post.slug} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-slate-50 p-4 dark:bg-slate-800">
               <div>
-                <p className="font-black">{post.title}</p>
+                <p className="font-black">{t(post.title, "ar-ma")}</p>
                 <p className="text-xs text-slate-500">
-                  /blog/{post.slug} • {blogCategoryLabels[post.category]} • {postReadingTime(post)} min
+                  /blog/{post.slug} • {t(blogCategoryLabels[post.category], "ar-ma")} • {postReadingTime(post, "ar-ma")} min
                 </p>
               </div>
               <Link href={`/blog/${post.slug}`} className="text-sm font-bold text-sand-700">

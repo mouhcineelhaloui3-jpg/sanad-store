@@ -1,4 +1,5 @@
 import { blogPosts } from "@/lib/blog/posts";
+import { t } from "@/lib/i18n/localized";
 import { programmaticPages } from "@/lib/seo/programmatic-pages";
 
 export type SearchDocument = {
@@ -30,11 +31,11 @@ function buildIndex(): SearchDocument[] {
 
   const blogDocs: SearchDocument[] = Object.values(blogPosts).map((p) => ({
     id: p.slug,
-    title: p.title,
-    description: p.excerpt,
+    title: `${t(p.title, "ar-ma")} | ${t(p.title, "en")}`,
+    description: `${t(p.excerpt, "ar-ma")} ${t(p.excerpt, "en")}`,
     href: `/blog/${p.slug}`,
     type: "blog" as const,
-    keywords: p.tags.map((t) => t.toLowerCase())
+    keywords: p.tags.flatMap((tag) => [t(tag, "ar-ma"), t(tag, "en")].map((k) => k.toLowerCase()))
   }));
 
   return [...staticPages, ...landingDocs, ...blogDocs];
