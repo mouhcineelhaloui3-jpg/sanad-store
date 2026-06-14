@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { apiError, apiSuccess } from "@/lib/admin/api-response";
 import { requireAdminPermission } from "@/lib/admin/auth-server";
 import { validateCsrf } from "@/lib/admin/csrf";
@@ -31,6 +32,10 @@ export async function PUT(request: NextRequest) {
   try {
     const body = (await request.json()) as StoreContent;
     const saved = await saveStoreContent(body);
+
+    revalidateTag("cms", "max");
+    revalidatePath("/");
+    revalidatePath("/pricing");
 
     if (session) {
       recordAuditLog({

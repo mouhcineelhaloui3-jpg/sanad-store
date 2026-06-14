@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getClientIp } from "@/lib/analytics/request-meta";
 import { requireAdminPermission } from "@/lib/admin/auth-server";
 import { deleteProduct, getProductById, updateProduct } from "@/lib/db/products";
+import { disableStorefrontPlanForProduct, syncProductToStorefront } from "@/lib/admin/sync-product-storefront";
 import { parseProductForm, parseProductUpdate } from "@/lib/products/schema";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -41,6 +42,9 @@ async function handleUpdate(request: NextRequest, context: RouteContext) {
   if (!product) {
     return NextResponse.json({ error: "Product not found" }, { status: 404 });
   }
+
+  await syncProductToStorefront(product, { userId: session.userId, ip: getClientIp(request) });
+
   return NextResponse.json(product);
 }
 
@@ -57,9 +61,17 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
   if (error || !session) return error;
 
   const { id } = await context.params;
+  const existing = await getProductById(id);
+  if (!existing) {
+    return NextResponse.json({ error: "Product not found" }, { status: 404 });
+  }
+
   const ok = await deleteProduct(id, { userId: session.userId, ip: getClientIp(request) });
   if (!ok) {
     return NextResponse.json({ error: "Product not found" }, { status: 404 });
   }
+
+  await disableStorefrontPlanForProduct(existing, { userId: session.userId, ip: getClientIp(request) });
+
   return NextResponse.json({ ok: true });
 }

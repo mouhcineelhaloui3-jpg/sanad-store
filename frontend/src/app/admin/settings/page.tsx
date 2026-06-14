@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { AdminCard } from "@/components/admin/AdminCard";
 import { CheckboxField, PrimaryButton, SelectField, TextField } from "@/components/admin/AdminForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminStickySaveBar } from "@/components/admin/AdminStickySaveBar";
 import { AdminSkeleton } from "@/components/admin/AdminSkeleton";
 import { useAdminSession, useAdminSettings, useSaveAdminSettings } from "@/lib/admin/queries";
 import { hasPermission } from "@/lib/admin/rbac";
@@ -30,7 +31,7 @@ export default function SettingsPage() {
     try {
       const saved = await saveMutation.mutateAsync(settings);
       setSettings(saved);
-      toast.success("Settings saved");
+      toast.success("Settings saved — live site updated");
     } catch {
       toast.error("Unable to save settings");
     }
@@ -40,7 +41,7 @@ export default function SettingsPage() {
     <>
       <AdminPageHeader
         title="Settings"
-        description="Key-value site configuration validated with Zod and persisted safely."
+        description="Site configuration — click Save to persist changes to the database and live website."
         action={
           <PrimaryButton onClick={save} disabled={isLoading || saveMutation.isPending || !canWrite}>
             {saveMutation.isPending ? "Saving..." : "Save settings"}
@@ -111,6 +112,13 @@ export default function SettingsPage() {
           </div>
         </AdminCard>
       )}
+
+      <AdminStickySaveBar
+        label="Save settings"
+        onSave={save}
+        disabled={isLoading || !canWrite}
+        saving={saveMutation.isPending}
+      />
     </>
   );
 }

@@ -45,14 +45,14 @@ export type AdminNavItem = {
 
 export const adminNav: AdminNavItem[] = [
   { label: "Dashboard", href: "/admin", icon: Home, permission: "dashboard:read", section: "core" },
-  { label: "Storefront CMS", href: "/admin/storefront", icon: Megaphone, permission: "cms:read", section: "core" },
+  { label: "Website Editor", href: "/admin/storefront", icon: Megaphone, permission: "cms:read", section: "core" },
   { label: "Settings", href: "/admin/settings", icon: Settings, permission: "settings:read", section: "core" },
   { label: "Users", href: "/admin/users", icon: Users, permission: "users:read", section: "core" },
   { label: "Activity Logs", href: "/admin/activity-logs", icon: Activity, permission: "logs:read", section: "core" },
   { label: "Extensions", href: "/admin/extensions", icon: Puzzle, permission: "extensions:read", section: "extensions" },
   { label: "Marketplace", href: "/admin/marketplace", icon: Store, permission: "extensions:read", section: "extensions" },
   { label: "Automation", href: "/admin/automation", icon: Workflow, permission: "automation:read", section: "extensions" },
-  { label: "Products", href: "/admin/products", icon: ShoppingBag, permission: "products:read", section: "commerce" },
+  { label: "Plans (Live Site)", href: "/admin/products", icon: ShoppingBag, permission: "products:read", section: "commerce" },
   { label: "Orders", href: "/admin/orders", icon: ClipboardList, permission: "orders:read", section: "commerce" },
   { label: "CRM", href: "/admin/crm", icon: Kanban, permission: "leads:view", section: "commerce" },
   { label: "Customers", href: "/admin/customers", icon: Users, permission: "customers:read", section: "commerce" },

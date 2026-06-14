@@ -43,15 +43,23 @@ export function ProductsPageClient() {
   return (
     <>
       <AdminPageHeader
-        title="IPTV Products"
-        description="Manage subscription plans stored in PostgreSQL — create, edit, and delete with full persistence."
+        title="Subscription Plans"
+        description="Edit plan prices and visibility — saving updates the homepage and /pricing immediately. For hero text, movies, and SEO use Website Editor."
         action={
-          <Link
-            href="/admin/products/new"
-            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white dark:bg-cyan-500 dark:text-slate-950"
-          >
-            Add product
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/admin/storefront"
+              className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-200"
+            >
+              Website Editor
+            </Link>
+            <Link
+              href="/admin/products/new"
+              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white dark:bg-cyan-500 dark:text-slate-950"
+            >
+              Add plan
+            </Link>
+          </div>
         }
       />
 
@@ -60,8 +68,8 @@ export function ProductsPageClient() {
           isLoading={isLoading}
           isError={isError}
           isEmpty={!isLoading && !isError && products.length === 0}
-          emptyTitle="No products yet"
-          emptyDescription="Create your first IPTV plan to show on the storefront."
+          emptyTitle="No plans yet"
+          emptyDescription="Create a subscription plan — it will appear on the live website after you save."
           icon={Package}
           onRetry={() => refetch()}
         >
@@ -69,7 +77,7 @@ export function ProductsPageClient() {
             rows={products}
             columns={[
               {
-                header: "Product",
+                header: "Plan",
                 cell: (row) => (
                   <Link href={`/admin/products/${row.id}`} className="font-semibold text-cyan-700 dark:text-cyan-400">
                     {row.name}

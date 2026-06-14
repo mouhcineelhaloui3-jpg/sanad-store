@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdminPermission } from "@/lib/admin/auth-server";
 import { createProduct, listProducts } from "@/lib/db/products";
+import { syncProductToStorefront } from "@/lib/admin/sync-product-storefront";
 import { getClientIp } from "@/lib/analytics/request-meta";
 import { parseProductForm } from "@/lib/products/schema";
 
@@ -41,6 +42,8 @@ export async function POST(request: NextRequest) {
     },
     { userId: session.userId, ip: getClientIp(request) }
   );
+
+  await syncProductToStorefront(product, { userId: session.userId, ip: getClientIp(request) });
 
   return NextResponse.json(product, { status: 201 });
 }

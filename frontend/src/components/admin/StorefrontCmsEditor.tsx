@@ -6,6 +6,7 @@ import { CmsHomeSectionsPanel, CmsLayoutPanel } from "@/components/admin/CmsExte
 import { AdminCard } from "@/components/admin/AdminCard";
 import { CheckboxField, PrimaryButton, TextAreaField, TextField } from "@/components/admin/AdminForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminStickySaveBar } from "@/components/admin/AdminStickySaveBar";
 import { AdminPageSkeleton } from "@/components/admin/AdminSkeleton";
 import { useAdminCms, useSaveAdminCms, useAdminSession } from "@/lib/admin/queries";
 import { hasPermission } from "@/lib/admin/rbac";
@@ -80,9 +81,9 @@ export function StorefrontCmsEditor() {
     try {
       const saved = await saveMutation.mutateAsync(content);
       setContent(saved);
-      toast.success("تم حفظ التغييرات");
+      toast.success("Saved — live website updated");
     } catch {
-      toast.error("تعذر الحفظ");
+      toast.error("Save failed — check your connection and try again");
     }
   };
 
@@ -102,14 +103,20 @@ export function StorefrontCmsEditor() {
   return (
     <>
       <AdminPageHeader
-        title="SANAD IPTV CMS"
-        description="تحكم كامل فالمحتوى: أفلام، رياضة، باقات، SEO، Plausible، و API."
+        title="Website Editor"
+        description="Edit homepage content, plans, movies, sports, SEO, and integrations. Always click Save to publish changes to the live site."
         action={
           <PrimaryButton onClick={save} disabled={saveMutation.isPending || !canWrite}>
-            {saveMutation.isPending ? "جاري الحفظ..." : "حفظ كل التغييرات"}
+            {saveMutation.isPending ? "Saving…" : "Save all changes"}
           </PrimaryButton>
         }
       />
+
+      {!canWrite ? (
+        <div className="mb-6 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-100">
+          Read-only access — you cannot save changes with this account role.
+        </div>
+      ) : null}
 
       {usingFallback ? (
         <div className="mb-6 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-100">
@@ -137,7 +144,7 @@ export function StorefrontCmsEditor() {
         ))}
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-6 pb-24">
         {(tab === "general" || tab === "content") && (
           <>
             <AdminCard title="Branding">
@@ -566,6 +573,14 @@ export function StorefrontCmsEditor() {
           </>
         )}
       </div>
+
+      <AdminStickySaveBar
+        label="Save all changes"
+        onSave={save}
+        disabled={!canWrite}
+        saving={saveMutation.isPending}
+        hint="Publish homepage, pricing, SEO, and all CMS content to the live website."
+      />
     </>
   );
 }
