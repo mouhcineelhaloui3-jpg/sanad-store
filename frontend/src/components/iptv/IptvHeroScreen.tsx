@@ -16,8 +16,8 @@ type FixtureSlide = {
 const fixtures: FixtureSlide[] = [
   {
     league: { ar: "كأس العالم FIFA 2026™", en: "FIFA World Cup 2026™" },
-    home: { ar: "🇲🇦 المغرب", en: "🇲🇦 Morocco" },
-    away: { ar: "🇧🇷 البرازيل", en: "🇧🇷 Brazil" },
+    home: { ar: "🇩🇪 ألمانيا", en: "🇩🇪 Germany" },
+    away: { ar: "🇫🇷 فرنسا", en: "🇫🇷 France" },
     schedule: { ar: "مجموعات · صيف 2026", en: "Group stage · Summer 2026" },
     note: { ar: "كل المباريات على باقتك", en: "Every match on your plan" }
   },

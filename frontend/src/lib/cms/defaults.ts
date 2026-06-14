@@ -57,14 +57,14 @@ export const defaultStoreContent = (): StoreContent => ({
     copyright: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" }
   },
   seo: {
-    title: "SANAD IPTV | اشتراك IPTV المغرب — +115,000 قناة 4K/UHD",
+    title: "SANAD IPTV | Premium IPTV Worldwide — +115,000 Channels 4K/UHD",
     description:
-      "اشتراك IPTV SANAD — +115,000 قناة مباشرة، 120,000+ فيلم ومسلسل VOD، رياضة 4K، Botola Pro، beIN. تفعيل فوري خلال 5 دقائق، تجربة مجانية، دعم واتساب 24/7.",
+      "SANAD IPTV subscription — +115,000 live channels, 120,000+ VOD titles, 4K sports, beIN, Champions League. Instant activation within 5 minutes, free trial, 24/7 WhatsApp support worldwide.",
     keywords:
-      "IPTV, SANAD IPTV, اشتراك IPTV, abonnement IPTV Maroc, IPTV المغرب, +115000 قناة, IPTV 4K, IPTV Smarters, TiviMate, قنوات مباشرة, FIFA World Cup 2026, كأس العالم 2026, Champions League, Botola Pro, beIN Sports, CAN, مباريات مباشرة, VOD, المغرب",
-    ogTitle: "SANAD IPTV | أحسن IPTV فالمغرب — +115,000 قناة",
+      "IPTV, SANAD IPTV, IPTV subscription, premium IPTV worldwide, +115000 channels, IPTV 4K, IPTV Smarters, TiviMate, live TV, FIFA World Cup 2026, Champions League, beIN Sports, international channels, VOD, global streaming",
+    ogTitle: "SANAD IPTV | Premium IPTV for Customers Worldwide — +115,000 Channels",
     ogDescription:
-      "+115,000 قناة مباشرة، 120,000+ VOD، رياضة 4K، تفعيل فوري — تجربة مجانية ودعم واتساب 24/7.",
+      "115,000+ live channels, 120,000+ VOD, 4K sports, instant activation — free trial & 24/7 WhatsApp support worldwide.",
     ogImageUrl: "",
     googleSiteVerification: ""
   },
@@ -77,10 +77,10 @@ export const defaultStoreContent = (): StoreContent => ({
   },
   homepage: {
     hero: {
-      headline: { ar: "SANAD IPTV\nأحسن IPTV فالمغرب", en: "SANAD IPTV\nBest IPTV in Morocco" },
+      headline: { ar: "SANAD IPTV\nأفضل IPTV للعملاء حول العالم", en: "SANAD IPTV\nPremium IPTV Worldwide" },
       subtitle: {
-        ar: "اشتراك IPTV 4K و HD — +115,000 قناة مباشرة، 120,000+ فيلم ومسلسل VOD، رياضة مباشرة (Botola Pro، beIN، Champions League). تفعيل فوري خلال 5 دقائق على Smart TV، Android، iPhone و Fire Stick.",
-        en: "4K & HD IPTV subscription — 115,000+ live channels, 120,000+ VOD titles, live sports (Botola Pro, beIN, Champions League). Instant activation within 5 minutes on Smart TV, Android, iPhone & Fire Stick."
+        ar: "اشتراك IPTV 4K و HD — +115,000 قناة مباشرة، 120,000+ فيلم ومسلسل VOD، رياضة مباشرة عالمية (beIN، Champions League، Premier League). تفعيل فوري خلال 5 دقائق على Smart TV، Android، iPhone و Fire Stick — في أي بلد.",
+        en: "4K & HD IPTV subscription — 115,000+ live channels, 120,000+ VOD titles, global live sports (beIN, Champions League, Premier League). Instant activation within 5 minutes on Smart TV, Android, iPhone & Fire Stick — worldwide."
       },
       bannerText: {
         ar: "🏆 تابع كأس العالم FIFA 2026™ وأقوى البطولات مباشرة بدون تقطيع وبأعلى جودة.",
@@ -90,8 +90,8 @@ export const defaultStoreContent = (): StoreContent => ({
       secondaryCtaLabel: { ar: "🔥 اشترك دابا", en: "🔥 Subscribe Now" },
       whatsappCtaLabel: { ar: "💬 تواصل عبر واتساب", en: "💬 WhatsApp" },
       trustLine: {
-        ar: "⭐ أحسن IPTV المغرب 2026 — تقييم 4.9/5",
-        en: "⭐ Best IPTV Morocco 2026 — Rated 4.9/5"
+        ar: "⭐ أفضل IPTV عالمي 2026 — تقييم 4.9/5",
+        en: "⭐ Premium IPTV Worldwide 2026 — Rated 4.9/5"
       }
     },
     sections: {
@@ -128,8 +128,8 @@ export const defaultStoreContent = (): StoreContent => ({
     sports: {
       title: { ar: "⚽ شاهد أقوى البطولات LIVE", en: "⚽ Watch Top Leagues LIVE" },
       subtitle: {
-        ar: "كأس العالم FIFA 2026™ وجميع البطولات — 4K بدون تقطيع فالدار ولا فالخدمة",
-        en: "FIFA World Cup 2026™ and every league — 4K, zero buffering at home or on the go"
+        ar: "كأس العالم FIFA 2026™ وجميع البطولات — 4K بدون تقطيع في أي مكان بالعالم",
+        en: "FIFA World Cup 2026™ and every league — 4K, zero buffering anywhere in the world"
       },
       ctaLabel: { ar: "🔥 اشترك وتابع LIVE", en: "🔥 Subscribe & Watch LIVE" },
       events: [
@@ -176,7 +176,7 @@ export const defaultStoreContent = (): StoreContent => ({
           id: "botola",
           icon: "🇲🇦",
           league: { ar: "Botola Pro", en: "Botola Pro" },
-          title: { ar: "الدوري المغربي — الرجاء • الوداد • الجيش", en: "Moroccan League — Raja • Wydad • AS FAR" },
+          title: { ar: "بطولات إقليمية وعالمية — HD • LIVE", en: "Regional & Global Leagues — HD • LIVE" },
           quality: { ar: "HD • LIVE", en: "HD • LIVE" },
           live: false,
           imageUrl: "/sports/botola.jpg"
@@ -286,7 +286,7 @@ export const defaultStoreContent = (): StoreContent => ({
     testimonials: [
       {
         id: "1",
-        name: { ar: "محمد — الدار البيضاء", en: "Mohamed — Casablanca" },
+        name: { ar: "محمد — لندن", en: "Mohamed — London" },
         rating: 5,
         comment: {
           ar: "خدمة ممتازة، القنوات كاملة والجودة زوينة بزاف. الدعم جاوبني فدقائق.",
@@ -296,7 +296,7 @@ export const defaultStoreContent = (): StoreContent => ({
       },
       {
         id: "2",
-        name: { ar: "فاطمة — الرباط", en: "Fatima — Rabat" },
+        name: { ar: "فاطمة — دبي", en: "Fatima — Dubai" },
         rating: 5,
         comment: {
           ar: "جربت التجربة المجانية ومن بعد اشتركت فباقة 6 أشهر. ما كاين حتى تقطيع.",
@@ -306,7 +306,7 @@ export const defaultStoreContent = (): StoreContent => ({
       },
       {
         id: "3",
-        name: { ar: "يoussef — مراكش", en: "Youssef — Marrakech" },
+        name: { ar: "يoussef — باريس", en: "Youssef — Paris" },
         rating: 5,
         comment: {
           ar: "أحسن IPTV جربت. المباريات كاملة والأفلام محدثة كل يوم.",
@@ -316,7 +316,7 @@ export const defaultStoreContent = (): StoreContent => ({
       },
       {
         id: "4",
-        name: { ar: "سارة — طنجة", en: "Sara — Tangier" },
+        name: { ar: "سارة — تورنتو", en: "Sara — Toronto" },
         rating: 5,
         comment: {
           ar: "خدم على Smart TV و Android بلا مشكل. التفعيل كان سريع.",
@@ -366,8 +366,8 @@ export const defaultStoreContent = (): StoreContent => ({
       {
         question: { ar: "كيفاش نخلص؟", en: "How do I pay?" },
         answer: {
-          ar: "الدفع عبر تحويل بنكي، Cash Plus، أو طرق أخرى. كنتواصلو معاك على واتساب باش نعطيوك التفاصيل.",
-          en: "Pay via bank transfer, Cash Plus, or other methods. We contact you on WhatsApp with details."
+          ar: "الدفع عبر تحويل بنكي، بطاقة، أو طرق دفع محلية. كنتواصلو معاك على واتساب باش نعطيوك التفاصيل.",
+          en: "Pay via bank transfer, card, or local payment methods. We contact you on WhatsApp with details."
         }
       },
       {
@@ -385,10 +385,10 @@ export const defaultStoreContent = (): StoreContent => ({
         }
       },
       {
-        question: { ar: "علاش SANAD IPTV أحسن IPTV فالمغرب؟", en: "Why is SANAD IPTV the best IPTV in Morocco?" },
+        question: { ar: "علاش SANAD IPTV من أفضل خدمات IPTV عالمياً؟", en: "Why is SANAD IPTV among the best IPTV services worldwide?" },
         answer: {
-          ar: "SANAD IPTV كتوفر +115,000 قناة، 120,000+ VOD، بث 4K مستقر 99.9%، تفعيل فوري خلال 5 دقائق، ودعم واتساب بالدارجة والعربية.",
-          en: "SANAD IPTV offers 115,000+ channels, 120,000+ VOD, 99.9% stable 4K streaming, 5-minute activation, and WhatsApp support in Arabic and Darija."
+          ar: "SANAD IPTV كتوفر +115,000 قناة، 120,000+ VOD، بث 4K مستقر 99.9%، تفعيل فوري خلال 5 دقائق، ودعم واتساب بالعربية والإنجليزية — للعملاء في أوروبا وأمريكا والشرق الأوسط وأفريقيا.",
+          en: "SANAD IPTV offers 115,000+ channels, 120,000+ VOD, 99.9% stable 4K streaming, 5-minute activation, and WhatsApp support in Arabic and English — for customers across Europe, the Americas, the Middle East, and Africa."
         }
       },
       {

@@ -18,7 +18,7 @@ export function createBlogMetadata(options: {
     title: options.title,
     description: options.description,
     path: `/blog/${options.slug}`,
-    keywords: options.keywords ?? "IPTV Maroc, SANAD IPTV, abonnement IPTV",
+    keywords: options.keywords ?? "global IPTV, SANAD IPTV, IPTV subscription worldwide",
     type: "article"
   });
 }

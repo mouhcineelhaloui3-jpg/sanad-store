@@ -23,7 +23,7 @@ const policies: Record<string, { title: string; description: string; body: strin
     description:
       "شروط استخدام SANAD IPTV: الاشتراك، الدفع، التفعيل، الدعم التقني، ومسؤوليات المستخدم.",
     body: [
-      "SANAD IPTV كيقدّم خدمة بث IPTV باشتراك مدفوع. الأسعار معروضة بالدرهم المغربي ويمكن تتبدّل.",
+      "SANAD IPTV provides paid IPTV streaming subscriptions. Prices are shown in MAD and may change. Service is available to customers worldwide.",
       "من بعد الطلب، غادي نتواصلو معاك عبر واتساب باش نأكّدو الدفع و نرسلو بيانات التفعيل (M3U / Xtream).",
       "المستخدم مسؤول على استعمال الخدمة بشكل قانوني و على حماية بيانات الدخول ديالو.",
       "الخدمة ماشي بديل لأي اشتراك رسمي للقنوات. كنوفّرو بث عبر الإنترنت مع دعم تقني.",

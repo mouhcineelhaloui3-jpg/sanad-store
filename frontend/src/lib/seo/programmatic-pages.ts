@@ -21,47 +21,47 @@ export type ProgrammaticPage = {
 export const programmaticPages: Record<string, ProgrammaticPage> = {
   "iptv-maroc": {
     slug: "iptv-maroc",
-    title: "IPTV المغرب — اشتراك SANAD IPTV",
+    title: "Premium IPTV Worldwide — SANAD IPTV Subscription",
     description:
-      "أحسن IPTV فالمغرب: +115K قناة، 120K+ VOD، رياضة 4K. تفعيل فوري خلال 5 دقائق ودعم واتساب 24/7.",
-    subtitle: "خدمة IPTV موثوقة للمغاربة — Botola Pro، beIN، Netflix-style VOD.",
-    keywords: "IPTV Maroc, abonnement IPTV Maroc, SANAD IPTV, قنوات مغربية",
+      "Premium IPTV for customers worldwide: +115K channels, 120K+ VOD, 4K sports. Instant activation within 5 minutes and 24/7 WhatsApp support.",
+    subtitle: "Trusted global IPTV — international channels, beIN, Netflix-style VOD.",
+    keywords: "IPTV worldwide, global IPTV subscription, SANAD IPTV, international channels",
     sections: [
-      "SANAD IPTV كتوفر بث مستقر للقنوات المغربية والعالمية مع تحديث يومي للمحتوى.",
-      "الباقات: 3 أشهر (80 د.م.)، 6 أشهر (140 د.م.)، 12 شهر (240 د.م.)، جهازين (400 د.م.) — تفعيل فوري.",
-      "جرّب مجاناً قبل الاشتراك وتواصل معنا عبر واتساب للتفعيل."
+      "SANAD IPTV delivers stable streaming for international and regional channels with daily content updates.",
+      "Plans: 3 months (80 MAD), 6 months (140 MAD), 12 months (240 MAD), 2 devices (400 MAD) — instant activation.",
+      "Try free before subscribing and contact us on WhatsApp for activation anywhere in the world."
     ],
     contentBlocks: [
       {
-        heading: "اشتراك IPTV Morocco — شنو كتستنا؟",
+        heading: "Global IPTV Subscription — What You Get",
         paragraphs: [
-          "SANAD IPTV هي خدمة IPTV subscription محسّنة للمغرب: قنوات مغربية، عربية، فرنسية، وإسبانية، مع VOD أفلام ومسلسلات ورياضة 4K.",
-          "الفرق بين SANAD وبين مزودين آخرين هو الاستقرار فالبث، الدعم بالدارجة والعربية عبر واتساب، والتحديث اليومي للمحتوى.",
-          "إذا كنت كتقلب على abonnement IPTV Maroc موثوق، SANAD كتوفر trial مجاني قبل ما تختار الباقة المناسبة."
+          "SANAD IPTV is a premium IPTV subscription for customers worldwide: Arabic, European, American, and Spanish channels, plus VOD movies, series, and 4K sports.",
+          "What sets SANAD apart is stream stability, multilingual WhatsApp support, and daily content updates.",
+          "Looking for a reliable global IPTV provider? SANAD offers a free trial before you choose the right plan."
         ]
       },
       {
-        heading: "قنوات مغربية ورياضة — Botola Pro و beIN",
+        heading: "International Channels & Sports — beIN & More",
         paragraphs: [
-          "مع SANAD IPTV، تقدر تشوف Botola Pro، القنوات الوطنية 2M و SNRT، وقنوات رياضية عالمية: Champions League، La Liga، Premier League.",
-          "البث كيخدم على Smart TV، Android، iPhone، Fire Stick، و Android Box — شوف دليل التثبيت فصفحات الأجهزة.",
-          "للمباريات الكبيرة، ننصحو ب Ethernet أو Wi-Fi 5GHz باش تفادى التقطيع."
+          "With SANAD IPTV, watch global sports leagues, national broadcasters, and premium sports channels: Champions League, La Liga, Premier League, and more.",
+          "Streaming works on Smart TV, Android, iPhone, Fire Stick, and Android Box — see device setup guides.",
+          "For major events, we recommend Ethernet or 5GHz Wi-Fi to avoid buffering."
         ]
       },
       {
-        heading: "أسعار IPTV فالمغرب — باقات SANAD",
+        heading: "SANAD IPTV Plans — Global Pricing",
         paragraphs: [
-          "باقة بداية 3 أشهر: 80 د.م. — مثالية للتجربة الأولى.",
-          "باقة راحة 6 أشهر: 140 د.م. — الأكثر اختياراً (+115K قناة، Replay 7 أيام).",
-          "باقة مميز 12 شهر: 240 د.م. — أفضل قيمة (+115K قناة، 120K+ VOD، ضمان 30 يوم).",
-          "باقة جهازين 12 شهر: 400 د.م. — 2 أكواد IPTV.",
-          "التفعيل فوري عبر واتساب بعد الدفع — ما كاينش انتظار طويل."
+          "Starter 3 months: 80 MAD — ideal for first-time subscribers.",
+          "Confort 6 months: 140 MAD — most popular (+115K channels, 7-day Replay).",
+          "Premium 12 months: 240 MAD — best value (+115K channels, 120K+ VOD, 30-day guarantee).",
+          "2-device 12 months: 400 MAD — 2 IPTV codes.",
+          "Instant activation via WhatsApp after payment — no long wait."
         ]
       }
     ],
     faqs: [
-      { question: "واش SANAD IPTV خدام فالمغرب؟", answer: "نعم، الخدمة محسّنة للمغرب مع دعم محلي." },
-      { question: "شحال كتاخد التفعيل؟", answer: "فوري بعد التواصل عبر واتساب." }
+      { question: "Does SANAD IPTV work worldwide?", answer: "Yes — the service is available internationally with global support." },
+      { question: "How long does activation take?", answer: "Instant after WhatsApp contact." }
     ],
     relatedSlugs: ["iptv-sports", "iptv-4k", "iptv-smart-tv"],
     planSlug: "plan-6-months"
@@ -71,7 +71,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
     title: "IPTV Smart TV — Samsung, LG, Android TV",
     description: "ثبت IPTV على Smart TV: Smart IPTV، SS IPTV، TiviMate. دليل SANAD IPTV.",
     subtitle: "خطوات بسيطة باش تشوف +115K قناة على التلفاز الذكي.",
-    keywords: "IPTV Smart TV, Samsung IPTV, LG IPTV, TiviMate Maroc",
+    keywords: "IPTV Smart TV, Samsung IPTV, LG IPTV, TiviMate IPTV",
     sections: [
       "حمّل Smart IPTV أو SS IPTV من متجر التطبيقات.",
       "دخل M3U أو Xtream codes من SANAD IPTV.",
@@ -162,7 +162,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
     title: "IPTV iPhone و iPad — GSE Smart IPTV",
     description: "شوف IPTV على iPhone و iPad مع GSE Smart IPTV و SANAD IPTV.",
     subtitle: "إعداد سريع على iOS بدون jailbreak.",
-    keywords: "IPTV iPhone, IPTV iPad, GSE Smart IPTV, iOS IPTV Maroc",
+    keywords: "IPTV iPhone, IPTV iPad, GSE Smart IPTV, iOS Global IPTV",
     sections: [
       "حمّل GSE Smart IPTV من App Store.",
       "أضف playlist M3U أو Xtream من SANAD IPTV.",
@@ -216,14 +216,14 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
     title: "IPTV رياضة — Champions League و Botola",
     description: "قنوات رياضية IPTV: Champions League، La Liga، Botola Pro، beIN. SANAD IPTV.",
     subtitle: "مباريات live بجودة HD/4K بدون تقطيع.",
-    keywords: "IPTV sports, Champions League IPTV, Botola Pro IPTV, beIN Maroc",
+    keywords: "IPTV sports, Champions League IPTV, Botola Pro IPTV, beIN Sports",
     sections: [
       "Champions League، La Liga، Premier League، Botola Pro.",
       "بث مستقر مع EPG و replay.",
       "SANAD IPTV — دعم واتساب قبل المباريات الكبيرة."
     ],
     faqs: [
-      { question: "واش Botola Pro كاينة؟", answer: "نعم، القنوات الرياضية المغربية والعالمية." },
+      { question: "واش Botola Pro كاينة؟", answer: "نعم، القنوات الرياضية الدولية والعالمية." },
       { question: "واش في replay؟", answer: "حسب القناة والتطبيق." }
     ],
     relatedSlugs: ["iptv-4k", "iptv-maroc", "iptv-smart-tv"],
@@ -232,7 +232,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
   "iptv-films": {
     slug: "iptv-films",
     title: "IPTV أفلام — VOD و 4K Movies",
-    description: "+120K VOD IPTV: أحدث الأفلام والمسلسلات، 4K. SANAD IPTV المغرب.",
+    description: "+120K VOD IPTV: أحدث الأفلام والمسلسلات، 4K. SANAD IPTV العالمي.",
     subtitle: "مكتبة أفلام ضخمة محدّثة يومياً.",
     keywords: "IPTV movies, VOD IPTV, 4K movies IPTV, أفلام IPTV",
     sections: [

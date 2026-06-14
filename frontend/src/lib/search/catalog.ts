@@ -12,7 +12,7 @@ export type SearchDocument = {
 };
 
 const staticPages: SearchDocument[] = [
-  { id: "home", title: "SANAD IPTV — الرئيسية", description: "اشتراك IPTV المغرب", href: "/", type: "page", keywords: ["iptv", "maroc", "sanad"] },
+  { id: "home", title: "SANAD IPTV — الرئيسية", description: "اشتراك IPTV عالمي", href: "/", type: "page", keywords: ["iptv", "global", "sanad"] },
   { id: "pricing", title: "أسعار IPTV", description: "باقات 3، 6، 12 شهر", href: "/pricing", type: "page", keywords: ["pricing", "plans", "أسعار"] },
   { id: "trial", title: "تجربة مجانية", description: "جرّب IPTV مجاناً", href: "/trial", type: "page", keywords: ["trial", "free", "مجاني"] },
   { id: "contact", title: "اتصل بنا", description: "واتساب و تيليغرام", href: "/contact", type: "page", keywords: ["contact", "whatsapp"] },
@@ -67,9 +67,9 @@ export function searchSite(query: string, limit = 12): SearchDocument[] {
 }
 
 export const trendingSearches = [
-  "IPTV Maroc",
+  "Global IPTV",
   "Smart TV",
   "4K",
   "Champions League",
-  "تجربة مجانية"
+  "Free trial"
 ];

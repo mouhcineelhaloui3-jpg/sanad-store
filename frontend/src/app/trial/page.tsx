@@ -9,7 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "تجربة IPTV مجانية — SANAD IPTV",
   description: "جرب SANAD IPTV مجاناً قبل الاشتراك. تفعيل سريع، دعم واتساب، وآلاف القنوات والأفلام.",
   path: "/trial",
-  keywords: "IPTV free trial Maroc, تجربة IPTV مجانية"
+  keywords: "IPTV free trial worldwide, global IPTV trial"
 });
 
 const faqs = [

@@ -11,7 +11,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "تواصل مع SANAD IPTV — واتساب ودعم",
   description: "تواصل مع فريق SANAD IPTV عبر واتساب أو تيليغرام. دعم سريع للاشتراك والتجربة المجانية.",
   path: "/contact",
-  keywords: "SANAD IPTV contact, WhatsApp IPTV Maroc"
+  keywords: "SANAD IPTV contact, WhatsApp IPTV support, global IPTV"
 });
 
 export default async function ContactPage() {

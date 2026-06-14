@@ -5,25 +5,25 @@ const cover = (slug: string) => `/blog/${slug}.png`;
 export const blogPostsData: Record<string, BlogPostRaw> = {
   "prix-abonnement-iptv-maroc": {
     slug: "prix-abonnement-iptv-maroc",
-    title: "أسعار اشتراك IPTV في المغرب 2026 — دليل SANAD IPTV",
+    title: "أسعار اشتراك IPTV حول العالم 2026 — دليل SANAD IPTV",
     description:
-      "تعرف على أسعار اشتراك IPTV في المغرب: 80 د.م. (3 أشهر)، 140 د.م. (6 أشهر)، 240 د.م. (12 شهر)، 400 د.م. (جهازين). مقارنة الباقات، المميزات، ولماذا SANAD IPTV خيار موثوق.",
+      "تعرف على أسعار اشتراك IPTV حول العالم: 80 د.م. (3 أشهر)، 140 د.م. (6 أشهر)، 240 د.م. (12 شهر)، 400 د.م. (جهازين). مقارنة الباقات، المميزات، ولماذا SANAD IPTV خيار موثوق.",
     excerpt:
-      "دليل شامل لأسعار IPTV في المغرب مع باقات SANAD IPTV الشهرية والسنوية وما تحصل عليه مقابل كل سعر.",
+      "دليل شامل لأسعار IPTV حول العالم مع باقات SANAD IPTV الشهرية والسنوية وما تحصل عليه مقابل كل سعر.",
     category: "pricing",
-    tags: ["أسعار", "اشتراك", "IPTV المغرب", "SANAD IPTV", "باقات"],
+    tags: ["أسعار", "اشتراك", "IPTV العالمي", "SANAD IPTV", "باقات"],
     publishedAt: "2026-01-05",
     coverImage: cover("prix-abonnement-iptv-maroc"),
     sections: [
-      "يختلف سعر اشتراك IPTV في المغرب حسب مدة الاشتراك وجودة الخدمة وعدد الأجهزة المتصلة. مع SANAD IPTV، تحصل على باقات واضحة بدون رسوم مخفية: 80 د.م. لـ 3 أشهر، 140 د.م. لـ 6 أشهر، 240 د.م. لـ 12 شهر، و400 د.م. لـ باقة جهازين الكامل.",
-      "كل باقة من SANAD IPTV تشمل أكثر من 115 ألف قناة مباشرة و120 ألف فيلم ومسلسل عبر VOD. تشمل القنوات العربية والمغربية والأوروبية والرياضية والأطفال، مع تحديثات يومية للقوائم ودعم فني عبر WhatsApp على مدار الساعة.",
-      "عند مقارنة الأسعار في السوق المغربي، انتبه إلى ما يُقدَّم فعلاً: بعض العروض الرخيصة تخفي قيوداً على عدد الأجهزة أو جودة البث. SANAD IPTV يوفر بثاً مستقراً بجودة HD و4K حيثما توفرت المصدر، مع خوادم محسّنة للمغرب وشمال إفريقيا.",
+      "يختلف سعر اشتراك IPTV حول العالم حسب مدة الاشتراك وجودة الخدمة وعدد الأجهزة المتصلة. مع SANAD IPTV، تحصل على باقات واضحة بدون رسوم مخفية: 80 د.م. لـ 3 أشهر، 140 د.م. لـ 6 أشهر، 240 د.م. لـ 12 شهر، و400 د.م. لـ باقة جهازين الكامل.",
+      "كل باقة من SANAD IPTV تشمل أكثر من 115 ألف قناة مباشرة و120 ألف فيلم ومسلسل عبر VOD. تشمل القنوات العربية والدولية والأوروبية والرياضية والأطفال، مع تحديثات يومية للقوائم ودعم فني عبر WhatsApp على مدار الساعة.",
+      "عند مقارنة الأسعار في السوق العالمي، انتبه إلى ما يُقدَّم فعلاً: بعض العروض الرخيصة تخفي قيوداً على عدد الأجهزة أو جودة البث. SANAD IPTV يوفر بثاً مستقراً بجودة HD و4K حيثما توفرت المصدر، مع خوادم محسّنة للبث الدولي في أوروبا وأمريكا والشرق الأوسط وأفريقيا.",
       "باقة 3 أشهر (80 د.م.) للتجربة، 6 أشهر (140 د.م.) الأكثر اختياراً، 12 شهر (240 د.م.) أفضل قيمة، وباقة جهازين (400 د.م.) للتلفاز والهاتف. كل الاشتراكات تُفعَّل خلال دقائق بعد الدفع.",
       "للاستفسار عن العروض الحالية أو طلب باقة مخصصة لعدة شاشات، تواصل مع فريق SANAD IPTV عبر WhatsApp. سيشرحون لك الخطة المناسبة لسرعة الإنترنت لديك وعدد الأجهزة في منزلك.",
     ],
     faqs: [
       {
-        question: "ما هي أسعار SANAD IPTV في المغرب؟",
+        question: "ما هي أسعار SANAD IPTV حول العالم؟",
         answer:
           "أسعار SANAD IPTV: 80 د.م. / 3 أشهر، 140 د.م. / 6 أشهر، 240 درهم/6 أشهر، 400 د.م. / جهازين. كل الباقات تشمل +115K قناة و120K VOD مع دعم WhatsApp.",
       },
@@ -37,18 +37,18 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
 
   "comment-sabonner-iptv-maroc": {
     slug: "comment-sabonner-iptv-maroc",
-    title: "كيفية الاشتراك في IPTV المغرب — خطوات SANAD IPTV",
+    title: "كيفية الاشتراك في IPTV العالمي — خطوات SANAD IPTV",
     description:
-      "دليل خطوة بخطوة للاشتراك في IPTV في المغرب عبر SANAD IPTV: اختيار الباقة، الدفع، التفعيل، وإعداد التطبيق.",
+      "دليل خطوة بخطوة للاشتراك في IPTV حول العالم عبر SANAD IPTV: اختيار الباقة، الدفع، التفعيل، وإعداد التطبيق.",
     excerpt:
       "اشترك في SANAD IPTV خلال دقائق: اختر باقتك، ادفع، واحصل على بيانات Xtream Codes فوراً.",
     category: "guides",
-    tags: ["اشتراك", "تفعيل", "Xtream Codes", "SANAD IPTV", "المغرب"],
+    tags: ["اشتراك", "تفعيل", "Xtream Codes", "SANAD IPTV", "عالمي"],
     publishedAt: "2026-01-12",
     coverImage: cover("comment-sabonner-iptv-maroc"),
     sections: [
       "الاشتراك في IPTV عبر SANAD IPTV بسيط وسريع. أولاً، تواصل مع فريق المبيعات عبر WhatsApp أو زُر موقع SANAD IPTV لاختيار الباقة المناسبة: 3 أشهر (80 د.م.)، 6 أشهر (140 د.م.)، 12 شهر (240 د.م.)، أو جهازين (400 د.م.).",
-      "بعد اختيار الباقة، ستتلقى تعليمات الدفع الآمن. SANAD IPTV يقبل طرق دفع متعددة مناسبة للمغرب. بمجرد تأكيد الدفع، يُرسل لك فريق الدعم بيانات الاشتراك: رابط Xtream Codes، اسم المستخدم، وكلمة المرور.",
+      "بعد اختيار الباقة، ستتلقى تعليمات الدفع الآمن. SANAD IPTV يقبل طرق دفع متعددة مناسبة للعملاء حول العالم. بمجرد تأكيد الدفع، يُرسل لك فريق الدعم بيانات الاشتراك: رابط Xtream Codes، اسم المستخدم، وكلمة المرور.",
       "الخطوة التالية هي تنزيل تطبيق IPTV على جهازك — IPTV Smarters Pro أو TiviMate أو أي مشغّل متوافق. أدخل بيانات Xtream Codes التي استلمتها، ثم انتظر تحميل قائمة القنوات (+115K قناة) ومحتوى VOD (120K عنوان).",
       "إذا واجهت أي صعوبة أثناء الإعداد، فريق SANAD IPTV متاح عبر WhatsApp لمساعدتك خطوة بخطوة. يمكنهم إرشادك لتثبيت التطبيق على Smart TV أو Android أو Fire Stick أو PC.",
       "احتفظ ببيانات اشتراكك في مكان آمن ولا تشاركها مع أشخاص غير مصرح لهم. SANAD IPTV يسمح بعدد محدود من الاتصالات المتزامنة حسب باقتك؛ راجع شروط الاستخدام عند الاشتراك.",
@@ -64,28 +64,28 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
 
   "best-iptv-maroc": {
     slug: "best-iptv-maroc",
-    title: "أفضل IPTV في المغرب 2026 — لماذا SANAD IPTV؟",
+    title: "أفضل IPTV حول العالم 2026 — لماذا SANAD IPTV؟",
     description:
-      "مقارنة أفضل خدمات IPTV في المغرب: استقرار البث، عدد القنوات، VOD، الدعم الفني، والأسعار. SANAD IPTV في المقدمة.",
+      "مقارنة أفضل خدمات IPTV حول العالم: استقرار البث، عدد القنوات، VOD، الدعم الفني، والأسعار. SANAD IPTV في المقدمة.",
     excerpt:
-      "اكتشف معايير اختيار أفضل IPTV في المغرب ولماذا يختار آلاف المشتركين SANAD IPTV.",
+      "اكتشف معايير اختيار أفضل IPTV حول العالم ولماذا يختار آلاف المشتركين SANAD IPTV.",
     category: "guides",
-    tags: ["أفضل IPTV", "مقارنة", "SANAD IPTV", "المغرب", "قنوات"],
+    tags: ["أفضل IPTV", "مقارنة", "SANAD IPTV", "عالمي", "قنوات"],
     publishedAt: "2026-01-20",
     coverImage: cover("best-iptv-maroc"),
     sections: [
-      "عند البحث عن أفضل IPTV في المغرب، يجب تقييم عدة معايير: استقرار البث، تنوع القنوات، جودة الصورة، سرعة الدعم الفني، وشفافية الأسعار. SANAD IPTV يتفوق في كل هذه النقاط منذ سنوات.",
-      "SANAD IPTV يقدم أكثر من 115 ألف قناة مباشرة تشمل القنوات المغربية (2M، Al Aoula، Arryadia...) والعربية والفرنسية والإنجليزية والرياضية العالمية. بالإضافة إلى 120 ألف فيلم ومسلسل عبر VOD محدّث أسبوعياً.",
-      "ميزة SANAD IPTV الأساسية هي الاستقرار. خوادم محسّنة للمغرب تقلل التقطيع والتأخير حتى في ساعات الذروة. الدعم الفني عبر WhatsApp متاح 24/7 بالعربية والفرنسية.",
+      "عند البحث عن أفضل IPTV حول العالم، يجب تقييم عدة معايير: استقرار البث، تنوع القنوات، جودة الصورة، سرعة الدعم الفني، وشفافية الأسعار. SANAD IPTV يتفوق في كل هذه النقاط منذ سنوات.",
+      "SANAD IPTV يقدم أكثر من 115 ألف قناة مباشرة تشمل القنوات الدولية (2M، Al Aoula، Arryadia...) والعربية والفرنسية والإنجليزية والرياضية العالمية. بالإضافة إلى 120 ألف فيلم ومسلسل عبر VOD محدّث أسبوعياً.",
+      "ميزة SANAD IPTV الأساسية هي الاستقرار. خوادم محسّنة للبث الدولي تقلل التقطيع والتأخير حتى في ساعات الذروة. الدعم الفني عبر WhatsApp متاح 24/7 بالعربية والفرنسية.",
       "الأسعار تنافسية وواضحة: 80 د.م. / 3 أشهر، 140 د.م. / 6 أشهر، 240 درهم/6 أشهر، 400 د.م. / جهازين. لا رسوم مخفية ولا انقطاع مفاجئ للخدمة طالما اشتراكك نشط.",
       "SANAD IPTV متوافق مع جميع الأجهزة: Smart TV (Samsung، LG)، Android، iPhone، Fire Stick، Chromecast، PC وMac. تطبيق واحد وبيانات Xtream Codes واحدة لجميع أجهزتك.",
-      "آلاف المشتركين المغاربة يثقون بـ SANAD IPTV لتغطية مباريات كأس العالم والدوريات الأوروبية والمحتوى العربي الحصري. انضم إليهم وجرّب الجودة بنفسك.",
+      "آلاف المشتركين العملاء حول العالم يثقون بـ SANAD IPTV لتغطية مباريات كأس العالم والدوريات الأوروبية والمحتوى العربي الحصري. انضم إليهم وجرّب الجودة بنفسك.",
     ],
     faqs: [
       {
-        question: "لماذا SANAD IPTV أفضل من المنافسين في المغرب؟",
+        question: "لماذا SANAD IPTV أفضل من المنافسين حول العالم؟",
         answer:
-          "SANAD IPTV يجمع بين +115K قناة، 120K VOD، استقرار عالٍ، أسعار شفافة (80–400 د.م.)، ودعم WhatsApp فوري — مزيج نادر في السوق المغربي.",
+          "SANAD IPTV يجمع بين +115K قناة، 120K VOD، استقرار عالٍ، أسعار شفافة (80–400 د.م.)، ودعم WhatsApp فوري — مزيج نادر في السوق العالمي.",
       },
       {
         question: "هل SANAD IPTV قانوني وآمن؟",
@@ -97,9 +97,9 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
 
   "abonnement-internet-iptv-maroc": {
     slug: "abonnement-internet-iptv-maroc",
-    title: "سرعة الإنترنت المطلوبة لـ IPTV في المغرب",
+    title: "سرعة الإنترنت المطلوبة لـ IPTV حول العالم",
     description:
-      "ما سرعة الإنترنت التي تحتاجها لـ IPTV في المغرب؟ دليل SANAD IPTV للبث HD و4K وعدة أجهزة متزامنة.",
+      "ما سرعة الإنترنت التي تحتاجها لـ IPTV حول العالم؟ دليل SANAD IPTV للبث HD و4K وعدة أجهزة متزامنة.",
     excerpt:
       "تعرف على سرعة الإنترنت المناسبة لـ SANAD IPTV: HD، 4K، وعدة شاشات في نفس الوقت.",
     category: "quality",
@@ -108,7 +108,7 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
     coverImage: cover("abonnement-internet-iptv-maroc"),
     sections: [
       "جودة تجربة IPTV تعتمد بشكل مباشر على سرعة واستقرار اتصالك بالإنترنت. لبث SANAD IPTV بجودة SD، يكفي 5 ميجابت/ثانية. للبث HD (720p–1080p) تحتاج 10–15 ميجابت/ثانية، وللبث 4K يُفضّل 25 ميجابت/ثانية أو أكثر.",
-      "في المغرب، معظم باقات Maroc Telecom وInwi وOrange تلبي متطلبات IPTV HD. إذا كنت تشاهد على أكثر من جهاز في نفس الوقت عبر SANAD IPTV، أضف 5–10 ميجابت لكل جهاز إضافي.",
+      "حول العالم، معظم باقات مزودي الإنترنت حول العالم تلبي متطلبات IPTV HD. إذا كنت تشاهد على أكثر من جهاز في نفس الوقت عبر SANAD IPTV، أضف 5–10 ميجابت لكل جهاز إضافي.",
       "SANAD IPTV يستخدم تقنية Adaptive Bitrate: إذا انخفضت سرعة إنترنتك مؤقتاً، يخفض المشغّل الجودة تلقائياً لتجنب التقطيع. لكن للحصول على أفضل تجربة، استخدم اتصالاً سلكياً (Ethernet) بدلاً من Wi-Fi عند الإمكان.",
       "لاختبار سرعتك، استخدم speedtest.net قبل الاشتراك. إذا كانت سرعتك أقل من 10 ميجابت، SANAD IPTV سيعمل لكن بجودة SD. فريق الدعم عبر WhatsApp يمكنه مساعدتك في ضبط إعدادات المشغّل حسب سرعتك.",
       "تجنب تشغيل التحميلات الثقيلة (Torrent، تحديثات الألعاب) أثناء مشاهدة IPTV. SANAD IPTV يوفر +115K قناة و120K VOD — تأكد أن اتصالك قادر على دعم هذا المحتوى الغني.",
@@ -134,7 +134,7 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
     publishedAt: "2026-02-10",
     coverImage: cover("iptv-smart-tv"),
     sections: [
-      "تلفزيونات Samsung و LG Smart TV من أكثر الأجهزة شيوعاً لمشاهدة IPTV في المغرب. SANAD IPTV متوافق تماماً مع كلا العلامتين عبر تطبيق IPTV Smarters Pro أو SS IPTV.",
+      "تلفزيونات Samsung و LG Smart TV من أكثر الأجهزة شيوعاً لمشاهدة IPTV حول العالم. SANAD IPTV متوافق تماماً مع كلا العلامتين عبر تطبيق IPTV Smarters Pro أو SS IPTV.",
       "على Samsung Smart TV (Tizen): افتح Samsung App Store، ابحث عن «IPTV Smarters Pro»، ثم ثبّت التطبيق. إذا لم تجده، استخدم Smart IPTV (SI IPTV) كبديل — قد يتطلب تفعيلاً مدفوعاً لمرة واحدة.",
       "على LG Smart TV (webOS): افتح LG Content Store، ابحث عن «IPTV Smarters Pro»، وثبّته. بعد التثبيت، اختر «Login with Xtream Codes API» وأدخل بيانات SANAD IPTV: الرابط، اسم المستخدم، وكلمة المرور.",
       "بعد تسجيل الدخول، انتظر تحميل قائمة القنوات (+115K قناة) وقسم VOD (120K عنوان). قد يستغرق التحميل الأول 2–5 دقائق حسب سرعة إنترنتك. لا تغلق التطبيق أثناء التحميل.",
@@ -225,7 +225,7 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
     publishedAt: "2026-03-05",
     coverImage: cover("iptv-chromecast-android-tv"),
     sections: [
-      "Google Chromecast و Android TV Box خيارات ممتازة لـ SANAD IPTV في المغرب. Chromecast with Google TV يتيح تثبيت IPTV Smarters Pro مباشرة من Play Store.",
+      "Google Chromecast و Android TV Box خيارات ممتازة لـ SANAD IPTV حول العالم. Chromecast with Google TV يتيح تثبيت IPTV Smarters Pro مباشرة من Play Store.",
       "على Chromecast with Google TV: افتح Play Store، ابحث «IPTV Smarters Pro»، ثبّت، ثم Xtream Codes API مع بيانات SANAD IPTV. +115K قناة و120K VOD على شاشتك.",
       "Chromecast Classic (بدون Google TV): ثبّت IPTV Smarters Pro على هاتف Android، شغّل القناة، ثم اضغط أيقونة Cast لبثها على التلفزيون. تأكد أن الهاتف والChromecast على نفس شبكة Wi-Fi.",
       "Android TV Box (Xiaomi، Nvidia Shield، إلخ): نفس خطوات Fire Stick — Play Store > IPTV Smarters Pro > Xtream Codes. Shield TV ممتاز لبث 4K من SANAD IPTV.",
@@ -255,7 +255,7 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
       "IPTV Smarters Pro هو التطبيق الأكثر استخداماً مع SANAD IPTV. بعد اشتراكك (80–400 د.م.)، ستتلقى عبر WhatsApp: Server URL، Username، Password.",
       "افتح IPTV Smarters Pro > Add User > Login with Xtream Codes API. أدخل الاسم (أي اسم للتعريف)، الرابط، اسم المستخدم، وكلمة المرور. اضغط Add User.",
       "انتظر تحميل Playlist — قد يستغرق 2–5 دقائق. ستظهر Live TV (+115K قناة)، Movies و Series (120K VOD). لا تغلق التطبيق أثناء التحميل الأول.",
-      "لتفعيل EPG (دليل البرامج): Settings > EPG > Refresh EPG. EPG يساعدك في معرفة مواعيد المباريات والبرامج على القنوات المغربية والعربية.",
+      "لتفعيل EPG (دليل البرامج): Settings > EPG > Refresh EPG. EPG يساعدك في معرفة مواعيد المباريات والبرامج على القنوات الدولية والعربية.",
       "إذا ظهر «Invalid Credentials»، تحقق من نسخ البيانات بدون مسافات زائدة. SANAD IPTV Support عبر WhatsApp يتحقق من حالة اشتراكك ويعيد إرسال البيانات إن لزم.",
     ],
     faqs: [
@@ -313,7 +313,7 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
     sections: [
       "عندما لا تُحمَّل قنوات SANAD IPTV (+115K قناة)، السبب الأكثر شيوعاً هو اتصال إنترنت ضعيف أو انقطاع مؤقت. تحقق من سرعتك (10+ ميجابت للHD) وأعد محاولة Refresh.",
       "في IPTV Smarters Pro: Settings > Refresh Live TV. أو Manage Users > Reload. انتظر 3–5 دقائق — القائمة كبيرة (115K+ قناة) وتحتاج وقتاً للتحميل الأول.",
-      "تعطيل VPN: بعض VPNs تبطئ أو تحجب خوادم IPTV. SANAD IPTV محسّن للمغرب — جرّب بدون VPN أولاً.",
+      "تعطيل VPN: بعض VPNs تبطئ أو تحجب خوادم IPTV. SANAD IPTV محسّن للبث الدولي — جرّب بدون VPN أولاً.",
       "تحقق من مساحة التخزين على جهازك. IPTV Smarters يخزّن cache للEPG والقنوات؛ امسح Cache إذا كان الجهاز ممتلئاً.",
       "إذا بقيت القائمة فارغة، WhatsApp SANAD IPTV مع رقم اشتراكك. قد يكون الخادم في صيانة قصيرة — الدعم يوجّهك لخادم بديل أو يؤكد حالة الخدمة.",
     ],
@@ -324,9 +324,9 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
           "التحميل الأول 3–10 دقائق حسب سرعة الإنترنت والجهاز. لا تغلق التطبيق. SANAD IPTV يوفر 120K VOD أيضاً — قد يحتاج refresh منفصل.",
       },
       {
-        question: "هل VPN ضروري لـ SANAD IPTV في المغرب؟",
+        question: "هل VPN ضروري لـ SANAD IPTV حول العالم؟",
         answer:
-          "لا، SANAD IPTV يعمل مباشرة في المغرب بدون VPN. VPN قد يسبب بطءاً أو فشل تحميل القنوات.",
+          "لا، SANAD IPTV يعمل مباشرة حول العالم بدون VPN. VPN قد يسبب بطءاً أو فشل تحميل القنوات.",
       },
     ],
   },
@@ -452,17 +452,17 @@ export const blogPostsData: Record<string, BlogPostRaw> = {
 
   "iptv-4k": {
     slug: "iptv-4k",
-    title: "IPTV 4K في المغرب — متطلبات SANAD IPTV",
+    title: "IPTV 4K حول العالم — متطلبات SANAD IPTV",
     description:
       "شاهد IPTV بجودة 4K مع SANAD IPTV: سرعة الإنترنت، الأجهزة، القنوات 4K، والإعدادات.",
     excerpt:
       "دليل IPTV 4K مع SANAD IPTV — الإنترنت، الأجهزة، والقنوات Ultra HD.",
     category: "quality",
-    tags: ["4K", "Ultra HD", "جودة", "SANAD IPTV", "المغرب"],
+    tags: ["4K", "Ultra HD", "جودة", "SANAD IPTV", "عالمي"],
     publishedAt: "2026-05-05",
     coverImage: cover("iptv-4k"),
     sections: [
-      "SANAD IPTV يوفر قنوات وأفلام بجودة 4K/UHD حيثما توفرت المصادر. للاستمتاع بها في المغرب، تحتاج إعداداً مناسباً من الإنترنت إلى الشاشة.",
+      "SANAD IPTV يوفر قنوات وأفلام بجودة 4K/UHD حيثما توفرت المصادر. للاستمتاع بها حول العالم، تحتاج إعداداً مناسباً من الإنترنت إلى الشاشة.",
       "سرعة الإنترنت: 25 ميجابت/ثانية كحد أدنى لـ 4K، 50+ ميجابت مثالية لعدة أجهزة. استخدم Ethernet للـ TV Box أو Smart TV.",
       "الأجهزة: Nvidia Shield TV، Apple TV 4K، Fire Stick 4K Max، Samsung/LG Smart TV الحديثة — كلها تدعم 4K مع SANAD IPTV. IPTV Smarters Pro أو TiviMate مع External Player (VLC).",
       "في التطبيق: Settings > Stream Format > MPEGTS أو HLS حسب الجهاز. فعّل «Hardware Decoding» لتقليل الحمل على المعالج.",

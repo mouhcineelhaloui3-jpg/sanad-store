@@ -6,9 +6,9 @@ import { createPageMetadata } from "@/components/seo/MetaTags";
 
 export const metadata: Metadata = createPageMetadata({
   title: "مدونة SANAD IPTV — أدلة ونصائح",
-  description: "مقالات IPTV: Smart TV، Android، 4K، وأحسن اشتراك فالمغرب.",
+  description: "IPTV guides: Smart TV, Android, 4K, and premium global subscriptions.",
   path: "/blog",
-  keywords: "IPTV blog Maroc, SANAD IPTV guides"
+  keywords: "IPTV blog worldwide, SANAD IPTV guides"
 });
 
 export default async function BlogIndexPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {

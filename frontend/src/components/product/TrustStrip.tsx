@@ -3,7 +3,7 @@ import { BadgeCheck, PhoneCall, ShieldCheck, Truck } from "lucide-react";
 const items = [
   { icon: BadgeCheck, label: "الدفع عند الاستلام" },
   { icon: PhoneCall, label: "تأكيد قبل الإرسال" },
-  { icon: Truck, label: "توصيل داخل المغرب" },
+  { icon: Truck, label: "تسليم فوري عالمياً" },
   { icon: ShieldCheck, label: "منتجات مختارة بعناية" }
 ];
 

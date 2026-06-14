@@ -13,8 +13,8 @@ export type SeoSettingsDto = {
 };
 
 const DEFAULT_SEO: SeoSettingsDto = {
-  siteTitle: "SANAD IPTV — Premium IPTV Morocco",
-  siteDescription: "Best IPTV subscription in Morocco. Sports, movies, series in HD/4K.",
+  siteTitle: "SANAD IPTV — Premium IPTV Worldwide",
+  siteDescription: "Premium IPTV subscription for customers worldwide. Sports, movies, series in HD/4K.",
   defaultOgImage: "/opengraph-image",
   robotsIndex: true,
   canonicalBase: "https://sanadiptv.com",

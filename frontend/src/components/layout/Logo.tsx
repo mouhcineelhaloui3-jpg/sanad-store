@@ -39,7 +39,7 @@ export function Logo({ compact = false }: { compact?: boolean }) {
           </span>
         ) : (
           <span className="hidden text-[10px] font-medium text-neon-cyan/80 md:block" suppressHydrationWarning>
-            IPTV Morocco
+            Premium IPTV Worldwide
           </span>
         )}
       </span>

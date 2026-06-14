@@ -2,22 +2,22 @@ import type { BlogPostEn } from "./types";
 
 export const blogPostsEn: Record<string, BlogPostEn> = {
   "prix-abonnement-iptv-maroc": {
-    title: "IPTV Subscription Prices in Morocco 2026 — SANAD IPTV Guide",
+    title: "IPTV Subscription Prices Worldwide 2026 — SANAD IPTV Guide",
     description:
-      "Discover IPTV subscription prices in Morocco: 80 MAD (3 months), 140 MAD (6 months), 240 MAD (12 months), 400 MAD (2 devices). Compare plans, features, and why SANAD IPTV is a trusted choice.",
+      "Discover IPTV subscription prices worldwide: 80 MAD (3 months), 140 MAD (6 months), 240 MAD (12 months), 400 MAD (2 devices). Compare plans, features, and why SANAD IPTV is a trusted choice.",
     excerpt:
-      "A complete guide to IPTV pricing in Morocco with SANAD IPTV monthly and annual plans and what you get for every price point.",
-    tags: ["pricing", "subscription", "IPTV Morocco", "SANAD IPTV", "plans"],
+      "A complete guide to IPTV pricing worldwide with SANAD IPTV monthly and annual plans and what you get for every price point.",
+    tags: ["pricing", "subscription", "IPTV Worldwide", "SANAD IPTV", "plans"],
     sections: [
-      "IPTV subscription prices in Morocco vary by plan length, stream quality, and number of connected devices. With SANAD IPTV, you get transparent packages with no hidden fees: 80 MAD for 3 months, 140 MAD for 6 months, 240 MAD for 12 months, and 400 MAD for the full two-device plan.",
-      "Every SANAD IPTV plan includes more than 115,000 live channels and 120,000 movies and series via VOD. Channels cover Arabic, Moroccan, European, sports, and kids content, with daily list updates and round-the-clock WhatsApp support.",
-      "When comparing prices on the Moroccan market, look at what is actually included. Some cheap offers hide limits on devices or stream quality. SANAD IPTV delivers stable HD and 4K streaming where the source allows, with servers optimized for Morocco and North Africa.",
+      "IPTV subscription prices worldwide vary by plan length, stream quality, and number of connected devices. With SANAD IPTV, you get transparent packages with no hidden fees: 80 MAD for 3 months, 140 MAD for 6 months, 240 MAD for 12 months, and 400 MAD for the full two-device plan.",
+      "Every SANAD IPTV plan includes more than 115,000 live channels and 120,000 movies and series via VOD. Channels cover Arabic, International, European, sports, and kids content, with daily list updates and round-the-clock WhatsApp support.",
+      "When comparing prices on the global market, look at what is actually included. Some cheap offers hide limits on devices or stream quality. SANAD IPTV delivers stable HD and 4K streaming where the source allows, with servers optimized for Europe, the Americas, the Middle East, Africa, and beyond.",
       "The 3-month plan (80 MAD) is ideal for testing, 6 months (140 MAD) is the most popular choice, 12 months (240 MAD) offers the best value, and the two-device plan (400 MAD) covers TV and phone. All subscriptions activate within minutes after payment.",
       "For current offers or a custom multi-screen plan, contact the SANAD IPTV team on WhatsApp. They will recommend the right plan for your internet speed and the number of devices in your home.",
     ],
     faqs: [
       {
-        question: "What are SANAD IPTV prices in Morocco?",
+        question: "What are SANAD IPTV prices worldwide?",
         answer:
           "SANAD IPTV prices: 80 MAD / 3 months, 140 MAD / 6 months, 240 MAD / 12 months, 400 MAD / 2 devices. All plans include 115K+ channels and 120K VOD with WhatsApp support.",
       },
@@ -30,15 +30,15 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
   },
 
   "comment-sabonner-iptv-maroc": {
-    title: "How to Subscribe to IPTV in Morocco — SANAD IPTV Steps",
+    title: "How to Subscribe to IPTV Worldwide — SANAD IPTV Steps",
     description:
-      "Step-by-step guide to subscribing to IPTV in Morocco with SANAD IPTV: choose a plan, pay, activate, and set up your app.",
+      "Step-by-step guide to subscribing to IPTV Worldwide with SANAD IPTV: choose a plan, pay, activate, and set up your app.",
     excerpt:
       "Subscribe to SANAD IPTV in minutes: pick your plan, pay, and receive your Xtream Codes credentials instantly.",
-    tags: ["subscription", "activation", "Xtream Codes", "SANAD IPTV", "Morocco"],
+    tags: ["subscription", "activation", "Xtream Codes", "SANAD IPTV", "Worldwide"],
     sections: [
       "Subscribing to IPTV through SANAD IPTV is simple and fast. First, contact the sales team on WhatsApp or visit the SANAD IPTV website to choose the right plan: 3 months (80 MAD), 6 months (140 MAD), 12 months (240 MAD), or two devices (400 MAD).",
-      "After selecting a plan, you will receive secure payment instructions. SANAD IPTV accepts multiple payment methods suitable for Morocco. Once payment is confirmed, support sends your subscription details: Xtream Codes URL, username, and password.",
+      "After selecting a plan, you will receive secure payment instructions. SANAD IPTV accepts multiple payment methods suitable worldwide. Once payment is confirmed, support sends your subscription details: Xtream Codes URL, username, and password.",
       "Next, download an IPTV app on your device — IPTV Smarters Pro, TiviMate, or any compatible player. Enter the Xtream Codes credentials you received, then wait for the channel list (+115K channels) and VOD library (120K titles) to load.",
       "If you run into any setup issues, the SANAD IPTV team is available on WhatsApp to walk you through each step. They can guide you through installing the app on Smart TV, Android, Fire Stick, or PC.",
       "Keep your subscription credentials in a safe place and do not share them with unauthorized people. SANAD IPTV allows a limited number of simultaneous connections depending on your plan; review the terms of use when you subscribe.",
@@ -53,25 +53,25 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
   },
 
   "best-iptv-maroc": {
-    title: "Best IPTV in Morocco 2026 — Why SANAD IPTV?",
+    title: "Premium IPTV Worldwide 2026 — Why SANAD IPTV?",
     description:
-      "Compare the best IPTV services in Morocco: stream stability, channel count, VOD, support, and pricing. SANAD IPTV leads the market.",
+      "Compare the best IPTV services worldwide: stream stability, channel count, VOD, support, and pricing. SANAD IPTV leads the market.",
     excerpt:
-      "Learn what makes the best IPTV in Morocco and why thousands of subscribers choose SANAD IPTV.",
-    tags: ["best IPTV", "comparison", "SANAD IPTV", "Morocco", "channels"],
+      "Learn what makes the best IPTV Worldwide and why thousands of subscribers choose SANAD IPTV.",
+    tags: ["best IPTV", "comparison", "SANAD IPTV", "Worldwide", "channels"],
     sections: [
-      "When looking for the best IPTV in Morocco, evaluate several criteria: stream stability, channel variety, picture quality, support response time, and pricing transparency. SANAD IPTV has excelled in all of these areas for years.",
-      "SANAD IPTV offers more than 115,000 live channels including Moroccan (2M, Al Aoula, Arryadia…), Arabic, French, English, and global sports. Plus 120,000 movies and series via VOD updated weekly.",
-      "SANAD IPTV's core strength is stability. Servers optimized for Morocco reduce buffering and lag even during peak hours. WhatsApp support is available 24/7 in Arabic and French.",
+      "When looking for the best IPTV Worldwide, evaluate several criteria: stream stability, channel variety, picture quality, support response time, and pricing transparency. SANAD IPTV has excelled in all of these areas for years.",
+      "SANAD IPTV offers more than 115,000 live channels including International (2M, Al Aoula, Arryadia…), Arabic, French, English, and global sports. Plus 120,000 movies and series via VOD updated weekly.",
+      "SANAD IPTV's core strength is stability. Servers optimized for global streaming reduce buffering and lag even during peak hours. WhatsApp support is available 24/7 in Arabic and French.",
       "Pricing is competitive and clear: 80 MAD / 3 months, 140 MAD / 6 months, 240 MAD / 12 months, 400 MAD / 2 devices. No hidden fees and no surprise service interruptions as long as your subscription is active.",
       "SANAD IPTV works on all devices: Smart TV (Samsung, LG), Android, iPhone, Fire Stick, Chromecast, PC, and Mac. One app and one set of Xtream Codes for all your devices.",
-      "Thousands of Moroccan subscribers trust SANAD IPTV for World Cup matches, European leagues, and exclusive Arabic content. Join them and experience the quality for yourself.",
+      "Thousands of subscribers worldwide trust SANAD IPTV for World Cup matches, European leagues, and exclusive Arabic content. Join them and experience the quality for yourself.",
     ],
     faqs: [
       {
-        question: "Why is SANAD IPTV better than competitors in Morocco?",
+        question: "Why is SANAD IPTV better than competitors worldwide?",
         answer:
-          "SANAD IPTV combines 115K+ channels, 120K VOD, high stability, transparent pricing (80–400 MAD), and instant WhatsApp support — a rare mix in the Moroccan market.",
+          "SANAD IPTV combines 115K+ channels, 120K VOD, high stability, transparent pricing (80–400 MAD), and instant WhatsApp support — a rare mix in the global market.",
       },
       {
         question: "Is SANAD IPTV legal and safe?",
@@ -82,15 +82,15 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
   },
 
   "abonnement-internet-iptv-maroc": {
-    title: "Internet Speed Required for IPTV in Morocco",
+    title: "Internet Speed Required for IPTV Worldwide",
     description:
-      "What internet speed do you need for IPTV in Morocco? SANAD IPTV guide for HD, 4K, and multiple simultaneous devices.",
+      "What internet speed do you need for IPTV Worldwide? SANAD IPTV guide for HD, 4K, and multiple simultaneous devices.",
     excerpt:
       "Find the right internet speed for SANAD IPTV: HD, 4K, and multiple screens at the same time.",
     tags: ["internet", "speed", "HD", "4K", "SANAD IPTV"],
     sections: [
       "IPTV quality depends directly on your internet speed and connection stability. For SANAD IPTV in SD, 5 Mbps is enough. For HD (720p–1080p) you need 10–15 Mbps, and for 4K streaming 25 Mbps or more is recommended.",
-      "In Morocco, most Maroc Telecom, Inwi, and Orange plans meet HD IPTV requirements. If you watch on more than one device at the same time with SANAD IPTV, add 5–10 Mbps per additional device.",
+      "In Worldwide, most major internet providers worldwide plans meet HD IPTV requirements. If you watch on more than one device at the same time with SANAD IPTV, add 5–10 Mbps per additional device.",
       "SANAD IPTV uses adaptive bitrate: if your internet speed drops temporarily, the player automatically lowers quality to avoid buffering. For the best experience, use a wired Ethernet connection instead of Wi-Fi when possible.",
       "Test your speed at speedtest.net before subscribing. If your speed is below 10 Mbps, SANAD IPTV will still work but at SD quality. WhatsApp support can help you adjust player settings based on your connection.",
       "Avoid heavy downloads (torrents, game updates) while watching IPTV. SANAD IPTV offers 115K+ channels and 120K VOD — make sure your connection can handle this rich content library.",
@@ -112,7 +112,7 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
       "Run SANAD IPTV on Samsung and LG Smart TV in minutes with this detailed setup guide.",
     tags: ["Smart TV", "Samsung", "LG", "IPTV Smarters", "SANAD IPTV"],
     sections: [
-      "Samsung and LG Smart TVs are among the most popular devices for IPTV in Morocco. SANAD IPTV is fully compatible with both brands via IPTV Smarters Pro or SS IPTV.",
+      "Samsung and LG Smart TVs are among the most popular devices for IPTV Worldwide. SANAD IPTV is fully compatible with both brands via IPTV Smarters Pro or SS IPTV.",
       "On Samsung Smart TV (Tizen): open Samsung App Store, search for \"IPTV Smarters Pro\", and install the app. If it is not available, use Smart IPTV (SI IPTV) as an alternative — it may require a one-time activation fee.",
       "On LG Smart TV (webOS): open LG Content Store, search for \"IPTV Smarters Pro\", and install it. After installation, choose \"Login with Xtream Codes API\" and enter your SANAD IPTV credentials: URL, username, and password.",
       "After login, wait for the channel list (+115K channels) and VOD section (120K titles) to load. The first load may take 2–5 minutes depending on your internet speed. Do not close the app while loading.",
@@ -191,7 +191,7 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
       "Run SANAD IPTV on Chromecast and Android TV — installation and setup guide.",
     tags: ["Chromecast", "Android TV", "Google TV", "SANAD IPTV"],
     sections: [
-      "Google Chromecast and Android TV Box are excellent options for SANAD IPTV in Morocco. Chromecast with Google TV lets you install IPTV Smarters Pro directly from the Play Store.",
+      "Google Chromecast and Android TV Box are excellent options for SANAD IPTV Worldwide. Chromecast with Google TV lets you install IPTV Smarters Pro directly from the Play Store.",
       "On Chromecast with Google TV: open Play Store, search \"IPTV Smarters Pro\", install it, then use Xtream Codes API with your SANAD IPTV credentials. 115K+ channels and 120K VOD on your screen.",
       "Chromecast Classic (without Google TV): install IPTV Smarters Pro on an Android phone, start a channel, then tap the Cast icon to stream to your TV. Make sure the phone and Chromecast are on the same Wi-Fi network.",
       "Android TV Box (Xiaomi, Nvidia Shield, etc.): same steps as Fire Stick — Play Store > IPTV Smarters Pro > Xtream Codes. Shield TV is excellent for 4K streaming from SANAD IPTV.",
@@ -217,7 +217,7 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
       "IPTV Smarters Pro is the most widely used app with SANAD IPTV. After subscribing (80–400 MAD), you will receive via WhatsApp: Server URL, Username, and Password.",
       "Open IPTV Smarters Pro > Add User > Login with Xtream Codes API. Enter a display name, the URL, username, and password. Tap Add User.",
       "Wait for the playlist to load — this may take 2–5 minutes. You will see Live TV (115K+ channels), Movies, and Series (120K VOD). Do not close the app during the first load.",
-      "To enable EPG (program guide): Settings > EPG > Refresh EPG. EPG helps you find match times and schedules on Moroccan and Arabic channels.",
+      "To enable EPG (program guide): Settings > EPG > Refresh EPG. EPG helps you find match times and schedules on Arabic and international channels.",
       "If you see \"Invalid Credentials\", check that you copied the details without extra spaces. SANAD IPTV Support on WhatsApp can verify your subscription status and resend credentials if needed.",
     ],
     faqs: [
@@ -267,7 +267,7 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
     sections: [
       "When SANAD IPTV channels (115K+) fail to load, the most common cause is a weak or temporarily interrupted internet connection. Check your speed (10+ Mbps for HD) and try Refresh again.",
       "In IPTV Smarters Pro: Settings > Refresh Live TV. Or Manage Users > Reload. Wait 3–5 minutes — the list is large (115K+ channels) and needs time on first load.",
-      "Disable VPN: some VPNs slow down or block IPTV servers. SANAD IPTV is optimized for Morocco — try without VPN first.",
+      "Disable VPN: some VPNs slow down or block IPTV servers. SANAD IPTV is optimized for global streaming — try without VPN first.",
       "Check storage space on your device. IPTV Smarters caches EPG and channel data; clear cache if the device is full.",
       "If the list stays empty, WhatsApp SANAD IPTV with your subscription number. The server may be under brief maintenance — support will point you to an alternate server or confirm service status.",
     ],
@@ -278,9 +278,9 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
           "The first load takes 3–10 minutes depending on internet speed and device. Do not close the app. SANAD IPTV also provides 120K VOD — that may need a separate refresh.",
       },
       {
-        question: "Is a VPN required for SANAD IPTV in Morocco?",
+        question: "Is a VPN required for SANAD IPTV Worldwide?",
         answer:
-          "No. SANAD IPTV works directly in Morocco without a VPN. A VPN may cause slowdowns or failed channel loading.",
+          "No. SANAD IPTV works directly worldwide without a VPN. A VPN may cause slowdowns or failed channel loading.",
       },
     ],
   },
@@ -389,14 +389,14 @@ export const blogPostsEn: Record<string, BlogPostEn> = {
   },
 
   "iptv-4k": {
-    title: "IPTV 4K in Morocco — SANAD IPTV Requirements",
+    title: "IPTV 4K worldwide — SANAD IPTV Requirements",
     description:
       "Watch IPTV in 4K with SANAD IPTV: internet speed, devices, 4K channels, and settings.",
     excerpt:
       "IPTV 4K guide with SANAD IPTV — internet, devices, and Ultra HD channels.",
-    tags: ["4K", "Ultra HD", "quality", "SANAD IPTV", "Morocco"],
+    tags: ["4K", "Ultra HD", "quality", "SANAD IPTV", "Worldwide"],
     sections: [
-      "SANAD IPTV offers channels and movies in 4K/UHD where sources are available. To enjoy them in Morocco, you need the right setup from internet to screen.",
+      "SANAD IPTV offers channels and movies in 4K/UHD where sources are available. To enjoy them worldwide, you need the right setup from internet to screen.",
       "Internet speed: 25 Mbps minimum for 4K, 50+ Mbps ideal for multiple devices. Use Ethernet for your TV Box or Smart TV.",
       "Devices: Nvidia Shield TV, Apple TV 4K, Fire Stick 4K Max, recent Samsung/LG Smart TVs — all support 4K with SANAD IPTV. IPTV Smarters Pro or TiviMate with an external player (VLC).",
       "In the app: Settings > Stream Format > MPEGTS or HLS depending on your device. Enable \"Hardware Decoding\" to reduce processor load.",

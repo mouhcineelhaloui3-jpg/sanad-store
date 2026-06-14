@@ -33,8 +33,8 @@ function buildOpenGraph(options: {
 }) {
   return {
     type: "website" as const,
-    locale: "ar_MA",
-    alternateLocale: ["en_US"],
+    locale: "en_US",
+    alternateLocale: ["ar"],
     url: options.url,
     siteName: options.brand,
     title: options.title,
@@ -79,7 +79,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
       default: seo.title,
       template: `%s | ${brand}`
     },
-    description: seo.description?.trim() || `${brand} — IPTV Morocco subscription with free trial and WhatsApp support.`,
+    description: seo.description?.trim() || `${brand} — Premium IPTV worldwide with free trial and 24/7 WhatsApp support.`,
     keywords: parseKeywords(seo.keywords),
     authors: [{ name: brand, url: siteUrl }],
     creator: brand,
@@ -98,7 +98,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
     alternates: {
       canonical: "/",
       languages: {
-        "ar-MA": "/",
+        ar: "/",
         en: "/",
         "x-default": "/"
       }
@@ -129,9 +129,7 @@ export function buildRootMetadata(seo: SeoContent, branding?: BrandingContent): 
       }
     },
     other: {
-      "geo.region": "MA",
-      "geo.placename": "Morocco",
-      "content-language": "ar-MA, en"
+      "content-language": "ar, en"
     }
   };
 }
@@ -159,7 +157,7 @@ export function buildPageMetadata(options: PageMetadataInput): Metadata {
     title: options.title,
     description:
       options.description?.trim() ||
-      "SANAD IPTV — IPTV Morocco subscription: 115,000+ channels, 120,000+ VOD, 4K sports, free trial.",
+      "SANAD IPTV — Premium IPTV worldwide: 115,000+ channels, 120,000+ VOD, 4K sports, free trial.",
     keywords: options.keywords ? parseKeywords(options.keywords) : undefined,
     alternates: { canonical },
     openGraph: {
@@ -187,8 +185,7 @@ export function buildPageMetadata(options: PageMetadataInput): Metadata {
           }
         },
     other: {
-      "geo.region": "MA",
-      "geo.placename": "Morocco"
+      "content-language": "ar, en"
     }
   };
 }

@@ -12,11 +12,11 @@ import { formatPlanPrice } from "@/lib/i18n/currency";
 import { planLandingPath } from "@/lib/plan-routes";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "أسعار IPTV المغرب — باقات SANAD IPTV | +115,000 قناة",
+  title: "Global IPTV Pricing — SANAD IPTV Plans | +115,000 Channels",
   description:
-    "باقات IPTV SANAD: بداية 3 أشهر، راحة 6 أشهر، مميز 12 شهر. +115,000 قناة، 120,000+ VOD، رياضة 4K، تفعيل فوري عبر واتساب.",
+    "SANAD IPTV plans: Starter 3 months, Confort 6 months, Premium 12 months. +115,000 channels, 120,000+ VOD, 4K sports, instant activation via WhatsApp worldwide.",
   path: "/pricing",
-  keywords: "أسعار IPTV, abonnement IPTV Maroc, SANAD IPTV, IPTV 4K"
+  keywords: "IPTV pricing, IPTV subscription, SANAD IPTV, IPTV 4K, global IPTV"
 });
 
 export default async function PricingPage() {
@@ -25,8 +25,8 @@ export default async function PricingPage() {
 
   const schemas = [
     webPageJsonLd({
-      name: "أسعار IPTV SANAD",
-      description: "باقات اشتراك IPTV في المغرب",
+      name: "SANAD IPTV Global Pricing",
+      description: "IPTV subscription plans for customers worldwide",
       url: "/pricing"
     }),
     organizationJsonLd({
@@ -58,8 +58,8 @@ export default async function PricingPage() {
           { label: "الرئيسية", href: "/" },
           { label: "الأسعار" }
         ]}
-        title="أسعار اشتراك IPTV"
-        subtitle="اختر باقة اشتراك IPTV — +115,000 قناة، 120,000+ VOD، تفعيل سريع، دعم واتساب 24/7، جودة HD / 4K."
+        title="Global IPTV Subscription Pricing"
+        subtitle="Choose your IPTV plan — +115,000 channels, 120,000+ VOD, fast activation, 24/7 WhatsApp support, HD / 4K quality worldwide."
       >
         <div className="not-prose grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan) => {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const hubLinks = [
-  { href: "/iptv/iptv-maroc", label: "IPTV المغرب" },
+  { href: "/iptv/iptv-maroc", label: "IPTV Worldwide" },
   { href: "/iptv/iptv-smart-tv", label: "IPTV Smart TV" },
   { href: "/iptv/iptv-android", label: "IPTV Android" },
   { href: "/iptv/iptv-4k", label: "IPTV 4K" },
@@ -15,7 +15,7 @@ export function SeoInternalLinks({ currentPath }: { currentPath?: string }) {
   return (
     <nav aria-label="روابط IPTV ذات صلة" className="not-prose mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
       <h2 className="text-lg font-black text-white">اكتشف SANAD IPTV</h2>
-      <p className="mt-2 text-sm text-white/60">روابط داخلية باش تلقى أحسن محتوى واشتراك IPTV فالمغرب.</p>
+      <p className="mt-2 text-sm text-white/60">روابط داخلية باش تلقى أحسن محتوى واشتراك IPTV عالمي.</p>
       <ul className="mt-4 flex flex-wrap gap-2">
         {hubLinks
           .filter((link) => link.href !== currentPath)

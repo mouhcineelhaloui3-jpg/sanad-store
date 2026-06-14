@@ -24,7 +24,7 @@ export function buildPlanLandingMetadata(config: PlanLandingConfig): Metadata {
     title: config.title,
     description: config.description,
     path: config.path,
-    keywords: "IPTV Maroc, abonnement IPTV, SANAD IPTV, قنوات رياضية, 4K"
+    keywords: "global IPTV, IPTV subscription, SANAD IPTV, sports channels, 4K, worldwide"
   });
 }
 

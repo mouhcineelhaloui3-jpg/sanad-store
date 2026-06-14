@@ -11,7 +11,7 @@ export type LocalizedText = {
 export const ALL_LOCALES: Locale[] = ["ar-ma", "en"];
 
 export const LOCALE_LABELS: Record<Locale, string> = {
-  "ar-ma": "العربية المغربية",
+  "ar-ma": "العربية",
   en: "English"
 };
 

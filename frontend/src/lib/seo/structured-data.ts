@@ -20,13 +20,20 @@ export function organizationJsonLd(options: {
     url: absoluteUrl("/"),
     email: options.email,
     logo: options.logoUrl ? absoluteUrl(options.logoUrl) : absoluteUrl("/opengraph-image"),
-    areaServed: { "@type": "Country", name: "Morocco" },
-    inLanguage: ["ar-MA", "en"],
+    areaServed: [
+      { "@type": "Place", name: "Worldwide" },
+      { "@type": "Country", name: "Europe" },
+      { "@type": "Country", name: "United States" },
+      { "@type": "Country", name: "Canada" },
+      { "@type": "Country", name: "Middle East" },
+      { "@type": "Country", name: "Africa" }
+    ],
+    inLanguage: ["ar", "en"],
     ...(sameAs.length ? { sameAs } : {}),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      availableLanguage: ["Moroccan Arabic", "English"],
+      availableLanguage: ["Arabic", "English"],
       ...(options.whatsappNumber
         ? { telephone: `+${options.whatsappNumber.replace(/\D/g, "")}` }
         : {})
@@ -82,7 +89,7 @@ export function serviceJsonLd(options: {
     description: options.description,
     provider: { "@type": "Organization", name: options.provider },
     serviceType: "IPTV Subscription",
-    areaServed: { "@type": "Country", name: "Morocco" },
+    areaServed: { "@type": "Place", name: "Worldwide" },
     url: absoluteUrl("/")
   };
 }

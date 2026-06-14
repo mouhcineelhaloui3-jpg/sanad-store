@@ -7,7 +7,7 @@ export const checkoutSchema = z.object({
   phone: z
     .string()
     .trim()
-    .regex(moroccanPhoneRegex, "دخل رقم مغربي صحيح، مثال: 0612345678.")
+    .regex(moroccanPhoneRegex, "Enter a valid phone number, e.g. 0612345678 or +212612345678.")
 });
 
 export type CheckoutInput = z.infer<typeof checkoutSchema>;
