@@ -5,7 +5,7 @@ import { SeoInternalLinks } from "@/components/seo/SeoInternalLinks";
 import { StructuredData, faqJsonLd, productJsonLd, webPageJsonLd } from "@/components/seo/StructuredData";
 import { getStoreContent } from "@/lib/cms/server";
 import { mergePlansWithCms } from "@/lib/cms/merge-plans";
-import { formatPlanPrice } from "@/lib/i18n/currency";
+import { ProgrammaticPriceBadge } from "@/components/seo/ProgrammaticPriceBadge";
 import type { ProgrammaticPage } from "@/lib/seo/programmatic-pages";
 import { programmaticPages } from "@/lib/seo/programmatic-pages";
 
@@ -13,7 +13,7 @@ export async function ProgrammaticLandingPage({ page }: { page: ProgrammaticPage
   const content = await getStoreContent();
   const plans = mergePlansWithCms(content.plans);
   const plan = page.planSlug ? plans.find((p) => p.slug === page.planSlug) : plans.find((p) => p.highlighted);
-  const price = plan ? formatPlanPrice(plan.price, "MAD", "ar-ma").primary : null;
+  const price = plan ? plan.price : null;
   const pagePath = `/iptv/${page.slug}`;
 
   return (
@@ -43,10 +43,8 @@ export async function ProgrammaticLandingPage({ page }: { page: ProgrammaticPage
         title={page.title}
         subtitle={page.subtitle}
       >
-        {price ? (
-          <p className="rounded-2xl border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-3 text-lg font-black text-neon-cyan">
-            من {price} — تفعيل فوري عبر واتساب
-          </p>
+        {price != null ? (
+          <ProgrammaticPriceBadge amountMad={price} />
         ) : null}
 
         {page.contentBlocks?.length

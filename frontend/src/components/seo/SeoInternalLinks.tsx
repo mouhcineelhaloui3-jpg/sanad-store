@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const hubLinks = [
-  { href: "/iptv/iptv-maroc", label: "IPTV Worldwide" },
+  { href: "/iptv/iptv-worldwide", label: "Premium IPTV Worldwide" },
   { href: "/iptv/iptv-smart-tv", label: "IPTV Smart TV" },
   { href: "/iptv/iptv-android", label: "IPTV Android" },
   { href: "/iptv/iptv-4k", label: "IPTV 4K" },

@@ -37,8 +37,8 @@ export const defaultStoreContent = (): StoreContent => ({
   },
   footer: {
     description: {
-      ar: "SANAD IPTV — منصة احترافية لبيع اشتراكات IPTV مع تجربة مجانية، دعم سريع عبر واتساب، ولوحة تحكم متكاملة.",
-      en: "SANAD IPTV — Professional IPTV subscriptions with free trial, fast WhatsApp support, and full admin control."
+      ar: "SANAD IPTV — منصة IPTV عالمية مع أكثر من 115,000 قناة دولية، تجربة مجانية، ودعم سريع عبر واتساب في كل أنحاء العالم.",
+      en: "SANAD IPTV — Global IPTV platform with 115,000+ international channels, free trial, and fast WhatsApp support worldwide."
     },
     supportEmail: "support@sanadiptv.com",
     whatsappNumber: "212682217644",
@@ -61,7 +61,7 @@ export const defaultStoreContent = (): StoreContent => ({
     description:
       "SANAD IPTV subscription — +115,000 live channels, 120,000+ VOD titles, 4K sports, beIN, Champions League. Instant activation within 5 minutes, free trial, 24/7 WhatsApp support worldwide.",
     keywords:
-      "IPTV, SANAD IPTV, IPTV subscription, premium IPTV worldwide, +115000 channels, IPTV 4K, IPTV Smarters, TiviMate, live TV, FIFA World Cup 2026, Champions League, beIN Sports, international channels, VOD, global streaming",
+      "IPTV subscription, premium IPTV, best IPTV service, IPTV streaming, IPTV worldwide, international IPTV, IPTV for Smart TV, IPTV for Android TV, IPTV movies and series, IPTV sports channels, IPTV 4K streaming, SANAD IPTV, global streaming",
     ogTitle: "SANAD IPTV | Premium IPTV for Customers Worldwide — +115,000 Channels",
     ogDescription:
       "115,000+ live channels, 120,000+ VOD, 4K sports, instant activation — free trial & 24/7 WhatsApp support worldwide.",

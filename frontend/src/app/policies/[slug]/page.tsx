@@ -8,26 +8,26 @@ import { breadcrumbJsonLd } from "@/lib/seo/structured-data";
 
 const policies: Record<string, { title: string; description: string; body: string[] }> = {
   privacy: {
-    title: "سياسة الخصوصية",
+    title: "Privacy Policy",
     description:
-      "كيفاش كنجمعو و كستعملو معلوماتك ف SANAD IPTV: الاسم، واتساب، نوع الجهاز، وبيانات تقنية للحماية.",
+      "How SANAD IPTV collects and uses your information: name, WhatsApp, device type, and technical data for security and service delivery worldwide.",
     body: [
-      "نجمعو غير المعلومات الضرورية باش نفعّلو اشتراك IPTV ونتواصلو معاك: الاسم الكامل، رقم واتساب، نوع الجهاز، ومدة الاشتراك المطلوبة.",
-      "كنجمعو أيضاً بعض البيانات التقنية (IP، نوع المتصفح) باش نحمو الموقع من الطلبات الوهمية ونحسّنو الأداء.",
-      "ما كنبيعوش بياناتك لأطراف خارجية. المعلومات كتستعمل غير لتفعيل الاشتراك، الدعم التقني، وتحسين الخدمة.",
-      "عندك الحق تطلب حذف بياناتك أو تعديلها عبر التواصل معنا على واتساب أو الإيميل."
+      "We collect only the information required to activate your IPTV subscription and support you: full name, WhatsApp number, device type, and requested plan duration.",
+      "We also collect limited technical data (IP address, browser type) to protect the site from fraudulent requests and improve performance.",
+      "We do not sell your data to third parties. Information is used solely for subscription activation, technical support, and service improvement.",
+      "You may request deletion or correction of your data by contacting us via WhatsApp or email at any time."
     ]
   },
   terms: {
-    title: "الشروط والأحكام",
+    title: "Terms & Conditions",
     description:
-      "شروط استخدام SANAD IPTV: الاشتراك، الدفع، التفعيل، الدعم التقني، ومسؤوليات المستخدم.",
+      "SANAD IPTV terms of use: subscriptions, payment, activation, technical support, and user responsibilities for customers worldwide.",
     body: [
-      "SANAD IPTV provides paid IPTV streaming subscriptions. Prices are shown in MAD and may change. Service is available to customers worldwide.",
-      "من بعد الطلب، غادي نتواصلو معاك عبر واتساب باش نأكّدو الدفع و نرسلو بيانات التفعيل (M3U / Xtream).",
-      "المستخدم مسؤول على استعمال الخدمة بشكل قانوني و على حماية بيانات الدخول ديالو.",
-      "الخدمة ماشي بديل لأي اشتراك رسمي للقنوات. كنوفّرو بث عبر الإنترنت مع دعم تقني.",
-      "يمكن إيقاف أو تعليق الاشتراك فحالة إساءة الاستخدام أو مخالفة الشروط."
+      "SANAD IPTV provides paid IPTV streaming subscriptions. Prices are shown in MAD by default and may be displayed in EUR, USD, GBP, CAD, or AUD based on your region. Prices may change with notice.",
+      "After placing an order, we contact you via WhatsApp to confirm payment and send activation credentials (M3U / Xtream codes). Activation is typically instant.",
+      "You are responsible for using the service lawfully and keeping your login credentials secure.",
+      "The service is not a replacement for official broadcaster subscriptions. We provide internet-based streaming with technical support.",
+      "Subscriptions may be suspended in cases of abuse or violation of these terms."
     ]
   }
 };
@@ -43,7 +43,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const policy = policies[slug];
-  if (!policy) return { title: "سياسة غير موجودة", robots: { index: false } };
+  if (!policy) return { title: "Policy not found", robots: { index: false } };
 
   const content = await getStoreContent();
   return buildPageMetadata({
@@ -80,8 +80,8 @@ export default async function PolicyPage({ params }: { params: Promise<{ slug: s
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      <Link href="/" className="btn-neon-outline mt-8 inline-flex">
-        الرجوع للرئيسية
+      <Link href="/" className="mt-8 inline-block text-sm font-bold text-neon-cyan hover:underline">
+        ← Back to home
       </Link>
     </div>
   );

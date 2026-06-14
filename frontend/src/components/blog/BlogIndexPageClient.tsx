@@ -15,7 +15,7 @@ function BlogSearchForm({ defaultQuery }: { defaultQuery?: string }) {
         name="q"
         defaultValue={defaultQuery}
         placeholder={blogUiText("searchPlaceholder", locale)}
-        className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-neon-cyan/40"
+        className="iptv-input flex-1"
       />
       <button type="submit" className="btn-neon px-6">
         {blogUiText("searchButton", locale)}

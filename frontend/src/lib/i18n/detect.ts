@@ -1,15 +1,22 @@
 import { DEFAULT_LOCALE, type Locale } from "./localized";
-import { currencyForLocale, type CurrencyCode } from "./currency";
+import { DEFAULT_CURRENCY, detectCurrencyFromBrowser, type CurrencyCode } from "./currency";
 
 export type DetectResult = {
   locale: Locale;
   currency: CurrencyCode;
 };
 
-/** First visit: Moroccan Arabic + dirham (official site language and currency). */
+function detectLocaleFromBrowser(): Locale {
+  if (typeof navigator === "undefined") return DEFAULT_LOCALE;
+  const tag = (navigator.language ?? "").toLowerCase();
+  if (tag.startsWith("en")) return "en";
+  return DEFAULT_LOCALE;
+}
+
+/** First visit: detect language + currency from browser region (defaults to ar + MAD). */
 export function detectLocaleAndCurrency(): DetectResult {
   return {
-    locale: DEFAULT_LOCALE,
-    currency: currencyForLocale(DEFAULT_LOCALE)
+    locale: detectLocaleFromBrowser(),
+    currency: detectCurrencyFromBrowser()
   };
 }

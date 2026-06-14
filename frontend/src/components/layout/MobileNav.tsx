@@ -7,6 +7,7 @@ import { LanguageSwitcher, usePromoBar } from "@/components/layout/LanguageSwitc
 import { HeaderCtaButton } from "@/components/layout/HeaderCtaButton";
 import { Logo } from "@/components/layout/Logo";
 import { SiteSearchDialog } from "@/components/search/SiteSearchDialog";
+import { CurrencySwitcher } from "@/components/layout/CurrencySwitcher";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { moreMenuLabel, moreNavLinks, primaryNavLinks } from "@/lib/navigation/site-nav";
 import { t } from "@/lib/i18n/localized";
@@ -141,6 +142,7 @@ export function MobileNav() {
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <SiteSearchDialog />
+              <CurrencySwitcher />
               <LanguageSwitcher />
             </div>
             <HeaderCtaButton

@@ -72,7 +72,7 @@ export function IptvHeroScreen() {
       className="tv-frame mx-auto w-full max-w-md"
       aria-label={slideText(ui.disclaimer, locale)}
     >
-      <div className="tv-screen relative aspect-video overflow-hidden rounded-xl">
+      <div className="tv-screen theme-dark-surface relative aspect-video overflow-hidden rounded-xl">
         <div className="absolute inset-0 bg-gradient-to-br from-dark-200 via-dark-100 to-dark-50" />
         <div className="scanline pointer-events-none absolute inset-0 opacity-[0.07]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,transparent_40%,rgba(0,245,255,0.06)_50%,transparent_60%)] animate-[shimmer_4s_ease-in-out_infinite]" />

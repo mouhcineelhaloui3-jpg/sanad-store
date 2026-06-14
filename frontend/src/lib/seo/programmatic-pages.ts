@@ -19,8 +19,8 @@ export type ProgrammaticPage = {
 };
 
 export const programmaticPages: Record<string, ProgrammaticPage> = {
-  "iptv-maroc": {
-    slug: "iptv-maroc",
+  "iptv-worldwide": {
+    slug: "iptv-worldwide",
     title: "Premium IPTV Worldwide — SANAD IPTV Subscription",
     description:
       "Premium IPTV for customers worldwide: +115K channels, 120K+ VOD, 4K sports. Instant activation within 5 minutes and 24/7 WhatsApp support.",
@@ -154,7 +154,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       { question: "شنو أفضل تطبيق؟", answer: "TiviMate للتلفاز، Smarters للهاتف." },
       { question: "واش خدام على 4G؟", answer: "نعم، ولكن Wi-Fi أو Ethernet أحسن." }
     ],
-    relatedSlugs: ["iptv-smart-tv", "iptv-firestick", "iptv-maroc"],
+    relatedSlugs: ["iptv-smart-tv", "iptv-firestick", "iptv-worldwide"],
     planSlug: "plan-6-months"
   },
   "iptv-iphone": {
@@ -208,7 +208,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       { question: "واش 4K خدام على Wi-Fi؟", answer: "نعم، ولكن Ethernet أحسن للمباريات." },
       { question: "واش HDR مدعوم؟", answer: "حسب القناة والجهاز." }
     ],
-    relatedSlugs: ["iptv-sports", "iptv-maroc", "iptv-firestick"],
+    relatedSlugs: ["iptv-sports", "iptv-worldwide", "iptv-firestick"],
     planSlug: "plan-12-months"
   },
   "iptv-sports": {
@@ -226,7 +226,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       { question: "واش Botola Pro كاينة؟", answer: "نعم، القنوات الرياضية الدولية والعالمية." },
       { question: "واش في replay؟", answer: "حسب القناة والتطبيق." }
     ],
-    relatedSlugs: ["iptv-4k", "iptv-maroc", "iptv-smart-tv"],
+    relatedSlugs: ["iptv-4k", "iptv-worldwide", "iptv-smart-tv"],
     planSlug: "plan-6-months"
   },
   "iptv-films": {
@@ -244,7 +244,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       { question: "واش الأفلام محدّثة؟", answer: "نعم، تحديث يومي للمحتوى الجديد." },
       { question: "واش كاين ترجمة عربية؟", answer: "حسب الفيلم — أغلب المحتوى فيه subtitles." }
     ],
-    relatedSlugs: ["iptv-series", "iptv-4k", "iptv-maroc"],
+    relatedSlugs: ["iptv-series", "iptv-4k", "iptv-worldwide"],
     planSlug: "plan-12-months"
   },
   "iptv-series": {
@@ -262,7 +262,7 @@ export const programmaticPages: Record<string, ProgrammaticPage> = {
       { question: "واش المسلسلات التركية كاينة؟", answer: "نعم، مكتبة ضخمة محدّثة." },
       { question: "واش كاين Continue Watching؟", answer: "حسب التطبيق — TiviMate و Smarters يدعمو resume." }
     ],
-    relatedSlugs: ["iptv-films", "iptv-maroc", "iptv-smart-tv"],
+    relatedSlugs: ["iptv-films", "iptv-worldwide", "iptv-smart-tv"],
     planSlug: "plan-6-months"
   }
 };

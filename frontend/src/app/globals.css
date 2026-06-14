@@ -7,6 +7,11 @@
   --neon-green: #00ff95;
   --neon-gold: #ffb800;
   --bg-dark: #0a0a0a;
+  --surface: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.88);
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -20,7 +25,7 @@ html {
 body {
   margin: 0;
   background: var(--bg-dark);
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 /* Accessibility: minimum contrast on dark theme */
@@ -51,11 +56,13 @@ a {
   }
 
   .section-title {
-    @apply text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl;
+    @apply text-3xl font-black leading-tight md:text-4xl lg:text-5xl;
+    color: var(--text-primary);
   }
 
   .section-subtitle {
-    @apply mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg;
+    @apply mt-4 max-w-2xl text-base leading-8 md:text-lg;
+    color: var(--text-secondary);
   }
 
   .glass-card {
@@ -350,7 +357,10 @@ a {
   }
 
   .iptv-input {
-    @apply w-full rounded-xl border border-white/10 bg-dark-100 px-4 py-3 text-white outline-none transition focus:border-neon-cyan/50 focus:ring-2 focus:ring-neon-cyan/20;
+    @apply w-full rounded-xl border px-4 py-3 outline-none transition focus:border-neon-cyan/50 focus:ring-2 focus:ring-neon-cyan/20;
+    border-color: var(--border-subtle);
+    background-color: var(--surface);
+    color: var(--text-primary);
   }
 
   .neon-text-shimmer {
@@ -766,10 +776,10 @@ a {
   color-scheme: light;
   --bg-dark: #f1f5f9;
   --surface: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --border-subtle: rgba(15, 23, 42, 0.1);
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border-subtle: rgba(17, 24, 39, 0.12);
 }
 
 [data-theme="light"] body.site-body {
@@ -1125,4 +1135,217 @@ a {
 /* Sticky / urgency panels stay readable */
 [data-theme="light"] .cta-panel .text-white {
   color: var(--text-primary);
+}
+
+/* ─── Light mode: comprehensive storefront readability ─── */
+html[data-theme="light"]:not([data-admin="true"]) {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) main,
+html[data-theme="light"]:not([data-admin="true"]) footer,
+html[data-theme="light"]:not([data-admin="true"]) header,
+html[data-theme="light"]:not([data-admin="true"]) [role="dialog"] {
+  color: var(--text-primary);
+}
+
+/* Tailwind white utilities → theme tokens (storefront only) */
+html[data-theme="light"]:not([data-admin="true"]) :is(.text-white):not(
+    .btn-neon,
+    .btn-whatsapp,
+    .header-cta-inner,
+    .live-badge,
+    .theme-dark-surface,
+    .theme-dark-surface *
+  ) {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"])
+  :is(
+    [class*="text-white/90"],
+    [class*="text-white/85"],
+    [class*="text-white/80"]
+  ):not(.theme-dark-surface, .theme-dark-surface *) {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"]:not([data-admin="true"])
+  :is(
+    [class*="text-white/75"],
+    [class*="text-white/70"],
+    [class*="text-white/65"],
+    [class*="text-white/60"],
+    [class*="text-white/55"],
+    [class*="text-white/50"],
+    [class*="text-white/40"],
+    [class*="text-white/35"]
+  ):not(.theme-dark-surface, .theme-dark-surface *) {
+  color: var(--text-muted);
+}
+
+/* Dark decorative surfaces keep light text (TV mockup, etc.) */
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface,
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface * {
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.88);
+  --text-muted: rgba(255, 255, 255, 0.65);
+  color: inherit;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface .text-white,
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface [class*="text-white/"] {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface [class*="text-white/6"],
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface [class*="text-white/5"],
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface [class*="text-white/4"],
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface [class*="text-white/7"],
+html[data-theme="light"]:not([data-admin="true"]) .theme-dark-surface [class*="text-white/8"] {
+  color: var(--text-secondary);
+}
+
+/* Headings on light surfaces */
+html[data-theme="light"]:not([data-admin="true"]) main :is(h1, h2, h3, h4, h5, h6),
+html[data-theme="light"]:not([data-admin="true"]) footer :is(h1, h2, h3, h4, h5, h6),
+html[data-theme="light"]:not([data-admin="true"]) article :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--text-primary);
+}
+
+/* Legacy dark-* utilities on light backgrounds */
+html[data-theme="light"]:not([data-admin="true"]) .text-dark-600,
+html[data-theme="light"]:not([data-admin="true"]) .text-dark-700,
+html[data-theme="light"]:not([data-admin="true"]) .text-dark-800 {
+  color: var(--text-secondary);
+}
+
+/* Hover utilities */
+html[data-theme="light"]:not([data-admin="true"]) .hover\:text-white:hover:not(.theme-dark-surface *) {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .hover\:text-neon-cyan:hover {
+  color: var(--neon-cyan);
+}
+
+/* Links */
+html[data-theme="light"]:not([data-admin="true"]) a:not(.btn-neon):not(.btn-whatsapp):not(.header-cta-inner) {
+  color: inherit;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) a.text-neon-cyan,
+html[data-theme="light"]:not([data-admin="true"]) a.font-semibold.text-neon-cyan {
+  color: var(--neon-cyan);
+}
+
+/* Modals & dialogs */
+html[data-theme="light"]:not([data-admin="true"]) [role="dialog"] .bg-dark,
+html[data-theme="light"]:not([data-admin="true"]) [role="dialog"] .bg-dark-50,
+html[data-theme="light"]:not([data-admin="true"]) [role="dialog"] .bg-dark-100,
+html[data-theme="light"]:not([data-admin="true"]) .search-dialog {
+  background-color: var(--surface);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .search-dialog input,
+html[data-theme="light"]:not([data-admin="true"]) .search-dialog input::placeholder {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .search-dialog input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Form controls */
+html[data-theme="light"]:not([data-admin="true"]) select.iptv-input option {
+  color: var(--text-primary);
+  background-color: #ffffff;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) input:not(.theme-dark-surface *),
+html[data-theme="light"]:not([data-admin="true"]) textarea:not(.theme-dark-surface *),
+html[data-theme="light"]:not([data-admin="true"]) select:not(.theme-dark-surface *) {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) input::placeholder,
+html[data-theme="light"]:not([data-admin="true"]) textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Prose / marketing article bodies */
+html[data-theme="light"]:not([data-admin="true"]) .prose-invert :where(p, li, dd, blockquote, strong, em) {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .prose-invert :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--text-primary);
+}
+
+/* Plan cards & pricing */
+html[data-theme="light"]:not([data-admin="true"]) #plans article.border-neon-cyan\/50 {
+  background: linear-gradient(to bottom, rgba(0, 229, 255, 0.08), transparent);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .rounded-full.bg-gradient-to-r.from-neon-gold {
+  color: #ffffff !important;
+}
+
+/* Sticky mobile CTA bar */
+html[data-theme="light"]:not([data-admin="true"]) .fixed.bottom-0.bg-dark {
+  background-color: rgba(255, 255, 255, 0.96);
+  border-color: var(--border-subtle);
+  box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* FAQ answer rows */
+html[data-theme="light"]:not([data-admin="true"]) #faq .border-t.border-white\/5 {
+  border-color: var(--border-subtle);
+}
+
+/* Blog tag pills */
+html[data-theme="light"]:not([data-admin="true"]) .rounded-full.bg-white\/5 {
+  background-color: rgba(17, 24, 39, 0.05);
+}
+
+/* Icons on light surfaces — keep accent colors visible */
+html[data-theme="light"]:not([data-admin="true"]) .text-neon-cyan {
+  color: #0099cc;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .text-neon-green {
+  color: #059669;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .text-neon-gold {
+  color: #b45309;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .section-eyebrow {
+  color: #0099cc;
+}
+
+/* Preserve filled CTA buttons */
+html[data-theme="light"]:not([data-admin="true"]) .btn-neon,
+html[data-theme="light"]:not([data-admin="true"]) .btn-whatsapp,
+html[data-theme="light"]:not([data-admin="true"]) .header-cta-inner {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"]:not([data-admin="true"]) .btn-neon-outline,
+html[data-theme="light"]:not([data-admin="true"]) .btn-gold {
+  color: #004a99;
+  background: #ffffff;
+  border-color: #0073e6;
+}
+
+/* Footer admin lock icon */
+html[data-theme="light"]:not([data-admin="true"]) footer a.text-white\/50 {
+  color: var(--text-muted);
+}
+
+html[data-theme="light"]:not([data-admin="true"]) footer a.text-white\/50:hover {
+  color: var(--neon-cyan);
 }

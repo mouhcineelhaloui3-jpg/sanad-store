@@ -62,6 +62,15 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion", "sonner"],
     externalDir: true
   },
+  async redirects() {
+    return [
+      {
+        source: "/iptv/iptv-maroc",
+        destination: "/iptv/iptv-worldwide",
+        permanent: true
+      }
+    ];
+  },
   async headers() {
     return [
       {

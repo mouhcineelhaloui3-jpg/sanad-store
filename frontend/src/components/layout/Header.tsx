@@ -6,6 +6,7 @@ import { HeaderCtaButton } from "@/components/layout/HeaderCtaButton";
 import { Logo } from "@/components/layout/Logo";
 import { NavMoreDropdown } from "@/components/layout/NavMoreDropdown";
 import { SiteSearchDialog } from "@/components/search/SiteSearchDialog";
+import { CurrencySwitcher } from "@/components/layout/CurrencySwitcher";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
@@ -47,6 +48,7 @@ export function Header() {
             <div className="hidden items-center gap-1.5 md:flex">
               <ThemeToggle />
               <SiteSearchDialog />
+              <CurrencySwitcher />
               <LanguageSwitcher />
             </div>
             <HeaderCtaButton onClick={() => openOrder()} className="hidden sm:inline-flex" />

@@ -5,7 +5,7 @@ import { StructuredData, productJsonLd, webPageJsonLd } from "@/components/seo/S
 import { createLandingMetadata } from "@/components/seo/MetaTags";
 import { getStoreContent } from "@/lib/cms/server";
 import { mergePlansWithCms } from "@/lib/cms/merge-plans";
-import { formatPlanPrice } from "@/lib/i18n/currency";
+import { ProgrammaticPriceBadge } from "@/components/seo/ProgrammaticPriceBadge";
 import type { Plan } from "@/lib/plans";
 
 import type { PlanSlug } from "@/lib/plan-routes";
@@ -32,7 +32,7 @@ export async function PlanLandingPage({ config }: { config: PlanLandingConfig })
   const content = await getStoreContent();
   const plans = mergePlansWithCms(content.plans);
   const plan = plans.find((p) => p.slug === config.slug) as Plan | undefined;
-  const price = plan ? formatPlanPrice(plan.price, "MAD", "ar-ma").primary : null;
+  const priceMad = plan?.price ?? null;
 
   return (
     <>
@@ -60,10 +60,8 @@ export async function PlanLandingPage({ config }: { config: PlanLandingConfig })
         title={config.title}
         subtitle={config.subtitle}
       >
-        {price ? (
-          <p className="rounded-2xl border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-3 text-lg font-black text-neon-cyan">
-            السعر: {price} — تفعيل فوري عبر واتساب
-          </p>
+        {priceMad != null ? (
+          <ProgrammaticPriceBadge amountMad={priceMad} />
         ) : null}
         <ul className="space-y-3">
           {config.bullets.map((item) => (
